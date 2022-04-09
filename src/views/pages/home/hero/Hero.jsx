@@ -1,6 +1,11 @@
 import React from "react";
+
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
+
+// import required modules
+import { EffectFade, Navigation, Pagination, Autoplay } from "swiper";
+
 
 // Import Swiper styles
 import "swiper/css";
@@ -8,35 +13,36 @@ import "swiper/css/effect-fade";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-import "./styles.css";
-
-// import required modules
-import { EffectFade, Navigation, Pagination } from "swiper";
+// import images 
+import banner1 from '../../../../assets/images/banner/banner1.jpg'
+import banner2 from '../../../../assets/images/banner/banner2.jpg'
+import banner3 from '../../../../assets/images/banner/banner4.jpg'
 
 const Hero = () => {
     return (
         <>
             <Swiper
+                loop={true}
+                autoplay={{
+                    delay: 2000
+                }}
                 spaceBetween={30}
                 effect={"fade"}
                 navigation={true}
                 pagination={{
                     clickable: true,
                 }}
-                modules={[EffectFade, Navigation, Pagination]}
+                modules={[EffectFade, Navigation, Pagination, Autoplay]}
                 className="mySwiper"
             >
                 <SwiperSlide>
-                    <img alt="" src="https://swiperjs.com/demos/images/nature-1.jpg" />
+                    <img alt="" width={"100%"} style={{ height: "70vh" }} src={banner1} />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img alt="" src="https://swiperjs.com/demos/images/nature-2.jpg" />
+                    <img alt="" width={"100%"} style={{ height: "70vh" }} src={banner2} />
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img alt="" src="https://swiperjs.com/demos/images/nature-3.jpg" />
-                </SwiperSlide>
-                <SwiperSlide>
-                    <img alt="" src="https://swiperjs.com/demos/images/nature-4.jpg" />
+                    <img alt="" width={"100%"} style={{ height: "70vh" }} src={banner3} />
                 </SwiperSlide>
             </Swiper>
         </>
