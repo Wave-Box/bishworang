@@ -15,7 +15,6 @@ import {
     ViewGridIcon,
     XIcon,
 } from '@heroicons/react/outline'
-import { ChevronDownIcon } from '@heroicons/react/solid'
 
 const solutions = [
     {
@@ -69,11 +68,11 @@ const resources = [
     },
     { name: 'Security', description: 'Understand how we take your privacy seriously.', href: '#', icon: ShieldCheckIcon },
 ]
-const recentPosts = [
-    { id: 1, name: 'Boost your conversion rate', href: '#' },
-    { id: 2, name: 'How to use search engine optimization to drive traffic to your site', href: '#' },
-    { id: 3, name: 'Improve your customer experience', href: '#' },
-]
+// const recentPosts = [
+//     { id: 1, name: 'Boost your conversion rate', href: '#' },
+//     { id: 2, name: 'How to use search engine optimization to drive traffic to your site', href: '#' },
+//     { id: 3, name: 'Improve your customer experience', href: '#' },
+// ]
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
