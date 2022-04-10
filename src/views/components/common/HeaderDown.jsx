@@ -5,7 +5,7 @@ import TextField from '../form/text/TextField';
 
 const HeaderDown = () => {
     return (
-        <div className='flex container mx-auto justify-between items-center '>
+        <div className='flex container mx-auto justify-between items-center my-2'>
             <div className="">
                 <TextField placeHolder={"Search for items"} name="search" />
             </div>
