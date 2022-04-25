@@ -1,7 +1,7 @@
 import React from 'react';
-import TextField from '../../components/form/text/TextField';
 import Feature from './feature/Feature';
 import Hero from './hero/Hero';
+import PopularCategories from './PopularCategories/PopularCategories';
 import ProductSection from './product_Section/Product_Section';
 
 const Home = () => {
@@ -10,7 +10,7 @@ const Home = () => {
             <Hero />
             <Feature />
             <ProductSection />
-            <TextField placeHolder={"Your Email"} name="email" />
+            <PopularCategories />
         </div>
     );
 };
