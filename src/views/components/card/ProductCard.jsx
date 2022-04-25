@@ -56,7 +56,7 @@ const ProductCard = () => {
 export default ProductCard;
 
 
-const HoverIcon = ({ text }) => {
+export const HoverIcon = ({ text }) => {
     return (
         <motion.div
             whileHover={{ y: -7 }}
@@ -66,16 +66,8 @@ const HoverIcon = ({ text }) => {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: -5 }}
                 transition={{ delay: 1 }}
-                className="bg-orange-700 rounded-md shadow-sm pb-3 pt-1 font-semibold absolute -top-10 m-1 -left-8 px-2  invisible child_icon translate-y-6 transition-all duration-500 ease-in-out text-center text-xs text-gray-300">{text}</motion.div>
+                className="bg-orange-700 rounded-md shadow-sm pb-3 pt-1 font-semibold absolute -top-9 m-1 -left-8 px-2  invisible child_icon translate-y-6 transition-all duration-500 ease-in-out text-center text-xs text-gray-300">{text}</motion.div>
         </motion.div>
     )
 }
 
-// const CartIcon = ({ text }) => {
-//     return (
-//         <div className="p-3 icon rounded-full bg-orange-50 relative hover:bg-orange-700 hover:text-white hover:-mt-2 transition-all duration-500 ease-in-out">
-//             <HeartIcon className='h-5 w-5  text-2xl font-serif font-bold' />
-//             <p className="bg-orange-700 rounded-md shadow-sm pb-3 pt-1 font-semibold absolute -top-20 m-1 -left-10 px-2  invisible child_icon translate-y-6 transition-all duration-500 ease-in-out text-center">{text}</p>
-//         </div>
-//     )
-// }

@@ -1,31 +1,48 @@
 import React from 'react';
 // import Swiper core and required modules
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+import { Navigation, A11y, EffectFade, Autoplay } from 'swiper';
 
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper } from 'swiper/react';
+
+
 
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
-
+import 'swiper/css/effect-fade';
 
 
 const Slider1 = (props) => {
     return (
         <Swiper
-            // install Swiper modules
-            modules={[Navigation, Pagination, Scrollbar, A11y]}
-            spaceBetween={50}
-            slidesPerView={6}
-            navigation
-            pagination={{ clickable: true }}
-            scrollbar={{ draggable: true }}
-            onSwiper={(swiper) => console.log(swiper)}
-            onSlideChange={() => console.log('slide change')}
+            loop={true}
+
+            autoplay={{
+                delay: 3000
+            }}
+            modules={[Autoplay, A11y, EffectFade, Navigation]}
+            breakpoints={{
+                640: {
+                    slidesPerView: 2,
+                    spaceBetween: 10,
+                },
+                768: {
+                    slidesPerView: 4,
+                    spaceBetween: 10,
+                },
+                1024: {
+                    slidesPerView: 6,
+                    spaceBetween: 20,
+                },
+            }}
+            navigation={{
+                prevEl: '.prev',
+                nextEl: '.next',
+            }}
+            className="mySwiper"
         >
-            props.children
+            {props.children}
         </Swiper>
     );
 };
