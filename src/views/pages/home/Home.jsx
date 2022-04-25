@@ -1,19 +1,25 @@
 import React from 'react';
+import FromBlog from './blog/FromBlog';
 import Feature from './feature/Feature';
 import Hero from './hero/Hero';
 import NewArrivals from './NewArrivals/NewArrivals';
 import PopularCategories from './PopularCategories/PopularCategories';
 import ProductSection from './product_Section/Product_Section';
+import Subscribe from './subscribe/Subscribe';
 
 const Home = () => {
     return (
-        <div className='container mx-auto'>
-            <Hero />
-            <Feature />
-            <ProductSection />
-            <PopularCategories />
-            <NewArrivals />
-        </div>
+        <>
+            <div className='container mx-auto'>
+                <Hero />
+                <Feature />
+                <ProductSection />
+                <PopularCategories />
+                <NewArrivals />
+                <FromBlog />
+            </div>
+            <Subscribe />
+        </>
     );
 };
 

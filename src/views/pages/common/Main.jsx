@@ -10,7 +10,7 @@ const Login = React.lazy(() => import("../user/Login"));
 
 const Main = () => {
     return (
-        <div className="container mx-auto">
+        <div className="">
             <Suspense fallback={<>Loading...</>}>
                 <Routes>
                     <Route path="/" element={<Home />} />
