@@ -1,6 +1,7 @@
 import React from 'react';
 import FromBlog from './blog/FromBlog';
 import Feature from './feature/Feature';
+import Features from './features/Features';
 import Hero from './hero/Hero';
 import HotDeals from './hotDeals/HotDeals';
 import NewArrivals from './NewArrivals/NewArrivals';
@@ -17,6 +18,7 @@ const Home = () => {
                 <Feature />
                 <ProductSection />
                 <PopularCategories />
+                <Features />
                 <NewArrivals />
                 <FromBlog />
                 <ShopToday />

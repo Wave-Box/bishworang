@@ -30,7 +30,7 @@ const Deals = () => {
     return (
         <div className="">
             <h4>Deals & Outlet</h4>
-            <div className="space-y-2">
+            <div className="space-y-8">
                 {
                     Array.from({ length: 3 }).map((_, id) => <Card key={id} />)
                 }

@@ -1,109 +1,76 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { facebook, google } from '../../../constant';
+import { button1 } from '../../../constant/color';
+import Subscribe from '../home/subscribe/Subscribe';
 
 const Login = () => {
     return (
-        <div>
-            <main class="main position-relative">
-                <div class="page-header breadcrumb-wrap">
-                    <div class="container">
-                        <div class="breadcrumb">
-                            <a href="index.html" rel="nofollow">Home</a>
-                            <span></span> Pages
-                            <span></span> Login / Register
-                        </div>
-                    </div>
+        <>
+            <div className='container mx-auto'>
+                <div class="text-sm breadcrumbs mt-6">
+                    <ul>
+                        <li><Link to='/'>Home</Link></li>
+                        <li><Link to='/'>Pages</Link></li>
+                        <li>Login / Register</li>
+                    </ul>
                 </div>
-                <section class="pt-150 pb-150">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-10 m-auto">
-                                <div class="row">
-                                    <div class="col-lg-5">
-                                        <div class="login_wrap widget-taber-content p-30 background-white border-radius-10 mb-md-5 mb-lg-0 mb-sm-5">
-                                            <div class="padding_eight_all bg-white">
-                                                <div class="heading_s1">
-                                                    <h3 class="mb-30">Login</h3>
-                                                </div>
-                                                <form method="post">
-                                                    <div class="form-group">
-                                                        <input type="text" required="" name="email" placeholder="Your Email" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input required="" type="password" name="password" placeholder="Password" />
-                                                    </div>
-                                                    <div class="login_footer form-group">
-                                                        <div class="chek-form">
-                                                            <div class="custome-checkbox">
-                                                                <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox1" value="" />
-                                                                <label class="form-check-label" for="exampleCheckbox1"><span>Remember me</span></label>
-                                                            </div>
-                                                        </div>
-                                                        <a class="text-muted" href="/">Forgot password?</a>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <button type="submit" class="btn btn-fill-out btn-block hover-up" name="login">Log in</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-1"></div>
-                                    <div class="col-lg-6">
-                                        <div class="login_wrap widget-taber-content p-30 background-white border-radius-5">
-                                            <div class="padding_eight_all bg-white">
-                                                <div class="heading_s1">
-                                                    <h3 class="mb-30">Create an Account</h3>
-                                                </div>
-                                                <p class="mb-50 font-sm">
-                                                    Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our privacy policy
-                                                </p>
-                                                <form method="post">
-                                                    <div class="form-group">
-                                                        <input type="text" required="" name="username" placeholder="Username" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="text" required="" name="email" placeholder="Email" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input required="" type="password" name="password" placeholder="Password" />
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input required="" type="password" name="password" placeholder="Confirm password" />
-                                                    </div>
-                                                    <div class="login_footer form-group">
-                                                        <div class="chek-form">
-                                                            <div class="custome-checkbox">
-                                                                <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox12" value="" />
-                                                                <label class="form-check-label" for="exampleCheckbox12"><span>I agree to terms &amp; Policy.</span></label>
-                                                            </div>
-                                                        </div>
-                                                        <a href="page-privacy-policy.html"><i class="fi-rs-book-alt mr-5 text-muted"></i>Lean more</a>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <button type="submit" class="btn btn-fill-out btn-block hover-up" name="login">Submit &amp; Register</button>
-                                                    </div>
-                                                </form>
-                                                <div class="divider-text-center mt-15 mb-15">
-                                                    <span> or</span>
-                                                </div>
-                                                <ul class="btn-login list_none text-center mb-15">
-                                                    <li><a href="/" class="btn btn-facebook hover-up mb-lg-0 mb-sm-4">Login With Facebook</a></li>
-                                                    <li><a href="/" class="btn btn-google hover-up">Login With Google</a></li>
-                                                </ul>
-                                                <div class="text-muted text-center">Already have an account? <a href="/">Sign in now</a></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+
+                <section class="grid grid-cols-2 gap-20">
+                    <div className="">
+                        <form className="border border-gray-300 rounded-2xl p-6 md:m-14 flex flex-col space-y-4">
+                            <h4 className='text-3xl font-semibold my-3 text-black'>Login</h4>
+                            <input type="email" placeholder='Your Email' className='py-3 px-4 border border-gray-300 rounded-md placeholder:text-gray-500 text-sm focus:outline-0' />
+                            <input type='password' placeholder='Password' className='py-3 px-4 border border-gray-300 rounded-md placeholder:text-gray-500 text-sm focus:outline-0' />
+                            <div class="flex justify-between items-center">
+                                <label htmlFor='remember' class="label cursor-pointer gap-4">
+                                    <input type="checkbox" id='remember' class="checkbox border border-gray-300" />
+                                    <span class="label-text">Remember me</span>
+                                </label>
+                                <span class="label-text">Forgot password?</span>
+                            </div>
+                            <div className="">
+                                <input type="submit" value="Log in" className='text-left py-3 px-8 rounded-md text-white' style={{ backgroundColor: button1.color }} />
+                            </div>
+                        </form>
+                    </div>
+                    <form className="border border-gray-300 rounded-2xl p-6 md:mx-0 md:my-14 flex flex-col space-y-4">
+                        <h4 className='text-3xl font-semibold my-3 text-black'>Create an Account</h4>
+                        <p className='pb-6 text-black text-sm'>Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our privacy policy</p>
+
+                        <input type="text" placeholder='Username' className='py-3 px-4 border border-gray-300 rounded-md placeholder:text-gray-500 text-sm focus:outline-0' />
+
+                        <input type="email" placeholder='Your Email' className='py-3 px-4 border border-gray-300 rounded-md placeholder:text-gray-500 text-sm focus:outline-0' />
+
+                        <input type='password' placeholder='Password' className='py-3 px-4 border border-gray-300 rounded-md placeholder:text-gray-500 text-sm focus:outline-0' />
+
+                        <input type='password' placeholder='Confrim password' className='py-3 px-4 border border-gray-300 rounded-md placeholder:text-gray-500 text-sm focus:outline-0' />
+
+                        <div class="flex justify-between items-center">
+                            <label htmlFor='agree' class="label cursor-pointer gap-4">
+                                <input type="checkbox" id='agree' class="checkbox border border-gray-300" />
+                                <span class="label-text">I agree to terms & Policy</span>
+                            </label>
+                            <span class="label-text">Learn more</span>
+                        </div>
+                        <div className="">
+                            <input type="submit" value="Submit & Register" className='text-left py-3 px-8 rounded-md text-white' style={{ backgroundColor: button1.color }} />
+                        </div>
+                        <div class="divider">OR</div>
+                        <div className="flex justify-center">
+                            <div className="flex gap-4">
+                                <button className='text-white font-semibold text-base px-6 py-3 rounded-md' style={{ backgroundColor: facebook }}>Login With Facebook</button>
+                                <button className='text-white font-semibold text-base px-6 py-3 rounded-md' style={{ backgroundColor: google }}>Login With Google</button>
                             </div>
                         </div>
-                    </div>
+                        <p className='text-center text-gray-500'>Already Have an Account? <a href="/" style={{ color: button1.color }}>Sign in now</a></p>
+                    </form>
+
                 </section>
+            </div>
 
-
-
-            </main>
-        </div>
+            <Subscribe />
+        </>
     );
 };
 
