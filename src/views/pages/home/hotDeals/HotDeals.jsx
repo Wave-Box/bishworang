@@ -3,7 +3,7 @@ import shoes from '../../../../assets/images/shop/banner-10.jpg'
 import card_img from '../../../../assets/images/shop/thumbnail-1.jpg'
 const HotDeals = () => {
     return (
-        <div className="grid md:grid-cols-4 gap-4">
+        <div className="grid md:grid-cols-4 gap-4 my-5">
             <div className="relative">
                 <img src={shoes} alt="" class="w-full object-cover object-center block" />
                 <div className="absolute top-0 right-0 bottom-0 left-10 flex  justify-start items-center">

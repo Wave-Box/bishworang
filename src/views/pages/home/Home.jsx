@@ -6,6 +6,7 @@ import HotDeals from './hotDeals/HotDeals';
 import NewArrivals from './NewArrivals/NewArrivals';
 import PopularCategories from './PopularCategories/PopularCategories';
 import ProductSection from './product_Section/Product_Section';
+import ShopToday from './shopToday/ShopToday';
 import Subscribe from './subscribe/Subscribe';
 
 const Home = () => {
@@ -17,8 +18,9 @@ const Home = () => {
                 <ProductSection />
                 <PopularCategories />
                 <NewArrivals />
-                <HotDeals />
                 <FromBlog />
+                <ShopToday />
+                <HotDeals />
             </div>
             <Subscribe />
         </>
