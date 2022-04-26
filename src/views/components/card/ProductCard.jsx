@@ -27,7 +27,7 @@ const ProductCard = () => {
                             transition: { duration: 1 }
                         }} src={product_2} width={290} alt="Shoes" className='group-hover:block group-hover:scale-125 transition-all duration-500 ease-linear hidden rounded-xl' />
 
-                    <div className="absolute  gap-2 top-28 flex justify-center left-0 right-0">
+                    <div className="absolute hidden gap-2 top-28 group-hover:flex justify-center left-0 right-0">
                         <HoverIcon text={"Quick View"} />
                         <HoverIcon text={'Add to Wishlist'} />
                         <HoverIcon text={'Compare'} />
