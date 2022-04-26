@@ -2,6 +2,7 @@ import React from 'react';
 import FromBlog from './blog/FromBlog';
 import Feature from './feature/Feature';
 import Hero from './hero/Hero';
+import HotDeals from './hotDeals/HotDeals';
 import NewArrivals from './NewArrivals/NewArrivals';
 import PopularCategories from './PopularCategories/PopularCategories';
 import ProductSection from './product_Section/Product_Section';
@@ -16,6 +17,7 @@ const Home = () => {
                 <ProductSection />
                 <PopularCategories />
                 <NewArrivals />
+                <HotDeals />
                 <FromBlog />
             </div>
             <Subscribe />
