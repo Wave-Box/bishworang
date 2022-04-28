@@ -9,7 +9,7 @@ import Rate from '../utils/Rate';
 const Card2 = ({ img }) => {
     return (
         <div className="">
-            <div class="card  rounded-2xl group relative">
+            <div className="card  rounded-2xl group relative">
                 <figure className='overflow-hidden rounded-xl'>
                     <motion.img whileHover={{
                         scale: 1.25,
@@ -33,12 +33,12 @@ const Card2 = ({ img }) => {
                         <HoverIcon text={'Add to Wishlist'} />
                         <HoverIcon text={'Compare'} />
                     </div>
-                    <div class="badge badge-secondary absolute top-3 left-5 text-xs">NEW</div>
+                    <div className="badge badge-secondary absolute top-3 left-5 text-xs">NEW</div>
                 </figure>
 
             </div>
-            <div class="my-2 space-y-0 bg-white">
-                <h2 class="font-semibold text-base text-black text-center">
+            <div className="my-2 space-y-0 bg-white">
+                <h2 className="font-semibold text-base text-black text-center">
                     Plain Color Pocket
                 </h2>
                 <div className="text-center">

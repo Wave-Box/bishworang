@@ -13,13 +13,13 @@ const HeaderDown = () => {
                 <img src={logo} alt="" width={150} height={150} />
             </div>
             <div className="flex ">
-                <a href='/' class="indicator tab tab-lifted bg-white border-0 text-black">
+                <a href='/' className="indicator tab tab-lifted bg-white border-0 text-black">
                     {heart}
-                    <span class="indicator-item badge border-0 bg-orange-400 text-white">8</span>
+                    <span className="indicator-item badge border-0 bg-orange-400 text-white">8</span>
                 </a>
-                <a href='/' class="indicator tab tab-lifted border-0 text-black">
+                <a href='/' className="indicator tab tab-lifted border-0 text-black">
                     {bag}
-                    <span class="indicator-item badge border-0 bg-orange-400 text-white">8</span>
+                    <span className="indicator-item badge border-0 bg-orange-400 text-white">8</span>
                 </a>
             </div>
         </div>

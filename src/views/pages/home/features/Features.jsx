@@ -9,19 +9,19 @@ const Features = () => {
         <div className="py-5">
             <div className='grid sm:grid-cols-3 gap-6'>
                 <div className="relative">
-                    <img alt="gallery" class="w-full object-cover object-center block" src={banner1} />
+                    <img alt="gallery" className="w-full object-cover object-center block" src={banner1} />
                     <div className="absolute top-0 bottom-0 left-4 flex justify-start items-center ">
                         <Card />
                     </div>
                 </div>
                 <div className="relative">
-                    <img alt="gallery" class="w-full object-cover object-center block" src={banner2} />
+                    <img alt="gallery" className="w-full object-cover object-center block" src={banner2} />
                     <div className="absolute top-0 bottom-0 left-4 flex justify-start items-center ">
                         <Card />
                     </div>
                 </div>
                 <div className="relative">
-                    <img alt="gallery" class="w-full object-cover object-center block" src={banner3} />
+                    <img alt="gallery" className="w-full object-cover object-center block" src={banner3} />
                     <div className="absolute top-0 bottom-0 left-4 flex justify-start items-center ">
                         <Card />
                     </div>

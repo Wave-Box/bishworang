@@ -8,7 +8,7 @@ const Login = () => {
     return (
         <>
             <div className='container mx-auto'>
-                <div class="text-sm breadcrumbs mt-6">
+                <div className="text-sm breadcrumbs mt-6">
                     <ul>
                         <li><Link to='/'>Home</Link></li>
                         <li><Link to='/'>Pages</Link></li>
@@ -16,18 +16,18 @@ const Login = () => {
                     </ul>
                 </div>
 
-                <section class="grid grid-cols-2 gap-20">
+                <section className="grid grid-cols-2 gap-20">
                     <div className="">
                         <form className="border border-gray-300 rounded-2xl p-6 md:m-14 flex flex-col space-y-4">
                             <h4 className='text-3xl font-semibold my-3 text-black'>Login</h4>
                             <input type="email" placeholder='Your Email' className='py-3 px-4 border border-gray-300 rounded-md placeholder:text-gray-500 text-sm focus:outline-0' />
                             <input type='password' placeholder='Password' className='py-3 px-4 border border-gray-300 rounded-md placeholder:text-gray-500 text-sm focus:outline-0' />
-                            <div class="flex justify-between items-center">
-                                <label htmlFor='remember' class="label cursor-pointer gap-4">
-                                    <input type="checkbox" id='remember' class="checkbox border border-gray-300" />
-                                    <span class="label-text">Remember me</span>
+                            <div className="flex justify-between items-center">
+                                <label htmlFor='remember' className="label cursor-pointer gap-4">
+                                    <input type="checkbox" id='remember' className="checkbox border border-gray-300" />
+                                    <span className="label-text">Remember me</span>
                                 </label>
-                                <span class="label-text">Forgot password?</span>
+                                <span className="label-text">Forgot password?</span>
                             </div>
                             <div className="">
                                 <input type="submit" value="Log in" className='text-left py-3 px-8 rounded-md text-white' style={{ backgroundColor: button1.color }} />
@@ -46,17 +46,17 @@ const Login = () => {
 
                         <input type='password' placeholder='Confrim password' className='py-3 px-4 border border-gray-300 rounded-md placeholder:text-gray-500 text-sm focus:outline-0' />
 
-                        <div class="flex justify-between items-center">
-                            <label htmlFor='agree' class="label cursor-pointer gap-4">
-                                <input type="checkbox" id='agree' class="checkbox border border-gray-300" />
-                                <span class="label-text">I agree to terms & Policy</span>
+                        <div className="flex justify-between items-center">
+                            <label htmlFor='agree' className="label cursor-pointer gap-4">
+                                <input type="checkbox" id='agree' className="checkbox border border-gray-300" />
+                                <span className="label-text">I agree to terms & Policy</span>
                             </label>
-                            <span class="label-text">Learn more</span>
+                            <span className="label-text">Learn more</span>
                         </div>
                         <div className="">
                             <input type="submit" value="Submit & Register" className='text-left py-3 px-8 rounded-md text-white' style={{ backgroundColor: button1.color }} />
                         </div>
-                        <div class="divider">OR</div>
+                        <div className="divider">OR</div>
                         <div className="flex justify-center">
                             <div className="flex gap-4">
                                 <button className='text-white font-semibold text-base px-6 py-3 rounded-md' style={{ backgroundColor: facebook }}>Login With Facebook</button>

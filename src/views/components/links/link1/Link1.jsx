@@ -10,7 +10,7 @@ const Link1 = ({ text, href }) => {
         }} exit={{
             x: 0, transition: { duration: 0.5 }
         }}>
-            <NavLink to={href} class="text-gray-600 hover_text">{text}</NavLink>
+            <NavLink to={href} className="text-gray-600 hover_text">{text}</NavLink>
         </motion.li>
     );
 };

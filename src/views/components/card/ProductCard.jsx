@@ -9,7 +9,7 @@ import Rate from '../utils/Rate';
 const ProductCard = () => {
     return (
         <div className="">
-            <div class="card shadow-md rounded-2xl group relative w-72 border border-orange-200">
+            <div className="card shadow-md rounded-2xl group relative w-72 border border-orange-200">
                 <figure className='m-2 overflow-hidden rounded-xl'>
                     <motion.img whileHover={{
                         scale: 1.25,
@@ -40,11 +40,11 @@ const ProductCard = () => {
                         </HoverIcon>
 
                     </div>
-                    <div class="badge badge-secondary absolute top-3 left-5">NEW</div>
+                    <div className="badge badge-secondary absolute top-3 left-5">NEW</div>
                 </figure>
-                <div class="card-body p-4 gap-1 absolute bottom-0 left-0 right-0 bg-white">
+                <div className="card-body p-4 gap-1 absolute bottom-0 left-0 right-0 bg-white">
                     <p className='text-xs '>Shirt</p>
-                    <h2 class="font-semibold text-base text-black">
+                    <h2 className="font-semibold text-base text-black">
                         <a href="/"> Plain Color Pocket Shirts</a>
                     </h2>
                     <p className='flex items-start gap-2 text-sm'>

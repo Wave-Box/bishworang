@@ -5,7 +5,7 @@ const HotDeals = () => {
     return (
         <div className="grid md:grid-cols-4 gap-4 my-5">
             <div className="relative">
-                <img src={shoes} alt="" class="w-full object-cover object-center block" />
+                <img src={shoes} alt="" className="w-full object-cover object-center block" />
                 <div className="absolute top-0 right-0 bottom-0 left-10 flex  justify-start items-center">
                     <div className="text-black">
                         <span>Big Offer</span>
@@ -46,7 +46,7 @@ const Card = () => {
                 <img src={card_img} width={86} height={86} alt="" />
             </div>
             <div className="flex flex-col gap-2 items-start">
-                <h2 class="card-title text-black text-center">
+                <h2 className="card-title text-black text-center">
                     Plain Color Pocket
                 </h2>
                 <h6 className='text-lg font-semibold text-center text-orange-400'>

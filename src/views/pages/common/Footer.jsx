@@ -66,48 +66,48 @@ const contact = [
 
 const Footer = () => {
     return (
-        <footer class="text-gray-600 body-font">
-            <div class="container py-24 mx-auto">
-                <div class="flex flex-wrap md:text-left text-center order-first">
-                    <div class="lg:w-2/6 md:w-1/2 w-full px-4">
+        <footer className="text-gray-600 body-font">
+            <div className="container py-24 mx-auto">
+                <div className="flex flex-wrap md:text-left text-center order-first">
+                    <div className="lg:w-2/6 md:w-1/2 w-full px-4">
                         <img src={logo} width={'120'} alt='' />
-                        <h2 class=" font-semibold text-gray-900 tracking-widest text-xl my-2">Contact</h2>
-                        <nav class="list-none mb-10 space-y-1">
+                        <h2 className=" font-semibold text-gray-900 tracking-widest text-xl my-2">Contact</h2>
+                        <nav className="list-none mb-10 space-y-1">
                             {contact.map((item, idx) => (
                                 <li key={idx}>
-                                    <p class="text-gray-600 hover:text-gray-800"><strong>{item.name}</strong>{item.value}</p>
+                                    <p className="text-gray-600 hover:text-gray-800"><strong>{item.name}</strong>{item.value}</p>
                                 </li>))}
 
                         </nav>
                     </div>
 
-                    <div class="lg:w-1/6 md:w-1/2 w-full px-4">
-                        <h2 class=" font-semibold text-gray-900 tracking-widest text-xl mb-3">About</h2>
-                        <nav class="list-none mb-10 space-y-2">
+                    <div className="lg:w-1/6 md:w-1/2 w-full px-4">
+                        <h2 className=" font-semibold text-gray-900 tracking-widest text-xl mb-3">About</h2>
+                        <nav className="list-none mb-10 space-y-2">
 
                             {about.map((item, idx) => <Link1 key={idx} text={item.name} href={item.link} />)}
 
                         </nav>
                     </div>
-                    <div class="lg:w-1/6 md:w-1/2 w-full px-4">
-                        <h2 class=" font-semibold text-gray-900 tracking-widest text-xl mb-3">My Account</h2>
-                        <nav class="list-none mb-10 space-y-2">
+                    <div className="lg:w-1/6 md:w-1/2 w-full px-4">
+                        <h2 className=" font-semibold text-gray-900 tracking-widest text-xl mb-3">My Account</h2>
+                        <nav className="list-none mb-10 space-y-2">
                             {my_account.map((item, idx) => <Link1 key={idx} text={item.name} href={item.link} />)}
                         </nav>
                     </div>
 
-                    <div class="lg:w-2/6 md:w-1/2 w-full px-4">
-                        <h2 class=" font-semibold text-gray-900 tracking-widest text-xl mb-3">Install App</h2>
+                    <div className="lg:w-2/6 md:w-1/2 w-full px-4">
+                        <h2 className=" font-semibold text-gray-900 tracking-widest text-xl mb-3">Install App</h2>
 
                         <div className="">
-                            <p class="text-gray-500 text-base mt-2 md:text-left text-center">From App Store or Google Play</p>
+                            <p className="text-gray-500 text-base mt-2 md:text-left text-center">From App Store or Google Play</p>
                             <div className="flex gap-2 my-3 justify-center lg:justify-start">
                                 <motion.img whileHover={{ y: -7, transition: { duration: 0.5 } }} src={store1} className='border-2 border-orange-400 rounded' alt="" />
                                 <motion.img whileHover={{ y: -7, transition: { duration: 0.5 } }} src={store2} className='border-2 border-orange-400 rounded' alt="" />
                             </div>
                         </div>
                         <div className="">
-                            <p class="text-gray-500 text-base mt-2 md:text-left text-center">Secured Payment Gateways</p>
+                            <p className="text-gray-500 text-base mt-2 md:text-left text-center">Secured Payment Gateways</p>
                             <div className=" gap-2 my-3 flex justify-center lg:justify-start">
                                 <img src={payment} alt="" />
                             </div>
