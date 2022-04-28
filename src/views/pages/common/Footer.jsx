@@ -5,6 +5,7 @@ import logo from '../../../assets/images/logo.png'
 import store1 from '../../../assets/images/footer/app-store.jpg'
 import store2 from '../../../assets/images/footer/google-play.jpg'
 import payment from '../../../assets/images/footer/payment-method.png'
+import { primaryColor } from '../../../constant';
 
 const about = [{
     name: "About Us",
@@ -67,7 +68,7 @@ const contact = [
 const Footer = () => {
     return (
         <footer className="text-gray-600 body-font">
-            <div className="container py-24 mx-auto">
+            <div className="container pt-12 mx-auto">
                 <div className="flex flex-wrap md:text-left text-center order-first">
                     <div className="lg:w-2/6 md:w-1/2 w-full px-4">
                         <img src={logo} width={'120'} alt='' />
@@ -115,7 +116,14 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
-
+            <div class="bg-gray-100">
+                <div class="container mx-auto py-4 flex flex-wrap flex-col sm:flex-row text-base">
+                    <p class="text-gray-500 text-sm text-center sm:text-left">© 2021, <span className='font-semibold' style={{ color: primaryColor }}>Wave Box</span> —
+                        eCommerce Website
+                    </p>
+                    <span class="sm:ml-auto sm:mt-0 mt-2 sm:w-auto w-full sm:text-left text-center text-gray-500 text-sm">Designed by <span className='font-semibold' style={{ color: primaryColor }}>Wave Box</span>| All right reserved</span>
+                </div>
+            </div>
         </footer>
     );
 };

@@ -1,3 +1,14 @@
 .hover_text:hover {
   color: #f27820 !important;
 }
+
+.link_hover:hover svg {
+  --tw-translate-x: 0.30rem
+    /* 8px */
+  ;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+  transition-timing-function: linear;
+}
