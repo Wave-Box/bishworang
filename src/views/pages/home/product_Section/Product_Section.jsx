@@ -6,7 +6,7 @@ const Product_Section = () => {
     return (
         <>
             <div className="mx-auto container">
-                <div className="flex justify-between items-center my-5 ">
+                <div className="flex justify-between items-center my-7 ">
                     <div className="flex gap-2">
                         <Button1 text={"Featured"} active={true} />
                         <Button1 text={"Popular"} />

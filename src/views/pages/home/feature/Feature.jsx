@@ -41,7 +41,7 @@ const data = [
 
 const Feature = () => {
     return (
-        <div className='grid md:grid-cols-6 gap-4 my-6'>
+        <div className='grid md:grid-cols-6 gap-4 sm:py-8 sm:mt-10'>
             {
                 data.map((item, id) => <SingleFeature key={id} {...item} />)
             }
@@ -53,14 +53,15 @@ export default Feature;
 
 
 const SingleFeature = ({ image, color, text }) => {
-    console.log(color);
     return (
         <>
-            <div className="border border-gray-300 rounded-md shadow-md flex flex-col p-4 gap-y-2">
+            <div style={{ padding: '25px 15px' }} className="border border-gray-300 rounded-md shadow-md flex flex-col  gap-y-2">
                 <div className="flex justify-center items-center">
-                    <img src={image} width={150} height={100} alt="" className='p-1' />
+                    <img src={image} width={150} alt="" className='' />
                 </div>
-                <button className='rounded-md font-semibold p-1' style={{ backgroundColor: `${color}`, color: "#f27820" }}>{text}</button>
+                <div className="text-center">
+                    <button className='rounded-sm font-semibold py-1 px-2 text-sm' style={{ backgroundColor: `${color}`, color: "#f27820" }}>{text}</button>
+                </div>
 
             </div>
         </>
