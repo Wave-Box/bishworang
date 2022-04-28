@@ -10,6 +10,7 @@ import ProductSection from './product_Section/Product_Section';
 import RepairServices from './repair/RepairServices';
 import ShopToday from './shopToday/ShopToday';
 import Subscribe from './subscribe/Subscribe';
+import TimerSection from './timer/TimerSection';
 
 const Home = () => {
     return (
@@ -22,6 +23,7 @@ const Home = () => {
                 <PopularCategories />
                 <Features />
                 <NewArrivals />
+                <TimerSection />
                 <FromBlog />
                 <ShopToday />
                 <HotDeals />
