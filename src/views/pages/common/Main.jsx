@@ -1,5 +1,6 @@
 import React, { Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
+import SingleProduct from "../singleProduct/SingleProduct";
 // import { SingleProduct } from "../singleProduct/SingleProduct";
 // import { Home } from "../home/Home";
 
@@ -14,7 +15,7 @@ const Main = () => {
             <Suspense fallback={<>Loading...</>}>
                 <Routes>
                     <Route path="/" element={<Home />} />
-                    {/* <Route path="/product/:id" element={<SingleProduct />} /> */}
+                    <Route path="/product/:id" element={<SingleProduct />} />
                     <Route path="/login" element={<Login />} />
                 </Routes>
             </Suspense>

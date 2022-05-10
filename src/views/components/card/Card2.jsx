@@ -5,6 +5,7 @@ import { HoverIcon } from './ProductCard';
 import product_1 from '../../../assets/images/product/3.jpg'
 import product_2 from '../../../assets/images/product/4.jpg'
 import Rate from '../utils/Rate';
+import Price from '../utils/Price';
 
 const Card2 = ({ img }) => {
     return (
@@ -44,9 +45,8 @@ const Card2 = ({ img }) => {
                 <div className="text-center">
                     <Rate rating={3.6} />
                 </div>
-                <h6 className='text-lg font-semibold text-center text-orange-400 m-0'>
-                    $28.80 <span className='line-through text-sm text-gray-400'> $23.66</span>
-                </h6>
+               
+                <Price currentPrice={28.80} oldPrice={23.66} />
 
 
             </div>
