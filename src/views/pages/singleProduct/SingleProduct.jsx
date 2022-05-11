@@ -12,6 +12,7 @@ import { motion } from 'framer-motion'
 import ImageSection from './ImageSection';
 import { Link } from 'react-router-dom';
 import Reviews from './Reviews/Reviews';
+import RelatedProducts from './RelatedProducts';
 
 
 
@@ -23,13 +24,13 @@ const SingleProduct = () => {
 
     return (
         <div className='container mx-auto'>
-             <div className="text-sm breadcrumbs mt-6">
-                    <ul>
-                        <li><Link to='/'>Home</Link></li>
-                        <li><Link to='/'>Fashion</Link></li>
-                        <li>Abstract Print Patchwork Dress</li>
-                    </ul>
-                </div>
+            <div className="text-sm breadcrumbs mt-6">
+                <ul>
+                    <li><Link to='/'>Home</Link></li>
+                    <li><Link to='/'>Fashion</Link></li>
+                    <li>Abstract Print Patchwork Dress</li>
+                </ul>
+            </div>
             <div className="grid grid-cols-8 md:gap-4 ">
 
                 <div className="col-span-3 ">
@@ -39,12 +40,12 @@ const SingleProduct = () => {
                 <div className="col-span-4 px-2">
                     <h2 className='text-3xl font-semibold text-black'>Colorful Pattern Shirts HD450</h2>
                     <div className="flex justify-between items-center mt-6">
-                        <div className=""><p className='' style={{color:primaryColor}}> <span className='text-black'>Brands: </span> Bootstrap</p></div>
-                        <div className="flex justify-start items-center gap-2"><p className='text-xl'><Rate rating={4.5}/></p> <p>(25 reviews)</p></div>
+                        <div className=""><p className='' style={{ color: primaryColor }}> <span className='text-black'>Brands: </span> Bootstrap</p></div>
+                        <div className="flex justify-start items-center gap-2"><p className='text-xl'><Rate rating={4.5} /></p> <p>(25 reviews)</p></div>
                     </div>
                     <div className="divider mt-2"></div>
                     <div className="flex justify-start items-center gap-x-4">
-                        <h6 className='text-3xl font-semibold text-center m-0' style={{color:primaryColor}}>
+                        <h6 className='text-3xl font-semibold text-center m-0' style={{ color: primaryColor }}>
                             ${120.00} </h6>
                         <p className='line-through text-md text-gray-400'> ${200.00}</p>
                         <p className='text-md text-gray-400'> 25% Off</p>
@@ -104,9 +105,11 @@ const SingleProduct = () => {
                         <h6 className='text-black'>Availability: <span className='text-green-400'>8 Items In Stock</span></h6>
                     </div>
                 </div>
-               
+
             </div>
-<Reviews />
+            <Reviews />
+
+            <RelatedProducts />
         </div>
     );
 };
