@@ -4,8 +4,8 @@ const ColorSelect = ({setSelect,select,selectColor,bg}) => {
     
     return (
         <>
-            <div onClick={() => setSelect(selectColor)} class={`avatar ${select === selectColor ? "online" : null}`}>
-                <div class={`${bg} text-neutral-content rounded-full w-8`}>
+            <div onClick={() => setSelect(selectColor)} className={`avatar ${select === selectColor ? "online" : null}`}>
+                <div className={`${bg} text-neutral-content rounded-full w-8`}>
                 </div>
             </div>
         </>

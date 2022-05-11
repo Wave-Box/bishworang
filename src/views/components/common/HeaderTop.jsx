@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import { mobile, location, Language, userIcon } from '../../../assets/svg';
 
 const HeaderTop = () => {
@@ -14,7 +15,7 @@ const HeaderTop = () => {
                 </div>
                 <div className="flex items-center divide-x gap-x-4">
                     <HeaderTopMenu icon={Language} doc={"English"} />
-                    <HeaderTopMenu icon={userIcon} doc={"Log In/Sign Up"} />
+                   <NavLink to='/login'> <HeaderTopMenu icon={userIcon} doc={"Log In/Sign Up"} /></NavLink>
                 </div>
 
             </div>

@@ -116,12 +116,12 @@ const Footer = () => {
                     </div>
                 </div>
             </div>
-            <div class="bg-gray-100">
-                <div class="container mx-auto py-4 flex flex-wrap flex-col sm:flex-row text-base">
-                    <p class="text-gray-500 text-sm text-center sm:text-left">© 2021, <span className='font-semibold' style={{ color: primaryColor }}>Wave Box</span> —
+            <div className="bg-gray-100">
+                <div className="container mx-auto py-4 flex flex-wrap flex-col sm:flex-row text-base">
+                    <p className="text-gray-500 text-sm text-center sm:text-left">© 2021, <span className='font-semibold' style={{ color: primaryColor }}>Wave Box</span> —
                         eCommerce Website
                     </p>
-                    <span class="sm:ml-auto sm:mt-0 mt-2 sm:w-auto w-full sm:text-left text-center text-gray-500 text-sm">Designed by <span className='font-semibold' style={{ color: primaryColor }}>Wave Box</span>| All right reserved</span>
+                    <span className="sm:ml-auto sm:mt-0 mt-2 sm:w-auto w-full sm:text-left text-center text-gray-500 text-sm">Designed by <span className='font-semibold' style={{ color: primaryColor }}>Wave Box</span>| All right reserved</span>
                 </div>
             </div>
         </footer>

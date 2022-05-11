@@ -6,10 +6,11 @@ import product_1 from '../../../assets/images/product/3.jpg'
 import product_2 from '../../../assets/images/product/4.jpg'
 import Rate from '../utils/Rate';
 import Price from '../utils/Price';
+import { NavLink } from 'react-router-dom';
 
 const Card2 = ({ img }) => {
     return (
-        <div className="">
+        <NavLink to={`/product/1`} className="">
             <div className="card  rounded-2xl group relative">
                 <figure className='overflow-hidden rounded-xl'>
                     <motion.img whileHover={{
@@ -45,12 +46,12 @@ const Card2 = ({ img }) => {
                 <div className="text-center">
                     <Rate rating={3.6} />
                 </div>
-               
+
                 <Price currentPrice={28.80} oldPrice={23.66} />
 
 
             </div>
-        </div>
+        </NavLink>
     );
 };
 
