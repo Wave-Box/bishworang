@@ -10,9 +10,9 @@ import SizeSelect from '../../components/utils/SizeSelect';
 import { primaryColor } from '../../../constant';
 import { motion } from 'framer-motion'
 import ImageSection from './ImageSection';
-import { Link } from 'react-router-dom';
-import Reviews from './Reviews/Reviews';
+import { Link, Outlet, NavLink, useLocation } from 'react-router-dom';
 import RelatedProducts from './RelatedProducts';
+
 
 
 
@@ -20,24 +20,29 @@ const SingleProduct = () => {
     const [selectColor, setSelectColor] = useState('black')
     const [selectSize, setSelectSize] = useState('XL')
     const [quantity, setQuantity] = useState(0)
-
-
+    const location = useLocation()
+    console.log(location.pathname);
+    const activeStyle = {
+        borderBottom: `2px solid ${primaryColor}`,
+        color: primaryColor,
+        paddingBottom: '7px',
+    }
     return (
         <div className='container mx-auto'>
-            <div className="text-sm breadcrumbs mt-6">
+            <div className="text-sm breadcrumbs md:mt-6 my-4 ">
                 <ul>
                     <li><Link to='/'>Home</Link></li>
                     <li><Link to='/'>Fashion</Link></li>
                     <li>Abstract Print Patchwork Dress</li>
                 </ul>
             </div>
-            <div className="grid grid-cols-8 md:gap-4 ">
+            <div className="grid md:grid-cols-8 grid-cols-1 md:gap-4 ">
 
-                <div className="col-span-3 ">
+                <div className="md:col-span-3">
                     <ImageSection />
 
                 </div>
-                <div className="col-span-4 px-2">
+                <div className="md:col-span-4 md:px-2">
                     <h2 className='text-3xl font-semibold text-black'>Colorful Pattern Shirts HD450</h2>
                     <div className="flex justify-between items-center mt-6">
                         <div className=""><p className='' style={{ color: primaryColor }}> <span className='text-black'>Brands: </span> Bootstrap</p></div>
@@ -107,7 +112,27 @@ const SingleProduct = () => {
                 </div>
 
             </div>
-            <Reviews />
+
+
+            <div className="flex justify-start items-center gap-10 my-4 uppercase tracking-wide">
+                <motion.div whileHover={{ y: -3, transition: { duration: 0.2 }, color: primaryColor }}>
+
+                    <NavLink to={`/product/1/description`} style={({ isActive }) =>
+                        isActive ? activeStyle : undefined
+                    }>
+                        <span className='text-lg font-semibold'>Description</span>
+                    </NavLink>
+                </motion.div>
+
+                <motion.div whileHover={{ y: -3, transition: { duration: 0.4 }, color: primaryColor }}>
+                    <NavLink to={`/product/1/reviews`} className="text-black" style={({ isActive }) =>
+                        isActive ? activeStyle : undefined
+                    }>
+                        <span className='text-lg  font-semibold'>Reviews (3)</span>
+                    </NavLink>
+                </motion.div>
+            </div>
+            <Outlet />
 
             <RelatedProducts />
         </div>

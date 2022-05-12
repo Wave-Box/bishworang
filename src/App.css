@@ -12,3 +12,6 @@
   transition-duration: 300ms;
   transition-timing-function: linear;
 }
+body{
+  color:black
+}
