@@ -6,10 +6,11 @@ import { motion } from "framer-motion"
 import './productCard.css'
 import { BsShuffle, BsBagPlus } from "react-icons/bs";
 import Rate from '../utils/Rate';
-import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 const ProductCard = () => {
+    const navigate = useNavigate()
     return (
-        <NavLink to={'/product/1'} className="">
+        <div onClick={() => navigate(`/product/1`)} className="cursor-pointer">
             <div className="card shadow-md rounded-2xl group relative w-72 border border-orange-200">
                 <figure className='m-2 overflow-hidden rounded-xl'>
                     <motion.img whileHover={{
@@ -63,7 +64,7 @@ const ProductCard = () => {
                     </div>
                 </div>
             </div>
-        </NavLink>
+        </div>
     );
 };
 

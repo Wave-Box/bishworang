@@ -7,7 +7,7 @@ const Reviews = () => {
     return (
         <>
         
-        <div className='grid grid-cols-8 gap-4'>
+        <div className='grid grid-cols-8 gap-8'>
             <div className="col-span-4">
                 <CustomerQuestions />
             </div>

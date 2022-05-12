@@ -6,11 +6,12 @@ import product_1 from '../../../assets/images/product/3.jpg'
 import product_2 from '../../../assets/images/product/4.jpg'
 import Rate from '../utils/Rate';
 import Price from '../utils/Price';
-import { NavLink } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
 
 const Card2 = ({ img }) => {
+    const navigate = useNavigate()
     return (
-        <NavLink to={`/product/1`} className="">
+        <div onClick={() => navigate(`/product/1`)} className="cursor-pointer">
             <div className="card  rounded-2xl group relative">
                 <figure className='overflow-hidden rounded-xl'>
                     <motion.img whileHover={{
@@ -51,7 +52,7 @@ const Card2 = ({ img }) => {
 
 
             </div>
-        </NavLink>
+        </div>
     );
 };
 

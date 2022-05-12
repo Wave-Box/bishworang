@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { primaryColor } from '../../../../constant';
 import TextField from '../../../components/form/text/TextField';
-import Rate from '../../../components/utils/Rate';
+import InputRate from '../../../components/utils/InputRate';
 import Title from './Title';
 
 const AddReview = () => {
+    const [GiveRate, setGiveRate] = useState(null)
+    console.log(GiveRate);
     return (
         <>
             <Title text="Add a review" />
-            <Rate rating={0} />
+            <InputRate 
+            value={GiveRate}
+            setValue={setGiveRate}
+             />
             <form className='space-y-3'>
             <textarea
                 type="text"

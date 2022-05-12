@@ -46,7 +46,6 @@ const ImageSection = () => {
                 "--swiper-navigation-color": "#fff",
                 "--swiper-pagination-color": "#fff",
             }}
-            onNavigationHide={true}
                 onSwiper={setThumbsSwiper}
                 loop={true}
                 spaceBetween={1}

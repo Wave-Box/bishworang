@@ -6,7 +6,7 @@ const Percentage = ({star,value}) => {
         <>
            <div className="flex gap-3 justify-start items-center">
                <p>{star} star</p>
-               <progress class="progress w-56 progress-error" style={{backgroundColor:primary}} value={value} max="100"></progress>
+               <progress className="progress w-56 progress-error" style={{backgroundColor:primary}} value={value} max="100"></progress>
            </div> 
         </>
     );
