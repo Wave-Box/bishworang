@@ -2,10 +2,10 @@ import React from 'react';
 import {GiShoppingBag} from 'react-icons/gi'
 import Taka from '../../components/utils/Taka';
 
-const CartPopUp = () => {
+const CartPopUp = ({open,setOpen}) => {
     return (
         <>
-            <div className="hidden md:block">
+            <div onClick={()=>setOpen(!open)} className={`${open ? "hidden" : "hidden md:block"} `}>
                 <div  className='fixed z-20 p-2  right-0 top-1/2  shadow-lg rounded-l-md cursor-pointer md:block w-24 pb-3' style={{ backgroundColor:'#FFF438' }}>
                     <div className="flex flex-col items-center space-y-1">
                         <div className="flex justify-center gap-x-1 items-center mb-2">

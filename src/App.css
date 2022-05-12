@@ -13,5 +13,6 @@
   transition-timing-function: linear;
 }
 body{
-  color:black
+  color:black;
+  background-color: blue;
 }
