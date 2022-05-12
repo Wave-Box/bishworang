@@ -10,8 +10,10 @@ import SizeSelect from '../../components/utils/SizeSelect';
 import { primaryColor } from '../../../constant';
 import { motion } from 'framer-motion'
 import ImageSection from './ImageSection';
-import { Link, Outlet, NavLink, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import RelatedProducts from './RelatedProducts';
+import Reviews from './Reviews/Reviews';
+import Description from './Description/Description';
 
 
 
@@ -20,13 +22,17 @@ const SingleProduct = () => {
     const [selectColor, setSelectColor] = useState('black')
     const [selectSize, setSelectSize] = useState('XL')
     const [quantity, setQuantity] = useState(0)
-    const location = useLocation()
-    console.log(location.pathname);
+    const [tab, setTab] = useState('desc')
+
+    // const location = useLocation()
+    // console.log(location.pathname);
     const activeStyle = {
         borderBottom: `2px solid ${primaryColor}`,
         color: primaryColor,
         paddingBottom: '7px',
     }
+
+    console.log(tab);
     return (
         <div className='container mx-auto'>
             <div className="text-sm breadcrumbs md:mt-6 my-4 ">
@@ -114,25 +120,26 @@ const SingleProduct = () => {
             </div>
 
 
-            <div className="flex justify-start items-center gap-10 my-4 uppercase tracking-wide">
-                <motion.div whileHover={{ y: -3, transition: { duration: 0.2 }, color: primaryColor }}>
+            <div className="flex justify-start items-center gap-10 my-10 uppercase tracking-wide">
+                <motion.div whileHover={{ y: -5, transition: { duration: 0.3 }, color: primaryColor }}  onClick={() => setTab('desc')} style={tab === 'desc' && activeStyle}>
 
-                    <NavLink to={`/product/1/description`} style={({ isActive }) =>
-                        isActive ? activeStyle : undefined
-                    }>
-                        <span className='text-lg font-semibold'>Description</span>
-                    </NavLink>
+                    <span className='text-lg font-semibold'>Description</span>
+
                 </motion.div>
 
-                <motion.div whileHover={{ y: -3, transition: { duration: 0.4 }, color: primaryColor }}>
-                    <NavLink to={`/product/1/reviews`} className="text-black" style={({ isActive }) =>
-                        isActive ? activeStyle : undefined
-                    }>
-                        <span className='text-lg  font-semibold'>Reviews (3)</span>
-                    </NavLink>
+                <motion.div whileHover={{ y: -5, transition: { duration: 0.3 }, color: primaryColor }} onClick={() => setTab('review')} style={tab === 'review' && activeStyle}>
+                    <span className='text-lg  font-semibold'>Reviews (3)</span>
                 </motion.div>
             </div>
-            <Outlet />
+
+            {
+                tab === 'desc' && <Description />
+            }
+            {
+                tab === 'review' && <Reviews />
+            }
+
+
 
             <RelatedProducts />
         </div>

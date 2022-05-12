@@ -1,4 +1,5 @@
 import React from 'react';
+import Title from '../Reviews/Title';
 
 const Description = () => {
     return (
@@ -14,6 +15,14 @@ const Description = () => {
                 </ul>
 
                 <div className="divider"></div>
+
+                <p className='my-5'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis dolorum neque veritatis labore. Animi nisi voluptatibus, ducimus neque nostrum quidem temporibus illum et delectus ratione modi dolores quam velit aspernatur.
+                    <br /> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto quidem nisi praesentium tempore necessitatibus, aperiam, eum beatae minima velit unde nesciunt odit voluptatibus officiis fugit quis autem officia sunt eveniet.
+                </p>
+
+                <Title text={"Packaging & Delivery"} />
+                <div className="divider"></div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores alias eaque deserunt quas! Veniam vero tempore nostrum saepe est, eum alias nesciunt neque assumenda nemo vel voluptates odit sint illum.</p>
             </div>
         </div>
     );

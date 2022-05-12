@@ -35,7 +35,7 @@ const ImageSection = () => {
                 className="mySwiper2"
             >
                 {imagess.map((item, index) => <SwiperSlide key={index}>
-                    <div className="w-full">
+                    <div className="">
                     <ImageZoom img={item} />
                     </div>
                     {/* <img src={item} width={475} alt={''} /> */}

@@ -6,26 +6,26 @@ import CustomerReviews from './CustomerReviews';
 const Reviews = () => {
     return (
         <>
-        
-        <div className='grid md:grid-cols-8 grid-cols-1 gap-8'>
-            <div className="md:col-span-4">
-                <CustomerQuestions />
+
+            <div className='grid md:grid-cols-8 grid-cols-1 gap-8'>
+                <div className="md:col-span-4">
+                    <CustomerQuestions />
+                </div>
+                <div className="md:col-span-4">
+                    <CustomerReviews />
+                </div>
+
             </div>
-            <div className="md:col-span-4">
-                <CustomerReviews />
+            <div className="divider"></div>
+            <div className='grid md:grid-cols-8 grid-cols-1 gap-4'>
+                <div className="md:col-span-4">
+                    <AddReview />
+                </div>
+
+
             </div>
 
-        </div>
-        <div className="divider"></div>
-        <div className='grid md:grid-cols-8 grid-cols-1 gap-4'>
-            <div className="md:col-span-4">
-            <AddReview />
-            </div>
-            
 
-        </div>
-
-     
         </>
     );
 };
