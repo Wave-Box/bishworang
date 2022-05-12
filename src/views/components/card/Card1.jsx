@@ -3,7 +3,7 @@ import React from 'react';
 
 const Card1 = ({ img }) => {
     return (
-        <div className='rounded-3xl border border-orange-200 overflow-hidden'>
+        <div className='rounded-3xl border  overflow-hidden bg-white'>
             <figure className='m-2 overflow-hidden rounded-xl'>
                 <motion.img
                     whileHover={{

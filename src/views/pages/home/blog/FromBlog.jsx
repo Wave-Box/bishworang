@@ -18,7 +18,8 @@ const FromBlog = () => {
                             <div className="md:p-2 p-1 w-full flex gap-2">
                                 <Title text={'From'} >Blog</Title>
                             </div>
-                            <div className="md:p-1 p-1 w-full flex gap-3">
+                           <div className="space-y-3">
+                           <div className="md:p-4 p-2 w-full flex gap-3 bg-white shadow rounded">
                                 <div className="">
                                     <img alt="blog" width={'221'} className="object-cover object-center block" src={blog_1} />
                                 </div>
@@ -34,7 +35,7 @@ const FromBlog = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="md:p-1 p-1 w-full flex gap-3">
+                            <div className="md:p-4 p-1 w-full flex gap-3 bg-white shadow rounded">
                                 <div className="">
                                     <img alt="blog" width={'221'} className="object-cover object-center block" src={blog_1} />
                                 </div>
@@ -50,25 +51,26 @@ const FromBlog = () => {
                                     </div>
                                 </div>
                             </div>
+                           </div>
 
 
 
                         </div>
                         <div className="flex flex-wrap w-1/2">
-                            <div className="md:p-2 p-1 w-1/2 relative">
+                            <div className="md:p-2 p-1 w-1/2 relative rounded">
                                 <img alt="gallery" className="w-full object-cover object-center block" src={blog3} />
                                 <div className="absolute top-8 left-6">
                                     <Card3 offerType={'Smart Offer'} title={'Great Summer Collection'} link={'Shop Now'} />
                                 </div>
                             </div>
                             <div className="md:p-2 p-1 w-1/2 space-y-4">
-                                <div className="relative">
+                                <div className="relative rounded shadow">
                                     <img alt="gallery" className="w-full object-cover object-center block" src={blog2} />
                                     <div className="absolute top-4 left-4">
                                         <Card3 offerType={'Smart Offer'} title={'Great Summer Collection'} link={'Shop Now'} />
                                     </div>
                                 </div>
-                                <div className="relative">
+                                <div className="relative rounded shadow">
                                     <img alt="gallery" className="w-full object-cover object-center block" src={blog1} />
                                     <div className="absolute top-4 left-1/2">
                                         <Card3 offerType={'Smart Offer'} title={'Great Summer Collection'} link={'Shop Now'} />
