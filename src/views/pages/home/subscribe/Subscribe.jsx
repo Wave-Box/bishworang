@@ -1,9 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { primaryColor } from '../../../../constant';
 
 const Subscribe = () => {
     return (
-        <div className="" style={{ backgroundColor: '#F27820' }}>
+        <div className="" style={{ backgroundColor: primaryColor }}>
             <div className='grid grid-cols-2 lg:grid-cols-3 py-10  items-center container mx-auto'>
                 <div className="col-span-2 md:col-span-1  flex gap-4 items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

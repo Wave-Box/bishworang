@@ -83,11 +83,7 @@ const resources = [
     },
     { name: 'Security', description: 'Understand how we take your privacy seriously.', href: '#', icon: ShieldCheckIcon },
 ]
-// const recentPosts = [
-//     { id: 1, name: 'Boost your conversion rate', href: '#' },
-//     { id: 2, name: 'How to use search engine optimization to drive traffic to your site', href: '#' },
-//     { id: 3, name: 'Improve your customer experience', href: '#' },
-// ]
+
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -95,7 +91,7 @@ function classNames(...classes) {
 
 export default function HeaderMid() {
     return (
-        <Popover className="relative bg-white">
+        <Popover className="relative bg-gray-50 shadow-lg mb-2">
             <div className="container mx-auto px-4 sm:px-6">
                 <div className="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
                     <div className="flex justify-start lg:w-0 lg:flex-1">
@@ -105,7 +101,7 @@ export default function HeaderMid() {
                                     <Popover.Button
                                         className={classNames(
                                             open ? 'text-gray-900' : 'text-gray-500',
-                                            'group bg-white rounded-md inline-flex items-center text-base font-medium hover:text-orange-400 gap-1'
+                                            'group  rounded-md inline-flex items-center text-base font-medium hover:text-orange-400 gap-1'
                                         )}
                                     >
                                         <ViewGridIcon
@@ -207,7 +203,7 @@ export default function HeaderMid() {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
             >
-                <Popover.Panel focus className="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden">
+                <Popover.Panel focus className="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden z-50">
                     <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white divide-y-2 divide-gray-50">
                         <div className="pt-5 pb-6 px-5">
                             <div className="flex items-center justify-between">

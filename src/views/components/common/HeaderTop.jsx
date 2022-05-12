@@ -1,10 +1,11 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { mobile, location, Language, userIcon } from '../../../assets/svg';
+import { primaryColor } from '../../../constant';
 
 const HeaderTop = () => {
     return (
-        <div className=" w-full bg-orange-500 py-2 text-sm hidden md:block">
+        <div className=" w-full py-2 text-sm hidden md:block" style={{backgroundColor:primaryColor}}>
             <div className='container mx-auto text-white flex justify-between items-center'>
                 <div className="flex items-center divide-x">
                     <HeaderTopMenu icon={mobile} doc={"01521739306"} />
