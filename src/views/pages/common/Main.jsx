@@ -9,6 +9,7 @@ import CartPopUp from "./CartPopUp";
 const Home = React.lazy(() => import("../home/Home"));
 const Login = React.lazy(() => import("../user/Login"));
 const SingleProduct = React.lazy(() => import("../singleProduct/SingleProduct"));
+const Shop = React.lazy(() => import("../shop/Shop"));
 // code-splitting
 
 
@@ -22,8 +23,7 @@ const Main = () => {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/product/:id" element={<SingleProduct />} />
-
-
+                    <Route path="/shop" element={<Shop />} />
 
                     <Route path="/login" element={<Login />} />
                 </Routes>
