@@ -12,6 +12,7 @@ const NewArrivals = () => {
         <div className='gap-4 my-5'>
             <div className="my-5 pt-1 flex justify-between items-center">
                 <Title text={'New'} >Arrivals</Title>
+
                 <Arrow prevEl={prev} nextEl={next}></Arrow>
             </div>
             <Slider1
