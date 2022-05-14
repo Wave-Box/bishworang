@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom'
 const Card2 = ({ img }) => {
     const navigate = useNavigate()
     return (
-        <div onClick={() => navigate(`/product/1`)} className="cursor-pointer border border-gray-300 rounded-2xl">
+        <div onClick={() => navigate(`/product/1`)} className="cursor-pointer border border-gray-300 shadow rounded-2xl">
             <div className="card  rounded-2xl group relative">
                 <figure className='overflow-hidden rounded-xl'>
                     <motion.img whileHover={{
