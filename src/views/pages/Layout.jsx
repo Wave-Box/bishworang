@@ -8,7 +8,7 @@ import HeaderMid from '../components/common/HeaderMid';
 const Layout = () => {
     return (
         <>
-            <div style={{ background: `url(${ackground}) repeat fixed center`, backgroundSize: '480px 270px', position: 'relative' }}>
+            <div style={{ background: `url(${ackground}) no-repeat fixed contain`, backgroundSize: '480px 270px', position: 'relative' }}>
 
                 <HeaderTop />
                 <HeaderDown />

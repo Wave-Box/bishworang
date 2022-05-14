@@ -55,7 +55,7 @@ export default Feature;
 const SingleFeature = ({ image, color, text }) => {
     return (
         <>
-            <div style={{ padding: '25px 15px' }} className="border border-gray-300 rounded-md shadow-md flex flex-col  gap-y-2">
+            <div style={{ padding: '25px 15px' }} className=" bg-white border border-gray-100 rounded-md shadow-md flex flex-col  gap-y-2">
                 <div className="flex justify-center items-center">
                     <img src={image} width={150} alt="" className='' />
                 </div>
