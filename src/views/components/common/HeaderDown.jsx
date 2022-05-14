@@ -18,7 +18,7 @@ const HeaderDown = () => {
                             name={"search"}
                             autoComplete="given-name"
                             placeholder={"Search for items"}
-                            className="mt-1 focus:outline-0 focus:border-0 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md border py-3 pl-10 placeholder:text-gray-500 bg-yellow-50"
+                            className="mt-1 focus:outline-0 focus:border-0 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md border py-3 pl-10 placeholder:text-gray-500 bg-yellow-100"
                         />
 
                         <SearchIcon className=' absolute left-2 top-4 bottom-0 font-semibold text-xs h-6 w-6' />
@@ -29,9 +29,9 @@ const HeaderDown = () => {
                         <img src={logo} alt="" width={100} height={150} />
                     </div>
                 </div>
-                <div className="col-span-1 flex justify-center items-center">
+                <div className="col-span-1 flex justify-end items-center">
                     <div className="flex ">
-                        <a href='/' className="indicator tab tab-lifted  border-0 text-black">
+                        <a href='/' className="indicator tab tab-lifted  border-0 mr-2 text-black">
                             {heart}
                             <span className="indicator-item badge border-0 bg-orange-400 text-white">8</span>
                         </a>

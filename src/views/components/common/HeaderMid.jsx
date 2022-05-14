@@ -15,6 +15,9 @@ import {
     XIcon,
 } from '@heroicons/react/outline'
 
+
+import bg from '../../../assets/images/headerBg.jpg'
+
 const solutions = [
     {
         name: 'New Arrival',
@@ -91,9 +94,9 @@ function classNames(...classes) {
 
 export default function HeaderMid() {
     return (
-        <Popover className="relative bg-gray-50 shadow-lg mb-2">
+        <Popover style={{ background: `url(${bg}) repeat fixed center`, backgroundSize: '480px 270px', position: 'relative' }} className="relative bg-gray-50 shadow-lg mb-2">
             <div className="container mx-auto px-4 sm:px-6">
-                <div className="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10">
+                <div className="flex justify-between items-center  py-6 md:justify-start md:space-x-10">
                     <div className="flex justify-start lg:w-0 lg:flex-1">
                         <Popover className="relative">
                             {({ open }) => (
