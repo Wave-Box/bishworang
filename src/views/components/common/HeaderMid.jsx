@@ -22,45 +22,36 @@ import { NavLink } from 'react-router-dom'
 const solutions = [
     {
         name: 'New Arrival',
-
         href: '/shop',
         icon: ChartBarIcon,
     },
     {
         name: "Women's Wear",
-
         href: 'shop',
         icon: CursorClickIcon,
     },
     {
         name: "Men's Wear",
-
-        href: '/',
+        href: '/shop',
         icon: CursorClickIcon,
     },
     {
         name: " kid's Wear",
-
-        href: '/',
+        href: '/shop',
         icon: CursorClickIcon,
     },
     {
         name: " Festival",
-
-        href: '/',
+        href: '/shop',
         icon: CursorClickIcon,
     },
-
-
     {
         name: 'Exclusive',
-
         href: '/shop',
         icon: ViewGridIcon,
     },
     {
         name: 'Eid',
-
         href: '/shop',
         icon: RefreshIcon,
     },
@@ -70,22 +61,22 @@ const solutions = [
 //     {
 //         name: 'Help Center',
 //         description: 'Get all of your questions answered in our forums or contact support.',
-//         href: '/',
+//         href: '/shop',
 //         icon: SupportIcon,
 //     },
 //     {
 //         name: 'Guides',
 //         description: 'Learn how to maximize our platform to get the most out of it.',
-//         href: '/',
+//         href: '/shop',
 //         icon: BookmarkAltIcon,
 //     },
 //     {
 //         name: 'Events',
 //         description: 'See what meet-ups and other events we might be planning near you.',
-//         href: '/',
+//         href: '/shop',
 //         icon: CalendarIcon,
 //     },
-//     { name: 'Security', description: 'Understand how we take your privacy seriously.', href: '/', icon: ShieldCheckIcon },
+//     { name: 'Security', description: 'Understand how we take your privacy seriously.', href: '/shop', icon: ShieldCheckIcon },
 // ]
 
 
@@ -164,25 +155,25 @@ export default function HeaderMid() {
                         <NavLink to='/' className="text-base font-medium text-gray-500 hover:text-gray-900">
                             Home
                         </NavLink>
-                        <NavLink to='/login' className="text-base font-medium text-gray-500 hover:text-gray-900">
+                        <NavLink to='/shop' className="text-base font-medium text-gray-500 hover:text-gray-900">
                             New Arrival
                         </NavLink>
                         <NavLink to='/shop' className="text-base font-medium text-gray-500 hover:text-gray-900">
                             Women's Wear
                         </NavLink>
-                        <NavLink to='/' className="text-base font-medium text-gray-500 hover:text-gray-900">
+                        <NavLink to='/shop' className="text-base font-medium text-gray-500 hover:text-gray-900">
                             Men's Wear
                         </NavLink>
-                        <NavLink to='/' className="text-base font-medium text-gray-500 hover:text-gray-900">
+                        <NavLink to='/shop' className="text-base font-medium text-gray-500 hover:text-gray-900">
                             kid's Wear
                         </NavLink>
-                        <NavLink to='/' className="text-base font-medium text-gray-500 hover:text-gray-900">
+                        <NavLink to='/shop' className="text-base font-medium text-gray-500 hover:text-gray-900">
                             Festival
                         </NavLink>
-                        <NavLink to='/' className="text-base font-medium text-gray-500 hover:text-gray-900">
+                        <NavLink to='/shop' className="text-base font-medium text-gray-500 hover:text-gray-900">
                             Exclusive
                         </NavLink>
-                        <NavLink to='/' className="text-base font-medium text-gray-500 hover:text-gray-900">
+                        <NavLink to='/shop' className="text-base font-medium text-gray-500 hover:text-gray-900">
                             Sale
                         </NavLink>
 

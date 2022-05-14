@@ -19,31 +19,31 @@ const solutions = [
     {
         name: 'New Arrival',
 
-        href: '/',
+        href: '/shop',
         icon: ChartBarIcon,
     },
     {
         name: "Women's Wear",
 
-        href: '/',
+        href: '/shop',
         icon: CursorClickIcon,
     },
     {
         name: "Men's Wear",
 
-        href: '/',
+        href: '/shop',
         icon: CursorClickIcon,
     },
     {
         name: " kid's Wear",
 
-        href: '/',
+        href: '/shop',
         icon: CursorClickIcon,
     },
     {
         name: " Festival",
 
-        href: '/',
+        href: '/shop',
         icon: CursorClickIcon,
     },
 
@@ -51,13 +51,13 @@ const solutions = [
     {
         name: 'Exclusive',
 
-        href: '/',
+        href: '/shop',
         icon: ViewGridIcon,
     },
     {
         name: 'Eid',
 
-        href: '/',
+        href: '/shop',
         icon: RefreshIcon,
     },
 ]
@@ -135,22 +135,22 @@ const HeaderSticky = () => {
                             <NavLink to="/" className="text-base font-medium text-gray-500 hover:text-gray-900">
                                 Home
                             </NavLink>
-                            <NavLink to="/" className="text-base font-medium text-gray-500 hover:text-gray-900">
+                            <NavLink to="/shop" className="text-base font-medium text-gray-500 hover:text-gray-900">
                                 New Arrival
                             </NavLink>
-                            <NavLink to="/" className="text-base font-medium text-gray-500 hover:text-gray-900">
+                            <NavLink to="/shop" className="text-base font-medium text-gray-500 hover:text-gray-900">
                                 Women's Wear
                             </NavLink>
-                            <NavLink to="/" className="text-base font-medium text-gray-500 hover:text-gray-900">
+                            <NavLink to="/shop" className="text-base font-medium text-gray-500 hover:text-gray-900">
                                 Men's Wear
                             </NavLink>
-                            <NavLink to="/" className="text-base font-medium text-gray-500 hover:text-gray-900">
+                            <NavLink to="/shop" className="text-base font-medium text-gray-500 hover:text-gray-900">
                                 kid's Wear
                             </NavLink>
-                            <NavLink to="/" className="text-base font-medium text-gray-500 hover:text-gray-900">
+                            <NavLink to="/shop" className="text-base font-medium text-gray-500 hover:text-gray-900">
                                 Festival
                             </NavLink>
-                            <NavLink to="/" className="text-base font-medium text-gray-500 hover:text-gray-900">
+                            <NavLink to="/shop" className="text-base font-medium text-gray-500 hover:text-gray-900">
                                 Exclusive
                             </NavLink>
                             <NavLink to="/shop" className="text-base font-medium text-gray-500 hover:text-gray-900">

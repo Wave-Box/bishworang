@@ -21,6 +21,15 @@ const Categories = [
     { name: "Swimwear ", link: '/' },
 
 ]
+const price = [
+    { name: "100" },
+    { name: "10000" },
+    { name: "100000" },
+    { name: "1000000" },
+    { name: "10000000" },
+    
+
+]
 
 const Shop = () => {
     return (
@@ -56,7 +65,7 @@ const Shop = () => {
 
                                 <nav className="list-none mb-6 px-4">
                                     <ul className='list-none space-y-2'>
-                                        {Categories.map((item, idx) => <li className='cursor-pointer' key={idx} style={{ color: primaryColor }}>{item.name}</li>)}
+                                        {price.map((item, idx) => <li className='cursor-pointer' key={idx} style={{ color: primaryColor }}>{item.name}</li>)}
                                     </ul>
 
                                 </nav>
