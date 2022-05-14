@@ -1,6 +1,11 @@
 import React, { Suspense, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import Drawer from "../../components/common/Drawer";
+import ScrollToTop from "../../components/utils/ScrollToTop";
+// import CheckOut from "../checkOut/CheckOut";
+// import Dashboard from "../dashboard/Dashboard";
+// import Order from "../dashboard/Order/Order";
+// import Profile from "../dashboard/Profile/Profile";
 import CartPopUp from "./CartPopUp";
 
 
@@ -17,6 +22,7 @@ const Main = () => {
     const [openDrawer, setOpenDrawer] = useState(false)
     return (
         <div className="relative">
+            <ScrollToTop />
             <Suspense fallback={<div className="flex justify-center h-screen items-center">
                 <button className="btn loading">loading</button>
             </div>}>
@@ -24,6 +30,14 @@ const Main = () => {
                     <Route path="/" element={<Home />} />
                     <Route path="/product/:id" element={<SingleProduct />} />
                     <Route path="/shop" element={<Shop />} />
+
+
+              {/* Private Routes  */}
+              {/* <Route path="profile" element={<Dashboard />} >
+                <Route path="/profile" element={<Profile />} />
+                <Route path="order" element={<Order />} />
+              </Route>
+                <Route path="checkout" element={<CheckOut />} /> */}
 
                     <Route path="/login" element={<Login />} />
                 </Routes>

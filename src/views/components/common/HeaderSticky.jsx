@@ -2,50 +2,48 @@
 import { Fragment } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import {
-    BookmarkAltIcon,
-    CalendarIcon,
     ChartBarIcon,
     CursorClickIcon,
     MenuIcon,
     PhoneIcon,
     RefreshIcon,
-    ShieldCheckIcon,
-    SupportIcon,
     ViewGridIcon,
     XIcon,
 } from '@heroicons/react/outline'
 
-import logo from '../../../assets/images/logo.png'
+import logo from '../../../assets/images/headerLogo.png'
+import bg from '../../../assets/images/headerBg.jpg'
+import { NavLink } from 'react-router-dom'
 
 const solutions = [
     {
         name: 'New Arrival',
 
-        href: '#',
+        href: '/',
         icon: ChartBarIcon,
     },
     {
         name: "Women's Wear",
 
-        href: '#',
+        href: '/',
         icon: CursorClickIcon,
     },
     {
         name: "Men's Wear",
 
-        href: '#',
+        href: '/',
         icon: CursorClickIcon,
     },
     {
         name: " kid's Wear",
 
-        href: '#',
+        href: '/',
         icon: CursorClickIcon,
     },
     {
         name: " Festival",
 
-        href: '#',
+        href: '/',
         icon: CursorClickIcon,
     },
 
@@ -53,38 +51,17 @@ const solutions = [
     {
         name: 'Exclusive',
 
-        href: '#',
+        href: '/',
         icon: ViewGridIcon,
     },
     {
         name: 'Eid',
 
-        href: '#',
+        href: '/',
         icon: RefreshIcon,
     },
 ]
 
-const resources = [
-    {
-        name: 'Help Center',
-        description: 'Get all of your questions answered in our forums or contact support.',
-        href: '#',
-        icon: SupportIcon,
-    },
-    {
-        name: 'Guides',
-        description: 'Learn how to maximize our platform to get the most out of it.',
-        href: '#',
-        icon: BookmarkAltIcon,
-    },
-    {
-        name: 'Events',
-        description: 'See what meet-ups and other events we might be planning near you.',
-        href: '#',
-        icon: CalendarIcon,
-    },
-    { name: 'Security', description: 'Understand how we take your privacy seriously.', href: '#', icon: ShieldCheckIcon },
-]
 
 
 function classNames(...classes) {
@@ -94,9 +71,9 @@ const HeaderSticky = () => {
     return (
         <>
 
-            <Popover className="relative bg-gray-50 shadow-lg mb-2">
+            <Popover style={{ background: `url(${bg}) fixed center`, position: 'relative' }} className="relative shadow-lg mb-2">
                 <div className="container mx-auto px-4 sm:px-6">
-                    <div className="flex justify-between items-center border-b-2 border-gray-100 py-2 md:justify-start md:space-x-10">
+                    <div className="flex justify-between items-center py-2 md:justify-start md:space-x-10">
                         <div className="flex justify-start lg:w-0 lg:flex-1">
                             <Popover className="relative">
                                 {({ open }) => (
@@ -125,9 +102,9 @@ const HeaderSticky = () => {
                                                 <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
                                                     <div className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
                                                         {solutions.map((item) => (
-                                                            <a
+                                                            <NavLink
                                                                 key={item.name}
-                                                                href={item.href}
+                                                                to={item.href}
                                                                 className="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50"
                                                             >
                                                                 <item.icon className="flex-shrink-0 h-6 w-6 text-indigo-600" aria-hidden="true" />
@@ -135,7 +112,7 @@ const HeaderSticky = () => {
                                                                     <p className="text-base font-medium text-gray-900">{item.name}</p>
                                                                     <p className="mt-1 text-sm text-gray-500">{item.description}</p>
                                                                 </div>
-                                                            </a>
+                                                            </NavLink>
                                                         ))}
                                                     </div>
 
@@ -155,38 +132,38 @@ const HeaderSticky = () => {
                         <Popover.Group as="nav" className="hidden lg:flex flex-wrap xl:space-x-10 space-x-3">
 
 
-                            <a href="/" className="text-base font-medium text-gray-500 hover:text-gray-900">
+                            <NavLink to="/" className="text-base font-medium text-gray-500 hover:text-gray-900">
                                 Home
-                            </a>
-                            <a href="/" className="text-base font-medium text-gray-500 hover:text-gray-900">
+                            </NavLink>
+                            <NavLink to="/" className="text-base font-medium text-gray-500 hover:text-gray-900">
                                 New Arrival
-                            </a>
-                            <a href="/" className="text-base font-medium text-gray-500 hover:text-gray-900">
+                            </NavLink>
+                            <NavLink to="/" className="text-base font-medium text-gray-500 hover:text-gray-900">
                                 Women's Wear
-                            </a>
-                            <a href="/" className="text-base font-medium text-gray-500 hover:text-gray-900">
+                            </NavLink>
+                            <NavLink to="/" className="text-base font-medium text-gray-500 hover:text-gray-900">
                                 Men's Wear
-                            </a>
-                            <a href="/" className="text-base font-medium text-gray-500 hover:text-gray-900">
+                            </NavLink>
+                            <NavLink to="/" className="text-base font-medium text-gray-500 hover:text-gray-900">
                                 kid's Wear
-                            </a>
-                            <a href="/" className="text-base font-medium text-gray-500 hover:text-gray-900">
+                            </NavLink>
+                            <NavLink to="/" className="text-base font-medium text-gray-500 hover:text-gray-900">
                                 Festival
-                            </a>
-                            <a href="/" className="text-base font-medium text-gray-500 hover:text-gray-900">
+                            </NavLink>
+                            <NavLink to="/" className="text-base font-medium text-gray-500 hover:text-gray-900">
                                 Exclusive
-                            </a>
-                            <a href="/" className="text-base font-medium text-gray-500 hover:text-gray-900">
+                            </NavLink>
+                            <NavLink to="/shop" className="text-base font-medium text-gray-500 hover:text-gray-900">
                                 Sale
-                            </a>
+                            </NavLink>
 
 
                         </Popover.Group>
                         <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0 group gap-1">
                             <PhoneIcon className='ml-2 h-5 w-5 group-hover:text-orange-400' />
-                            <a href="/" className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-orange-400">
+                            <NavLink to="/" className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-orange-400">
                                 Hotline <span className='text-orange-400'> 1900 - 888</span>
-                            </a>
+                            </NavLink>
 
                         </div>
                     </div>
@@ -222,49 +199,32 @@ const HeaderSticky = () => {
                                 <div className="mt-6">
                                     <nav className="grid gap-y-8">
                                         {solutions.map((item) => (
-                                            <a
+                                            <NavLink
                                                 key={item.name}
-                                                href={item.href}
+                                                to={item.href}
                                                 className="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
                                             >
                                                 <item.icon className="flex-shrink-0 h-6 w-6 text-indigo-600" aria-hidden="true" />
                                                 <span className="ml-3 text-base font-medium text-gray-900">{item.name}</span>
-                                            </a>
+                                            </NavLink>
                                         ))}
                                     </nav>
                                 </div>
                             </div>
                             <div className="py-6 px-5 space-y-6">
-                                <div className="grid grid-cols-2 gap-y-4 gap-x-8">
-                                    <a href="/" className="text-base font-medium text-gray-900 hover:text-gray-700">
-                                        Pricing
-                                    </a>
-
-                                    <a href="/" className="text-base font-medium text-gray-900 hover:text-gray-700">
-                                        Docs
-                                    </a>
-                                    {resources.map((item) => (
-                                        <a
-                                            key={item.name}
-                                            href={item.href}
-                                            className="text-base font-medium text-gray-900 hover:text-gray-700"
-                                        >
-                                            {item.name}
-                                        </a>
-                                    ))}
-                                </div>
+                               
                                 <div>
-                                    <a
-                                        href="/"
+                                    <NavLink
+                                        to="/login"
                                         className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
                                     >
                                         Sign up
-                                    </a>
+                                    </NavLink>
                                     <p className="mt-6 text-center text-base font-medium text-gray-500">
                                         Existing customer?{' '}
-                                        <a href="/" className="text-indigo-600 hover:text-indigo-500">
+                                        <NavLink to="/login" className="text-indigo-600 hover:text-indigo-500">
                                             Sign in
-                                        </a>
+                                        </NavLink>
                                     </p>
                                 </div>
                             </div>

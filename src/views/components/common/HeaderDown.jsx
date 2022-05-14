@@ -6,7 +6,7 @@ import { SearchIcon } from '@heroicons/react/outline'
 
 const HeaderDown = () => {
     return (
-        <div className="py-1" style={{ background: `url(${bg}) repeat fixed center`, backgroundSize: '480px 270px', position: 'relative' }}>
+        <div className="py-1" style={{ background: `url(${bg}) fixed center`, position: 'relative' }}>
             <div className=' container mx-auto my-2'>
             <div className="grid md:grid-cols-3 grid-cols-1 gap-2">
 

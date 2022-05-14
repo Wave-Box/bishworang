@@ -28,7 +28,7 @@ const Layout = () => {
                 <header>
                     <Header />
                 </header>
-                {scrollPosition > 230 && <div className="" style={{
+                {scrollPosition > 260 && <div className="" style={{
                     position: 'sticky',
                     top: 0, zIndex: 500,
                 }}>

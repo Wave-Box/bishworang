@@ -2,15 +2,15 @@
 import { Fragment } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import {
-    BookmarkAltIcon,
-    CalendarIcon,
+    // BookmarkAltIcon,
+    // CalendarIcon,
+    // ShieldCheckIcon,
+    // SupportIcon,
     ChartBarIcon,
     CursorClickIcon,
     MenuIcon,
     PhoneIcon,
     RefreshIcon,
-    ShieldCheckIcon,
-    SupportIcon,
     ViewGridIcon,
     XIcon,
 } from '@heroicons/react/outline'
@@ -35,19 +35,19 @@ const solutions = [
     {
         name: "Men's Wear",
 
-        href: '#',
+        href: '/',
         icon: CursorClickIcon,
     },
     {
         name: " kid's Wear",
 
-        href: '#',
+        href: '/',
         icon: CursorClickIcon,
     },
     {
         name: " Festival",
 
-        href: '#',
+        href: '/',
         icon: CursorClickIcon,
     },
 
@@ -61,32 +61,32 @@ const solutions = [
     {
         name: 'Eid',
 
-        href: '#',
+        href: '/shop',
         icon: RefreshIcon,
     },
 ]
 
-const resources = [
-    {
-        name: 'Help Center',
-        description: 'Get all of your questions answered in our forums or contact support.',
-        href: '#',
-        icon: SupportIcon,
-    },
-    {
-        name: 'Guides',
-        description: 'Learn how to maximize our platform to get the most out of it.',
-        href: '#',
-        icon: BookmarkAltIcon,
-    },
-    {
-        name: 'Events',
-        description: 'See what meet-ups and other events we might be planning near you.',
-        href: '#',
-        icon: CalendarIcon,
-    },
-    { name: 'Security', description: 'Understand how we take your privacy seriously.', href: '#', icon: ShieldCheckIcon },
-]
+// const resources = [
+//     {
+//         name: 'Help Center',
+//         description: 'Get all of your questions answered in our forums or contact support.',
+//         href: '/',
+//         icon: SupportIcon,
+//     },
+//     {
+//         name: 'Guides',
+//         description: 'Learn how to maximize our platform to get the most out of it.',
+//         href: '/',
+//         icon: BookmarkAltIcon,
+//     },
+//     {
+//         name: 'Events',
+//         description: 'See what meet-ups and other events we might be planning near you.',
+//         href: '/',
+//         icon: CalendarIcon,
+//     },
+//     { name: 'Security', description: 'Understand how we take your privacy seriously.', href: '/', icon: ShieldCheckIcon },
+// ]
 
 
 function classNames(...classes) {
@@ -95,7 +95,7 @@ function classNames(...classes) {
 
 export default function HeaderMid() {
     return (
-        <Popover style={{ background: `url(${bg}) repeat fixed center`, backgroundSize: '480px 270px', position: 'relative' }} className="relative bg-gray-50 shadow-lg mb-2">
+        <Popover style={{ background: `url(${bg}) fixed center`, position: 'relative' }} className="relative bg-gray-50 shadow-lg mb-2">
             <div className="container mx-auto px-4 sm:px-6">
                 <div className="flex justify-between items-center  py-6 md:justify-start md:space-x-10">
                     <div className="flex justify-start lg:w-0 lg:flex-1">
@@ -132,8 +132,8 @@ export default function HeaderMid() {
                                                 <div className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
                                                     {solutions.map((item) => (
                                                         <NavLink
-                                                            to='/' key={item.name}
-                                                            href={item.href}
+                                                            to={item.href} key={item.name}
+
                                                             className="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50"
                                                         >
                                                             <item.icon className="flex-shrink-0 h-6 w-6 text-indigo-600" aria-hidden="true" />
@@ -164,10 +164,10 @@ export default function HeaderMid() {
                         <NavLink to='/' className="text-base font-medium text-gray-500 hover:text-gray-900">
                             Home
                         </NavLink>
-                        <NavLink to='/' className="text-base font-medium text-gray-500 hover:text-gray-900">
+                        <NavLink to='/login' className="text-base font-medium text-gray-500 hover:text-gray-900">
                             New Arrival
                         </NavLink>
-                        <NavLink to='/' className="text-base font-medium text-gray-500 hover:text-gray-900">
+                        <NavLink to='/shop' className="text-base font-medium text-gray-500 hover:text-gray-900">
                             Women's Wear
                         </NavLink>
                         <NavLink to='/' className="text-base font-medium text-gray-500 hover:text-gray-900">
@@ -229,8 +229,8 @@ export default function HeaderMid() {
                                 <nav className="grid gap-y-8">
                                     {solutions.map((item) => (
                                         <NavLink
-                                            to='/' key={item.name}
-                                            href={item.href}
+                                            to={item.href}
+                                            key={item.name}
                                             className="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
                                         >
                                             <item.icon className="flex-shrink-0 h-6 w-6 text-indigo-600" aria-hidden="true" />
@@ -249,7 +249,7 @@ export default function HeaderMid() {
                                 <NavLink to='/' className="text-base font-medium text-gray-900 hover:text-gray-700">
                                     Docs
                                 </NavLink>
-                                {resources.map((item) => (
+                                {/* {resources.map((item) => (
                                     <NavLink
                                         to='/' key={item.name}
                                         href={item.href}
@@ -257,7 +257,7 @@ export default function HeaderMid() {
                                     >
                                         {item.name}
                                     </NavLink>
-                                ))}
+                                ))} */}
                             </div>
                             <div>
                                 <NavLink
