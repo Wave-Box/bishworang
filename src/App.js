@@ -9,7 +9,9 @@ function App() {
 
   return (
     <BrowserRouter>
+    <div  className='bg-white'>
     <Layout />
+    </div>
     </BrowserRouter>
   );
 }
