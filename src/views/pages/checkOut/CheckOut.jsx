@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import Search from '../searchPage/Search';
+// import { useSelector } from 'react-redux';
+// import Search from '../searchPage/Search';
 import Address from './address/Address';
 import Discount from './Discount';
 import PaymentGateway from './PaymentGateway/PaymentGateway';
@@ -10,14 +10,14 @@ const CheckOut = () => {
     const [cuponDis, setCuponDis] = useState(null)
     const [selectPayment, setSelectPayment] = useState("")
     const [selectAddress, setSelectAddress] = useState({})
-    const searchText = useSelector((state) => state.cart.search)
+    // const searchText = useSelector((state) => state.cart.search)
     // httpReq.get('/customer/address/list').then(res=>console.log(res))
 
-    if (searchText) {
-        return (
-            <Search />
-        )
-    }
+    // if (searchText) {
+    //     return (
+    //         <Search />
+    //     )
+    // }
     return (
         <>
             <div>

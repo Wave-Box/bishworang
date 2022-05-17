@@ -3,14 +3,14 @@ import { useSelector } from 'react-redux';
 import { Navigate, useLocation } from 'react-router-dom';
 
 function PrivateRoute({ children, ...rest }) {
-    const token = useSelector((state) => state.user.token)
+    const {user} = useSelector((state) => state.auth)
     
     let location = useLocation()
     //   if (isLoading) { return <p>Loading...</p> }
-    if (token) {
+    if (user?.otp === 'NULL') {
         return children;
     }
-    return <Navigate to="/" state={{ from: location }} />
+    return <Navigate to="/login" state={{ from: location }} />
      
 }
 

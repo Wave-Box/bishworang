@@ -4,17 +4,17 @@ import LeftSide from './LeftSide/LeftSide';
 import {
     Outlet
 } from "react-router-dom";
-import { useSelector } from 'react-redux';
-import Search from '../searchPage/Search';
+// import { useSelector } from 'react-redux';
+// import Search from '../searchPage/Search';
 
 const Dashboard = () => {
-    const searchText = useSelector((state) => state.cart.search)
+    // const searchText = useSelector((state) => state.cart.search)
 
-    if (searchText) {
-        return(
-            <Search />
-        )
-    }
+    // if (searchText) {
+    //     return(
+    //         <Search />
+    //     )
+    // }
     return (
         <div>
             <div className="md:grid md:grid-cols-3 md:gap-6 mt-16 py-8 px-2" style={{ backgroundColor: "#F3F4F6" }}>

@@ -19,7 +19,7 @@ const Layout = () => {
         };
     }, []);
 
-    console.log(scrollPosition);
+    // console.log(scrollPosition);
     return (
         <>
             

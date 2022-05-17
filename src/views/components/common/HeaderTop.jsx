@@ -1,11 +1,18 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { mobile, location, Language, userIcon } from '../../../assets/svg';
+import { mobile, location, Language, userIcon, logoutIcon } from '../../../assets/svg';
 import { primaryColor } from '../../../constant';
+import { logout } from '../../../redux/slices/auth';
 
 const HeaderTop = () => {
+    const { isLoggedIn } = useSelector((state) => state.auth);
+    const dispatch = useDispatch()
+    const logOut = () => {
+        dispatch(logout());
+    };
     return (
-        <div className=" w-full py-2 text-sm hidden md:block" style={{backgroundColor:primaryColor}}>
+        <div className=" w-full py-2 text-sm hidden md:block" style={{ backgroundColor: primaryColor }}>
             <div className='container mx-auto text-white flex justify-between items-center'>
                 <div className="flex items-center divide-x">
                     <HeaderTopMenu icon={mobile} doc={"01521739306"} />
@@ -16,7 +23,10 @@ const HeaderTop = () => {
                 </div>
                 <div className="flex items-center divide-x gap-x-4">
                     <HeaderTopMenu icon={Language} doc={"English"} />
-                   <NavLink to='/login'> <HeaderTopMenu icon={userIcon} doc={"Log In/Sign Up"} /></NavLink>
+                    {isLoggedIn ?
+                        <div className='cursor-pointer' onClick={() => logOut()}> <HeaderTopMenu icon={logoutIcon} doc={"Logout"} /></div> :
+                        <NavLink to='/login'> <HeaderTopMenu icon={userIcon} doc={"Log In/Sign Up"} /></NavLink>
+                    }
                 </div>
 
             </div>
