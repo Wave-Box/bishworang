@@ -2,7 +2,6 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { mobile, location, Language, userIcon, logoutIcon } from '../../../assets/svg';
-import { primaryColor } from '../../../constant';
 import { logout } from '../../../redux/slices/auth';
 
 const HeaderTop = () => {
@@ -12,7 +11,7 @@ const HeaderTop = () => {
         dispatch(logout());
     };
     return (
-        <div className=" w-full py-2 text-sm hidden md:block" style={{ backgroundColor: primaryColor }}>
+        <div className=" w-full py-2 text-sm hidden md:block" style={{ backgroundColor: '#AD171A' }}>
             <div className='container mx-auto text-white flex justify-between items-center'>
                 <div className="flex items-center divide-x">
                     <HeaderTopMenu icon={mobile} doc={"01521739306"} />

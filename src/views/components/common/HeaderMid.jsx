@@ -16,7 +16,6 @@ import {
 } from '@heroicons/react/outline'
 
 
-import bg from '../../../assets/images/headerBg.jpg'
 import { NavLink } from 'react-router-dom'
 
 const solutions = [
@@ -57,27 +56,6 @@ const solutions = [
     },
 ]
 
-// const resources = [
-//     {
-//         name: 'Help Center',
-//         description: 'Get all of your questions answered in our forums or contact support.',
-//         href: '/shop',
-//         icon: SupportIcon,
-//     },
-//     {
-//         name: 'Guides',
-//         description: 'Learn how to maximize our platform to get the most out of it.',
-//         href: '/shop',
-//         icon: BookmarkAltIcon,
-//     },
-//     {
-//         name: 'Events',
-//         description: 'See what meet-ups and other events we might be planning near you.',
-//         href: '/shop',
-//         icon: CalendarIcon,
-//     },
-//     { name: 'Security', description: 'Understand how we take your privacy seriously.', href: '/shop', icon: ShieldCheckIcon },
-// ]
 
 
 function classNames(...classes) {
@@ -86,7 +64,7 @@ function classNames(...classes) {
 
 export default function HeaderMid() {
     return (
-        <Popover style={{ background: `url(${bg}) fixed center`, position: 'relative' }} className="relative bg-gray-50 shadow-lg mb-2">
+        <Popover style={{ background: `white`, position: 'relative' }} className="relative bg-gray-50 shadow-lg mb-2">
             <div className="container mx-auto px-4 sm:px-6">
                 <div className="flex justify-between items-center  py-6 md:justify-start md:space-x-10">
                     <div className="flex justify-start lg:w-0 lg:flex-1">

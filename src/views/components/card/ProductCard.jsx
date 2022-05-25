@@ -1,5 +1,5 @@
 import React from 'react';
-import product_1 from '../../../assets/images/product/1.jpg'
+
 import product_2 from '../../../assets/images/product/2.jpg'
 import { HeartIcon, EyeIcon } from '@heroicons/react/outline'
 import { motion } from "framer-motion"
@@ -7,12 +7,12 @@ import './productCard.css'
 import { BsShuffle, BsBagPlus } from "react-icons/bs";
 import Rate from '../utils/Rate';
 import { useNavigate } from 'react-router-dom';
-const ProductCard = () => {
+const ProductCard = ({img}) => {
     const navigate = useNavigate()
     return (
         <div onClick={() => navigate(`/product/1`)} className="cursor-pointer">
-            <div className="card shadow-md rounded-2xl group relative lg:w-72 ">
-                <figure className='m-2 overflow-hidden rounded-xl'>
+            <div className="drop-shadow-xl  group relative lg:w-72 ">
+                <figure className='m-2 overflow-hidden '>
                     <motion.img whileHover={{
                         scale: 1.25,
                         transition: { duration: 1 },
@@ -20,7 +20,7 @@ const ProductCard = () => {
                         exit={{
                             scale: 1,
                             transition: { duration: 1 }
-                        }} src={product_1} width={280} alt="Shoes" className='group-hover:hidden group-hover:scale-125 transition-all duration-1000 ease-linear rounded-xl' />
+                        }} src={img} width={280} alt="Shoes" className='group-hover:hidden group-hover:scale-125 transition-all duration-1000 ease-linear ' />
                     <motion.img whileHover={{
                         scale: 1.25,
                         transition: { duration: 1 },
@@ -28,7 +28,7 @@ const ProductCard = () => {
                         exit={{
                             scale: 1,
                             transition: { duration: 1 }
-                        }} src={product_2} width={280} alt="Shoes" className='group-hover:block group-hover:scale-125 transition-all duration-500 ease-linear hidden rounded-xl' />
+                        }} src={product_2} width={280} alt="Shoes" className='group-hover:block group-hover:scale-125 transition-all duration-500 ease-linear hidden ' />
 
                     <div className="absolute hidden gap-2 top-28 group-hover:flex justify-center left-0 right-0">
                         <HoverIcon text={"Quick View"} >

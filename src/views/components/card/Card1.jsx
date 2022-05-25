@@ -3,8 +3,8 @@ import React from 'react';
 
 const Card1 = ({ img }) => {
     return (
-        <div className='rounded-3xl border  overflow-hidden bg-white'>
-            <figure className='m-2 overflow-hidden rounded-xl'>
+        <div className='drop-shadow-xl sm:mb-10 overflow-hidden bg-white'>
+            <figure className='m-2 overflow-hidden '>
                 <motion.img
                     whileHover={{
                         scale: 1.05,

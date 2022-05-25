@@ -12,8 +12,8 @@ import {
 } from '@heroicons/react/outline'
 
 import logo from '../../../assets/images/headerLogo.png'
-import bg from '../../../assets/images/headerBg.jpg'
 import { NavLink } from 'react-router-dom'
+import { yellow } from '../../../siteSetting/theme'
 
 const solutions = [
     {
@@ -71,7 +71,7 @@ const HeaderSticky = () => {
     return (
         <>
 
-            <Popover style={{ background: `url(${bg}) fixed center`, position: 'relative' }} className="relative shadow-lg mb-2">
+            <Popover style={{ backgroundColor: yellow, position: 'relative' }} className="relative shadow-lg mb-2">
                 <div className="container mx-auto px-4 sm:px-6">
                     <div className="flex justify-between items-center py-2 md:justify-start md:space-x-10">
                         <div className="flex justify-start lg:w-0 lg:flex-1">

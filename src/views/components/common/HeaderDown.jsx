@@ -1,12 +1,11 @@
 import React from 'react';
 import logo from '../../../assets/images/headerLogo.png'
-import bg from '../../../assets/images/headerBg.jpg'
 import { heart } from '../../../assets/svg';
 import { SearchIcon } from '@heroicons/react/outline'
 
 const HeaderDown = () => {
     return (
-        <div className="py-1" style={{ background: `url(${bg}) fixed center`, position: 'relative' }}>
+        <div className="py-1" style={{ background: `white`, position: 'relative' }}>
             <div className=' container mx-auto my-2'>
             <div className="grid md:grid-cols-3 grid-cols-1 gap-2">
 
@@ -18,7 +17,7 @@ const HeaderDown = () => {
                             name={"search"}
                             autoComplete="given-name"
                             placeholder={"Search for items"}
-                            className="mt-1 focus:outline-0 focus:border-0 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md border py-3 pl-10 placeholder:text-gray-500 bg-yellow-100"
+                            className="mt-1 focus:outline-0 focus:border-0 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md border py-3 pl-10 placeholder:text-gray-500 bg-gray-50"
                         />
 
                         <SearchIcon className=' absolute left-2 top-4 bottom-0 font-semibold text-xs h-6 w-6' />
