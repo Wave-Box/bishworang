@@ -2,8 +2,10 @@ import React from 'react';
 import FromBlog from './blog/FromBlog';
 import Feature from './feature/Feature';
 import Features from './features/Features';
+import Furniture from './furniture/Furniture';
 import Hero from './hero/Hero';
-import HotDeals from './hotDeals/HotDeals';
+// import HotDeals from './hotDeals/HotDeals';
+import LatestSession from './latestSession/LatestSession';
 import NewArrivals from './NewArrivals/NewArrivals';
 import PopularCategories from './PopularCategories/PopularCategories';
 import ProductSection from './product_Section/Product_Section';
@@ -22,11 +24,13 @@ const Home = () => {
                 <RepairServices />
                 <PopularCategories />
                 <Features />
+                <LatestSession />
+                <Furniture />
                 <NewArrivals />
                 <TimerSection />
                 <FromBlog />
                 <ShopToday />
-                <HotDeals />
+                {/* <HotDeals /> */}
             </div>
             <Subscribe />
         </>

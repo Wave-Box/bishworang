@@ -84,9 +84,9 @@ const HeaderSticky = () => {
                                                 'group  rounded-md inline-flex items-center text-base font-medium hover:text-orange-400 gap-1'
                                             )}
                                         >
-                                           <div className="">
-                        <img src={logo} alt="" width={100}  />
-                    </div>
+                                            <div className="">
+                                                <img src={logo} alt="" width={100} />
+                                            </div>
                                         </Popover.Button>
 
                                         <Transition
@@ -212,7 +212,7 @@ const HeaderSticky = () => {
                                 </div>
                             </div>
                             <div className="py-6 px-5 space-y-6">
-                               
+
                                 <div>
                                     <NavLink
                                         to="/login"

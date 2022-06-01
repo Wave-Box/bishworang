@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'azad';
+  src: local('azad'), url(./assets/CenturyGothic.ttf) format('opentype');
+}
+
+
+
 .hover_text:hover {
   color: #f27820 !important;
 }
@@ -12,7 +19,42 @@
   transition-duration: 300ms;
   transition-timing-function: linear;
 }
-body{
-  color:black;
+
+body {
+  color: black;
   position: relative;
+  font-family: azad;
+  color: #604B3B;
+}
+
+.custom_badge {
+  position: absolute;
+  top: 4px;
+  left: 12px;
+  padding: 2px 0;
+  background: #AD171A;
+  color: white;
+  -webkit-clip-path: polygon(0 0, 72% 0, 100% 100%, 0% 100%);
+  clip-path: polygon(0 0, 72% 0, 100% 100%, 0% 100%);
+}
+
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+  background: rgb(0, 0, 0); /* Fallback color */
+  background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
+  color: #f1f1f1;
+
+}
+
+.image:hover .overlay {
+  opacity: 1;
 }

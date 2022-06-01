@@ -3,9 +3,9 @@ import { motion } from 'framer-motion';
 import { HoverIcon } from './ProductCard';
 
 import product_2 from '../../../assets/images/product/4.jpg'
-import Rate from '../utils/Rate';
 import Price from '../utils/Price';
 import { useNavigate } from 'react-router-dom'
+import Badge from '../utils/Badge';
 
 const Card2 = ({ img }) => {
     const navigate = useNavigate()
@@ -35,17 +35,17 @@ const Card2 = ({ img }) => {
                         <HoverIcon text={'Add to Wishlist'} />
                         <HoverIcon text={'Compare'} />
                     </div>
-                    <div className="badge badge-secondary absolute top-3 left-5 text-xs">NEW</div>
+                    <Badge msg={"NEW"}/>
                 </figure>
 
             </div>
             <div className="my-2 space-y-0 bg-white">
-                <h2 className="font-semibold text-base text-black text-center">
+                <p className="tracking-widest font-normal text-sm text-gray-600 text-center">
                     Plain Color Pocket
-                </h2>
-                <div className="text-center">
+                </p>
+                {/* <div className="text-center">
                     <Rate rating={3.6} />
-                </div>
+                </div> */}
 
                 <Price currentPrice={28.80} oldPrice={23.66} />
 

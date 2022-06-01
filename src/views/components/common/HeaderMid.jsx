@@ -1,11 +1,7 @@
 
-import { Fragment } from 'react'
+import { Fragment, useState } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import {
-    // BookmarkAltIcon,
-    // CalendarIcon,
-    // ShieldCheckIcon,
-    // SupportIcon,
     ChartBarIcon,
     CursorClickIcon,
     MenuIcon,
@@ -58,45 +54,37 @@ const solutions = [
 
 
 
-function classNames(...classes) {
-    return classes.filter(Boolean).join(' ')
-}
 
 export default function HeaderMid() {
+    const [isShowing, setIsShowing] = useState(false)
+    console.log(isShowing);
     return (
         <Popover style={{ background: `white`, position: 'relative' }} className="relative bg-gray-50 shadow-lg mb-2">
-            <div className="container mx-auto px-4 sm:px-6">
-                <div className="flex justify-between items-center  py-6 md:justify-start md:space-x-10">
+            <div className="container mx-auto">
+                <div className="flex justify-between items-center  py-1 md:justify-start md:space-x-10">
                     <div className="flex justify-start lg:w-0 lg:flex-1">
-                        <Popover className="relative">
-                            {({ open }) => (
-                                <>
-                                    <Popover.Button
-                                        className={classNames(
-                                            open ? 'text-gray-900' : 'text-gray-500',
-                                            'group  rounded-md inline-flex items-center text-base font-medium hover:text-orange-400 gap-1'
-                                        )}
-                                    >
-                                        <ViewGridIcon
-                                            className={classNames(
-                                                open ? 'text-gray-600' : 'text-gray-400',
-                                                'ml-2 h-5 w-5 group-hover:text-orange-400'
-                                            )}
-                                            aria-hidden="true"
-                                        />
-                                        <span>Browse Categories</span>
-                                    </Popover.Button>
+                        <div className="relative">
 
-                                    <Transition
-                                        as={Fragment}
-                                        enter="transition ease-out duration-200"
-                                        enterFrom="opacity-0 translate-y-1"
-                                        enterTo="opacity-100 translate-y-0"
-                                        leave="transition ease-in duration-150"
-                                        leaveFrom="opacity-100 translate-y-0"
-                                        leaveTo="opacity-0 translate-y-1"
-                                    >
-                                        <Popover.Panel className="absolute z-10 -ml-4 mt-3 transform px-2 w-screen max-w-max sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2">
+                            
+                                <button
+                                    onMouseEnter={() => setIsShowing(true)}
+                                    onMouseLeave={() => setIsShowing(false)}
+                                    className={'group  rounded-md inline-flex items-center text-base font-medium hover:text-orange-400 gap-1 py-2'}
+                                >
+                                    <ViewGridIcon
+                                        className={
+
+                                            ' h-5 w-5 group-hover:text-orange-400'
+                                        }
+                                        aria-hidden="true"
+                                    />
+                                    <span>Categories</span>
+                                </button>
+
+                              
+                                    {isShowing && (
+                                        <div onMouseEnter={() => setIsShowing(true)}
+                                        onMouseLeave={() => setIsShowing(false)} className="absolute z-10 -ml-4 mt-0 transform px-2 w-screen max-w-max sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2">
                                             <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
                                                 <div className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
                                                     {solutions.map((item) => (
@@ -115,11 +103,11 @@ export default function HeaderMid() {
                                                 </div>
 
                                             </div>
-                                        </Popover.Panel>
-                                    </Transition>
-                                </>
-                            )}
-                        </Popover>
+                                        </div>
+                                    )}
+                        
+
+                        </div>
                     </div>
                     <div className="-mr-2 -my-2 md:hidden">
                         <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">

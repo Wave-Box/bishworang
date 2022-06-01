@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { mobile, location, Language, userIcon, logoutIcon } from '../../../assets/svg';
+import { mobile, location, userIcon, logoutIcon } from '../../../assets/svg';
 import { logout } from '../../../redux/slices/auth';
 
 const HeaderTop = () => {
@@ -21,7 +21,10 @@ const HeaderTop = () => {
                     <p>Super value deals . more cupon</p>
                 </div>
                 <div className="flex items-center divide-x gap-x-4">
-                    <HeaderTopMenu icon={Language} doc={"English"} />
+                    <select className=' bg-transparent border-0 outline-0 text-white'>
+                        <option className='text-black' value="">BDT</option>
+                        <option className='text-black' value="">USD</option>
+                    </select>
                     {isLoggedIn ?
                         <div className='cursor-pointer' onClick={() => logOut()}> <HeaderTopMenu icon={logoutIcon} doc={"Logout"} /></div> :
                         <NavLink to='/login'> <HeaderTopMenu icon={userIcon} doc={"Log In/Sign Up"} /></NavLink>

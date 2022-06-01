@@ -13,57 +13,57 @@ const FromBlog = () => {
                 <div className="container py-12 mx-auto flex flex-wrap">
 
                     <div className="flex flex-wrap md:-m-2 -m-1">
-                        <div className="flex flex-wrap w-1/2">
+                        <div className="flex flex-wrap w-full md:w-1/2">
 
                             <div className="md:p-2 p-1 w-full flex gap-2">
                                 <Title text={'From'} >Blog</Title>
                             </div>
-                           <div className="space-y-3">
-                           <div className="md:p-4 p-2 w-full flex gap-3 bg-white shadow rounded">
-                                <div className="">
-                                    <img alt="blog" width={'221'} className="object-cover object-center block" src={blog_1} />
-                                </div>
-                                <div className="flex flex-col space-y-1">
-                                    <span className='text-sm' style={{ color: primaryColor }}>Fashon</span>
-                                    <h4 className='text-lg text-black font-semibold'>Qualcomm is developing a Nintendo Switch-like console, report says</h4>
-                                    <div style={{ fontSize: '13px' }} className="flex justify-between items-center font-semibold tracking-wider">
-                                        <div className="flex gap-2">
-                                            <span>14 April 2021</span>
-                                            <span>12M views</span>
+                            <div className="space-y-3">
+                                <div className="md:p-4 p-2 w-full flex gap-3 bg-white shadow rounded">
+                                    <div className="">
+                                        <img alt="blog" width={'221'} className="object-cover object-center block" src={blog_1} />
+                                    </div>
+                                    <div className="flex flex-col space-y-1">
+                                        <span className='text-sm' style={{ color: primaryColor }}>Fashon</span>
+                                        <h4 className='text-lg text-black font-semibold'>Qualcomm is developing a Nintendo Switch-like console, report says</h4>
+                                        <div style={{ fontSize: '13px' }} className="flex justify-between items-center font-semibold tracking-wider">
+                                            <div className="flex gap-2">
+                                                <span>14 April 2021</span>
+                                                <span>12M views</span>
+                                            </div>
+                                            <a style={{ color: primaryColor }} href="/">Read More</a>
                                         </div>
-                                        <a style={{ color: primaryColor }} href="/">Read More</a>
+                                    </div>
+                                </div>
+                                <div className="md:p-4 p-1 w-full flex gap-3 bg-white shadow rounded">
+                                    <div className="">
+                                        <img alt="blog" width={'221'} className="object-cover object-center block" src={blog_1} />
+                                    </div>
+                                    <div className="flex flex-col space-y-1">
+                                        <span className='text-sm' style={{ color: primaryColor }}>Fashon</span>
+                                        <h4 className='text-lg text-black font-semibold'>Qualcomm is developing a Nintendo Switch-like console, report says</h4>
+                                        <div style={{ fontSize: '13px' }} className="flex justify-between items-center font-semibold tracking-wider">
+                                            <div className="flex gap-2">
+                                                <span>14 April 2021</span>
+                                                <span>12M views</span>
+                                            </div>
+                                            <a style={{ color: primaryColor }} href="/">Read More</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div className="md:p-4 p-1 w-full flex gap-3 bg-white shadow rounded">
-                                <div className="">
-                                    <img alt="blog" width={'221'} className="object-cover object-center block" src={blog_1} />
-                                </div>
-                                <div className="flex flex-col space-y-1">
-                                    <span className='text-sm' style={{ color: primaryColor }}>Fashon</span>
-                                    <h4 className='text-lg text-black font-semibold'>Qualcomm is developing a Nintendo Switch-like console, report says</h4>
-                                    <div style={{ fontSize: '13px' }} className="flex justify-between items-center font-semibold tracking-wider">
-                                        <div className="flex gap-2">
-                                            <span>14 April 2021</span>
-                                            <span>12M views</span>
-                                        </div>
-                                        <a style={{ color: primaryColor }} href="/">Read More</a>
-                                    </div>
-                                </div>
-                            </div>
-                           </div>
 
 
 
                         </div>
-                        <div className="flex flex-wrap w-1/2">
-                            <div className="md:p-2 p-1 w-1/2 relative rounded">
+                        <div className="flex flex-wrap md:w-1/2">
+                            <div className="md:p-2 p-1 lg:w-1/2 md:2/3 relative rounded">
                                 <img alt="gallery" className="w-full object-cover object-center block" src={blog3} />
                                 <div className="absolute top-8 left-6">
                                     <Card3 offerType={'Smart Offer'} title={'Great Summer Collection'} link={'Shop Now'} />
                                 </div>
                             </div>
-                            <div className="md:p-2 p-1 w-1/2 space-y-4">
+                            <div className="md:p-2 p-1 lg:w-1/2 space-y-4">
                                 <div className="relative rounded shadow">
                                     <img alt="gallery" className="w-full object-cover object-center block" src={blog2} />
                                     <div className="absolute top-4 left-4">

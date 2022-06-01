@@ -5,8 +5,8 @@ import { HeartIcon, EyeIcon } from '@heroicons/react/outline'
 import { motion } from "framer-motion"
 import './productCard.css'
 import { BsShuffle, BsBagPlus } from "react-icons/bs";
-import Rate from '../utils/Rate';
 import { useNavigate } from 'react-router-dom';
+import Badge from '../utils/Badge';
 const ProductCard = ({img}) => {
     const navigate = useNavigate()
     return (
@@ -42,17 +42,18 @@ const ProductCard = ({img}) => {
                         </HoverIcon>
 
                     </div>
-                    <div className="badge badge-secondary absolute top-3 left-5">NEW</div>
+                    {/* <div className="badge badge-secondary absolute top-2 left-3">NEW</div> */}
+                    <Badge msg={"New"} />
                 </figure>
                 <div className="card-body p-4 gap-1 absolute bottom-0 left-0 right-0 bg-white">
                     <p className='text-xs '>Shirt</p>
-                    <h2 className="font-semibold text-base text-black">
+                    <h2 className="tracking-widest font-normal text-sm text-gray-600">
                         <a href="/"> Plain Color Pocket Shirts</a>
                     </h2>
-                    <p className='flex items-start gap-2 text-sm'>
+                    {/* <p className='flex items-start gap-2 text-sm'>
                         <Rate rating={4.3} />
                         <span style={{ marginTop: '-2px' }}>70%</span>
-                    </p>
+                    </p> */}
                     <h6 className='text-lg font-semibold text-orange-400'>
                         $28.80 <span className='line-through text-sm text-gray-400'> $23.66</span>
                     </h6>

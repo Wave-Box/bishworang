@@ -16,7 +16,7 @@ const Card1 = ({ img }) => {
                     }}
                     src={img} alt="" className='' />
             </figure>
-            <h3 className='text-center font-semibold text-black hover:text-orange-400 my-3'>T Shirt</h3>
+            <h3 className='text-center font-normal text-sm text-gray-400 tracking-wider hover:text-orange-400 my-3'>T Shirt</h3>
         </div>
     );
 };
