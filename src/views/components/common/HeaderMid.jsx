@@ -2,60 +2,24 @@
 import { Fragment, useState } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import {
-    ChartBarIcon,
-    CursorClickIcon,
     MenuIcon,
     PhoneIcon,
-    RefreshIcon,
     ViewGridIcon,
     XIcon,
 } from '@heroicons/react/outline'
 
 
 import { NavLink } from 'react-router-dom'
+import useTheme from '../../../hooks/useTheme'
+import { catImg } from '../../../siteSetting/siteUrl'
 
-const solutions = [
-    {
-        name: 'New Arrival',
-        href: '/shop',
-        icon: ChartBarIcon,
-    },
-    {
-        name: "Women's Wear",
-        href: 'shop',
-        icon: CursorClickIcon,
-    },
-    {
-        name: "Men's Wear",
-        href: '/shop',
-        icon: CursorClickIcon,
-    },
-    {
-        name: " kid's Wear",
-        href: '/shop',
-        icon: CursorClickIcon,
-    },
-    {
-        name: " Festival",
-        href: '/shop',
-        icon: CursorClickIcon,
-    },
-    {
-        name: 'Exclusive',
-        href: '/shop',
-        icon: ViewGridIcon,
-    },
-    {
-        name: 'Eid',
-        href: '/shop',
-        icon: RefreshIcon,
-    },
-]
+
 
 
 
 
 export default function HeaderMid() {
+    const { category } = useTheme()
     const [isShowing, setIsShowing] = useState(false)
     console.log(isShowing);
     return (
@@ -65,47 +29,48 @@ export default function HeaderMid() {
                     <div className="flex justify-start lg:w-0 lg:flex-1">
                         <div className="relative">
 
-                            
-                                <button
-                                    onMouseEnter={() => setIsShowing(true)}
-                                    onMouseLeave={() => setIsShowing(false)}
-                                    className={'group  rounded-md inline-flex items-center text-base font-medium hover:text-orange-400 gap-1 py-2'}
-                                >
-                                    <ViewGridIcon
-                                        className={
 
-                                            ' h-5 w-5 group-hover:text-orange-400'
-                                        }
-                                        aria-hidden="true"
-                                    />
-                                    <span>Categories</span>
-                                </button>
+                            <button
+                                onMouseEnter={() => setIsShowing(true)}
+                                onMouseLeave={() => setIsShowing(false)}
+                                className={'group  rounded-md inline-flex items-center text-base font-medium hover:text-orange-400 gap-1 py-2'}
+                            >
+                                <ViewGridIcon
+                                    className={
 
-                              
-                                    {isShowing && (
-                                        <div onMouseEnter={() => setIsShowing(true)}
-                                        onMouseLeave={() => setIsShowing(false)} className="absolute z-10 -ml-4 mt-0 transform px-2 w-screen max-w-max sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2">
-                                            <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
-                                                <div className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
-                                                    {solutions.map((item) => (
-                                                        <NavLink
-                                                            to={item.href} key={item.name}
+                                        ' h-5 w-5 group-hover:text-orange-400'
+                                    }
+                                    aria-hidden="true"
+                                />
+                                <span>Categories</span>
+                            </button>
 
-                                                            className="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50"
-                                                        >
-                                                            <item.icon className="flex-shrink-0 h-6 w-6 text-indigo-600" aria-hidden="true" />
-                                                            <div className="ml-4">
-                                                                <p className="text-base font-medium text-gray-900">{item.name}</p>
-                                                                <p className="mt-1 text-sm text-gray-500">{item.description}</p>
-                                                            </div>
-                                                        </NavLink>
-                                                    ))}
-                                                </div>
 
-                                            </div>
+                            {isShowing && (
+                                <div onMouseEnter={() => setIsShowing(true)}
+                                    onMouseLeave={() => setIsShowing(false)} className="absolute z-10 -ml-4 mt-0 transform px-2 w-screen max-w-max sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2">
+                                    <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
+                                        <div className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
+                                            {category?.map((item) => (
+                                                <NavLink
+                                                    to={"/" + item?.id} key={item?.id}
+
+                                                    className="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50"
+                                                >
+                                                    {/* <item.icon className="flex-shrink-0 h-6 w-6 text-indigo-600" aria-hidden="true" /> */}
+                                                    <img src={catImg + item?.icon} className={"h-6 w-6 flex-shrink-0"} alt="" />
+                                                    <div className="ml-4">
+                                                        <p className="text-base font-medium text-gray-900">{item?.name}</p>
+
+                                                    </div>
+                                                </NavLink>
+                                            ))}
                                         </div>
-                                    )}
-                        
+
+                                    </div>
+                                </div>
+                            )}
+
 
                         </div>
                     </div>
@@ -184,10 +149,10 @@ export default function HeaderMid() {
                             </div>
                             <div className="mt-6">
                                 <nav className="grid gap-y-8">
-                                    {solutions.map((item) => (
+                                    {category.map((item) => (
                                         <NavLink
-                                            to={item.href}
-                                            key={item.name}
+                                            to={"/" + item.id}
+                                            key={item.id}
                                             className="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
                                         >
                                             <item.icon className="flex-shrink-0 h-6 w-6 text-indigo-600" aria-hidden="true" />

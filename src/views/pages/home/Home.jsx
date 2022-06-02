@@ -13,6 +13,7 @@ import RepairServices from './repair/RepairServices';
 import ShopToday from './shopToday/ShopToday';
 import Subscribe from './subscribe/Subscribe';
 import TimerSection from './timer/TimerSection';
+import Video from './video/Video';
 
 const Home = () => {
     return (
@@ -30,6 +31,7 @@ const Home = () => {
                 <TimerSection />
                 <FromBlog />
                 <ShopToday />
+                <Video />
                 {/* <HotDeals /> */}
             </div>
             <Subscribe />
