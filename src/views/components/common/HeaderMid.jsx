@@ -48,19 +48,19 @@ export default function HeaderMid() {
 
                             {isShowing && (
                                 <div onMouseEnter={() => setIsShowing(true)}
-                                    onMouseLeave={() => setIsShowing(false)} className="absolute z-10 -ml-4 mt-0 transform px-2 w-screen max-w-max sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2">
-                                    <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
-                                        <div className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
+                                    onMouseLeave={() => setIsShowing(false)}   className="absolute z-10 -ml-4 mt-0 transform px-2 w-screen max-w-max sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2">
+                                    <div className="shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
+                                        <div className="relative grid gap-3  py-6 sm:gap-8 sm:p-8 bg-[#AD171A] text-white">
                                             {category?.map((item) => (
                                                 <NavLink
                                                     to={"/" + item?.id} key={item?.id}
 
-                                                    className="-m-3 p-3 flex items-start rounded-lg hover:bg-gray-50"
+                                                    className="-m-3 p-3 flex items-start hover:text-gray-200 "
                                                 >
                                                     {/* <item.icon className="flex-shrink-0 h-6 w-6 text-indigo-600" aria-hidden="true" /> */}
                                                     <img src={catImg + item?.icon} className={"h-6 w-6 flex-shrink-0"} alt="" />
                                                     <div className="ml-4">
-                                                        <p className="text-base font-medium text-gray-900">{item?.name}</p>
+                                                        <p className="text-base font-medium">{item?.name}</p>
 
                                                     </div>
                                                 </NavLink>
