@@ -30,7 +30,7 @@ const Layout = () => {
                 </header>
                 {scrollPosition > 260 && <div className="" style={{
                     position: 'sticky',
-                    top: 0, zIndex: 500,
+                    top: 0, zIndex: 10,
                 }}>
                     <HeaderSticky />
                 </div>}

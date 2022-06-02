@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {GiShoppingBag} from 'react-icons/gi'
+import Drawer from '../../components/common/Drawer';
 import Taka from '../../components/utils/Taka';
 
-const CartPopUp = ({open,setOpen}) => {
+const CartPopUp = () => {
+    const [open, setOpen] = useState(false)
     return (
         <>
             <div onClick={()=>setOpen(!open)} className={`${open ? "hidden" : "hidden md:block"} `}>
@@ -28,6 +30,7 @@ const CartPopUp = ({open,setOpen}) => {
 
 
             </div>
+            <Drawer open={open} setOpen={setOpen} />
         </>
     );
 };

@@ -1,6 +1,5 @@
-import React, { Suspense, useState } from "react";
+import React, { Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
-import Drawer from "../../components/common/Drawer";
 import ScrollToTop from "../../components/utils/ScrollToTop";
 import VerifyOtp from "../user/VerifyOtp";
 
@@ -22,7 +21,7 @@ const Shop = React.lazy(() => import("../shop/Shop"));
 
 
 const Main = () => {
-    const [openDrawer, setOpenDrawer] = useState(false)
+    
     return (
         <div className="relative">
             <ScrollToTop />
@@ -46,8 +45,7 @@ const Main = () => {
                     <Route path="/login" element={<User />} />
                 </Routes>
             </Suspense>
-            <CartPopUp open={openDrawer} setOpen={setOpenDrawer} />
-            <Drawer open={openDrawer} setOpen={setOpenDrawer} />
+            <CartPopUp />
         </div>
     );
 };
