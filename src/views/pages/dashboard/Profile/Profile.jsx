@@ -1,26 +1,42 @@
 import React, { useEffect, useState } from 'react';
-import {yellow } from '../../../siteSetting/theme';
-import Address from './Address/Address';
 import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from 'react-redux';
-import PropagateLoading from '../../../Components/Loader/PropagateLoading';
-import axios from 'axios';
-import { apiUrl } from '../../../siteSetting/ApiUrl';
-import AlertSuccess from '../../../Components/Alert/AlertSuccess';
-import { fetchUser } from '../../../redux/slice/userSlice';
+import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+import httpReq from '../../../../services/http.service';
+import { profileImg } from '../../../../siteSetting/siteUrl';
+import DataLoader from '../../../components/Loader/DataLoader';
 
 
 const Profile = () => {
+
+    const { user } = useSelector((state) => state.auth)
+    
+    const [userDetails, setuserDetails] = useState(null)
     const [call, setCall] = useState(false)
-    const dispatch = useDispatch()
+
+    const { register, handleSubmit } = useForm({
+        defaultValues: userDetails
+    });
+
     useEffect(() => {
+        // declare the async data fetching function
+        const fetchData = async () => {
+            // get the data from the api
+            const data = await httpReq.post('user/details', {
+                user_id: user?.id,
+                phone: user?.phone,
+            });
 
 
-        return () => {
-            dispatch(fetchUser())
-            dispatch(fetchUser())
+            // set state with the result
+            setuserDetails(data);
         }
-    }, [dispatch, call])
+
+        // call the function
+        fetchData()
+            // make sure to catch any error
+            .catch(console.error);
+    }, [call, user?.id, user?.phone])
 
     const toBase64 = file => new Promise((resolve, reject) => {
         const reader = new FileReader();
@@ -28,188 +44,182 @@ const Profile = () => {
         reader.onload = () => resolve(reader.result);
         reader.onerror = error => reject(error);
     });
-
-
-    const userInfo = useSelector((state) => state.user.userInfo)
-    // console.log(userInfo);
-    const { register, handleSubmit } = useForm();
-    const onSubmit = (data) => {
-        const token = JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user).token
-
-        // const formData = new FormData()
-        // formData.append('f_name', data?.f_name)
-        // formData.append('l_name', data?.l_name)
-        // formData.append('phone', data?.phone)
-        // formData.append('image', data?.image[0])
-
-        if (data?.image[0]) {
-            toBase64(data?.image[0])
-                .then(res => data.image = res.split('base64,')[1])
-
-        }
-
-        var reader = new FileReader();
-        reader.onloadend = function() {
-          console.log('RESULT', reader.result)
-        }
-        reader.readAsDataURL(data?.image[0]);
-
-        console.log(data);
-
-
-        const headers = {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-        }
-
-        axios.put(`${apiUrl}/customer/update-profile`, data, {
-            headers: headers
-        })
-            .then((response) => {
-                console.log(response);
-                AlertSuccess("Congratulations", response.data.message)
+    const update_profile = (res) => {
+        console.log(res);
+        httpReq.post('user/updateprofile', res)
+            .then(res => {
                 setCall(!call)
-
+                toast("Profile updated successfully!", {
+                    type: 'success'
+                })
             })
-            .catch((error) => {
-                console.log(error.response.data);
-                // error.response.data?.errors.map(i => alert.show(i.message, { type: 'error' }))
-
+            .catch(er => {
+                console.log(er);
             })
     }
-    if (!userInfo) {
-        return <PropagateLoading loading={true} />
-    }
+
+
+    const onSubmit = data => {
+
+        console.log("data", data);
+        if (data?.image[0]) {
+            console.log("our file size", data?.image[0].size);
+
+            if (data?.image[0].size > 2024000) {
+                toast("Your Image very large more then 2MB!", {
+                    type: 'warning'
+                })
+            }
+            toBase64(data?.image[0])
+                .then(res => {
+
+                    update_profile({
+                        user_id: user?.id,
+                        phone:user?.phone,
+                        ...data,
+                        image: res,
+                    })
+
+                })
+
+
+        } else {
+            console.log(data);
+            update_profile({
+                user_id: user?.id,
+                phone:user?.phone,
+                ...data,
+            })
+        }
+
+
+
+    };
+
+
     return (
         <>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <div className="shadow sm:rounded-md sm:overflow-hidden">
-                    <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
 
-                        <div>
 
-                            <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
-                                <div className="space-y-1 text-center">
-                                    <svg
-                                        className="mx-auto h-12 w-12 text-gray-400"
-                                        stroke="currentColor"
-                                        fill="none"
-                                        viewBox="0 0 48 48"
-                                        aria-hidden="true"
-                                    >
-                                        <path
-                                            d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                                            strokeWidth={2}
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                        />
-                                    </svg>
-                                    <div className="flex text-sm text-gray-600">
-                                        <label
-                                            htmlFor="image"
-                                            className="relative cursor-pointer bg-white rounded-md font-medium text-green-600 hover:text-green-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
-                                        >
-                                            <span>Upload an image</span>
-                                            <input {...register("image")} id="image" name="image" type="file" className="sr-only" />
-                                        </label>
-                                        <p className="pl-1">or drag and drop</p>
+
+
+            <div className="mt-10 sm:mt-0">
+                <div className="md:grid md:grid-cols-3 md:gap-6">
+                    <div className="md:col-span-3">
+                        <div className="px-4 sm:px-0">
+                            <h3 className="text-3xl lg:text-4xl font-semibold leading-7 lg:leading-9  text-gray-800">Personal Information</h3>
+                            {/* <p className="text-base font-medium leading-6 text-gray-600">Use a permanent address where you can receive mail.</p> */}
+                        </div>
+                    </div>
+                    {userDetails ?
+                        <div className="mt-5 md:mt-0 md:col-span-3">
+                            <form onSubmit={handleSubmit(onSubmit)}>
+                                <div className="shadow overflow-hidden sm:rounded-md">
+                                    <div className="px-4 py-5 bg-white sm:p-6">
+                                        <div className="grid grid-cols-6 gap-6">
+
+
+                                            <div className="col-span-6 ">
+                                                <label className="block text-sm font-medium text-gray-700">Photo</label>
+                                                <div className="mt-1 flex items-center">
+                                                    <span className="inline-block h-12 w-12 rounded-full overflow-hidden bg-gray-100">
+                                                        {userDetails.image ? <img src={profileImg + userDetails?.image} alt='' className='object-fit' /> : <svg className="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                                                            <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                                                        </svg>}
+                                                    </span>
+                                                    <label
+                                                        htmlFor="image"
+                                                        className="ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none hover:ring-2 focus:ring-offset-2 hover:ring-indigo-500  cursor-pointer"
+                                                    >
+
+                                                        <span>Change</span>
+                                                        <input {...register("image")} id="image" name="image" type="file" className="sr-only" />
+
+                                                    </label>
+                                                </div>
+                                            </div>
+
+
+                                            <div className="col-span-6 ">
+                                                <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
+                                                    Full name
+                                                </label>
+                                                <input
+                                                    defaultValue={userDetails?.name}
+                                                    {...register("name")}
+                                                    type="text"
+
+                                                    autoComplete="given-name"
+                                                    className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                                />
+                                            </div>
+
+                                            <div className="col-span-6 ">
+                                                <label htmlFor="email-address" className="block text-sm font-medium text-gray-700">
+                                                    Email address
+                                                </label>
+                                                <input
+
+                                                    {...register("email")}
+                                                    type='email'
+                                                    defaultValue={userDetails?.email}
+                                                    autoComplete="email"
+                                                    className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                                />
+                                            </div>
+
+                                            <div className="col-span-6 ">
+                                                <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
+                                                    Mobile Number
+                                                </label>
+                                                <input
+                                                    defaultValue={userDetails?.phone}
+                                                    disabled={true}
+                                                    type="tel"
+
+                                                    autoComplete="given-name"
+                                                    className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                                />
+                                            </div>
+
+                                            <div className="col-span-6 ">
+                                                <label htmlFor="last-name" className="block text-sm font-medium text-gray-700">
+                                                    Address
+                                                </label>
+                                                <div className="mt-1">
+                                                    <textarea
+                                                        defaultValue={userDetails?.address}
+                                                        {...register("address")}
+
+                                                        rows={3}
+                                                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
+                                                        placeholder="Your Address"
+
+                                                    />
+                                                </div>
+                                            </div>
+
+
+
+
+
+                                        </div>
                                     </div>
-                                    <p className="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
+                                    <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                                        <button
+                                            type="submit"
+                                            className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                        >
+                                            Save
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-
-
-                        <div className="col-span-6 sm:col-span-4">
-                            <label htmlFor="f_name" className="block text-sm font-semibold text-gray-700">
-                                First Name
-                            </label>
-                            <input
-                                {...register("f_name")}
-                                defaultValue={userInfo.f_name}
-                                type="text"
-                                name="f_name"
-                                id="f_name"
-                                autoComplete="f_name"
-                                className="mt-1 p-3 border border-gray-300  block w-full shadow-sm sm:text-sm focus:outline-0 focus:border-gray-600 focus:border rounded-md"
-                            />
-                        </div>
-                        <div className="col-span-6 sm:col-span-4">
-                            <label htmlFor="l_name" className="block text-sm font-semibold text-gray-700">
-                                Last Name
-                            </label>
-                            <input
-                                {...register("l_name")}
-                                defaultValue={userInfo.l_name}
-                                type="text"
-                                name="l_name"
-                                id="l_name"
-                                autoComplete="l_name"
-                                className="mt-1 p-3 border border-gray-300  block w-full shadow-sm sm:text-sm focus:outline-0 focus:border-gray-600 focus:border rounded-md"
-                            />
-                        </div>
-                        <div className="col-span-6 sm:col-span-4">
-                            <label htmlFor="phone" className="block text-sm font-semibold text-gray-700">
-                                Phone
-                            </label>
-                            <input
-                                {...register("phone")}
-                                defaultValue={userInfo.phone}
-                                type='number'
-                                name="phone"
-                                id="phone"
-                                autoComplete='phone'
-                                className="mt-1 p-3 border border-gray-300  block w-full shadow-sm sm:text-sm focus:outline-0 focus:border-gray-600 focus:border rounded-md"
-                            />
-                        </div>
-
-                        <div>
-                            <label htmlFor="about" className="block text-sm font-semibold text-gray-700 ">
-                                Bio
-                            </label>
-                            <div className="mt-1">
-                                <textarea
-                                    id="about"
-                                    name="about"
-                                    rows={5}
-                                    className="shadow-sm focus:outline-0 px-3  focus:border-gray-600 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
-                                    placeholder=" "
-                                    defaultValue={''}
-                                />
-                            </div>
-
-                        </div>
-
-
-
-
-                    </div>
-                    <div className="px-4 py-3 bg-white text-right sm:px-6">
-                        <button
-                            type="submit"
-                            className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-semibold tracking-widest rounded-md text-black"
-                            style={{ backgroundColor: `${yellow}` }}
-                        >
-                            Update Profile
-                        </button>
-                    </div>
+                            </form>
+                        </div> :
+                        <DataLoader />
+                    }
                 </div>
-            </form>
-
-
-
-
-
-            <Address />
-
-
-
-
-
-            {/* <Number /> */}
-
-
-
+            </div>
 
 
         </>
@@ -217,3 +227,4 @@ const Profile = () => {
 };
 
 export default Profile;
+

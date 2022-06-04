@@ -1,18 +1,22 @@
 import React from 'react';
-
-import product_2 from '../../../assets/images/product/2.jpg'
 import { HeartIcon, EyeIcon } from '@heroicons/react/outline'
 import { motion } from "framer-motion"
 import './productCard.css'
 import { BsShuffle, BsBagPlus } from "react-icons/bs";
-import { useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import Badge from '../utils/Badge';
-const ProductCard = ({img}) => {
-    const navigate = useNavigate()
+import { productImg } from '../../../siteSetting/siteUrl';
+import { getPrice } from '../utils/getPrice';
+
+const ProductCard = ({ item }) => {
+   
+    const price = getPrice(item?.regular_price, item?.discount_price, item?.discount_type)
+    console.log(item);
+
     return (
-        <div onClick={() => navigate(`/product/1`)} className="cursor-pointer">
-            <div className="drop-shadow-xl  group relative lg:w-72 ">
-                <figure className='m-2 overflow-hidden '>
+        <NavLink to={'/product/' + item?.id} className="group cursor-pointer">
+            <div className="drop-shadow-xl relative w-72 ">
+                <figure className='w-full h-96 overflow-hidden '>
                     <motion.img whileHover={{
                         scale: 1.25,
                         transition: { duration: 1 },
@@ -20,7 +24,7 @@ const ProductCard = ({img}) => {
                         exit={{
                             scale: 1,
                             transition: { duration: 1 }
-                        }} src={img} width={280} alt="Shoes" className='group-hover:hidden group-hover:scale-125 transition-all duration-1000 ease-linear ' />
+                        }} src={productImg + item?.image[0]} alt="Shoes" className='w-full h-96 group-hover:hidden group-hover:scale-105 transition-all duration-500 ease-linear ' />
                     <motion.img whileHover={{
                         scale: 1.25,
                         transition: { duration: 1 },
@@ -28,7 +32,7 @@ const ProductCard = ({img}) => {
                         exit={{
                             scale: 1,
                             transition: { duration: 1 }
-                        }} src={product_2} width={280} alt="Shoes" className='group-hover:block group-hover:scale-125 transition-all duration-500 ease-linear hidden ' />
+                        }} src={productImg + item?.image[1]} alt="Shoes" className='w-full h-96 group-hover:block group-hover:scale-105 transition-all duration-500 ease-linear hidden ' />
 
                     <div className="absolute hidden gap-2 top-28 group-hover:flex justify-center left-0 right-0">
                         <HoverIcon text={"Quick View"} >
@@ -46,16 +50,13 @@ const ProductCard = ({img}) => {
                     <Badge msg={"New"} />
                 </figure>
                 <div className="card-body p-4 gap-1 absolute bottom-0 left-0 right-0 bg-white">
-                    <p className='text-xs '>Shirt</p>
+                    <p className='text-xs '>{item?.name}</p>
                     <h2 className="tracking-widest font-normal text-sm text-gray-600">
-                        <a href="/"> Plain Color Pocket Shirts</a>
+                        <a href="/"> {item?.description}</a>
                     </h2>
-                    {/* <p className='flex items-start gap-2 text-sm'>
-                        <Rate rating={4.3} />
-                        <span style={{ marginTop: '-2px' }}>70%</span>
-                    </p> */}
+
                     <h6 className='text-lg font-semibold text-orange-400'>
-                        $28.80 <span className='line-through text-sm text-gray-400'> $23.66</span>
+                        ${price} <span className='line-through text-sm text-gray-400'> ${item?.regular_price}</span>
                     </h6>
 
                     <div className="absolute bottom-6 right-6">
@@ -65,7 +66,7 @@ const ProductCard = ({img}) => {
                     </div>
                 </div>
             </div>
-        </div>
+        </NavLink>
     );
 };
 

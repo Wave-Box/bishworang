@@ -1,7 +1,6 @@
 import axios from 'axios';
 import moment from 'moment';
 import React from 'react';
-import { useAlert } from 'react-alert';
 import { MdOutlineKeyboardArrowUp, MdKeyboardArrowDown, MdDelete } from 'react-icons/md'
 import { useDispatch, useSelector } from 'react-redux';
 // import { Navigate } from 'react-router-dom';
@@ -24,7 +23,6 @@ const YourOrders = ({ cuponDis, selectAddress, selectPayment }) => {
     );
     const tax = total * .05
 
-    const alert = useAlert()
 
     const handleCheckout = () => {
         const token = JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user).token
@@ -67,7 +65,7 @@ const YourOrders = ({ cuponDis, selectAddress, selectPayment }) => {
                     const { errors, message } = error.response.data
                     console.log(errors);
                     console.log(message);
-                    error.response.data?.errors.map(i => alert.show(i.message, { type: 'error' }))
+                    error.response.data?.errors.map(i => null)
 
                 })
         } else {

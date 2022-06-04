@@ -2,55 +2,21 @@ import React, { Fragment, useRef, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react'
 import { black } from '../../../../siteSetting/theme'
 
-import { useAlert } from 'react-alert'
 import { useForm } from "react-hook-form";
 import { useSelector } from 'react-redux';
-import { apiUrl } from '../../../../siteSetting/ApiUrl';
-import AlertSuccess from '../../../../Components/Alert/AlertSuccess';
-import AlertWraning from '../../../../Components/Alert/AlertWraning';
-import axios from 'axios';
 
 const UpdateAddress = ({ call, setCall, setOpen, open }) => {
     const [address_type, setAddress_type] = useState(null)
 
     const cancelButtonRef = useRef(null)
 
-    const alert = useAlert()
+ 
     const user = useSelector((state) => state.user.userInfo)
 
     const { register, handleSubmit, reset } = useForm();
     const onSubmit = (data) => {
-        data = {
-            ...data,
-            contact_person_number: user?.phone,
-            address_type: address_type,
-
-        }
-        const token = JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user).token
-        if (token && data?.contact_person_number && data?.address_type && data?.contact_person_name && data?.address) {
-            console.log(data);
-            const headers = {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            }
-
-            axios.post(`${apiUrl}/customer/address/add`, data, {
-                headers: headers
-            })
-                .then((response) => {
-                    console.log(response);
-                    AlertSuccess(response.data.message)
-                    setCall(!call)
-                    reset()
-                })
-                .catch((error) => {
-                    error.response.data?.errors.map(i => alert.show(i.message, { type: 'error' }))
-
-                })
-        } else {
-            AlertWraning("You Have Missing Data!")
-            // alert.show("You Have Missing Data!", { type: 'error' })
-        }
+      console.log(data);
+       
 
 
 

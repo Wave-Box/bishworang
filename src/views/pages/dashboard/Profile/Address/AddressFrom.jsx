@@ -1,58 +1,18 @@
 import React, { Fragment, useRef, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react'
-import { black } from '../../../../siteSetting/theme'
-
-import { useAlert } from 'react-alert'
 import { useForm } from "react-hook-form";
-import { useSelector } from 'react-redux';
-import { apiUrl } from '../../../../siteSetting/ApiUrl';
-import AlertSuccess from '../../../../Components/Alert/AlertSuccess';
-import AlertWraning from '../../../../Components/Alert/AlertWraning';
-import axios from 'axios';
+import { black } from '../../../../../siteSetting/theme';
 
 const AddressFrom = ({ call, setCall, setOpen, open }) => {
     const [address_type, setAddress_type] = useState(null)
 
     const cancelButtonRef = useRef(null)
+    console.log(address_type);
 
-    const alert = useAlert()
-    const user = useSelector((state) => state.user.userInfo)
+    // const user = useSelector((state) => state.user.userInfo)
 
-    const { register, handleSubmit, reset } = useForm();
+    const { register, handleSubmit } = useForm();
     const onSubmit = (data) => {
-        const token = JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user).token
-        data = {
-            ...data,
-            contact_person_number: user?.phone,
-            address_type: address_type,
-
-        }
-        
-        if (token && data?.contact_person_number && data?.address_type && data?.contact_person_name && data?.address) {
-          
-            const headers = {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token}`
-            }
-
-            axios.post(`${apiUrl}/customer/address/add`, data, {
-                headers: headers
-            })
-                .then((response) => {
-                    console.log(response);
-                    AlertSuccess("Congratulations",response.data.message)
-                    setCall(!call)
-                    reset()
-                })
-                .catch((error) => {
-                    error.response.data?.errors.map(i => alert.show(i.message, { type: 'error' }))
-
-                })
-        } else {
-            AlertWraning("You Have Missing Data!")
-            // alert.show("You Have Missing Data!", { type: 'error' })
-        }
-
 
 
 

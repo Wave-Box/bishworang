@@ -1,20 +1,11 @@
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import './App.css';
 import { BrowserRouter } from 'react-router-dom';
 import Layout from './views/pages/Layout';
-// import axiosInstance from './service/AxiosInstance';
-import httpReq from './services/http.service';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
-
-  useEffect(() => {
-
-    httpReq.get('allproducts')
-      .then(res => console.log(res))
-
-
-  }, [])
 
 
   return (

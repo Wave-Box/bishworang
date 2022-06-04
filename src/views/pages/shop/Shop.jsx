@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import { primaryColor } from '../../../constant';
 import { ProductCard } from '../../components/card';
 import Card3 from '../../components/card/Card3.';
@@ -10,28 +10,51 @@ import Title from '../../components/utils/Title';
 import banner3 from '../../../assets/images/shop/banner-11.jpg'
 import { ViewGridIcon, ChevronDownIcon } from '@heroicons/react/outline'
 import TitleBorder from '../../components/utils/TitleBorder';
+import useTheme from '../../../hooks/useTheme';
+import httpReq from '../../../services/http.service';
 
-const Categories = [
-    { name: "Shoes & bags", link: '/' },
-    { name: "Dresses ", link: '/' },
-    { name: "Swimwear ", link: '/' },
-    { name: "Beauty ", link: '/' },
-    { name: "Shoes & bags", link: '/' },
-    { name: "Dresses ", link: '/' },
-    { name: "Swimwear ", link: '/' },
+// const Categories = [
+//     { name: "Shoes & bags", link: '/' },
+//     { name: "Dresses ", link: '/' },
+//     { name: "Swimwear ", link: '/' },
+//     { name: "Beauty ", link: '/' },
+//     { name: "Shoes & bags", link: '/' },
+//     { name: "Dresses ", link: '/' },
+//     { name: "Swimwear ", link: '/' },
 
-]
+// ]
 const price = [
     { name: "100" },
     { name: "10000" },
     { name: "100000" },
     { name: "1000000" },
     { name: "10000000" },
-    
+
 
 ]
 
 const Shop = () => {
+    const [products, setProducts] = useState([])
+    const { category } = useTheme()
+    const params = useParams()
+    console.log(products);
+    useEffect(() => {
+        // declare the async data fetching function
+        const fetchData = async () => {
+            // get the data from the api
+            const data = await httpReq.post('getcatproduct', { id: params.id });
+
+
+            // set state with the result
+            setProducts(data);
+        }
+
+        // call the function
+        fetchData()
+            // make sure to catch any error
+            .catch(console.error);
+    }, [params.id])
+
     return (
         <>
             <div className="bg-gray-100">
@@ -55,7 +78,7 @@ const Shop = () => {
 
                                 <nav className="list-none mb-6 space-y-3 px-4">
 
-                                    {Categories.map((item, idx) => <Link1 key={idx} text={item.name} href={item.link} />)}
+                                    {category?.map((item) => <Link1 key={item?.id} text={item.name} href={"/category/" + item?.id} />)}
 
                                 </nav>
                             </div>
@@ -88,7 +111,7 @@ const Shop = () => {
                     <div className="col-span-9">
                         <div className="flex justify-between my-2 px-4">
                             <div className="flex justify-start items-center">
-                                <p className='text-base'>We found <span style={{ color: primaryColor, fontWeight: 600 }}>688</span> items for you!</p>
+                                <p className='text-base'>We found <span style={{ color: primaryColor, fontWeight: 600 }}>{products?.length ? products.length : 0}</span> items for you!</p>
                             </div>
                             <div className="flex items-center gap-3">
 
@@ -133,9 +156,9 @@ const Shop = () => {
 
 
                         {/* main products in here  */}
-                        <div className="grid  md:grid-cols-3  sm:grid-cols-2 grid-cols-1 space-y-3">
-                            {
-                                Array.from({ length: 9 }).map((_, id) => <ProductCard key={id} />)
+                        <div className="flex flex-wrap gap-6">
+                            {products.length &&
+                                products?.map((i) => <ProductCard key={i.id} item={i} />)
                             }
                         </div>
                         {/* paroduct secton  */}

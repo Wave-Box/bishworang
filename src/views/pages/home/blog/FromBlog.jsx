@@ -18,10 +18,10 @@ const FromBlog = () => {
                             <div className="md:p-2 p-1 w-full flex gap-2">
                                 <Title text={'From'} >Blog</Title>
                             </div>
-                            <div className="space-y-3">
-                                <div className="md:p-4 p-2 w-full flex gap-3 bg-white shadow rounded">
+                            <div className="space-y-3 my-3">
+                                <div className="md:p-4 p-2 w-full flex flex-col sm:flex-row gap-3 bg-white shadow rounded">
                                     <div className="">
-                                        <img alt="blog" width={'221'} className="object-cover object-center block" src={blog_1} />
+                                        <img alt="blog" className="object-cover w-full  sm:w-52 h-full object-center block" src={blog_1} />
                                     </div>
                                     <div className="flex flex-col space-y-1">
                                         <span className='text-sm' style={{ color: primaryColor }}>Fashon</span>
@@ -35,9 +35,9 @@ const FromBlog = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="md:p-4 p-1 w-full flex gap-3 bg-white shadow rounded">
+                                <div className="md:p-4 p-2 w-full flex flex-col sm:flex-row gap-3 bg-white shadow rounded">
                                     <div className="">
-                                        <img alt="blog" width={'221'} className="object-cover object-center block" src={blog_1} />
+                                        <img alt="blog" className="object-cover w-full  sm:w-52 h-full object-center block" src={blog_1} />
                                     </div>
                                     <div className="flex flex-col space-y-1">
                                         <span className='text-sm' style={{ color: primaryColor }}>Fashon</span>
@@ -51,6 +51,7 @@ const FromBlog = () => {
                                         </div>
                                     </div>
                                 </div>
+                               
                             </div>
 
 

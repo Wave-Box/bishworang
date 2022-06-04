@@ -1,11 +1,14 @@
 import React from 'react';
 
-const ColorSelect = ({setSelect,select,selectColor,bg}) => {
-    
+const ColorSelect = ({ setSelect, select, selectColor, bg, getColor }) => {
+
     return (
         <>
-            <div onClick={() => setSelect(selectColor)} className={`avatar ${select === selectColor ? "online" : null}`}>
-                <div className={`${bg} text-neutral-content rounded-full w-8`}>
+            <div onClick={() => {
+                getColor(bg)
+                setSelect(selectColor)
+            }} className={`avatar ${select === selectColor ? "online" : null}`}>
+                <div className={`text-neutral-content rounded-full w-8`} style={{ backgroundColor: bg }}>
                 </div>
             </div>
         </>

@@ -7,29 +7,35 @@ import store2 from '../../../assets/images/footer/google-play.jpg'
 import payment from '../../../assets/images/footer/payment-method.png'
 import { primaryColor } from '../../../constant';
 
-const about = [{
+
+const about = [
+    {
     name: "About Us",
-    link: '/'
+    link: '/about'
 },
-{
-    name: "Delivery Information",
-    link: '/'
+    {
+    name: "Contact Us",
+    link: '/contact'
+},
+    {
+    name: "Delivery Policy",
+    link: '/delivery-policy'
 },
 {
     name: "Privacy Policy",
-    link: '/'
+    link: '/privacy-policy'
+},
+{
+    name: "Refund Policy",
+    link: '/refund-policy'
+},
+{
+    name: "return-policy",
+    link: '/return-policy'
 },
 {
     name: "Terms & Conditions",
-    link: '/'
-},
-{
-    name: "Contact Us",
-    link: '/'
-},
-{
-    name: "Support Center",
-    link: '/'
+    link: '/terms-condition'
 }]
 
 const my_account = [{
@@ -67,7 +73,7 @@ const contact = [
 
 const Footer = () => {
     return (
-        <footer className="text-gray-600 body-font">
+        <footer className="text-gray-600 body-font bg-white mt-10 drop-shadow-xl">
             <div className="container pt-12 mx-auto">
                 <div className="flex flex-wrap md:text-left text-center order-first">
                     <div className="lg:w-2/6 md:w-1/2 w-full px-4">

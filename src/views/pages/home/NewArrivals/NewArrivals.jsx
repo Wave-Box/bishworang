@@ -20,7 +20,7 @@ const NewArrivals = () => {
     const prev = 'new_Prev'
     const next = 'new_Next'
     return (
-        <div className='gap-4 my-5'>
+        <div className='gap-4 sm:my-10 my-16'>
             <div className="my-5 pt-1 flex justify-between items-center">
                 <Title text={'New'} >Arrivals</Title>
 

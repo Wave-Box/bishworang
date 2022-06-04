@@ -48,7 +48,7 @@ export default function HeaderMid() {
 
                             {isShowing && (
                                 <div onMouseEnter={() => setIsShowing(true)}
-                                    onMouseLeave={() => setIsShowing(false)}   className="absolute z-10 -ml-4 mt-0 transform px-2 w-screen max-w-max sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2">
+                                    onMouseLeave={() => setIsShowing(false)} className="absolute z-10 -ml-4 mt-0 transform px-2 w-screen max-w-max sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2">
                                     <div className="shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
                                         <div className="relative grid gap-3  py-6 sm:gap-8 sm:p-8 bg-[#AD171A] text-white">
                                             {category?.map((item) => (
@@ -86,27 +86,11 @@ export default function HeaderMid() {
                         <NavLink to='/' className="text-base font-medium text-gray-500 hover:text-gray-900">
                             Home
                         </NavLink>
-                        <NavLink to='/shop' className="text-base font-medium text-gray-500 hover:text-gray-900">
-                            New Arrival
-                        </NavLink>
-                        <NavLink to='/shop' className="text-base font-medium text-gray-500 hover:text-gray-900">
-                            Women's Wear
-                        </NavLink>
-                        <NavLink to='/shop' className="text-base font-medium text-gray-500 hover:text-gray-900">
-                            Men's Wear
-                        </NavLink>
-                        <NavLink to='/shop' className="text-base font-medium text-gray-500 hover:text-gray-900">
-                            kid's Wear
-                        </NavLink>
-                        <NavLink to='/shop' className="text-base font-medium text-gray-500 hover:text-gray-900">
-                            Festival
-                        </NavLink>
-                        <NavLink to='/shop' className="text-base font-medium text-gray-500 hover:text-gray-900">
-                            Exclusive
-                        </NavLink>
-                        <NavLink to='/shop' className="text-base font-medium text-gray-500 hover:text-gray-900">
-                            Sale
-                        </NavLink>
+                        {category?.map(item =>
+                            <NavLink to={'/category/'+item.id} className="text-base font-medium text-gray-500 hover:text-gray-900">
+                                {item?.name}
+                            </NavLink>)}
+
 
 
                     </Popover.Group>

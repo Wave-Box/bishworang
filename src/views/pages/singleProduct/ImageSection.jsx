@@ -1,7 +1,4 @@
 import React, { useState } from 'react';
-import single from '../../../assets/images/product/1.jpg'
-import single2 from '../../../assets/images/product/2.jpg'
-import single3 from '../../../assets/images/product/3.jpg'
 import ImageZoom from '../../components/utils/ImageZoom'
 
 // import Swiper core and required modules
@@ -14,12 +11,13 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-fade';
+import { productImg } from '../../../siteSetting/siteUrl';
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 
 
-const ImageSection = () => {
+const ImageSection = ({ images }) => {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
-
-    const imagess = [single, single2, single3, single, single2, single3, single2, single]
+    console.log(images);
     return (
         <>
             <Swiper
@@ -34,32 +32,41 @@ const ImageSection = () => {
                 modules={[FreeMode, Navigation, Thumbs]}
                 className="mySwiper2"
             >
-                {imagess.map((item, index) => <SwiperSlide key={index}>
+
+                {images?.map((item, index) => <SwiperSlide key={index}>
                     <div className="">
-                    <ImageZoom img={item} />
+                        <ImageZoom img={productImg + item} />
                     </div>
-                    {/* <img src={item} width={475} alt={''} /> */}
+
                 </SwiperSlide>)}
             </Swiper>
-            <Swiper
-            style={{
-                "--swiper-navigation-color": "#fff",
-                "--swiper-pagination-color": "#fff",
-            }}
-                onSwiper={setThumbsSwiper}
-                loop={true}
-                spaceBetween={1}
-                slidesPerView={5}
-                freeMode={true}
-                navigation={true}
-                watchSlidesProgress={true}
-                modules={[FreeMode, Navigation, Thumbs]}
-                className="mySwiper my-3 mx-1"
-            >
-                {imagess.map((item, index) => <SwiperSlide key={index}>
-                    <img src={item} width={94} alt={''} />
-                </SwiperSlide>)}
-            </Swiper>
+            <div className="relative">
+                <Swiper
+                    style={{
+                        "--swiper-navigation-color": "#fff",
+                        "--swiper-pagination-color": "#fff",
+                    }}
+                    onSwiper={setThumbsSwiper}
+                    loop={true}
+                    spaceBetween={1}
+                    slidesPerView={5}
+                    freeMode={true}
+                    watchSlidesProgress={true}
+                    modules={[FreeMode, Navigation, Thumbs]}
+                    className="mySwiper my-3 mx-1"
+                    navigation={{
+                        prevEl: `.pre`,
+                        nextEl: `.nex`,
+                    }}
+                >
+
+                    {images?.map((item, index) => <SwiperSlide key={index}>
+                        <img src={productImg + item} className={"h-20 w-20"} alt={''} />
+                    </SwiperSlide>)}
+                </Swiper>
+                    <ChevronLeftIcon height={22} color={"#fff"} className={'pre absolute -left-5 bottom-8 bg-gray-700 z-10 h-6 w-6 rounded-full'} />
+                    <ChevronRightIcon height={22} color={"#fff"} className={'nex absolute right-0 bottom-8 bg-gray-700 z-10 h-6 w-6 rounded-full'} />
+            </div>
         </>
     );
 };
