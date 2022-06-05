@@ -11,7 +11,7 @@ import { getPrice } from '../utils/getPrice';
 const ProductCard = ({ item }) => {
    
     const price = getPrice(item?.regular_price, item?.discount_price, item?.discount_type)
-    console.log(item);
+    // console.log(item);
 
     return (
         <NavLink to={'/product/' + item?.id} className="group cursor-pointer">

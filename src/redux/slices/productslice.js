@@ -33,37 +33,48 @@ export const productSlice = createSlice({
         },
 
         addToCartList: (state, action) => {
-            const cartItem = state.cartList?.find((item) => item.id === action.payload.id);
+            // const cartItem = state.cartList?.find((item) => item.id === action.payload.id & item.color === action.payload.color && item.size === action.payload.size);
+            const cartItem = state.cartList?.find((item) => item.id === action.payload.id && item.size === action.payload.size && item.color === action.payload.color && item.unit === action.payload.unit && item.volume === action.payload.volume);
 
-
+            console.log(cartItem);
             if (cartItem) {
                 cartItem.qty = cartItem.qty + 1;
             } else {
                 state.cartList.push({ ...action.payload, qty: action.payload.qty || 1 });
             }
-            
+
 
         },
-        removeToCartList: (state, action) => {
-            state.cartList = state.cartList.filter((items) => items.id !== action.payload)
-            
+        // addToCartList: (state, action) => {
+        //     const cartItem = state.cartList?.find((item) => item.id === action.payload.id);
 
+
+        //     if (cartItem) {
+        //         cartItem.qty = cartItem.qty + 1;
+        //     } else {
+        //         state.cartList.push({ ...action.payload, qty: action.payload.qty || 1 });
+        //     }
+
+
+        // },
+        removeToCartList: (state, action) => {
+            state.cartList = state.cartList.filter((items) => items.cartId !== action.payload)
         },
         decrementQty: (state, action) => {
-            const cartItem = state.cartList.find((item) => item.id === action.payload);
+            const cartItem = state.cartList.find((item) => item.cartId === action.payload);
 
 
             if (cartItem.qty === 1) {
-                state.cartList = state.cartList.filter(i => i.id !== action.payload)
+                state.cartList = state.cartList.filter(i => i.cartId !== action.payload)
             }
             if (cartItem.qty > 1) {
                 cartItem.qty = cartItem.qty - 1;
             }
-            
+
 
         },
         clearCartList: (state, action) => {
-           state.cartList = []
+            state.cartList = []
         }
     },
     extraReducers: (builder) => {

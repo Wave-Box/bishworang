@@ -17,7 +17,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 
 const ImageSection = ({ images }) => {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
-    console.log(images);
+    // console.log(images);
     return (
         <>
             <Swiper
@@ -60,12 +60,14 @@ const ImageSection = ({ images }) => {
                     }}
                 >
 
-                    {images?.map((item, index) => <SwiperSlide key={index}>
-                        <img src={productImg + item} className={"h-20 w-20"} alt={''} />
-                    </SwiperSlide>)}
+                    {images?.map((item, index) =>
+                        <SwiperSlide key={index}>
+                            <img src={productImg + item} className={"h-20 w-20"} alt={''} />
+                        </SwiperSlide>
+                    )}
                 </Swiper>
-                    <ChevronLeftIcon height={22} color={"#fff"} className={'pre absolute -left-5 bottom-8 bg-gray-700 z-10 h-6 w-6 rounded-full'} />
-                    <ChevronRightIcon height={22} color={"#fff"} className={'nex absolute right-0 bottom-8 bg-gray-700 z-10 h-6 w-6 rounded-full'} />
+                <ChevronLeftIcon height={22} color={"#fff"} className={'pre absolute -left-5 bottom-8 bg-gray-700 z-10 h-6 w-6 rounded-full'} />
+                <ChevronRightIcon height={22} color={"#fff"} className={'nex absolute right-0 bottom-8 bg-gray-700 z-10 h-6 w-6 rounded-full'} />
             </div>
         </>
     );

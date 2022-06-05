@@ -19,6 +19,11 @@ import PrivacyPolicy from "../static/PrivacyPolicy";
 import RefundPolicy from "../static/RefundPolicy";
 import ReturnPolicy from "../static/ReturnPolicy";
 import TermsCondition from "../static/TermsCondition";
+import CheckOut from "../checkOut/CheckOut";
+import Order from "../dashboard/Order/Order";
+import OrderDetails from "../dashboard/Order/OrderDetails";
+import PublicRoute from "../../../privateRoute/PublicRoute";
+import Forget from "../user/Forget";
 // import PrivateRoute from "../../../privateRoute/PrivateRoute";
 
 
@@ -32,7 +37,7 @@ const Shop = React.lazy(() => import("../shop/Shop"));
 
 
 const Main = () => {
-    
+
     return (
         <div className="relative">
             <ScrollToTop />
@@ -59,12 +64,14 @@ const Main = () => {
                     <Route path="profile" element={<PrivateRoute><Dashboard /></PrivateRoute>}>
                         <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>} />
                         <Route path="change-password" element={<PrivateRoute><ChangePassword /></PrivateRoute>} />
-                        {/* <Route path="order" element={<Order />} /> */}
+                        <Route path="order" element={<Order />} />
+                        <Route path="order/:id" element={<OrderDetails />} />
                     </Route>
-                    {/* <Route path="checkout" element={<CheckOut />} /> */}
+                    <Route path="checkout" element={<CheckOut />} />
 
-                    <Route path="/verify-otp" element={<VerifyOtp />} />
-                    <Route path="/login" element={<User />} />
+                    <Route path="/verify-otp" element={<PublicRoute><VerifyOtp /></PublicRoute>} />
+                    <Route path="/login" element={<PublicRoute><User /></PublicRoute>} />
+                    <Route path="/forgot-password" element={<PublicRoute><Forget /></PublicRoute>} />
                 </Routes>
             </Suspense>
             <CartPopUp />

@@ -45,6 +45,28 @@ export const verify = createAsyncThunk(
 );
 
 
+// User Forgot Password 
+export const forgot = createAsyncThunk(
+  "auth/forgot",
+  async ({ store_id, phone, }, thunkAPI) => {
+    try {
+      const response = await AuthService.forgot(store_id, phone,);
+
+      thunkAPI.dispatch(setMessage(response.data.message));
+      return response.data;
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      thunkAPI.dispatch(setMessage(message));
+      return thunkAPI.rejectWithValue();
+    }
+  }
+);
+
 export const login = createAsyncThunk(
   "auth/login",
   async ({ phone, password }, thunkAPI) => {

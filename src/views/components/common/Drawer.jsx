@@ -1,12 +1,21 @@
 
-import { Fragment, useState } from 'react'
+import { Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { ChevronDownIcon, ChevronRightIcon, ChevronUpIcon } from '@heroicons/react/outline'
 import Taka from '../utils/Taka'
+import { useDispatch, useSelector } from 'react-redux'
+import { productImg } from '../../../siteSetting/siteUrl'
+import { addToCartList, decrementQty, removeToCartList } from '../../../redux/slices/productslice'
+import { NavLink } from 'react-router-dom'
 
 export default function Drawer({ open, setOpen }) {
 
-
+    const cartList = useSelector((state) => state.cart.cartList)
+    const priceList = cartList?.map(p => p.qty * p?.price)
+    const total = priceList.reduce(
+        (previousValue, currentValue) => previousValue + currentValue,
+        0
+    );
 
     return (
         <Transition.Root show={open} as={Fragment}>
@@ -60,15 +69,15 @@ export default function Drawer({ open, setOpen }) {
                                             <div className="absolute inset-0 px-4 sm:px-6">
                                                 <div className="h-full flex flex-col justify-between border-gray-200" aria-hidden="true">
                                                     <div className="overflow-y-scroll">
-                                                        {Array.from({ length: 7 }).map((_, id) =>
+                                                        {cartList?.map((item) =>
 
-                                                            <SingleItem key={id} />
+                                                            <SingleItem key={item.cartId} item={item} />
                                                         )}
 
                                                     </div>
                                                     <div className="border-t border-black space-y-3 pt-3">
-                                                        <h6 className='text-right font-serif font-semibold text-lg'>Total : <Taka tk={230.00} /></h6>
-                                                        <button className='w-full bg-orange-200 py-2 rounded font-semibold outline-0 border-0'>Proceed to pay</button>
+                                                        <h6 className='text-right font-serif font-semibold text-lg'>Total : <Taka tk={parseInt(total)} /></h6>
+                                                        <NavLink to="/checkout" className='w-full bg-orange-200 py-2 rounded font-semibold outline-0 border-0'>Proceed to pay</NavLink>
                                                     </div>
                                                 </div>
                                             </div>
@@ -88,29 +97,31 @@ export default function Drawer({ open, setOpen }) {
 
 
 
-const SingleItem = () => {
-    const [quantity, setQuantity] = useState(0)
+const SingleItem = ({ item }) => {
+    const dispatch = useDispatch()
+    // const price = getPrice(item?.regular_price, item?.discount_price, item?.discount_type)
     return (
         <div className="md:flex items-center py-4 border-b border-gray-300 last:border-b-0 scroll-smooth bg-scroll">
             <div className="w-1/4">
-                <img src="https://cdn.tuk.dev/assets/templates/e-commerce-kit/bestSeller2.png" className="w-full h-20 object-center object-cover" alt=' ' />
+                <img src={productImg + item?.image[0]} className="w-full h-20 object-center object-cover" alt=' ' />
             </div>
             <div className="md:pl-3 md:w-3/4 w-full">
                 {/* <p className="text-xs leading-3 text-gray-800 md:pt-0 pt-4">RF293</p> */}
                 <div className="flex items-center justify-between w-full pt-1">
-                    <p className="text-base font-black leading-none text-gray-800">Luxe Signature Ring Signature Ring</p>
+                    <NavLink to={'/product/' + item?.id} className="text-base font-black leading-none text-gray-800">{item?.name}</NavLink>
 
                 </div>
                 {/* <p className="text-xs leading-3 text-gray-600 pt-2">Height: 10 inches</p> */}
                 <div className="flex items-center justify-between w-full">
-                    <p className="text-xs leading-3 text-gray-600 py-4">Color: Black</p>
+                    {item?.color && <p className="text-xs leading-3 text-gray-600 py-1">Color: {item?.color}</p>}
+                    {item?.size && <p className="text-xs leading-3 text-gray-600 py-1">Size: {item.size}</p>}
                     <div className="flex justify-around border border-gray-300 w-20 rounded-md ">
                         <div className="flex justify-center items-center">
-                            <p className='text-black'>{quantity}</p>
+                            <p className='text-black'>{item.qty}</p>
                         </div>
                         <div className="flex flex-col justify-around items-center text-black">
-                            <ChevronUpIcon height={10} onClick={() => setQuantity(quantity + 1)} />
-                            <ChevronDownIcon height={10} onClick={() => quantity && setQuantity(quantity - 1)} />
+                            <ChevronUpIcon height={14} onClick={() => dispatch(addToCartList({ ...item }))} />
+                            <ChevronDownIcon height={14} onClick={() => dispatch(decrementQty(item?.cartId))} />
                         </div>
                     </div>
                 </div>
@@ -118,9 +129,9 @@ const SingleItem = () => {
                 <div className="flex items-center justify-between pt-1">
                     <div className="flex itemms-center">
                         <p className="text-xs leading-3 underline text-gray-800 cursor-pointer">Add to favorites</p>
-                        <p className="text-xs leading-3 underline text-red-500 pl-5 cursor-pointer">Remove</p>
+                        <p className="text-xs leading-3 underline text-red-500 pl-5 cursor-pointer" onClick={() => dispatch(removeToCartList(item?.cartId))}>Remove</p>
                     </div>
-                    <p className="text-base font-black leading-none text-gray-800">$9,000</p>
+                    <p className="text-base font-black leading-none text-gray-800"><Taka tk={item?.price} /></p>
                 </div>
             </div>
         </div>

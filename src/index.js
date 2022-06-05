@@ -7,6 +7,7 @@ import { Provider } from 'react-redux'
 import store, { persistor } from './redux/store';
 import { PersistGate } from 'redux-persist/integration/react'
 import ThemeProvider from './hooks/ThemeProvider';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 ReactDOM.render(
   <React.StrictMode>

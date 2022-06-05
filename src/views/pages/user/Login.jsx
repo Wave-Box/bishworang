@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { button1 } from '../../../constant/color';
 import { login } from '../../../redux/slices/auth';
 import { clearMessage } from '../../../redux/slices/message';
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Login = () => {
     const [loading, setLoading] = useState(false);
-  
-    const { message } = useSelector((state) => state.message);
+
     const dispatch = useDispatch();
     const navigate = useNavigate()
     useEffect(() => {
@@ -18,32 +17,28 @@ const Login = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
+        dispatch(clearMessage());
         console.log(data)
         setLoading(true);
         dispatch(login(data))
             .unwrap()
             .then(() => {
                 navigate("/profile");
-                
+
             })
             .catch(() => {
+
                 setLoading(false);
             });
     };
+   
 
-  
     return (
         <>
             <form className="border border-gray-300 rounded-2xl p-6 md:m-14 flex flex-col space-y-4" onSubmit={handleSubmit(onSubmit)}>
                 <h4 className='text-3xl font-semibold my-3 text-black'>Login</h4>
 
-                {message && (
-                    <div className="form-group">
-                        <div className="alert text-red-500 font-semibold" role="alert">
-                           <p className='text-center'> {message}</p>
-                        </div>
-                    </div>
-                )}
+                
                 <input
                     {...register("phone", { required: true })}
                     type="number"
@@ -65,7 +60,7 @@ const Login = () => {
                         <input type="checkbox" id='remember' className="checkbox border border-gray-300" />
                         <span className="label-text">Remember me</span>
                     </label>
-                    <span className="label-text">Forgot password?</span>
+                    <NavLink to='/forgot-password' className="label-text">Forgot password?</NavLink>
                 </div>
                 <div className="">
                     {loading ?

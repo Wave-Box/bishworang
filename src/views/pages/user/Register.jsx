@@ -8,7 +8,6 @@ import { signUp } from '../../../redux/slices/auth';
 import { clearMessage } from '../../../redux/slices/message';
 const Register = () => {
     const [successful, setSuccessful] = useState(false);
-    const { message } = useSelector((state) => state.message);
     const {  success } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -19,7 +18,7 @@ const Register = () => {
     const onSubmit = data => {
 
         console.log(data)
-
+        dispatch(clearMessage());
 
         setSuccessful(true);
         dispatch(signUp(data))
@@ -34,7 +33,7 @@ const Register = () => {
             });
 
     }
-    // console.log(otp);
+ 
 
     return (
         <>
@@ -48,13 +47,6 @@ const Register = () => {
                 <p className='pb-6 text-black text-sm'>Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our privacy policy</p>
 
 
-                {message && (
-                    <div className="form-group">
-                        <div className="alert text-red-400 font-semibold" role="alert">
-                            <p className='text-center'> {message}</p>
-                        </div>
-                    </div>
-                )}
                 {success && (
                     <div className="form-group">
                         <div className="alert text-green-400 font-semibold" role="alert">

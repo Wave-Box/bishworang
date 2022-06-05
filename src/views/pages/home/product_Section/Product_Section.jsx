@@ -23,7 +23,7 @@ const Product_Section = () => {
             </div>
             <div className='flex flex-wrap justify-center sm:justify-start  gap-4'>
                 {
-                    product?.map((i) => (
+                    product?.slice(0,8).map((i) => (
 
                         <ProductCard key={i.id} item={i} />
                     ))

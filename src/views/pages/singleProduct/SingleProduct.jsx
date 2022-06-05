@@ -3,7 +3,7 @@ import { CgCrown } from 'react-icons/cg'
 import { VscCreditCard } from 'react-icons/vsc'
 import { HiOutlineRefresh } from 'react-icons/hi'
 import { MdKeyboardArrowUp, MdKeyboardArrowDown } from 'react-icons/md'
-import { BsShuffle, BsHeart } from "react-icons/bs";
+import { BsHeart } from "react-icons/bs";
 import Rate from '../../components/utils/Rate';
 import ColorSelect from '../../components/utils/ColorSelect';
 import SizeSelect from '../../components/utils/SizeSelect';
@@ -18,7 +18,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import useTheme from '../../../hooks/useTheme';
 import httpReq from '../../../services/http.service';
 import { getPrice } from '../../components/utils/getPrice';
-import { addToCartList } from '../../../redux/slices/productslice';
+import { addToCartList, decrementQty } from '../../../redux/slices/productslice';
+import { MinusIcon, PlusIcon } from '@heroicons/react/outline';
 
 
 
@@ -46,15 +47,14 @@ const SingleProduct = () => {
     const [vrcolor, setVrcolor] = useState([])
     // const [load, setLoad] = useState(false)
     const [result, setResult] = useState({})
-    // const [call, setCall] = useState(false)
+    const [call, setCall] = useState(false)
     // console.log(product);
-    // const { makeid } = useTheme()
+    const { makeid } = useTheme()
 
 
     const cartList = useSelector((state) => state.cart.cartList)
     const dispatch = useDispatch()
     const params = useParams()
-    console.log(params)
     useEffect(() => {
 
         // declare the async data fetching function
@@ -67,12 +67,15 @@ const SingleProduct = () => {
             setProduct(product);
             setVariant(variant);
             setVrcolor(vrcolor);
+
         }
+
 
         // call the function
         fetchData()
             // make sure to catch any error
             .catch(console.error);
+
     }, [params.id])
 
 
@@ -97,41 +100,41 @@ const SingleProduct = () => {
         setSingleVariant(data)
     }
 
-    // const add_to_cart = (product) => {
-    //     setCall(!call)
-    //     if (variant.length) {
-    //         if (singleVariant.id) {
+    const add_to_cart = (product) => {
+        setCall(!call)
+        if (variant.length) {
+            if (singleVariant.id) {
 
-    //             console.log("enough quantity");
-    //             if (singleVariant) {
-    //                 dispatch(addToCartList({ cartId: makeid(100), variant_quantity: singleVariant?.quantity, variantId: singleVariant.id, ...singleVariant, ...product }))
-    //             }
-    //         } else {
-    //             // dispatch(addToCartList({ cartId: makeid(100), color: null, size: null, additional_price: null, ...product }))
-    //             alert('please select color and size')
-    //         }
-    //     } else {
-    //         dispatch(addToCartList({ cartId: makeid(100), color: null, size: null, additional_price: null, volume: null, unit: null, ...product }))
+                console.log("enough quantity");
+                if (singleVariant) {
+                    dispatch(addToCartList({ cartId: makeid(100), variant_quantity: singleVariant?.quantity, variantId: singleVariant.id, ...singleVariant, price: price + parseInt(singleVariant.additional_price), ...product }))
+                }
+            } else {
+                // dispatch(addToCartList({ cartId: makeid(100), color: null, size: null, additional_price: null, ...product }))
+                alert('please select color and size')
+            }
+        } else {
+            dispatch(addToCartList({ cartId: makeid(100), price: price, color: null, size: null, additional_price: null, volume: null, unit: null, ...product }))
 
-    //     }
-
-
+        }
 
 
-    // }
 
 
-    // useEffect(() => {
-    //     if (cartList?.length) {
+    }
 
-    //         const result = cartList?.find(c => c?.id === product?.id && c?.color === singleVariant?.color && c?.size === singleVariant?.size && c?.unit === singleVariant?.unit && c?.volume === singleVariant?.volume)
-    //         setResult(result)
-    //         if (!result?.qty) {
-    //             const result = cartList?.find(c => c?.id === product?.id && c?.color === null && c?.size === null && c?.unit === null && c?.volume === null)
-    //             setResult(result)
-    //         }
-    //     }
-    // }, [call, cartList, product?.id, singleVariant?.size, singleVariant?.color, singleVariant?.volume, singleVariant?.unit])
+
+    useEffect(() => {
+        if (cartList?.length) {
+
+            const result = cartList?.find(c => c?.id === product?.id && c?.color === singleVariant?.color && c?.size === singleVariant?.size && c?.unit === singleVariant?.unit && c?.volume === singleVariant?.volume)
+            setResult(result)
+            if (!result?.qty) {
+                const result = cartList?.find(c => c?.id === product?.id && c?.color === null && c?.size === null && c?.unit === null && c?.volume === null)
+                setResult(result)
+            }
+        }
+    }, [call, cartList, product?.id, singleVariant?.size, singleVariant?.color, singleVariant?.volume, singleVariant?.unit])
 
     if (!product?.id) {
         return (<div className='flex justify-center h-screen items-center capitalize text-3xl font-bold'>Product not Found</div>)
@@ -175,20 +178,23 @@ const SingleProduct = () => {
                         <div className="flex gap-2 justify-start items-center"><VscCreditCard size={20} /> <span>Cash on Delivery available</span></div>
                     </div>
 
-                    <div className="flex gap-2 justify-start items-center mt-6 mb-2">
+                    {vrcolor?.length && <div className="flex gap-2 justify-start items-center mt-6 mb-2">
                         <h6 className='text-md font-semibold text-gray-700'>Color</h6>
-                        {vrcolor?.map((i) => <ColorSelect select={selectColor} setSelect={setSelectColor} getColor={getColor} selectColor={i} bg={i} />)}
-                        {/* <ColorSelect select={selectColor} setSelect={setSelectColor} selectColor={'black'} bg={'bg-black'} />
-                        <ColorSelect select={selectColor} setSelect={setSelectColor} selectColor={'orange'} bg={'bg-orange-300'} /> */}
+                        {vrcolor?.map((i) => <ColorSelect key={i} select={selectColor} setSelect={setSelectColor} getColor={getColor} selectColor={i} bg={i} />)}
 
-                    </div>
+
+                    </div>}
                     {size.length !== 0 && <div className="flex gap-1 justify-start items-center mt-4 mb-7">
                         <h6 className='text-md font-semibold text-gray-700 mr-2'>Size</h6>
                         {size?.map((i) => <SizeSelect select={selectSize} setSelect={setSelectSize} setVariant={set_variant} data={i} selectSize={i?.size} />)}
 
-
+                    </div>}
+                    {!vrcolor?.length && <div className="flex gap-1 justify-start items-center mt-4 mb-7">
+                        <h6 className='text-md font-semibold text-gray-700 mr-2'>Size</h6>
+                        {variant?.map((i) => <SizeSelect select={selectSize} setSelect={setSelectSize} setVariant={set_variant} data={i} selectSize={i?.size} />)}
 
                     </div>}
+
                     <div className="flex gap-1">
                         <div className="flex justify-around border border-gray-300 w-20 rounded-md ">
                             <div className="flex justify-center items-center">
@@ -199,15 +205,31 @@ const SingleProduct = () => {
                                 <MdKeyboardArrowDown onClick={() => quantity && setQuantity(quantity - 1)} />
                             </div>
                         </div>
-                        <div style={{ backgroundColor: primaryColor }} className="border border-gray-300 rounded-md text-white w-48 cursor-pointer">
-                            <p className='text-white text-normal text-center text-lg py-2'>Add to cart</p>
-                        </div>
+
+
+
+                        {result?.qty ? <div style={{ backgroundColor: primaryColor }} className=" px-3 py-1 rounded-md shadow-sm flex justify-between text-black w-40 items-center">
+                            <MinusIcon height={18}
+                                onClick={() => {
+                                    setCall(!call)
+                                    dispatch(decrementQty(result?.cartId))
+                                }}
+                                className='text-2xl cursor-pointer' />
+                            <span className='text-xl'>{result?.qty}</span>
+                            <PlusIcon height={18} onClick={() => add_to_cart(product)} className='text-2xl cursor-pointer ' />
+                        </div> :
+                            <div className="">
+                                {/* <label htmlFor="add">add to cart</label> */}
+                                <button style={{ backgroundColor: primaryColor }} onClick={() => add_to_cart(product)} className="px-10 py-2 rounded-md shadow-sm flex justify-between text-black items-center cursor-pointer text-lg font-medium">Add to cart</button>
+                            </div>
+                        }
+
                         <motion.div className="border border-gray-300 rounded-md w-10 flex justify-center items-center text-black font-semibold" whileHover={{ y: -7, transition: { duration: 0.5 }, backgroundColor: primaryColor, color: 'white' }} >
                             <BsHeart size={15} className="" />
                         </motion.div>
-                        <motion.div className="border border-gray-300 rounded-md w-10 flex justify-center items-center text-black font-semibold" whileHover={{ y: -7, transition: { duration: 0.5 }, backgroundColor: primaryColor, color: 'white' }} >
+                        {/* <motion.div className="border border-gray-300 rounded-md w-10 flex justify-center items-center text-black font-semibold" whileHover={{ y: -7, transition: { duration: 0.5 }, backgroundColor: primaryColor, color: 'white' }} >
                             <BsShuffle size={15} className="" />
-                        </motion.div>
+                        </motion.div> */}
                     </div>
                     <div className="divider mt-12"></div>
                     <div className="flex flex-col gap-2">

@@ -6,15 +6,16 @@ import { clearMessage } from '../../../redux/slices/message';
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Subscribe from "../home/subscribe/Subscribe";
+import Countdown from "react-countdown";
 
 const VerifyOtp = () => {
-
+    const [disable, setdisable] = useState(false)
     const [loading, setLoading] = useState(false);
     const { user } = useSelector((state) => state.auth);
     // const { message } = useSelector((state) => state.message);
     const dispatch = useDispatch();
     const navigate = useNavigate()
-   
+
     useEffect(() => {
         dispatch(clearMessage());
     }, [dispatch]);
@@ -41,6 +42,18 @@ const VerifyOtp = () => {
     // if (isLoggedIn) {
     //     return navigate("/profile");
     // }
+
+    // Renderer callback with condition
+    const renderer = ({ hours, minutes, seconds, completed }) => {
+        if (completed) {
+            // Render a completed state
+            setdisable(true)
+            return <div>Expired</div>;
+        } else {
+            // Render a countdown
+            return <span>{minutes}:{seconds}</span>;
+        }
+    };
     return (
         <>
             <div className='container mx-auto'>
@@ -73,6 +86,7 @@ const VerifyOtp = () => {
                                 type='number'
                                 placeholder='Your OTP'
                                 className='py-3 px-4 border border-gray-300 rounded-md placeholder:text-gray-500 text-sm focus:outline-0' />
+
                             <p className='text-red-400'> {errors.otp?.type === 'required' && "OTP is required"}</p>
 
 
@@ -80,8 +94,17 @@ const VerifyOtp = () => {
                                 {loading ?
                                     <p className='text-left py-3 px-8 w-28 rounded-md text-gray-400' style={{ backgroundColor: button1.defaultButton }} >Loading</p>
                                     :
-                                    <input type="submit" value="Verify" className='text-left py-3 px-8 rounded-md text-white' style={{ backgroundColor: button1.color }} />
+                                    disable ?
+                                        <input type="submit" value="Resend Otp" disabled className='text-left py-3 px-8 rounded-md text-white' style={{ backgroundColor: button1.color }} /> :
+                                        <input type="submit" value="Verify" className='text-left py-3 px-8 rounded-md text-white' style={{ backgroundColor: button1.color }} />
                                 }
+                            </div>
+
+                            <div className="flex justify-center">
+                                <Countdown
+                                    date={Date.now() + 60000}
+                                    renderer={renderer}
+                                />
                             </div>
                         </form>
                     </div>

@@ -29,11 +29,20 @@ const login = (phone, password) => {
         });
 };
 
+const forgot = (store_id, phone) => {
+    return axiosInstance.post("forget-pass", {
+        store_id,
+        phone,
+
+    });
+};
+
 const logout = () => {
     localStorage.removeItem("user");
 };
 
 const authService = {
+    forgot,
     signUp,
     verify_phone,
     login,
