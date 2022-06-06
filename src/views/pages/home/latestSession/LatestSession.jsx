@@ -5,34 +5,15 @@ import CardFour from '../../../components/card/CardFour';
 import SliderOne from './SliderOne';
 import SliderTwo from './SliderTwo';
 
-import product1 from '../../../../assets/images/product/product1.jpg'
-import product2 from '../../../../assets/images/product/product2.jpg'
-import product3 from '../../../../assets/images/product/product3.jpg'
-import product4 from '../../../../assets/images/product/product4.jpg'
-import product5 from '../../../../assets/images/product/product5.jpg'
-import product6 from '../../../../assets/images/product/product6.jpg'
-import product7 from '../../../../assets/images/product/product7.jpg'
-import product8 from '../../../../assets/images/product/product8.jpg'
+import useTheme from '../../../../hooks/useTheme';
+import { bannerImg } from '../../../../siteSetting/siteUrl';
 
 
-const productImage = [product1, product2, product3, product4, product5, product6, product7, product8]
 
 
 const LatestSession = () => {
-    const data = [
-        {
-            title: "FOR HER",
-            short: "Serve the freshest looks for the season with intricately designed apparel & accessories.",
-            img: product7,
-        },
-        {
-            title: "FOR HIM",
-            short: "Give your wardrobe a spring refresh with the freshest styles of the season.",
-            img: product5
-        }
-    ]
 
-
+    const { season } = useTheme()
     return (
         <div className='container my-10'>
 
@@ -40,8 +21,8 @@ const LatestSession = () => {
             <h6 className='text-center font-medium font-sans text-3xl tracking-widest text-gray-700'>LATEST FROM THE SEASON</h6>
             <div className="grid grid-cols-2 gap-8 my-5">
                 {
-                    data.map((i, id) =>
-                        <Single key={id} title={i.title} shortTitle={i.short} img={i.img} />
+                    season?.slice(0,2).map((s) =>
+                        <Single key={s.id} title={s.title} shortTitle={s.subtitle} slider={s?.slider} product={s?.product} />
                     )
                 }
 
@@ -54,27 +35,27 @@ const LatestSession = () => {
 
 export default LatestSession;
 
-const Single = ({ title, shortTitle,img }) => {
+const Single = ({ title, shortTitle, slider, product }) => {
     return (
         <div className="col-span-2 sm:col-span-1 ">
             <h5 className='text-center text-2xl font-normal tracking-widest font-serif text-gray-700 my-5 uppercase'>{title}</h5>
             <p className='text-center text-base font-normal my-5 tracking-wide font-sans sm:mx-16 mx-2'>{shortTitle}</p>
 
-            <UpSlider img={img} />
+            <UpSlider slider={slider} />
 
             <div className="my-5 w-full relative">
-                <DownSlider prev={"rightDownSliderPrev"} next={"rightDownSliderNext"} />
+                <DownSlider prev={"rightDownSliderPrev"} next={"rightDownSliderNext"} product={product} />
             </div>
         </div>
     )
 }
 
-const UpSlider = ({img}) => {
+const UpSlider = ({ slider }) => {
     return (
         <SliderOne>
-            {Array.from({ length: 5 }).map((_, id) => <SwiperSlide key={id}>
+            {slider.map((slide) => <SwiperSlide key={slider}>
                 <div className="image relative cursor-pointer">
-                    <img className=' object-cover  w-full h-full' style={{ maxWidth: '710px', maxHeight: '600px' }} src={img} alt="" />
+                    <img className=' object-cover  w-full h-full' style={{ maxWidth: '710px', maxHeight: '600px' }} src={bannerImg + slide} alt="" />
                     <div className="overlay"></div>
                 </div>
             </SwiperSlide>)}
@@ -82,7 +63,7 @@ const UpSlider = ({img}) => {
     )
 }
 
-export const DownSlider = ({ prev, next }) => {
+export const DownSlider = ({ prev, next, product }) => {
 
     return (
         <>
@@ -102,10 +83,10 @@ export const DownSlider = ({ prev, next }) => {
             }>
                 <div className="grid grid-cols-3 gap-8">
                     {
-                        productImage.map((i, id) =>
-                            <SwiperSlide key={id}>
+                        product.map((p) =>
+                            <SwiperSlide key={p?.id}>
 
-                                <CardFour img={i} />
+                                <CardFour pro={p} />
                             </SwiperSlide>)
                     }
                 </div>

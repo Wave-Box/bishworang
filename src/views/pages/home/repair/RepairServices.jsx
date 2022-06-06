@@ -1,8 +1,5 @@
-import { ArrowRightIcon } from '@heroicons/react/outline';
+
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import repair from '../../../../assets/images/shop/banner-4.png'
-import { primaryColor } from '../../../../constant';
 import useTheme from '../../../../hooks/useTheme';
 import { bannerImg } from '../../../../siteSetting/siteUrl';
 

@@ -1,10 +1,6 @@
 import React from 'react';
-import banner1 from '../../../../assets/images/shop/banner-1.png'
-import banner2 from '../../../../assets/images/shop/banner-2.png'
-import banner3 from '../../../../assets/images/shop/banner-3.png'
 import useTheme from '../../../../hooks/useTheme';
 import { bannerImg } from '../../../../siteSetting/siteUrl';
-import Card3 from '../../../components/card/Card3.';
 
 const Features = () => {
     const { banner } = useTheme()
