@@ -71,7 +71,27 @@ export const login = createAsyncThunk(
   "auth/login",
   async ({ phone, password }, thunkAPI) => {
     try {
-      const {details} = await AuthService.login(phone, password);
+      const { details } = await AuthService.login(phone, password);
+      return { user: details };
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      thunkAPI.dispatch(setMessage(message));
+      return thunkAPI.rejectWithValue();
+    }
+  }
+);
+
+
+export const googleLogin = createAsyncThunk(
+  "auth/googleLogin",
+  async ({ name, email, access_token, imageurl }, thunkAPI) => {
+    try {
+      const { details } = await AuthService.googleLogin(name, email, access_token, imageurl);
       return { user: details };
     } catch (error) {
       const message =
@@ -131,6 +151,14 @@ const authSlice = createSlice({
       state.user = action.payload.user;
     },
     [login.rejected]: (state, action) => {
+      state.isLoggedIn = false;
+      state.user = null;
+    },
+    [googleLogin.fulfilled]: (state, action) => {
+      state.isLoggedIn = true;
+      state.user = action.payload.user;
+    },
+    [googleLogin.rejected]: (state, action) => {
       state.isLoggedIn = false;
       state.user = null;
     },

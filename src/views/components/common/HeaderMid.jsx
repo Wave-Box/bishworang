@@ -21,7 +21,6 @@ import { catImg } from '../../../siteSetting/siteUrl'
 export default function HeaderMid() {
     const { category } = useTheme()
     const [isShowing, setIsShowing] = useState(false)
-    console.log(isShowing);
     return (
         <Popover style={{ background: `white`, position: 'relative' }} className="relative bg-gray-50 shadow-lg mb-2">
             <div className="container mx-auto">
@@ -87,7 +86,7 @@ export default function HeaderMid() {
                             Home
                         </NavLink>
                         {category?.map(item =>
-                            <NavLink to={'/category/'+item.id} className="text-base font-medium text-gray-500 hover:text-gray-900">
+                            <NavLink key={item?.id} to={'/category/'+item?.id} className="text-base font-medium text-gray-500 hover:text-gray-900">
                                 {item?.name}
                             </NavLink>)}
 

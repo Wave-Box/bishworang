@@ -19,7 +19,7 @@ const DeliveryPolicy = () => {
                 {/* Inside Dhaka  */}
                 <h3 className='text-2xl my-3 font-bold font-sans'>Inside Dhaka</h3>
 
-                <table class="table-fixed border-collapse border border-slate-500 w-full text-center">
+                <table className="table-fixed border-collapse border border-slate-500 w-full text-center">
                     <thead>
                         <tr>
                             <th className='border border-slate-600'>Weight</th>
@@ -40,7 +40,7 @@ const DeliveryPolicy = () => {
                 {/* Out Dhaka  */}
                 <h3 className='text-2xl my-3 font-bold font-sans'>Out Dhaka</h3>
 
-                <table class="table-fixed border-collapse border border-slate-500 w-full text-center">
+                <table className="table-fixed border-collapse border border-slate-500 w-full text-center">
                     <thead>
                         <tr>
                             <th className='border border-slate-600'>Weight</th>

@@ -75,7 +75,7 @@ const UpSlider = ({img}) => {
             {Array.from({ length: 5 }).map((_, id) => <SwiperSlide key={id}>
                 <div className="image relative cursor-pointer">
                     <img className=' object-cover  w-full h-full' style={{ maxWidth: '710px', maxHeight: '600px' }} src={img} alt="" />
-                    <div class="overlay"></div>
+                    <div className="overlay"></div>
                 </div>
             </SwiperSlide>)}
         </SliderOne>

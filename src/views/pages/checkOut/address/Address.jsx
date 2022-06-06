@@ -137,7 +137,7 @@ export function AddressFrom({ open, setOpen, setSelectAddress, selectAddress }) 
                                                 <div  className="col-span-6 sm:col-span-3 lg:col-span-2">
                                                     <label htmlFor="name"
                                                          className="block text-sm font-medium text-gray-700">Name</label>
-                                                    <input {...register("name")} type="text" name="name" id="name" autocomplete="address-level1"
+                                                    <input {...register("name")} type="text" name="name" id="name" autoComplete="address-level1"
                                                          className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                                 </div>
                                                 <div  className="col-span-6 sm:col-span-3 lg:col-span-2">
@@ -145,7 +145,7 @@ export function AddressFrom({ open, setOpen, setSelectAddress, selectAddress }) 
                                                          className="block text-sm font-medium text-gray-700">Phone</label>
                                                     <input
                                                         {...register("phone", { required: true.valueOf, minLength: 11 })}
-                                                        type="number" name="phone" id="phone" autocomplete="address-level1"
+                                                        type="number" name="phone" id="phone" autoComplete="address-level1"
                                                          className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                                     {errors.phone && <span className='text-red-500'>Phone number is required</span>}
                                                 </div>
@@ -154,7 +154,7 @@ export function AddressFrom({ open, setOpen, setSelectAddress, selectAddress }) 
                                                          className="block text-sm font-medium text-gray-700">Address</label>
                                                     <textarea
                                                         {...register("address")}
-                                                        rows={6} type="text" name="address" id="address" autocomplete="address-level1"
+                                                        rows={6} type="text" name="address" id="address" autoComplete="address-level1"
                                                          className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                                 </div>
 

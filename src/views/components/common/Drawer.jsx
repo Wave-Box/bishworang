@@ -11,7 +11,7 @@ import { NavLink } from 'react-router-dom'
 export default function Drawer({ open, setOpen }) {
 
     const cartList = useSelector((state) => state.cart.cartList)
-    const priceList = cartList?.map(p => p.qty * p?.price)
+    const priceList = cartList?.map(p => parseInt(p.qty) * p?.price)
     const total = priceList.reduce(
         (previousValue, currentValue) => previousValue + currentValue,
         0
@@ -99,6 +99,7 @@ export default function Drawer({ open, setOpen }) {
 
 const SingleItem = ({ item }) => {
     const dispatch = useDispatch()
+   
     // const price = getPrice(item?.regular_price, item?.discount_price, item?.discount_type)
     return (
         <div className="md:flex items-center py-4 border-b border-gray-300 last:border-b-0 scroll-smooth bg-scroll">

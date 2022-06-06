@@ -2,13 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { facebook, google } from '../../../constant';
 import { button1 } from '../../../constant/color';
 import { signUp } from '../../../redux/slices/auth';
 import { clearMessage } from '../../../redux/slices/message';
 const Register = () => {
     const [successful, setSuccessful] = useState(false);
-    const {  success } = useSelector((state) => state.auth);
+    const { success } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     useEffect(() => {
@@ -33,7 +32,8 @@ const Register = () => {
             });
 
     }
- 
+  
+
 
     return (
         <>
@@ -101,15 +101,9 @@ const Register = () => {
                         <input type="submit" value="Register" className='text-left py-3 px-8 rounded-md text-white' style={{ backgroundColor: button1.color }} />
                     }
                 </div>
-                <div className="divider">OR</div>
-                <div className="flex justify-center">
-                    <div className="flex gap-4">
-                        <button className='text-white font-semibold text-base px-6 py-3 rounded-md' style={{ backgroundColor: facebook }}>Login With Facebook</button>
-                        <button className='text-white font-semibold text-base px-6 py-3 rounded-md' style={{ backgroundColor: google }}>Login With Google</button>
-                    </div>
-                </div>
-                <p className='text-center text-gray-500'>Already Have an Account? <a href="/" style={{ color: button1.color }}>Sign in now</a></p>
+            <p className='text-center text-gray-500'>Already Have an Account? <a href="/" style={{ color: button1.color }}>Sign in now</a></p>
             </form>
+            
         </>
     );
 };

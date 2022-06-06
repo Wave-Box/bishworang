@@ -116,15 +116,15 @@ const Shop = () => {
                             <div className="flex items-center gap-3">
 
                                 <div className="">
-                                    <div class="dropdown dropdown-end">
-                                        <label tabindex="0" class=" m-0">
+                                    <div className="dropdown dropdown-end">
+                                        <label tabIndex="0" className=" m-0">
                                             <div className="border border-gray-300 rounded-full px-4 py-2 bg-gray-100 flex justify-start items-center gap-2">
                                                 <ViewGridIcon className='h-6 w-6 text-gray-400' />
                                                 <span> Show: 50</span>
                                                 <ChevronDownIcon className='h-3 w-3' />
                                             </div>
                                         </label>
-                                        <ul tabindex="0" class="dropdown-content menu  py-4 text-lg text-gray-500  shadow-lg bg-base-100 w-36 space-y-2">
+                                        <ul tabIndex="0" className="dropdown-content menu  py-4 text-lg text-gray-500  shadow-lg bg-base-100 w-36 space-y-2">
                                             <li className='px-4 py-2 hover:text-white hover:bg-orange-500'>50</li>
                                             <li className='px-4 py-2 hover:text-white hover:bg-orange-500'>100</li>
                                             <li className='px-4 py-2 hover:text-white hover:bg-orange-500'>150</li>
@@ -134,15 +134,15 @@ const Shop = () => {
                                     </div>
                                 </div>
                                 <div className="">
-                                    <div class="dropdown dropdown-end">
-                                        <label tabindex="0" class=" m-1">
+                                    <div className="dropdown dropdown-end">
+                                        <label tabIndex="0" className=" m-1">
                                             <div className="border border-gray-300 rounded-full px-4 py-2 bg-gray-100 flex justify-start items-center gap-2">
                                                 <ViewGridIcon className='h-6 w-6 text-gray-400' />
                                                 <span> Short By: Featured</span>
                                                 <ChevronDownIcon className='h-3 w-3' />
                                             </div>
                                         </label>
-                                        <ul tabindex="0" class="dropdown-content menu  py-4 text-lg text-gray-500  shadow-lg bg-base-100  w-52 space-y-2">
+                                        <ul tabIndex="0" className="dropdown-content menu  py-4 text-lg text-gray-500  shadow-lg bg-base-100  w-52 space-y-2">
                                             <li className='px-4 py-2 hover:text-white hover:bg-orange-500'>Featured</li>
                                             <li className='px-4 py-2 hover:text-white hover:bg-orange-500'>Price: Low to High</li>
                                             <li className='px-4 py-2 hover:text-white hover:bg-orange-500'>Price: High to Low</li>
@@ -167,13 +167,13 @@ const Shop = () => {
                 </div>
 
                 <div className="flex justify-center my-5">
-                    <div class="flex gap-3 items-center">
-                        <button class="p-2">«</button>
-                        <button class=" p-2">1</button>
-                        <button class=" p-2">2</button>
-                        <button class=" p-2">2</button>
-                        <button class=" p-2">3</button>
-                        <button class="p-2">»</button>
+                    <div className="flex gap-3 items-center">
+                        <button className="p-2">«</button>
+                        <button className=" p-2">1</button>
+                        <button className=" p-2">2</button>
+                        <button className=" p-2">2</button>
+                        <button className=" p-2">3</button>
+                        <button className="p-2">»</button>
                     </div>
                 </div>
 

@@ -34,7 +34,7 @@ const Slider1 = ({ nextEl, prevEl, children }) => {
                 },
                 1024: {
                     slidesPerView: 6,
-                    spaceBetween: 20,
+                    spaceBetween: 10,
                 },
             }}
             navigation={{

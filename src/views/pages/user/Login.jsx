@@ -5,9 +5,16 @@ import { button1 } from '../../../constant/color';
 import { login } from '../../../redux/slices/auth';
 import { clearMessage } from '../../../redux/slices/message';
 import { NavLink, useNavigate } from "react-router-dom";
+import useAuth from '../../../hooks/useAuth';
+import { facebook, google } from '../../../constant';
 
 const Login = () => {
     const [loading, setLoading] = useState(false);
+
+    const { loginUser, isLoading, user, authError, signInWithGoogle, signInWithFacebook } = useAuth()
+
+
+
 
     const dispatch = useDispatch();
     const navigate = useNavigate()
@@ -31,14 +38,21 @@ const Login = () => {
                 setLoading(false);
             });
     };
-   
 
+    const handleGoogleSignIn = () => {
+
+        signInWithGoogle()
+    }
+    const handleFacebookSignIn = () => {
+
+        signInWithFacebook()
+    }
     return (
         <>
             <form className="border border-gray-300 rounded-2xl p-6 md:m-14 flex flex-col space-y-4" onSubmit={handleSubmit(onSubmit)}>
                 <h4 className='text-3xl font-semibold my-3 text-black'>Login</h4>
 
-                
+
                 <input
                     {...register("phone", { required: true })}
                     type="number"
@@ -70,7 +84,17 @@ const Login = () => {
                     }
                 </div>
             </form>
-
+            <div className="divider">OR</div>
+            <div className="flex justify-center">
+                <div className="flex gap-4">
+                    <button
+                        onClick={handleFacebookSignIn}
+                        className='text-white font-semibold text-base px-6 py-3 rounded-md' style={{ backgroundColor: facebook }}>Login With Facebook</button>
+                    <button
+                        onClick={handleGoogleSignIn}
+                        className='text-white font-semibold text-base px-6 py-3 rounded-md' style={{ backgroundColor: google }}>Login With Google</button>
+                </div>
+            </div>
         </>
     );
 };

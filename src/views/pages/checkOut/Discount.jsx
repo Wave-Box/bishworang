@@ -95,7 +95,7 @@ const Discount = ({ setCupon, setShipping_area }) => {
                                     Shipping Area
                                 </label>
                                 <div>
-                                    <select onChange={(e) => setShipping_area(e.target.value)} id="country" name="country" autocomplete="country-name"
+                                    <select onChange={(e) => setShipping_area(e.target.value)} id="country" name="country" autoComplete="country-name"
                                          className="mt-1 block w-full py-2 text-lg font-semibold border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                         <option value={0}>--Select Area--</option>
                                         <option value={60}>Indise Dhaka</option>

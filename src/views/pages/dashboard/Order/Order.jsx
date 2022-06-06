@@ -8,12 +8,12 @@ import httpReq from '../../../../services/http.service';
 const Order = () => {
     const [call, setCall] = useState(false)
     const [orders, setOrder] = useState([])
-    const [filter, setFilter] = useState([])
+    const [filters, setFilter] = useState([])
     const [btn, setBtn] = useState('All')
     const { user } = useSelector((state) => state.auth);
 
     useEffect(() => {
-        
+
         // declare the async data fetching function
         const fetchData = async () => {
             // get the data from the api
@@ -131,34 +131,34 @@ const Order = () => {
                                     : */}
                         <div className="mt-7 overflow-x-auto">
                             {
-                              
-                                    <table className="min-w-full text-center">
 
-                                        <thead className="border-b">
-                                            <tr>
-                                                <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4">
-                                                    Order#
-                                                </th>
-                                                <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4">
-                                                    Purchased On
-                                                </th>
-                                                <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4">
-                                                    Amount
-                                                </th>
-                                                <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4">
-                                                    Status
-                                                </th>
-                                                <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4">
-                                                    Action
-                                                </th>
-                                            </tr>
-                                        </thead>
+                                <table className="min-w-full text-center">
 
-                                        <tbody>
-                                            {filter?.reverse().map((order) => <OrderItem key={order?.reference_no} cancel_request={cancel_request} item={order} />)}
+                                    <thead className="border-b">
+                                        <tr>
+                                            <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4">
+                                                Order#
+                                            </th>
+                                            <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4">
+                                                Purchased On
+                                            </th>
+                                            <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4">
+                                                Amount
+                                            </th>
+                                            <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4">
+                                                Status
+                                            </th>
+                                            <th scope="col" className="text-sm font-medium text-gray-900 px-6 py-4">
+                                                Action
+                                            </th>
+                                        </tr>
+                                    </thead>
 
-                                        </tbody>
-                                    </table>
+                                    <tbody>
+                                        {filters.length !== 0 ? filters?.reverse().map((order) => <OrderItem key={order?.reference_no} cancel_request={cancel_request} item={order} />): null}
+
+                                    </tbody>
+                                </table>
                             }
                         </div>
 

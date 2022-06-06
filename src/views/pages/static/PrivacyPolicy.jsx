@@ -13,7 +13,7 @@ const PrivacyPolicy = () => {
             <p className='text-justify'>Bishworang is committed to the compliance of applicable Privacy Laws in the country Bishworang’s product is distributed. Protecting the privacy and security of your personal data is of prime importance to Bishworang; therefore, we conduct our business by abiding by the laws applicable on data privacy and data security in the country where Bishworang’s product is distributed to you. This Privacy Policy is intended to inform you about the personal data that is collected from you, how your personal data may be used and disclosed, how you can control the use of your personal data, and how your personal data is protected when you use the Bishworang Application or the application developed by a third party for Bishworang (“Application”). We do not sell trade your personally identifiable information; however, we may share the same with third parties who assist us in conducting our business, operating our website/Application, or servicing you, so long as those parties agree to keep this information confidential.</p>
             <h3 className='text-2xl my-3 font-bold font-sans'>How we collect information:</h3>
             <div className="">
-                <ul class="list-disc list-inside">
+                <ul className="list-disc list-inside">
                     <li>Purchase, order, return or exchange products and services</li>
                     <li>Register on our website or</li>
                     <li>Track your order through our website</li>

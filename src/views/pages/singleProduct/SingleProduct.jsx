@@ -101,20 +101,21 @@ const SingleProduct = () => {
     }
 
     const add_to_cart = (product) => {
+        const productPrice = parseInt(getPrice(product?.regular_price, product?.discount_price, product?.discount_type))
         setCall(!call)
         if (variant.length) {
             if (singleVariant.id) {
 
                 console.log("enough quantity");
                 if (singleVariant) {
-                    dispatch(addToCartList({ cartId: makeid(100), variant_quantity: singleVariant?.quantity, variantId: singleVariant.id, ...singleVariant, price: price + parseInt(singleVariant.additional_price), ...product }))
+                    dispatch(addToCartList({ cartId: makeid(100), variant_quantity: singleVariant?.quantity, variantId: singleVariant.id, ...singleVariant, price: productPrice + parseInt(singleVariant?.additional_price), ...product }))
                 }
             } else {
                 // dispatch(addToCartList({ cartId: makeid(100), color: null, size: null, additional_price: null, ...product }))
                 alert('please select color and size')
             }
         } else {
-            dispatch(addToCartList({ cartId: makeid(100), price: price, color: null, size: null, additional_price: null, volume: null, unit: null, ...product }))
+            dispatch(addToCartList({ cartId: makeid(100), price: productPrice, color: null, size: null, additional_price: null, ...product }))
 
         }
 
@@ -186,12 +187,12 @@ const SingleProduct = () => {
                     </div>}
                     {size.length !== 0 && <div className="flex gap-1 justify-start items-center mt-4 mb-7">
                         <h6 className='text-md font-semibold text-gray-700 mr-2'>Size</h6>
-                        {size?.map((i) => <SizeSelect select={selectSize} setSelect={setSelectSize} setVariant={set_variant} data={i} selectSize={i?.size} />)}
+                        {size?.map((i) => <SizeSelect key={i.id} select={selectSize} setSelect={setSelectSize} setVariant={set_variant} data={i} selectSize={i?.size} />)}
 
                     </div>}
                     {!vrcolor?.length && <div className="flex gap-1 justify-start items-center mt-4 mb-7">
                         <h6 className='text-md font-semibold text-gray-700 mr-2'>Size</h6>
-                        {variant?.map((i) => <SizeSelect select={selectSize} setSelect={setSelectSize} setVariant={set_variant} data={i} selectSize={i?.size} />)}
+                        {variant?.map((i) => <SizeSelect key={i.id} select={selectSize} setSelect={setSelectSize} setVariant={set_variant} data={i} selectSize={i?.size} />)}
 
                     </div>}
 

@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { button1 } from '../../../constant/color';
-import { forgot, verify } from '../../../redux/slices/auth';
+import { forgot } from '../../../redux/slices/auth';
 import { clearMessage } from '../../../redux/slices/message';
 import Subscribe from '../home/subscribe/Subscribe';
 
