@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 import Price from '../utils/Price';
-import { useNavigate } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import Badge from '../utils/Badge';
 import { EyeIcon, HeartIcon, SwitchHorizontalIcon } from '@heroicons/react/outline';
 import { getPrice } from '../utils/getPrice';
@@ -10,9 +10,8 @@ import { HoverIcon } from './ProductCard';
 import { productImg } from '../../../siteSetting/siteUrl';
 
 const Card2 = ({ item }) => {
-    const navigate = useNavigate()
     return (
-        <div onClick={() => navigate(`/item/1`)} className="cursor-pointer border  shadow">
+        <NavLink to={'/product/' + item?.id} className="cursor-pointer border  shadow">
             <div className="  group relative">
                 <figure className='overflow-hidden'>
                     <motion.img whileHover={{
@@ -22,7 +21,7 @@ const Card2 = ({ item }) => {
                         exit={{
                             scale: 1,
                             transition: { duration: 1 }
-                        }} src={productImg + item?.image[0]}  alt="Shoes" className='group-hover:hidden group-hover:scale-125 transition-all duration-1000 ease-linear w-52 h-64' />
+                        }} src={productImg + item?.image[0]} alt="Shoes" className='group-hover:hidden group-hover:scale-125 transition-all duration-1000 ease-linear w-52 h-64' />
                     <motion.img whileHover={{
                         scale: 1.25,
                         transition: { duration: 1 },
@@ -51,15 +50,13 @@ const Card2 = ({ item }) => {
                 <p className="tracking-widest font-normal text-sm text-gray-600 text-center">
                     {item?.name}
                 </p>
-                {/* <div className="text-center">
-                    <Rate rating={3.6} />
-                </div> */}
+               
 
                 <Price currentPrice={parseInt(getPrice(item?.regular_price, item?.discount_price, item?.discount_type))} oldPrice={item?.regular_price} />
 
 
             </div>
-        </div>
+        </NavLink>
     );
 };
 

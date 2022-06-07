@@ -71,14 +71,14 @@ const VerifyOtp = () => {
                         <form className="border border-gray-300 rounded-2xl p-6 md:m-14 flex flex-col space-y-4 w-full" onSubmit={handleSubmit(onSubmit)}>
                             <h4 className='text-3xl font-semibold my-3 text-black text-center'>Verify Your Phone Number</h4>
 
-
+{/* 
                             <input
                                 type="number"
                                 disabled
                                 value={user?.phone}
                                 placeholder='Your Phone'
                                 className='py-3 px-4 border border-gray-300 rounded-md placeholder:text-gray-500 text-sm focus:outline-0' />
-
+ */}
 
 
                             <input

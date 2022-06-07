@@ -7,9 +7,15 @@ import Header from './common/Header';
 import { ToastContainer } from 'react-toastify';
 const Layout = () => {
     // const [scrollPosition, setScrollPosition] = useState(0);
+
     // const handleScroll = () => {
     //     const position = window.pageYOffset;
-    //     setScrollPosition(position);
+    //     if (position > 260) {
+
+    //         setScrollPosition(position);
+    //     } else {
+    //         setScrollPosition(0)
+    //     }
     // };
 
     // useEffect(() => {
@@ -19,12 +25,13 @@ const Layout = () => {
     //         window.removeEventListener("scroll", handleScroll);
     //     };
     // }, []);
+    // window.addEventListener("scroll", handleScroll);
 
     // console.log(scrollPosition);
     return (
         <>
-               <ToastContainer position="top-right" newestOnTop />
-            <div style={{ background: `url(${ackground}) repeat fixed center`, backgroundSize: '480px 270px', position: 'relative',scrollBehavior:'smooth' }}>
+            <ToastContainer position="top-right" newestOnTop />
+            <div style={{ background: `url(${ackground}) repeat fixed center`, backgroundSize: '480px 270px', position: 'relative', scrollBehavior: 'smooth' }}>
 
                 <header>
                     <Header />

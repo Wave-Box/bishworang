@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { setMessage } from "./message";
 import AuthService from "../../services/auth.service";
+import { toast } from "react-toastify";
 const user = JSON.parse(localStorage.getItem("user"));
 export const signUp = createAsyncThunk(
   "auth/register",
@@ -147,8 +148,12 @@ const authSlice = createSlice({
     },
 
     [login.fulfilled]: (state, action) => {
-      state.isLoggedIn = true;
-      state.user = action.payload.user;
+      if (action.payload?.user?.otp === 'NULL') {
+        state.isLoggedIn = true;
+        state.user = action.payload.user;
+      } else {
+        toast('verify your otp', { type: 'info ' })
+      }
     },
     [login.rejected]: (state, action) => {
       state.isLoggedIn = false;

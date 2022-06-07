@@ -52,7 +52,7 @@ const ProductCard = ({ item }) => {
                 <div className="card-body p-4 gap-1 absolute bottom-0 left-0 right-0 bg-white">
                     <p className='text-xs '>{item?.name}</p>
                     <h2 className="tracking-widest font-normal text-sm text-gray-600">
-                        <a href="/"> {item?.description}</a>
+                        <p> {item?.description}</p>
                     </h2>
 
                     <h6 className='text-lg font-semibold text-orange-400'>
