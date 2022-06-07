@@ -75,9 +75,9 @@ export default function Drawer({ open, setOpen }) {
                                                         )}
 
                                                     </div>
-                                                    <div className="border-t border-black space-y-3 pt-3">
+                                                    <div className="border-t border-black space-y-2 pt-3">
                                                         <h6 className='text-right font-serif font-semibold text-lg'>Total : <Taka tk={parseInt(total)} /></h6>
-                                                        <NavLink to="/checkout" className='w-full bg-orange-200 py-2 rounded font-semibold outline-0 border-0'>Proceed to pay</NavLink>
+                                                        <NavLink to="/checkout" className='w-full block text-center bg-orange-200 py-2 rounded font-semibold outline-0 border-0'>Proceed to pay</NavLink>
                                                     </div>
                                                 </div>
                                             </div>

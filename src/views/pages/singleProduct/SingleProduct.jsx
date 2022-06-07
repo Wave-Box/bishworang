@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { CgCrown } from 'react-icons/cg'
 import { VscCreditCard } from 'react-icons/vsc'
 import { HiOutlineRefresh } from 'react-icons/hi'
-import { MdKeyboardArrowUp, MdKeyboardArrowDown } from 'react-icons/md'
 import { BsHeart } from "react-icons/bs";
 import Rate from '../../components/utils/Rate';
 import ColorSelect from '../../components/utils/ColorSelect';
@@ -27,7 +26,6 @@ import { MinusIcon, PlusIcon } from '@heroicons/react/outline';
 const SingleProduct = () => {
     const [selectColor, setSelectColor] = useState('')
     const [selectSize, setSelectSize] = useState('')
-    const [quantity, setQuantity] = useState(0)
     const [tab, setTab] = useState('desc')
 
     // const location = useLocation()
@@ -108,7 +106,13 @@ const SingleProduct = () => {
 
                 console.log("enough quantity");
                 if (singleVariant) {
-                    dispatch(addToCartList({ cartId: makeid(100), variant_quantity: singleVariant?.quantity, variantId: singleVariant.id, ...singleVariant, price: productPrice + parseInt(singleVariant?.additional_price), ...product }))
+                    console.log("singe", singleVariant);
+                    dispatch(addToCartList({
+                        cartId: makeid(100), variant_quantity: singleVariant?.quantity, variantId: singleVariant.id, ...singleVariant,
+
+                        price: !isNaN(parseInt(singleVariant?.additional_price)) ? productPrice + parseInt(singleVariant?.additional_price) : productPrice,
+                        ...product
+                    }))
                 }
             } else {
                 // dispatch(addToCartList({ cartId: makeid(100), color: null, size: null, additional_price: null, ...product }))
@@ -192,12 +196,13 @@ const SingleProduct = () => {
                     </div>}
                     {!vrcolor?.length && <div className="flex gap-1 justify-start items-center mt-4 mb-7">
                         <h6 className='text-md font-semibold text-gray-700 mr-2'>Size</h6>
-                        {variant?.map((i) => <SizeSelect key={i.id} select={selectSize} setSelect={setSelectSize} setVariant={set_variant} data={i} selectSize={i?.size} />)}
+                        {variant?.map((i) =>
+                            <SizeSelect key={i.id} select={selectSize} setSelect={setSelectSize} setVariant={set_variant} data={i} selectSize={i?.size} />)}
 
                     </div>}
 
                     <div className="flex gap-1">
-                        <div className="flex justify-around border border-gray-300 w-20 rounded-md ">
+                        {/* <div className="flex justify-around border border-gray-300 w-20 rounded-md ">
                             <div className="flex justify-center items-center">
                                 <p className='text-black'>{quantity}</p>
                             </div>
@@ -205,7 +210,7 @@ const SingleProduct = () => {
                                 <MdKeyboardArrowUp onClick={() => setQuantity(quantity + 1)} />
                                 <MdKeyboardArrowDown onClick={() => quantity && setQuantity(quantity - 1)} />
                             </div>
-                        </div>
+                        </div> */}
 
 
 

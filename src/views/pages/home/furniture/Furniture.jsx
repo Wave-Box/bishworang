@@ -5,19 +5,10 @@ import SliderOne from '../latestSession/SliderOne';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 import SliderTwo from '../latestSession/SliderTwo';
 import CardFour from '../../../components/card/CardFour';
-import product1 from '../../../../assets/images/product/product1.jpg'
-import product2 from '../../../../assets/images/product/product2.jpg'
-import product3 from '../../../../assets/images/product/product3.jpg'
-import product4 from '../../../../assets/images/product/product4.jpg'
-import product5 from '../../../../assets/images/product/product5.jpg'
-import product6 from '../../../../assets/images/product/product6.jpg'
-import product7 from '../../../../assets/images/product/product7.jpg'
-import product8 from '../../../../assets/images/product/product8.jpg'
 import useTheme from '../../../../hooks/useTheme';
 import { bannerImg } from '../../../../siteSetting/siteUrl';
 
 
-const productImage = [product1, product2, product3, product4, product5, product6, product7, product8]
 
 const Furniture = () => {
     const { decore } = useTheme()

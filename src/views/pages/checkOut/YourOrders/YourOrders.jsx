@@ -15,6 +15,7 @@ import Taka from '../../../components/utils/Taka';
 
 const YourOrders = ({ cuponDis, selectAddress, selectPayment, shipping_area }) => {
     const cartList = useSelector((state) => state.cart.cartList)
+    const { user } = useSelector((state) => state.auth)
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const priceList = cartList?.map(p => p.qty * p.price)
@@ -42,6 +43,7 @@ const YourOrders = ({ cuponDis, selectAddress, selectPayment, shipping_area }) =
 
 
         const data = {
+            uid: user?.id,
             name: selectAddress?.name,
             phone: selectAddress?.phone,
             payment_type: selectPayment,
