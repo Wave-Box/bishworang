@@ -4,31 +4,35 @@ import { primaryColor } from '../../../constant';
 import { ProductCard } from '../../components/card';
 import Card3 from '../../components/card/Card3.';
 import { Link1 } from '../../components/links';
-import SelectColor from '../../components/utils/SelectColor';
-import SelectSize from '../../components/utils/SelectSize';
+// import SelectColor from '../../components/utils/SelectColor';
+// import SelectSize from '../../components/utils/SelectSize';
 import Title from '../../components/utils/Title';
 import banner3 from '../../../assets/images/shop/banner-11.jpg'
 import { ViewGridIcon, ChevronDownIcon } from '@heroicons/react/outline'
 import TitleBorder from '../../components/utils/TitleBorder';
 import useTheme from '../../../hooks/useTheme';
 import httpReq from '../../../services/http.service';
+import { getPrice } from '../../components/utils/getPrice';
 
 const price = [
+    { name: "10" },
     { name: "100" },
+    { name: "1000" },
     { name: "10000" },
-    { name: "100000" },
-    { name: "1000000" },
     { name: "10000000" },
 
 
 ]
 
 const Shop = () => {
+    const [val, setVal] = useState(0)
+    const [store, setStore] = useState([])
     const [products, setProducts] = useState([])
     const { category } = useTheme()
     const params = useParams()
-    console.log(products);
+    const [loading, setloading] = useState(false)
     useEffect(() => {
+        setloading(true)
         // declare the async data fetching function
         const fetchData = async () => {
             // get the data from the api
@@ -37,14 +41,25 @@ const Shop = () => {
 
             // set state with the result
             setProducts(data);
+            setStore(data);
+            setloading(false)
+
         }
 
         // call the function
         fetchData()
             // make sure to catch any error
-            .catch(console.error);
+            .catch((error) => {
+                setloading(false)
+                console.log(error);
+            }).finally(() => setloading(false))
     }, [params.id])
 
+    // if (loading) {
+    //     return <div className="flex justify-center h-screen items-center">
+    //     <button className="btn loading">loading</button>
+    // </div>
+    // }
     return (
         <>
             <div className="">
@@ -78,14 +93,16 @@ const Shop = () => {
 
                                 <nav className="list-none mb-6 px-4">
                                     <ul className='list-none space-y-2'>
-                                        {price.map((item, idx) => <li className='cursor-pointer' key={idx} style={{ color: primaryColor }}>{item.name}</li>)}
+                                        {price.map((item, idx) => <li className='cursor-pointer' onClick={() => setProducts(store?.filter(p => getPrice(p.regular_price, p.discount_price, p.discount_type) < item?.name))} key={idx} style={{ color: primaryColor }}>{item.name}</li>)}
                                     </ul>
+                                    <input type="range" min="1" max="100" defaultValue={1} onChange={(e) => setProducts(store?.filter(p => getPrice(p.regular_price, p.discount_price, p.discount_type) < e.target.value))}></input>
+                                    <p>{val}</p>
 
                                 </nav>
 
-                                <div className="divider mx-8"></div>
+                                {/* <div className="divider mx-8"></div>
                                 <SelectColor />
-                                <SelectSize />
+                                <SelectSize /> */}
 
 
                             </div>
@@ -146,11 +163,19 @@ const Shop = () => {
 
 
                         {/* main products in here  */}
-                        <div className="flex flex-wrap gap-6">
-                            {products.length &&
-                                products?.map((i) => <ProductCard key={i.id} item={i} />)
-                            }
-                        </div>
+                        {loading ? <div className="flex justify-center h-[400px] items-center">
+                            <button className="btn loading">loading</button>
+                        </div> :
+
+
+                            products.length ?
+                                <div className="flex flex-wrap gap-6">
+                                    {products?.map((i) => <ProductCard key={i.id} item={i} />)}
+                                </div> : <div className="flex justify-center h-[400px] items-center">
+                                    <h3 className=" font-sans font-semibold text-3xl text-gray-400 ">Product Not Found!</h3>
+                                </div>
+
+                        }
                         {/* paroduct secton  */}
                     </div>
 

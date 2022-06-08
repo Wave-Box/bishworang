@@ -52,7 +52,7 @@ export default function HeaderMid() {
                                         <div className="relative grid gap-3  py-6 sm:gap-8 sm:p-8 bg-[#AD171A] text-white">
                                             {category?.map((item) => (
                                                 <NavLink
-                                                    to={"/" + item?.id} key={item?.id}
+                                                    to={"/category/" + item?.id} key={item?.id}
 
                                                     className="-m-3 p-3 flex items-start hover:text-gray-200 "
                                                 >

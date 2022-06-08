@@ -42,7 +42,7 @@ const SingleProduct = () => {
 
     // const [color, setSelesdctColor] = useState(null)
     const [vrcolor, setVrcolor] = useState([])
-    // const [load, setLoad] = useState(false)
+    const [loading, setLoading] = useState(false)
     const [result, setResult] = useState({})
     const [call, setCall] = useState(false)
     // console.log(product);
@@ -53,7 +53,7 @@ const SingleProduct = () => {
     const dispatch = useDispatch()
     const params = useParams()
     useEffect(() => {
-
+        setLoading(true)
         // declare the async data fetching function
         const fetchData = async () => {
             // get the data from the api
@@ -64,6 +64,7 @@ const SingleProduct = () => {
             setProduct(product);
             setVariant(variant);
             setVrcolor(vrcolor);
+            setLoading(false)
 
         }
 
@@ -71,7 +72,11 @@ const SingleProduct = () => {
         // call the function
         fetchData()
             // make sure to catch any error
-            .catch(console.error);
+            .catch((err) => {
+                setLoading(false)
+                console.log(err);
+            })
+            .finally(() => setLoading(false))
 
     }, [params.id])
 
@@ -140,6 +145,11 @@ const SingleProduct = () => {
         }
     }, [call, cartList, product?.id, singleVariant?.size, singleVariant?.color, singleVariant?.volume, singleVariant?.unit])
 
+    if (loading) {
+        return <div className="flex justify-center h-screen items-center">
+        <button className="btn loading">loading</button>
+    </div>
+    }
     if (!product?.id) {
         return (<div className='flex justify-center h-screen items-center capitalize text-3xl font-bold'>Product not Found</div>)
     }

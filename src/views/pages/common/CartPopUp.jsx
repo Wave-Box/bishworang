@@ -1,22 +1,21 @@
 import React, { useState } from 'react';
-import {GiShoppingBag} from 'react-icons/gi'
+import { GiShoppingBag } from 'react-icons/gi'
 import { useSelector } from 'react-redux';
 import Drawer from '../../components/common/Drawer';
-import { getPrice } from '../../components/utils/getPrice';
 import Taka from '../../components/utils/Taka';
 
 const CartPopUp = () => {
     const [open, setOpen] = useState(false)
     const cartList = useSelector((state) => state.cart.cartList)
-    const priceList = cartList?.map(p => p.qty * getPrice(p.regular_price, p.discount_price, p.discount_type))
+    const priceList = cartList?.map(p => p?.qty * p?.price)
     const total = priceList.reduce(
         (previousValue, currentValue) => previousValue + currentValue,
         0
     );
     return (
         <>
-            <div onClick={()=>setOpen(!open)} className={`${open ? "hidden" : "hidden md:block"} `}>
-                <div  className='fixed z-20 p-2  right-0 top-1/2  shadow-lg rounded-l-md cursor-pointer md:block w-24 pb-3 bg-gray-500'>
+            <div onClick={() => setOpen(!open)} className={`${open ? "hidden" : "hidden md:block"} `}>
+                <div className='fixed z-20 p-2  right-0 top-1/2  shadow-lg rounded-l-md cursor-pointer md:block w-24 pb-3 bg-gray-500'>
                     <div className="flex flex-col items-center space-y-1">
                         <div className="flex justify-center gap-x-1 items-center mb-2">
                             <GiShoppingBag className='font-semibold text-sm text-white' />

@@ -78,6 +78,9 @@ const YourOrders = ({ cuponDis, selectAddress, selectPayment, shipping_area }) =
                         navigate("/profile/order")
 
                     }
+                    if (response?.payment) {
+                        window.location.replace(response?.payment)
+                    }
                     // console.log(response);
 
                     if (response?.user) {
