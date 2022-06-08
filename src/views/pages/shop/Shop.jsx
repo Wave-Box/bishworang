@@ -13,16 +13,6 @@ import TitleBorder from '../../components/utils/TitleBorder';
 import useTheme from '../../../hooks/useTheme';
 import httpReq from '../../../services/http.service';
 
-// const Categories = [
-//     { name: "Shoes & bags", link: '/' },
-//     { name: "Dresses ", link: '/' },
-//     { name: "Swimwear ", link: '/' },
-//     { name: "Beauty ", link: '/' },
-//     { name: "Shoes & bags", link: '/' },
-//     { name: "Dresses ", link: '/' },
-//     { name: "Swimwear ", link: '/' },
-
-// ]
 const price = [
     { name: "100" },
     { name: "10000" },
@@ -57,7 +47,7 @@ const Shop = () => {
 
     return (
         <>
-            <div className="bg-gray-100">
+            <div className="">
                 <div className="container mx-auto">
                     <div className="text-sm breadcrumbs md:mt-6 my-4 ">
                         <ul>

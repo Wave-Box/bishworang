@@ -24,6 +24,8 @@ import Order from "../dashboard/Order/Order";
 import OrderDetails from "../dashboard/Order/OrderDetails";
 import PublicRoute from "../../../privateRoute/PublicRoute";
 import Forget from "../user/Forget";
+import BlogDetails from "../home/blog/BlogDetails";
+import Blog from "../home/blog/Blog";
 // import PrivateRoute from "../../../privateRoute/PrivateRoute";
 
 
@@ -58,6 +60,8 @@ const Main = () => {
                     <Route path="/refund-policy" element={<RefundPolicy />} />
                     <Route path="/return-policy" element={<ReturnPolicy />} />
                     <Route path="/terms-condition" element={<TermsCondition />} />
+                    <Route path="/blog" element={<Blog />} />
+                    <Route path="/blog/:slug" element={<BlogDetails />} />
 
 
                     {/* Private Routes  */}

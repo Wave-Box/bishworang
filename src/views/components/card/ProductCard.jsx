@@ -15,7 +15,7 @@ const ProductCard = ({ item }) => {
 
     return (
         <NavLink to={'/product/' + item?.id} className="group cursor-pointer">
-            <div className="drop-shadow-xl relative w-72 ">
+            <div className="drop-shadow-xl relative sm:w-[235px] w-[300px] md:w-[250px] lg:w-[300px] ">
                 <figure className='w-full h-96 overflow-hidden '>
                     <motion.img whileHover={{
                         scale: 1.25,

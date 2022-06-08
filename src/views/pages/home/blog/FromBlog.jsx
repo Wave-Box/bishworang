@@ -1,87 +1,30 @@
 import React from 'react';
-import blog1 from '../../../../assets/images/blog/blog1.jpg'
-import blog2 from '../../../../assets/images/blog/blog2.jpg'
-import blog3 from '../../../../assets/images/blog/blog3.jpg'
-import Card3 from '../../../components/card/Card3.';
-import blog_1 from '../../../../assets/images/blog/blog-1.jpg'
 import Title from '../../../components/utils/Title';
 import { primaryColor } from '../../../../constant';
+import { NavLink } from 'react-router-dom';
+import { blogImg } from '../../../../siteSetting/siteUrl';
+import useTheme from '../../../../hooks/useTheme';
 const FromBlog = () => {
+    const {blogs} = useTheme()
+
     return (
         <div>
             <section className="text-gray-600 body-font">
-                <div className="container py-12 mx-auto flex flex-wrap">
+                <div className="container py-12 mx-auto">
+                    <div className="md:p-2 p-1 w-full flex gap-2">
+                        <Title text={'From'} >Blog</Title>
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
 
-                    <div className="flex flex-wrap md:-m-2 -m-1">
-                        <div className="flex flex-wrap w-full md:w-1/2">
-
-                            <div className="md:p-2 p-1 w-full flex gap-2">
-                                <Title text={'From'} >Blog</Title>
-                            </div>
-                            <div className="space-y-3 my-3">
-                                <div className="md:p-4 p-2 w-full flex flex-col sm:flex-row gap-3 bg-white shadow rounded">
-                                    <div className="">
-                                        <img alt="blog" className="object-cover w-full  sm:w-52 h-full object-center block" src={blog_1} />
-                                    </div>
-                                    <div className="flex flex-col space-y-1">
-                                        <span className='text-sm' style={{ color: primaryColor }}>Fashon</span>
-                                        <h4 className='text-lg text-black font-semibold'>Qualcomm is developing a Nintendo Switch-like console, report says</h4>
-                                        <div style={{ fontSize: '13px' }} className="flex justify-between items-center font-semibold tracking-wider">
-                                            <div className="flex gap-2">
-                                                <span>14 April 2021</span>
-                                                <span>12M views</span>
-                                            </div>
-                                            <a style={{ color: primaryColor }} href="/">Read More</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="md:p-4 p-2 w-full flex flex-col sm:flex-row gap-3 bg-white shadow rounded">
-                                    <div className="">
-                                        <img alt="blog" className="object-cover w-full  sm:w-52 h-full object-center block" src={blog_1} />
-                                    </div>
-                                    <div className="flex flex-col space-y-1">
-                                        <span className='text-sm' style={{ color: primaryColor }}>Fashon</span>
-                                        <h4 className='text-lg text-black font-semibold'>Qualcomm is developing a Nintendo Switch-like console, report says</h4>
-                                        <div style={{ fontSize: '13px' }} className="flex justify-between items-center font-semibold tracking-wider">
-                                            <div className="flex gap-2">
-                                                <span>14 April 2021</span>
-                                                <span>12M views</span>
-                                            </div>
-                                            <a style={{ color: primaryColor }} href="/">Read More</a>
-                                        </div>
-                                    </div>
-                                </div>
-                               
-                            </div>
+                        {blogs?.map((blog) => <SingleBlog blog={blog} key={blog.id} />)}
 
 
 
-                        </div>
-                        <div className="flex flex-wrap md:w-1/2">
-                            <div className="md:p-2 p-1 lg:w-1/2 md:2/3 relative rounded">
-                                <img alt="gallery" className="w-full object-cover object-center block" src={blog3} />
-                                <div className="absolute top-8 left-6">
-                                    <Card3 offerType={'Smart Offer'} title={'Great Summer Collection'} link={'Shop Now'} />
-                                </div>
-                            </div>
-                            <div className="md:p-2 p-1 lg:w-1/2 space-y-4">
-                                <div className="relative rounded shadow">
-                                    <img alt="gallery" className="w-full object-cover object-center block" src={blog2} />
-                                    <div className="absolute top-4 left-4">
-                                        <Card3 offerType={'Smart Offer'} title={'Great Summer Collection'} link={'Shop Now'} />
-                                    </div>
-                                </div>
-                                <div className="relative rounded shadow">
-                                    <img alt="gallery" className="w-full object-cover object-center block" src={blog1} />
-                                    <div className="absolute top-4 left-1/2">
-                                        <Card3 offerType={'Smart Offer'} title={'Great Summer Collection'} link={'Shop Now'} />
-                                    </div>
-                                </div>
-                            </div>
 
-                        </div>
+
 
                     </div>
+
                 </div>
             </section>
 
@@ -91,4 +34,22 @@ const FromBlog = () => {
 
 export default FromBlog;
 
-
+export const SingleBlog = ({ blog }) => {
+    return (
+        <div className="md:p-4 p-2 col-span-1 flex flex-col sm:flex-row gap-3 bg-white shadow rounded">
+            <div className="">
+                <img alt="blog" className="object-cover w-full  sm:w-52 sm:h-[75px] h-full object-center block" src={blogImg + blog?.image} />
+            </div>
+            <div className="flex flex-col justify-between space-y-1 w-full">
+                <NavLink to={'/blog/' + blog?.slug} className='text-lg text-black font-semibold'>{blog?.title}</NavLink>
+                {/* <span className='text-sm' style={{ color: primaryColor }}>{JSON.parse(blog?.description)}</span> */}
+                <div style={{ fontSize: '13px' }} className="flex justify-between items-center font-semibold tracking-wider">
+                    <div className="flex gap-2">
+                        <span>{new Date(blog?.created_at).toDateString()}</span>
+                    </div>
+                    <NavLink to={'/blog/' + blog?.slug} style={{ color: primaryColor }}>Read More</NavLink>
+                </div>
+            </div>
+        </div>
+    )
+}

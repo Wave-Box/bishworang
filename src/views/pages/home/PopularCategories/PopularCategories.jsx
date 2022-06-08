@@ -21,7 +21,7 @@ const PopularCategories = () => {
                 prevEl={prev}
                 nextEl={next}
             >
-                    {category?.map((cat) => <SwiperSlide key={category.id}>
+                    {category?.map((cat) => <SwiperSlide key={cat?.id}>
                         <Card1 cat={cat} />
                     </SwiperSlide>
                     )}

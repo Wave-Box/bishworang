@@ -18,7 +18,7 @@ import { sliderImg } from "../../../../siteSetting/siteUrl";
 
 const Hero = () => {
 
-    const {slider} = useTheme()
+    const { slider } = useTheme()
     return (
         <>
             <Swiper
@@ -35,10 +35,10 @@ const Hero = () => {
                 modules={[EffectFade, Pagination, Autoplay]}
                 className="mySwiper"
             >
-                {slider?.map((i)=><SwiperSlide>
-                    <img key={i} alt="" width={"100%"} style={{ height: "70vh" }} src={sliderImg + i.image} />
+                {slider?.map((i, id) => <SwiperSlide key={id}>
+                    <img alt="" width={"100%"} style={{ height: "70vh" }} src={sliderImg + i.image} />
                 </SwiperSlide>)}
-               
+
             </Swiper>
         </>
     );

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
-import { verify } from '../../../redux/slices/auth';
 import { Link, useNavigate } from 'react-router-dom';
 import { button1 } from '../../../constant/color';
 import { clearMessage } from '../../../redux/slices/message';
@@ -10,7 +9,6 @@ import httpReq from '../../../services/http.service';
 import Subscribe from '../home/subscribe/Subscribe';
 
 const Forget = () => {
-    const [auth, setAuth] = useState(false)
     const [user, setUser] = useState({})
     const [page, setPage] = useState('find')
     // const [successful, setSuccessful] = useState(false);
@@ -72,6 +70,7 @@ const Finding = ({ setPage, setUser }) => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     // console.log(errors);
     const onSubmit = data => {
+        setLoading(false)
         if (data.phone) {
 
             httpReq.post('forget-pass', { phone: data.phone })
@@ -80,13 +79,22 @@ const Finding = ({ setPage, setUser }) => {
 
                         setPage('cng')
                         setUser(res)
+                        setLoading(false)
                     } else {
                         setPage('otp')
                         setUser(res)
+                        setLoading(false)
 
                     }
                 })
-                .catch(er => console.log(er))
+                .catch(er => {
+                    setLoading(false)
+                    
+                    console.log(er)
+                })
+            }else{
+                
+                setLoading(false)
         }
     }
     return (

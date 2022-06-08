@@ -10,9 +10,11 @@ import { facebook, google } from '../../../constant';
 
 const Login = () => {
     const [loading, setLoading] = useState(false);
-    const [authUser, setAuthUser] = useState({})
+    // const [authUser, setAuthUser] = useState({})
 
-    const { loginUser, isLoading, user, authError, signInWithGoogle, signInWithFacebook } = useAuth()
+    const { 
+        // loginUser, isLoading, user, authError, 
+        signInWithGoogle, signInWithFacebook } = useAuth()
 
 
 

@@ -5,3 +5,5 @@ export const productImg = 'https://bishworang.wavebox.net/assets/images/product/
 export const bannerImg = 'https://bishworang.wavebox.net/assets/images/banner/'
 export const testimonialImg = 'https://bishworang.wavebox.net/assets/images/testimonials/'
 export const profileImg = 'https://bishworang.wavebox.net/assets/images/img/'
+export const campaignImg = 'https://bishworang.wavebox.net/assets/images/campaign/'
+export const blogImg = 'https://bishworang.wavebox.net/assets/images/blog/'

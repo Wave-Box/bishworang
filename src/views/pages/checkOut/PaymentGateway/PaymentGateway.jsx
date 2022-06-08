@@ -1,8 +1,9 @@
 import React from 'react';
 
+import { red } from '../../../../siteSetting/theme';
+
 const PaymentGateway = ({ selectPayment, setSelectPayment }) => {
 
-    console.log(selectPayment);
     return (
         <>
             <div className="shadow sm:rounded-md sm:overflow-hidden my-5">
@@ -40,7 +41,7 @@ const PaymentGateway = ({ selectPayment, setSelectPayment }) => {
                             </label> */}
 
 
-                            <label className={`${selectPayment === "online" ? "bg-yellow-300" : "bg-gray-300"} p-5 rounded space-y-2 w-full transition-colors duration-300 relative flex justify-between `}>
+                            <label className={`${selectPayment === "online" ? `bg-[${red}] text-white` : "bg-gray-300"} p-5 rounded space-y-2 w-full transition-colors duration-300 relative flex justify-between `}>
                                 <div className="flex justify-between cursor-pointer">
                                     <h3 className='font-semibold tracking-wider'>{"SSL Commarce"}</h3>
 
@@ -55,7 +56,7 @@ const PaymentGateway = ({ selectPayment, setSelectPayment }) => {
                                 />
                             </label>
 
-                            <label className={`${selectPayment === "cod" ? "bg-yellow-300" : "bg-gray-300"}  p-5 rounded space-y-2 w-full transition-colors duration-300 relative flex justify-between `}>
+                            <label className={`${selectPayment === "cod" ? `bg-[${red}] text-white` : "bg-gray-300"}  p-5 rounded space-y-2 w-full transition-colors duration-300 relative flex justify-between `}>
                                 <div className="flex justify-between cursor-pointer">
                                     <h3 className='font-semibold tracking-wider'>{"Cash On Delivery"}</h3>
 

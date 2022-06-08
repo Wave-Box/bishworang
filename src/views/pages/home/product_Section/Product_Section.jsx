@@ -22,8 +22,6 @@ const btn = [
 
 const Product_Section = () => {
     const [active, setActive] = useState('Featured')
-    console.log(active);
-
     const { product, popularProduct, featureProduct } = useTheme()
     return (
         <>
@@ -35,7 +33,7 @@ const Product_Section = () => {
                     </div>
                 </div>
             </div>
-            <div className='flex flex-wrap justify-center sm:justify-start  gap-4'>
+            <div className='flex flex-wrap justify-center sm:justify-start  gap-2 sm:gap-2 md:gap-2 lg:gap-8'>
                 {active === 'New Added' &&
                     product?.slice(0, 8).map((i) => (
 

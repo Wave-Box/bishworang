@@ -3,7 +3,6 @@ import { CgCrown } from 'react-icons/cg'
 import { VscCreditCard } from 'react-icons/vsc'
 import { HiOutlineRefresh } from 'react-icons/hi'
 import { BsHeart } from "react-icons/bs";
-import Rate from '../../components/utils/Rate';
 import ColorSelect from '../../components/utils/ColorSelect';
 import SizeSelect from '../../components/utils/SizeSelect';
 import { primaryColor } from '../../../constant';
@@ -163,7 +162,7 @@ const SingleProduct = () => {
                     <h2 className='text-3xl font-semibold text-black'>{product?.name}</h2>
                     <div className="flex justify-between items-center mt-6">
                         <div className=""><p className='capitalize' style={{ color: primaryColor }}> <span className='text-black'>Category: </span> {product?.category}</p></div>
-                        <div className="flex justify-start items-center gap-2"><p className='text-xl'><Rate rating={4.5} /></p> <p>(25 reviews)</p></div>
+                        {/* <div className="flex justify-start items-center gap-2"><p className='text-xl'><Rate rating={4.5} /></p> <p>(25 reviews)</p></div> */}
                     </div>
                     <div className="divider mt-2"></div>
                     <div className="flex justify-start items-center gap-x-4">
@@ -256,20 +255,20 @@ const SingleProduct = () => {
                 </motion.div>
 
                 <motion.div whileHover={{ y: -5, transition: { duration: 0.3 }, color: primaryColor }} onClick={() => setTab('review')} style={tab === 'review' && activeStyle}>
-                    <span className='text-lg  font-semibold'>Reviews (3)</span>
+                    <span className='text-lg  font-semibold'>Reviews</span>
                 </motion.div>
             </div>
 
             {
-                tab === 'desc' && <Description />
+                tab === 'desc' && <Description desc={product?.description} />
             }
             {
-                tab === 'review' && <Reviews />
+                tab === 'review' && <Reviews id={product?.id} />
             }
 
 
 
-            <RelatedProducts />
+            <RelatedProducts id={product?.category_id} />
         </div>
     );
 };

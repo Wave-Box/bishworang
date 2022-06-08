@@ -22,6 +22,7 @@ const useData = () => {
     const [campaign, setCampaign] = useState([])
     const [popularProduct, setPopularProduct] = useState([])
     const [featureProduct, setFeatureProduct] = useState([])
+    const [blogs, setBlogs] = useState([])
 
 
     const fetchHeader = useCallback(
@@ -32,6 +33,7 @@ const useData = () => {
             const feature = await httpReq.get('feature_product');
             const season = await httpReq.get('season');
             const decore = await httpReq.get('home_decore');
+            const blog = await httpReq.get('blog');
 
 
 
@@ -50,6 +52,7 @@ const useData = () => {
             setCampaign(campaign)
             setSeason(season)
             setDecore(decore)
+            setBlogs(blog)
 
             // set state with the result
             setPopularProduct(popular)
@@ -93,7 +96,8 @@ const useData = () => {
         season,
         decore,
         popularProduct,
-        featureProduct
+        featureProduct,
+        blogs
 
     }
 

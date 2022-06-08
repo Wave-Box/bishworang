@@ -21,7 +21,7 @@ const LatestSession = () => {
             <h6 className='text-center font-medium font-sans text-3xl tracking-widest text-gray-700'>LATEST FROM THE SEASON</h6>
             <div className="grid grid-cols-2 gap-8 my-5">
                 {
-                    season?.slice(0,2).map((s) =>
+                    season?.slice(0, 2).map((s) =>
                         <Single key={s.id} title={s.title} shortTitle={s.subtitle} slider={s?.slider} product={s?.product} />
                     )
                 }
@@ -53,7 +53,7 @@ const Single = ({ title, shortTitle, slider, product }) => {
 const UpSlider = ({ slider }) => {
     return (
         <SliderOne>
-            {slider.map((slide) => <SwiperSlide key={slider}>
+            {slider.map((slide, id) => <SwiperSlide key={id}>
                 <div className="image relative cursor-pointer">
                     <img className=' object-cover  w-full h-full' style={{ maxWidth: '710px', maxHeight: '600px' }} src={bannerImg + slide} alt="" />
                     <div className="overlay"></div>

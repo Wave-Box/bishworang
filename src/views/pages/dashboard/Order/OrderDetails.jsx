@@ -6,6 +6,7 @@ import httpReq from '../../../../services/http.service';
 import { productImg, profileImg } from '../../../../siteSetting/siteUrl';
 import DataLoader from '../../../components/Loader/DataLoader';
 import Taka from '../../../components/utils/Taka';
+import GiveReview from './Review';
 
 const OrderDetails = () => {
     const [order, setOrder] = useState({})
@@ -15,6 +16,7 @@ const OrderDetails = () => {
 
     const params = useParams()
     console.log("transaction", params);
+    const [call, setCall] = useState(false)
     useEffect(() => {
 
         // declare the async data fetching function
@@ -33,7 +35,7 @@ const OrderDetails = () => {
         fetchData()
             // make sure to catch any error
             .catch(console.error);
-    }, [params?.id, user?.id])
+    }, [params?.id, user?.id, call])
 
 
     return (
@@ -46,7 +48,7 @@ const OrderDetails = () => {
                 <div className="flex flex-col justify-start items-start w-full space-y-4 md:space-y-6 xl:space-y-8">
                     <div className="flex flex-col justify-start items-start bg-gray-50 px-4 py-4 md:py-6 md:p-6 xl:p-8 w-full">
                         <p className="text-lg md:text-xl font-semibold leading-6 xl:leading-5 text-gray-800">Customer’s Cart</p>
-                        {orderItem?.map((item) => <SingleItem key={item.id} item={item} />)}
+                        {orderItem?.map((item) => <SingleItem key={item.id} item={item} call={call} setCall={setCall} />)}
                     </div>
                     <div className="flex justify-center md:flex-row flex-col items-stretch w-full space-y-4 md:space-y-0 md:space-x-6 xl:space-x-8">
                         <div className="flex flex-col px-4 py-6 md:p-6 xl:p-8 w-full bg-gray-50 space-y-6   ">
@@ -114,7 +116,7 @@ const OrderDetails = () => {
                             <div className="flex justify-center  md:justify-start items-center space-x-4 py-4 border-b border-gray-200 w-full">
                                 <PhoneIcon className='font-extralight' height={20} />
 
-                                <p className="cursor-pointer text-sm leading-5 text-gray-800">{user?.details?.phone}</p>
+                                <p className="cursor-pointer text-sm leading-5 text-gray-800">{user?.phone}</p>
                             </div>
 
                             {user?.details?.email ?
@@ -156,7 +158,8 @@ export default OrderDetails;
 
 
 
-const SingleItem = ({ item }) => {
+const SingleItem = ({ item, setCall, call }) => {
+    const [open, setOpen] = useState(false)
     const [product, setProduct] = useState({})
 
     useEffect(() => {
@@ -177,7 +180,7 @@ const SingleItem = ({ item }) => {
         fetchData()
             // make sure to catch any error
             .catch(console.error);
-    }, [ item?.product_id])
+    }, [item?.product_id])
     console.log(item);
     return (
         <>
@@ -199,14 +202,22 @@ const SingleItem = ({ item }) => {
 
                         </div>
                     </div>
-                    <div className="flex justify-end space-x-8 items-start w-full">
+                    <div className="flex flex-col  space-x-8 items-end w-full">
                         {/* <p className="text-base xl:text-lg leading-6">
                             $36.00 <span className="text-red-300 line-through"> $45.00</span>
                         </p> */}
                         <p className="text-base xl:text-lg leading-6 text-gray-800">QTY: {item?.quantity}</p>
                         <p className="text-base xl:text-lg font-semibold leading-6 text-gray-800"><Taka tk={item?.price} /></p>
+                        {!item.review ? <button
+                            onClick={() => setOpen(true)}
+                            className=" py-2 px-4 border border-transparent text-sm font-semibold tracking-widest rounded-md text-white bg-pink-500 hover:bg-pink-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
+                        >
+                            {"Give Review"}
+                        </button> : null}
+                        <GiveReview open={open} setOpen={setOpen} item={item} call={call} setCall={setCall} />
                     </div>
                 </div>
+
             </div>}
 
         </>

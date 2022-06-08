@@ -77,7 +77,7 @@ export default function Drawer({ open, setOpen }) {
                                                     </div>
                                                     <div className="border-t border-black space-y-2 pt-3">
                                                         <h6 className='text-right font-serif font-semibold text-lg'>Total : <Taka tk={parseInt(total)} /></h6>
-                                                        <NavLink to="/checkout" className='w-full block text-center bg-orange-200 py-2 rounded font-semibold outline-0 border-0'>Proceed to pay</NavLink>
+                                                        <NavLink to="/checkout" onClick={() => setOpen(false)} className='w-full block text-center bg-orange-200 py-2 rounded font-semibold outline-0 border-0'>Proceed to pay</NavLink>
                                                     </div>
                                                 </div>
                                             </div>
@@ -104,7 +104,7 @@ const SingleItem = ({ item }) => {
     return (
         <div className="md:flex items-center py-4 border-b border-gray-300 last:border-b-0 scroll-smooth bg-scroll">
             <div className="w-1/4">
-                <img src={productImg + item?.image[0]} className="w-full h-20 object-center object-cover" alt=' ' />
+                <img src={productImg + item?.image[0]} className="w-full h-20 object-center object-fit" alt=' ' />
             </div>
             <div className="md:pl-3 md:w-3/4 w-full">
                 {/* <p className="text-xs leading-3 text-gray-800 md:pt-0 pt-4">RF293</p> */}
