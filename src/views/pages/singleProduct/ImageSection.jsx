@@ -47,7 +47,7 @@ const ImageSection = ({ images }) => {
                         "--swiper-pagination-color": "#fff",
                     }}
                     onSwiper={setThumbsSwiper}
-                    loop={true}
+                    loop={false}
                     spaceBetween={1}
                     slidesPerView={5}
                     freeMode={true}

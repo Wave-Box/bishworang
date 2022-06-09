@@ -62,7 +62,7 @@ const OrderDetails = () => {
                 <div className="flex flex-col justify-start items-start w-full space-y-4 md:space-y-6 xl:space-y-8">
                     <div className="flex flex-col justify-start items-start bg-gray-50 px-4 py-4 md:py-6 md:p-6 xl:p-8 w-full">
                         <p className="text-lg md:text-xl font-semibold leading-6 xl:leading-5 text-gray-800">Customer’s Cart</p>
-                        {orderItem?.map((item) => <SingleItem key={item.id} item={item} call={call} setCall={setCall} />)}
+                        {orderItem?.map((item) => <SingleItem key={item.id} item={item} call={call} setCall={setCall} order={order} />)}
                     </div>
                     <div className="flex justify-center md:flex-row flex-col items-stretch w-full space-y-4 md:space-y-0 md:space-x-6 xl:space-x-8">
                         <div className="flex flex-col px-4 py-6 md:p-6 xl:p-8 w-full bg-gray-50 space-y-6   ">
@@ -136,12 +136,11 @@ const OrderDetails = () => {
                                     <p className="w-48 lg:w-full xl:w-48 text-center md:text-left text-sm leading-5 text-gray-600">180 North King Street, Northhampton MA 1060</p>
                                 </div>
                             </div>
-                            {order?.status === "Failed" && <div className='text-red-500'>Exprie In:  <Countdown date={order_create_time + 1800000} renderer={renderer} /></div>}
-                            {order?.status === "Failed" && pay === 'show' && <div className="flex w-full justify-center items-center md:justify-start md:items-start">
-                                <button onClick={() => {
-                                    const link = localStorage.getItem('easy')
-                                    window.location.replace(link)
-                                }} className="mt-6 md:mt-0 py-5 hover:bg-gray-800 hover:text-white transition-colors duration-500 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 border border-gray-800 font-semibold font-sans w-96 2xl:w-full text-base leading-4 text-gray-800">Pay Now</button>
+                            {order?.status === "Pending" && order?.payurl && <div className='text-red-500'>Exprie In:  <Countdown date={order_create_time + 3000000} renderer={renderer} /></div>}
+                            {order?.status === "Pending" && order?.payurl && pay === 'show' && <div className="flex w-full justify-center items-center md:justify-start md:items-start">
+                                <button
+                                    onClick={() => window.location.replace(order?.payurl)}
+                                    className="mt-6 md:mt-0 py-5 hover:bg-gray-800 hover:text-white transition-colors duration-500 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 border border-gray-800 font-semibold font-sans w-96 2xl:w-full text-base leading-4 text-gray-800">Pay Now</button>
                             </div>}
                         </div>
                     </div>
@@ -156,7 +155,7 @@ export default OrderDetails;
 
 
 
-const SingleItem = ({ item, setCall, call }) => {
+const SingleItem = ({ item, setCall, call, order }) => {
     const [open, setOpen] = useState(false)
     const [product, setProduct] = useState({})
 
@@ -206,7 +205,7 @@ const SingleItem = ({ item, setCall, call }) => {
                         </p> */}
                         <p className="text-base xl:text-lg leading-6 text-gray-800">QTY: {item?.quantity}</p>
                         <p className="text-base xl:text-lg font-semibold leading-6 text-gray-800"><Taka tk={item?.price} /></p>
-                        {!item.review ? <button
+                        {order?.status === "Delivered" && !item.review ? <button
                             onClick={() => setOpen(true)}
                             className=" py-2 px-4 border border-transparent text-sm font-semibold tracking-widest rounded-md text-white bg-pink-500 hover:bg-pink-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
                         >
