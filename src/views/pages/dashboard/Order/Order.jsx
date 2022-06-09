@@ -70,30 +70,42 @@ const Order = () => {
     }
     const get_filter = (key) => {
         setBtn(key)
-        if (key === 'All') {
-            setFilter(orders)
-        }
-        if (key === 'Pending') {
-            setFilter(orders.filter(i => i.status === "Pending"))
-        }
-        if (key === 'Shipping') {
-            setFilter(orders.filter(i => i.status === "Shipping"))
-        }
-        if (key === 'Processing') {
-            setFilter(orders.filter(i => i.status === "Processing"))
-        }
-        if (key === 'Delivered') {
-            setFilter(orders.filter(i => i.status === "Delivered"))
-        }
-        if (key === 'Returned') {
-            setFilter(orders.filter(i => i.status === "Returned"))
-        }
-        if (key === 'Cancelled') {
-            setFilter(orders.filter(i => i.status === "Cancelled"))
+        if (orders.length) {
+            if (key === 'All') {
+                return setFilter(orders)
+            }
+            if (key === 'Pending') {
+                setFilter([])
+                return setFilter(orders?.filter(i => i.status === "Pending"))
+            }
+            if (key === 'Shipping') {
+                setFilter([])
+                return setFilter(orders?.filter(i => i.status === "Shipping"))
+            }
+            if (key === 'Processing') {
+                setFilter([])
+                return setFilter(orders?.filter(i => i.status === "Processing"))
+            }
+            if (key === 'Delivered') {
+                setFilter([])
+                return setFilter(orders?.filter(i => i.status === "Delivered"))
+            }
+            if (key === 'Returned') {
+                setFilter([])
+                return setFilter(orders?.filter(i => i.status === "Returned"))
+            }
+            if (key === 'Cancel') {
+                setFilter([])
+                return setFilter(orders?.filter(i => i.status === "Cancel"))
+            }
+            if (key === 'Failed') {
+                setFilter([])
+                return setFilter(orders?.filter(i => i.status === "Failed"))
+            }
         }
     }
 
-    const ar = ["All", "Pending", "Shipping", "Processing", "Delivered", "Returned", "Cancelled"]
+    const ar = ["All", "Pending", "Shipping", "Processing", "Delivered", "Returned", "Cancel", "Failed"]
     return (
         <>
             <div>
@@ -101,14 +113,7 @@ const Order = () => {
                     <div className="px-4 md:px-10 py-2 md:py-4">
                         <div className="flex items-center justify-between">
                             <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold leading-normal text-gray-800">Your Orders</p>
-                            {/* <div className="py-3 px-4 flex items-center text-sm font-medium leading-none text-gray-600 bg-gray-200 hover:bg-gray-300 cursor-pointer rounded">
-                                <p>Sort By:</p>
-                                <select className="focus:outline-none bg-transparent ml-1">
-                                    <option className="text-sm text-indigo-800">Latest</option>
-                                    <option className="text-sm text-indigo-800">Oldest</option>
-                                    <option className="text-sm text-indigo-800">Latest</option>
-                                </select>
-                            </div> */}
+
                         </div>
                     </div>
                     <div className="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10">
@@ -123,9 +128,7 @@ const Order = () => {
                                 )}
 
                             </div>
-                            {/* <button onclick="popuphandler(true)" className="mt-4 sm:mt-0 inline-flex items-start justify-start px-6 py-3 bg-indigo-700 hover:bg-indigo-600 focus:outline-none rounded">
-                                <p className="text-sm font-medium leading-none text-white">Add Task</p>
-                            </button> */}
+
                         </div>
                         {/* filter.length === 0 ? <DataLoader />
                                     : */}
@@ -155,7 +158,9 @@ const Order = () => {
                                     </thead>
 
                                     <tbody>
-                                        {filters.length !== 0 ? filters?.reverse().map((order) => <OrderItem key={order?.reference_no} cancel_request={cancel_request} item={order} />): null}
+                                        {orders?.length === 0 ? <tr>
+                                            <td colSpan={"5"} className="font-bold text-xl py-8">No Order found</td>
+                                        </tr> : <> {filters?.reverse().map((order) => <OrderItem key={order?.reference_no} cancel_request={cancel_request} item={order} />)}</>}
 
                                     </tbody>
                                 </table>
@@ -199,10 +204,11 @@ const OrderItem = ({ item, cancel_request }) => {
                         item?.status === "Processing" ? "bg-indigo-100 border-indigo-200" :
                             item?.status === "Delivered" ? "bg-green-100 border-green-200" :
                                 item?.status === "Returned" ? "bg-yellow-100 border-yellow-200" :
-                                    item?.status === "Cancelled" ? "bg-red-200 border-red-200" :
-                                        item?.status === "Payment Failed" ? "bg-pink-300 border-pink-300" :
+                                    item?.status === "Cancel" ? "bg-red-200 border-red-200" :
+                                        item?.status === "Failed" ? "bg-pink-300 border-pink-300" :
                                             item?.status === "On Hold" ? "bg-gray-100 border-gray-200" :
-                                                null} border-b`}>
+                                                item?.status === "Complete" ? "bg-sky-200 border-sky-300" :
+                                                    null} border-b`}>
             {/* order reference no  */}
             <td className="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap">
                 <NavLink to={"/profile/order/" + item?.id}>
@@ -218,7 +224,7 @@ const OrderItem = ({ item, cancel_request }) => {
                 {item?.subtotal}
             </td>
             {/* status  */}
-            <td className="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap">
+            <td className="text-sm text-gray-900 font-semibold px-6 py-4 whitespace-nowrap">
                 {item?.status}
             </td>
             {/* actions */}
@@ -228,7 +234,7 @@ const OrderItem = ({ item, cancel_request }) => {
                     to={"/profile/order/" + item?.id}>
                     {"View"}
                 </NavLink>
-                {item?.status !== "Cancelled" ? <button
+                {item?.status !== "Cancel" ? <button
                     onClick={() => cancel_request(item?.id)}
                     className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     {"Cancel Request"}

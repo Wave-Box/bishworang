@@ -1,5 +1,6 @@
 import { PhoneIcon } from '@heroicons/react/outline';
 import React, { useEffect, useState } from 'react';
+import Countdown from 'react-countdown';
 import { useSelector } from 'react-redux';
 import { NavLink, useParams } from 'react-router-dom';
 import httpReq from '../../../../services/http.service';
@@ -9,11 +10,12 @@ import Taka from '../../../components/utils/Taka';
 import GiveReview from './Review';
 
 const OrderDetails = () => {
+    const [pay, setPay] = useState('show')
     const [order, setOrder] = useState({})
     const [orderItem, setOrderItem] = useState([])
     // const [transaction, setTransaction] = useState({})
     const { user } = useSelector((state) => state.auth);
-
+    console.log(order);
     const params = useParams()
     console.log("transaction", params);
     const [call, setCall] = useState(false)
@@ -37,7 +39,19 @@ const OrderDetails = () => {
             .catch(console.error);
     }, [params?.id, user?.id, call])
 
-
+    const order_create_time = new Date(order?.created_at).getTime()
+    console.log("time", order_create_time);
+    // Renderer callback with condition
+    const renderer = ({ hours, minutes, seconds, completed }) => {
+        if (completed) {
+            // Render a completed state
+            setPay('hide')
+            return
+        } else {
+            // Render a countdown
+            return <span>{hours}:{minutes}:{seconds}</span>;
+        }
+    };
     return (
         <div className="py-6 px-4 md:px-6 2xl:px-20 2xl:container 2xl:mx-auto">
             <div className="flex justify-start item-start space-y-2 flex-col ">
@@ -74,27 +88,7 @@ const OrderDetails = () => {
                                 <p className="text-base font-semibold leading-4 text-gray-600"><Taka tk={order?.total} /></p>
                             </div>
                         </div>
-                        {/* <div className="flex flex-col justify-center px-4 py-6 md:p-6 xl:p-8 w-full bg-gray-50 space-y-6   ">
-                            <h3 className="text-xl font-semibold leading-5 text-gray-800">Shipping</h3>
-                            <div className="flex justify-between items-start w-full">
-                                <div className="flex justify-center items-center space-x-4">
-                                    <div className="w-8 h-8">
-                                        <img className="w-full h-full" alt="logo" src="https://i.ibb.co/L8KSdNQ/image-3.png" />
-                                    </div>
-                                    <div className="flex flex-col justify-start items-center">
-                                        <p className="text-lg leading-6 font-semibold text-gray-800">
-                                            DPD Delivery
-                                            <br />
-                                            <span className="font-normal">Delivery with 24 Hours</span>
-                                        </p>
-                                    </div>
-                                </div>
-                                <p className="text-lg font-semibold leading-6 text-gray-800">$8.00</p>
-                            </div>
-                            <div className="w-full flex justify-center items-center">
-                                <button className="hover:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 py-5 w-96 md:w-full bg-gray-800 text-base font-medium leading-4 text-white">View Carrier Details</button>
-                            </div>
-                        </div> */}
+
                     </div>
                 </div>
                 <div className="bg-gray-50 w-full xl:w-96 flex justify-between items-center md:items-start px-4 py-6 md:p-6 xl:p-8 flex-col ">
@@ -142,9 +136,13 @@ const OrderDetails = () => {
                                     <p className="w-48 lg:w-full xl:w-48 text-center md:text-left text-sm leading-5 text-gray-600">180 North King Street, Northhampton MA 1060</p>
                                 </div>
                             </div>
-                            <div className="flex w-full justify-center items-center md:justify-start md:items-start">
-                                <button className="mt-6 md:mt-0 py-5 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 border border-gray-800 font-medium w-96 2xl:w-full text-base leading-4 text-gray-800">Edit Details</button>
-                            </div>
+                            {order?.status === "Failed" && <div className='text-red-500'>Exprie In:  <Countdown date={order_create_time + 1800000} renderer={renderer} /></div>}
+                            {order?.status === "Failed" && pay === 'show' && <div className="flex w-full justify-center items-center md:justify-start md:items-start">
+                                <button onClick={() => {
+                                    const link = localStorage.getItem('easy')
+                                    window.location.replace(link)
+                                }} className="mt-6 md:mt-0 py-5 hover:bg-gray-800 hover:text-white transition-colors duration-500 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 border border-gray-800 font-semibold font-sans w-96 2xl:w-full text-base leading-4 text-gray-800">Pay Now</button>
+                            </div>}
                         </div>
                     </div>
                 </div>

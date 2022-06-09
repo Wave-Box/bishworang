@@ -4,8 +4,6 @@ import { primaryColor } from '../../../constant';
 import { ProductCard } from '../../components/card';
 import Card3 from '../../components/card/Card3.';
 import { Link1 } from '../../components/links';
-// import SelectColor from '../../components/utils/SelectColor';
-// import SelectSize from '../../components/utils/SelectSize';
 import Title from '../../components/utils/Title';
 import banner3 from '../../../assets/images/shop/banner-11.jpg'
 import { ViewGridIcon, ChevronDownIcon } from '@heroicons/react/outline'
@@ -13,16 +11,9 @@ import TitleBorder from '../../components/utils/TitleBorder';
 import useTheme from '../../../hooks/useTheme';
 import httpReq from '../../../services/http.service';
 import { getPrice } from '../../components/utils/getPrice';
-
-const price = [
-    { name: "10" },
-    { name: "100" },
-    { name: "1000" },
-    { name: "10000" },
-    { name: "10000000" },
+import Taka from '../../components/utils/Taka';
 
 
-]
 
 const Shop = () => {
     const [val, setVal] = useState(0)
@@ -31,6 +22,7 @@ const Shop = () => {
     const { category } = useTheme()
     const params = useParams()
     const [loading, setloading] = useState(false)
+
     useEffect(() => {
         setloading(true)
         // declare the async data fetching function
@@ -55,11 +47,9 @@ const Shop = () => {
             }).finally(() => setloading(false))
     }, [params.id])
 
-    // if (loading) {
-    //     return <div className="flex justify-center h-screen items-center">
-    //     <button className="btn loading">loading</button>
-    // </div>
-    // }
+
+
+
     return (
         <>
             <div className="">
@@ -91,18 +81,21 @@ const Shop = () => {
                                 <Title text={"FILTER BY PRICE"} color={'black'} />
                                 <TitleBorder />
 
-                                <nav className="list-none mb-6 px-4">
-                                    <ul className='list-none space-y-2'>
-                                        {price.map((item, idx) => <li className='cursor-pointer' onClick={() => setProducts(store?.filter(p => getPrice(p.regular_price, p.discount_price, p.discount_type) < item?.name))} key={idx} style={{ color: primaryColor }}>{item.name}</li>)}
-                                    </ul>
-                                    <input type="range" min="1" max="100" defaultValue={1} onChange={(e) => setProducts(store?.filter(p => getPrice(p.regular_price, p.discount_price, p.discount_type) < e.target.value))}></input>
-                                    <p>{val}</p>
+                                <div className="flex justify-between items-center">
+                                    <label for="range" class=" mb-2 text-sm font-semibold"><Taka tk={0} /></label>
+                                    <label for="range" class=" mb-2 text-sm font-semibold"><Taka tk={val} /></label>
+                                </div>
+                                <input
+                                    min="1" max="10000"
+                                    defaultValue={0}
+                                    onChange={(e) => {
+                                        setVal(e.target.value)
+                                        setProducts(store?.filter(p => getPrice(p.regular_price, p.discount_price, p.discount_type) < e.target.value))
+                                    }}
+                                    id="range"
+                                    type="range"
+                                    class="mb-6 w-full h-2 rounded-lg bg-gray-300 cursor-pointer"></input>
 
-                                </nav>
-
-                                {/* <div className="divider mx-8"></div>
-                                <SelectColor />
-                                <SelectSize /> */}
 
 
                             </div>
@@ -127,20 +120,20 @@ const Shop = () => {
                                         <label tabIndex="0" className=" m-0">
                                             <div className="border border-gray-300 rounded-full px-4 py-2 bg-gray-100 flex justify-start items-center gap-2">
                                                 <ViewGridIcon className='h-6 w-6 text-gray-400' />
-                                                <span> Show: 50</span>
+                                                <span> Show: {products.length ? products.length : 0}</span>
                                                 <ChevronDownIcon className='h-3 w-3' />
                                             </div>
                                         </label>
                                         <ul tabIndex="0" className="dropdown-content menu  py-4 text-lg text-gray-500  shadow-lg bg-base-100 w-36 space-y-2">
-                                            <li className='px-4 py-2 hover:text-white hover:bg-orange-500'>50</li>
-                                            <li className='px-4 py-2 hover:text-white hover:bg-orange-500'>100</li>
-                                            <li className='px-4 py-2 hover:text-white hover:bg-orange-500'>150</li>
-                                            <li className='px-4 py-2 hover:text-white hover:bg-orange-500'>200</li>
-                                            <li className='px-4 py-2 hover:text-white hover:bg-orange-500'>250</li>
+                                            <li onClick={() => setProducts(store.slice(0, 50))} className='px-4 py-2 hover:text-white hover:bg-orange-500'>50</li>
+                                            <li onClick={() => setProducts(store.slice(0, 100))} className='px-4 py-2 hover:text-white hover:bg-orange-500'>100</li>
+                                            <li onClick={() => setProducts(store.slice(0, 150))} className='px-4 py-2 hover:text-white hover:bg-orange-500'>150</li>
+                                            <li onClick={() => setProducts(store.slice(0, 200))} className='px-4 py-2 hover:text-white hover:bg-orange-500'>200</li>
+                                            <li onClick={() => setProducts(store.slice(0, 250))} className='px-4 py-2 hover:text-white hover:bg-orange-500'>250</li>
                                         </ul>
                                     </div>
                                 </div>
-                                <div className="">
+                                {/* <div className="">
                                     <div className="dropdown dropdown-end">
                                         <label tabIndex="0" className=" m-1">
                                             <div className="border border-gray-300 rounded-full px-4 py-2 bg-gray-100 flex justify-start items-center gap-2">
@@ -157,7 +150,7 @@ const Shop = () => {
                                             <li className='px-4 py-2 hover:text-white hover:bg-orange-500'>Avg. Rating</li>
                                         </ul>
                                     </div>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
 
@@ -200,3 +193,9 @@ const Shop = () => {
 };
 
 export default Shop;
+
+
+
+
+
+

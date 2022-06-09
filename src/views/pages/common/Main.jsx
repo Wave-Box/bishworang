@@ -26,6 +26,9 @@ import PublicRoute from "../../../privateRoute/PublicRoute";
 import Forget from "../user/Forget";
 import BlogDetails from "../home/blog/BlogDetails";
 import Blog from "../home/blog/Blog";
+import Success from "../payment/Success";
+import Failed from "../payment/Failed";
+import Risk from "../payment/Risk";
 // import PrivateRoute from "../../../privateRoute/PrivateRoute";
 
 
@@ -76,6 +79,13 @@ const Main = () => {
                     <Route path="/verify-otp" element={<PublicRoute><VerifyOtp /></PublicRoute>} />
                     <Route path="/login" element={<PublicRoute><User /></PublicRoute>} />
                     <Route path="/forgot-password" element={<PublicRoute><Forget /></PublicRoute>} />
+
+
+                    <Route path="/success" element={<PrivateRoute><Success /></PrivateRoute>} />
+                    <Route path="/failed" element={<PrivateRoute><Failed /></PrivateRoute>} />
+                    <Route path="/risk" element={<PrivateRoute><Risk /></PrivateRoute>} />
+
+
                 </Routes>
             </Suspense>
             <CartPopUp />

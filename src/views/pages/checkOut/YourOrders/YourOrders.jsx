@@ -79,6 +79,7 @@ const YourOrders = ({ cuponDis, selectAddress, selectPayment, shipping_area }) =
 
                     }
                     if (response?.payment) {
+                        localStorage.setItem("easy", response?.payment)
                         window.location.replace(response?.payment)
                     }
                     // console.log(response);
