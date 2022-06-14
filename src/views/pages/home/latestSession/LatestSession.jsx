@@ -53,7 +53,7 @@ const Single = ({ title, shortTitle, slider, product }) => {
 const UpSlider = ({ slider }) => {
     return (
         <SliderOne>
-            {slider.map((slide, id) => <SwiperSlide key={id}>
+            {slider?.map((slide, id) => <SwiperSlide key={id}>
                 <div className="image relative cursor-pointer">
                     <img className=' object-cover  w-full h-full' style={{ maxWidth: '710px', maxHeight: '600px' }} src={bannerImg + slide} alt="" />
                     <div className="overlay"></div>
@@ -83,7 +83,7 @@ export const DownSlider = ({ prev, next, product }) => {
             }>
                 <div className="grid grid-cols-3 gap-8">
                     {
-                        product.map((p) =>
+                        product?.map((p) =>
                             <SwiperSlide key={p?.id}>
 
                                 <CardFour pro={p} />
