@@ -9,17 +9,19 @@ import { useTime } from 'react-timer-hook';
 
 const TimerSection = () => {
     return (
-        <div className='grid md:grid-cols-2 grid-cols-1 gap-5'>
-            <div className="relative rounded-md">
-                <img alt="gallery" className="w-full min-h-[600px] sm:min-h-full object-cover object-center block" src={img1} />
-                <div className="absolute top-0 bottom-0 left-4 flex justify-start items-center ">
-                    <InnerCard />
+        <div className="container mb-14">
+            <div className='grid md:grid-cols-2 grid-cols-1 gap-5'>
+                <div className="relative rounded-md">
+                    <img alt="gallery" className="w-full min-h-[600px] sm:min-h-full object-cover object-center block" src={img1} />
+                    <div className="absolute top-0 bottom-0 left-4 flex justify-start items-center ">
+                        <InnerCard />
+                    </div>
                 </div>
-            </div>
-            <div className="relative rounded-md">
-                <img alt="gallery" className="w-full min-h-[600px] sm:min-h-full object-cover object-center block" src={img2} />
-                <div className="absolute top-0 bottom-0 left-4 flex justify-start items-center ">
-                    <InnerCard />
+                <div className="relative rounded-md">
+                    <img alt="gallery" className="w-full min-h-[600px] sm:min-h-full object-cover object-center block" src={img2} />
+                    <div className="absolute top-0 bottom-0 left-4 flex justify-start items-center ">
+                        <InnerCard />
+                    </div>
                 </div>
             </div>
         </div>

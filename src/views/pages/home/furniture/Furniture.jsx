@@ -12,24 +12,20 @@ import { bannerImg } from '../../../../siteSetting/siteUrl';
 
 const Furniture = () => {
     const { decore } = useTheme()
-    // const { slider, product } = decore[0]
     return (
-        <div className='container'>
-
-            <h5 className='text-center text-3xl font-normal tracking-widest font-serif text-gray-700 my-8'>{decore[0]?.title}</h5>
-            <p className='text-center text-lg font-normal my-8 tracking-wide font-sans sm:mx-10'>{decore[0]?.subtitle}</p>
-            <SliderOne>
-                {decore[0]?.slider.map((dec) => <SwiperSlide key={dec}>
-                    <img className=' object-cover  w-full h-full max-h-[700px]' src={bannerImg + dec} alt="" />
-                </SwiperSlide>)}
-            </SliderOne>
-            <div className="my-5 w-full relative">
-
-                <DownSlider prev={"furniturePrev"} next={"furnitureNext"} product={decore[0]?.product} />
-
+        <div className="bg-white py-10">
+            <div className='container'>
+                <h5 className='text-center text-3xl font-normal tracking-widest font-serif text-gray-700 my-8'>{decore[0]?.title}</h5>
+                <p className='text-center text-lg font-normal my-8 tracking-wide font-sans sm:mx-10'>{decore[0]?.subtitle}</p>
+                <SliderOne>
+                    {decore[0]?.slider.map((dec) => <SwiperSlide key={dec}>
+                        <img className=' object-cover  w-full h-full max-h-[700px]' src={bannerImg + dec} alt="" />
+                    </SwiperSlide>)}
+                </SliderOne>
+                <div className="my-5 w-full relative">
+                    <DownSlider prev={"furniturePrev"} next={"furnitureNext"} product={decore[0]?.product} />
+                </div>
             </div>
-
-
         </div>
     );
 };

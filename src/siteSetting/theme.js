@@ -4,3 +4,5 @@ export const light = '#fff'
 export const black = '#000'
 export const yellow = '#FFF438'
 export const red = '#AD171A'
+export const bg_gary = '#F1F1F1'
+

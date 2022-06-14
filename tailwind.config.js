@@ -10,6 +10,9 @@ module.exports = {
       xl: '1320px',
     },
     extend: {},
+    container: {
+      center: true,
+    },
   },
   plugins: [
     require("daisyui"),

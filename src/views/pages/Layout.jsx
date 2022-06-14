@@ -5,6 +5,7 @@ import ackground from '../../assets/images/bg.jpg'
 import Header from './common/Header';
 // import HeaderSticky from '../components/common/HeaderSticky';
 import { ToastContainer } from 'react-toastify';
+import { bg_gary } from '../../siteSetting/theme';
 const Layout = () => {
     // const [scrollPosition, setScrollPosition] = useState(0);
 
@@ -31,8 +32,8 @@ const Layout = () => {
     return (
         <>
             <ToastContainer position="top-right" newestOnTop />
-            <div style={{ background: `url(${ackground}) repeat fixed center`, backgroundSize: '480px 270px', position: 'relative', scrollBehavior: 'smooth' }}>
-
+            <div className='' style={{ background: `url(${ackground}) repeat fixed center`, backgroundSize: '480px 270px',backgroundColor:bg_gary, backgroundBlendMode:'luminosity', position: 'relative', scrollBehavior: 'smooth' }}>
+ 
                 <header>
                     <Header />
                 </header>

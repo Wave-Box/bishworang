@@ -5,11 +5,11 @@ import { NavLink } from 'react-router-dom';
 import { blogImg } from '../../../../siteSetting/siteUrl';
 import useTheme from '../../../../hooks/useTheme';
 const FromBlog = () => {
-    const {blogs} = useTheme()
+    const { blogs } = useTheme()
 
     return (
         <div>
-            <section className="text-gray-600 body-font">
+            <section className="text-gray-600 body-font bg-white">
                 <div className="container py-12 mx-auto">
                     <div className="md:p-2 p-1 w-full flex gap-2">
                         <Title text={'From'} >Blog</Title>
