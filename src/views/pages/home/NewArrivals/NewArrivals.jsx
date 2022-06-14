@@ -12,9 +12,8 @@ const NewArrivals = () => {
     const prev = 'new_Prev'
     const next = 'new_Next'
     return (
-       <div className="container">
-         <div className='gap-4 sm:my-10 my-16'>
-            <div className="my-5 pt-1 flex justify-between items-center">
+       <div className="container my-12">
+            <div className="flex justify-between items-center">
                 <Title text={'New'} >Arrivals</Title>
 
                 <Arrow prevEl={prev} nextEl={next}></Arrow>
@@ -23,13 +22,13 @@ const NewArrivals = () => {
                 prevEl={prev}
                 nextEl={next}
             >
-                {product?.map((item) => <SwiperSlide key={item?.id}>
+                {product?.map((item) => 
+                <SwiperSlide key={item?.id}>
                     <Card2 item={item} />
                 </SwiperSlide>
                 )}
             </Slider1>
         </div>
-       </div>
     );
 };
 

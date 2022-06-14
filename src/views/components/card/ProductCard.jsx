@@ -11,12 +11,12 @@ import { getPrice } from '../utils/getPrice';
 const ProductCard = ({ item }) => {
    
     const price = getPrice(item?.regular_price, item?.discount_price, item?.discount_type)
-    // console.log(item);
+    const secondImg = item?.image[1] ? item?.image[1] : item?.image[0];
 
     return (
         <NavLink to={'/product/' + item?.id} className="group cursor-pointer">
-            <div className="drop-shadow-xl relative sm:w-[235px] w-[300px] md:w-[250px] lg:w-[300px] ">
-                <figure className='w-full h-96 overflow-hidden '>
+            <div className="drop-shadow-xl w-full ">
+                <figure className='w-full h-auto relative overflow-hidden '>
                     <motion.img whileHover={{
                         scale: 1.25,
                         transition: { duration: 1 },
@@ -24,7 +24,7 @@ const ProductCard = ({ item }) => {
                         exit={{
                             scale: 1,
                             transition: { duration: 1 }
-                        }} src={productImg + item?.image[0]} alt="Shoes" className='w-full h-96 group-hover:hidden group-hover:scale-105 transition-all duration-500 ease-linear ' />
+                        }} src={productImg + item?.image[0]} alt="Shoes" className='w-full h-auto group-hover:hidden group-hover:scale-105 transition-all duration-500 ease-linear ' />
                     <motion.img whileHover={{
                         scale: 1.25,
                         transition: { duration: 1 },
@@ -32,7 +32,7 @@ const ProductCard = ({ item }) => {
                         exit={{
                             scale: 1,
                             transition: { duration: 1 }
-                        }} src={productImg + item?.image[1]} alt="Shoes" className='w-full h-96 group-hover:block group-hover:scale-105 transition-all duration-500 ease-linear hidden ' />
+                        }} src={productImg + secondImg} alt="Shoes" className='w-full h-auto group-hover:block group-hover:scale-105 transition-all duration-500 ease-linear hidden ' />
 
                     <div className="absolute hidden gap-2 top-28 group-hover:flex justify-center left-0 right-0">
                         <HoverIcon text={"Quick View"} >
@@ -49,7 +49,7 @@ const ProductCard = ({ item }) => {
                     {/* <div className="badge badge-secondary absolute top-2 left-3">NEW</div> */}
                     <Badge msg={"New"} />
                 </figure>
-                <div className="card-body p-4 gap-1 absolute bottom-0 left-0 right-0 bg-white">
+                <div className="card-body p-4 bg-white">
                     <p className='text-xs '>{item?.name}</p>
                     <h2 className="tracking-widest font-normal text-sm text-gray-600">
                         <p> {item?.description}</p>

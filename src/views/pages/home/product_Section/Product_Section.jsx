@@ -32,27 +32,27 @@ const Product_Section = () => {
 
                     </div>
                 </div>
-           
-            <div className='flex flex-wrap justify-center sm:justify-start  gap-2 sm:gap-2 md:gap-2 lg:gap-9 xl:gap-10'>
-                {active === 'New Added' &&
-                    product?.slice(0, 8).map((i) => (
 
-                        <ProductCard key={i.id} item={i} />
-                    ))
-                }
-                {active === 'Featured' &&
-                    featureProduct?.slice(0, 8).map((i) => (
+                <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 px-4 lg:px-0 gap-2'>
+                    {active === 'New Added' &&
+                        product?.slice(0, 8).map((i) => (
 
-                        <ProductCard key={i.id} item={i} />
-                    ))
-                }
-                {active === 'Popular' &&
-                    popularProduct?.slice(0, 8).map((i) => (
+                            <ProductCard key={i.id} item={i} />
+                        ))
+                    }
+                    {active === 'Featured' &&
+                        featureProduct?.slice(0, 8).map((i) => (
 
-                        <ProductCard key={i.id} item={i} />
-                    ))
-                }
-            </div>
+                            <ProductCard key={i.id} item={i} />
+                        ))
+                    }
+                    {active === 'Popular' &&
+                        popularProduct?.slice(0, 8).map((i) => (
+
+                            <ProductCard key={i.id} item={i} />
+                        ))
+                    }
+                </div>
             </div>
         </div>
     );

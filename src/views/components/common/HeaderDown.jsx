@@ -30,9 +30,9 @@ const HeaderDown = () => {
                         </div> */}
                     </div>
                     <div className="col-span-1 flex justify-center items-center">
-                        <div className="">
+                        <NavLink to={'/'}>
                             <img src={logo} alt="" width={150} height={200} />
-                        </div>
+                        </NavLink>
                     </div>
                     <div className="col-span-1 flex justify-end items-center">
                         <Search />

@@ -29,8 +29,8 @@ body {
 
 .custom_badge {
   position: absolute;
-  top: 4px;
-  left: 12px;
+  top: 0px;
+  left: 0px;
   padding: 2px 0;
   background: #AD171A;
   color: white;
