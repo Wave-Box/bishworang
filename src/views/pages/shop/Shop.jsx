@@ -133,24 +133,7 @@ const Shop = () => {
                                         </ul>
                                     </div>
                                 </div>
-                                {/* <div className="">
-                                    <div className="dropdown dropdown-end">
-                                        <label tabIndex="0" className=" m-1">
-                                            <div className="border border-gray-300 rounded-full px-4 py-2 bg-gray-100 flex justify-start items-center gap-2">
-                                                <ViewGridIcon className='h-6 w-6 text-gray-400' />
-                                                <span> Short By: Featured</span>
-                                                <ChevronDownIcon className='h-3 w-3' />
-                                            </div>
-                                        </label>
-                                        <ul tabIndex="0" className="dropdown-content menu  py-4 text-lg text-gray-500  shadow-lg bg-base-100  w-52 space-y-2">
-                                            <li className='px-4 py-2 hover:text-white hover:bg-orange-500'>Featured</li>
-                                            <li className='px-4 py-2 hover:text-white hover:bg-orange-500'>Price: Low to High</li>
-                                            <li className='px-4 py-2 hover:text-white hover:bg-orange-500'>Price: High to Low</li>
-                                            <li className='px-4 py-2 hover:text-white hover:bg-orange-500'>Release Date</li>
-                                            <li className='px-4 py-2 hover:text-white hover:bg-orange-500'>Avg. Rating</li>
-                                        </ul>
-                                    </div>
-                                </div> */}
+
                             </div>
                         </div>
 
@@ -162,7 +145,7 @@ const Shop = () => {
 
 
                             products.length ?
-                                <div className="flex flex-wrap gap-6">
+                                <div className="grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-2">
                                     {products?.map((i) => <ProductCard key={i.id} item={i} />)}
                                 </div> : <div className="flex justify-center h-[400px] items-center">
                                     <h3 className=" font-sans font-semibold text-3xl text-gray-400 ">Product Not Found!</h3>
