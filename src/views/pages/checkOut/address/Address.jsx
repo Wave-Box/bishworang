@@ -1,31 +1,28 @@
 
 import { Fragment, useRef, useEffect, useState } from 'react'
-import { AiFillDelete } from 'react-icons/ai'
 import { Dialog, Transition } from '@headlessui/react'
 import { useForm } from "react-hook-form";
+import { PencilAltIcon, TrashIcon } from '@heroicons/react/outline';
+import { toast } from 'react-toastify'
+import useTheme from '../../../../hooks/useTheme';
+import httpReq from '../../../../services/http.service';
 
-
-// import AddressFrom from '../../Dashboard/Profile/Address/AddressFrom';
-// import { useAlert } from 'react-alert';
-// import swal from 'sweetalert';
-// import AlertSuccess from '../../../Components/Alert/AlertSuccess';
 
 const Address = ({ selectAddress, setSelectAddress }) => {
-    
+    const [address, setAddress] = useState(null)
     const [open, setOpen] = useState(false)
-    
-
-
-    // const alert = useAlert()
+    const [call, setCall] = useState(null)
+    const { store_id } = useTheme()
 
     useEffect(() => {
+        httpReq.post("address", { store_id })
+            .then(({ address }) => {
+                setAddress(address);
+            })
+            .catch(err => console.log(err))
+    }, [store_id, call])
 
-       
-
-    }, [])
-
-  
-
+    console.log("selectAddress", selectAddress);
 
     return (
         <>
@@ -42,28 +39,14 @@ const Address = ({ selectAddress, setSelectAddress }) => {
                             </label>
                             <span className='text-green-600 font-semibold tracking-wider cursor-pointer' onClick={() => setOpen(true)}> + Add</span>
                         </div>
-                        <div className="grid sm:grid-cols-2 gap-x-4">
+                        <div className="grid sm:grid-cols-2 gap-4">
 
                             {
-                                selectAddress &&
-                                <label className={`bg-gray-300 p-5 rounded space-y-2 w-full transition-colors duration-300`}>
-                                    <div className="flex justify-between cursor-pointer">
-                                        <h3 className='font-semibold tracking-wider'>Name: {selectAddress.name}</h3>
-                                        <AiFillDelete onClick={() => setSelectAddress(null)} />
-                                    </div>
-                                    <p className='font-normal text-sm tracking-wider'><span className='text-base font-medium'>Phone:</span> {selectAddress.phone}</p>
-                                    <p className='font-normal text-sm tracking-wider'><span className='text-base font-medium'>Address: </span>{selectAddress.address}</p>
-
-                                    {/* <input
-                                            className="hidden"
-                                            name="address_type"
-                                            type="radio"
-                                            onChange={() => setSelectAddress({ ...a })}
-
-                                        /> */}
-                                </label>
+                                address?.slice(0, 4).map((item) => <Single item={item} key={item?.id} selectAddress={selectAddress} setSelectAddress={setSelectAddress} setCall={setCall} />
+                                )
 
                             }
+
 
                         </div>
 
@@ -77,7 +60,7 @@ const Address = ({ selectAddress, setSelectAddress }) => {
 
 
 
-            <AddressFrom selectAddress={selectAddress} setSelectAddress={setSelectAddress} open={open} setOpen={setOpen} />
+            <SaveAddress open={open} setOpen={setOpen} setCall={setCall} />
         </>
     );
 };
@@ -85,18 +68,195 @@ const Address = ({ selectAddress, setSelectAddress }) => {
 export default Address;
 
 
+const Single = ({ item, selectAddress, setSelectAddress, setCall }) => {
+    const [open, setOpen] = useState(false)
+    const { design } = useTheme()
+    const delete_address = (id) => {
+        httpReq.post('address/delete', { id })
+            .then(({ success }) => {
+                toast(success, { type: 'success' })
+                setCall(Math.random() * 100)
+            }).catch(err => console.log(err))
+    }
+    return (
+        <label
+            style={{
+                backgroundColor: selectAddress?.id === item?.id ? design?.header_color : '#fff',
+                color: selectAddress?.id === item?.id ? design?.text_color : "#000",
+            }}
+            className={`border border-gray-300 p-5 rounded space-y-2 w-full transition-colors duration-300`}>
+            <div className="flex justify-between cursor-pointer">
+                <h3 className='font-semibold tracking-wider'>Name: {item?.name}</h3>
+                <div className="flex flex-col">
+                    <TrashIcon width={20} onClick={() => delete_address(item?.id)} />
+                    <PencilAltIcon width={20} onClick={() => setOpen(true)} />
+                    <UpdateAddress open={open} setOpen={setOpen} item={item} setCall={setCall} />
+
+                </div>
+            </div>
+            <p className='font-normal text-sm tracking-wider'><span className='text-base font-medium'>Phone:</span> {item?.phone}</p>
+            <p className='font-normal text-sm tracking-wider'><span className='text-base font-medium'>Address: </span>{item?.address}</p>
+            <input
+                className="hidden"
+                name="address-type"
+                type="radio"
+                onChange={() => setSelectAddress(item)}
+
+            />
+        </label>
+    )
+}
 
 
+export function SaveAddress({ open, setOpen, setCall }) {
 
-export function AddressFrom({ open, setOpen, setSelectAddress, selectAddress }) {
 
-    const cancelButtonRef = useRef(null)
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const onSubmit = data => {
-        setSelectAddress(data)
-        setOpen(false)
+        httpReq.post('address/save', data)
+            .then(({ success }) => {
+                reset()
+                setCall(Math.random() * 100)
+                toast(success, { type: 'success' })
+                setOpen(false)
+            })
+            .catch(err => console.log(err))
     };
 
+    console.log(errors);
+    return (
+        <>
+            <Modal open={open} setOpen={setOpen}>
+                <form className='' onSubmit={handleSubmit(onSubmit)}>
+                    <div className="shadow overflow-hidden sm:rounded-md w-full">
+                        <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
+
+
+
+
+                            <div className="col-span-6 sm:col-span-3 lg:col-span-2">
+                                <label htmlFor="name"
+                                    className="block text-sm font-medium text-gray-700">Name</label>
+                                <input {...register("name", { required: true })} type="text" name="name" id="name" autoComplete="address-level1"
+                                    className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                {errors.name && <span className='text-red-500'>Phone name is required</span>}
+                            </div>
+                            <div className="col-span-6 sm:col-span-3 lg:col-span-2">
+                                <label htmlFor="phone"
+                                    className="block text-sm font-medium text-gray-700">Phone</label>
+                                <input
+                                    {...register("phone", { required: true.valueOf, minLength: 11 })}
+                                    type="number" name="phone" id="phone" autoComplete="address-level1"
+                                    className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+
+                                {errors.phone?.type === 'required' && <span className='text-red-500'>Phone number is required</span>}
+                                {errors.phone?.type === 'minLength' && <span className='text-red-500'>Please enter correct phone number</span>}
+                            </div>
+                            <div className="col-span-6 sm:col-span-3 lg:col-span-2">
+                                <label htmlFor="address"
+                                    className="block text-sm font-medium text-gray-700">Address</label>
+                                <textarea
+                                    {...register("address", { required: true })}
+                                    rows={6} type="text" name="address" id="address" autoComplete="address-level1"
+                                    className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                {errors.address && <span className='text-red-500'>Phone address is required</span>}
+                            </div>
+
+                        </div>
+                        <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                            <button
+
+                                type="submit"
+                                className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                            >
+                                Save
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </Modal>
+
+        </>
+    )
+}
+
+export function UpdateAddress({ open, setOpen, item, setCall }) {
+
+
+    const { register, handleSubmit, formState: { errors }, reset } = useForm({
+        defaultValues: {
+            ...item
+        }
+    });
+    const onSubmit = data => {
+        data['id'] = item?.id
+        console.log(data);
+        httpReq.post('address/edit', data)
+            .then(({ success }) => {
+                setCall(Math.random() * 100)
+                toast(success, { type: 'success' })
+                setOpen(false)
+            })
+            .catch(err => console.log(err))
+        reset()
+    };
+
+
+
+
+
+    return (
+        <Modal open={open} setOpen={setOpen}>
+            <form className='' onSubmit={handleSubmit(onSubmit)}>
+                <div className="shadow overflow-hidden sm:rounded-md w-full">
+                    <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
+
+
+
+
+                        <div className="col-span-6 sm:col-span-3 lg:col-span-2">
+                            <label htmlFor="name"
+                                className="block text-sm font-medium text-gray-700">Name</label>
+                            <input {...register("name")} type="text" name="name" id="name" autoComplete="address-level1"
+                                className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                        </div>
+                        <div className="col-span-6 sm:col-span-3 lg:col-span-2">
+                            <label htmlFor="phone"
+                                className="block text-sm font-medium text-gray-700">Phone</label>
+                            <input
+                                {...register("phone", { required: true.valueOf, minLength: 11 })}
+                                type="number" name="phone" id="phone" autoComplete="address-level1"
+                                className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                            {errors.phone && <span className='text-red-500'>Phone number is required</span>}
+                        </div>
+                        <div className="col-span-6 sm:col-span-3 lg:col-span-2">
+                            <label htmlFor="address"
+                                className="block text-sm font-medium text-gray-700">Address</label>
+                            <textarea
+                                {...register("address")}
+                                rows={6} type="text" name="address" id="address" autoComplete="address-level1"
+                                className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                        </div>
+
+                    </div>
+                    <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                        <button
+
+                            type="submit"
+                            className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                        >
+                            Save
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </Modal>
+    )
+}
+
+export function Modal({ open, setOpen, children }) {
+
+    const cancelButtonRef = useRef(null)
 
     return (
         <Transition.Root show={open} as={Fragment}>
@@ -127,49 +287,7 @@ export function AddressFrom({ open, setOpen, setSelectAddress, selectAddress }) 
                             <Dialog.Panel className="relative bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:max-w-lg sm:w-full">
                                 <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
 
-                                    <form className='' onSubmit={handleSubmit(onSubmit)}>
-                                        <div className="shadow overflow-hidden sm:rounded-md w-full">
-                                            <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
-
-
-
-
-                                                <div  className="col-span-6 sm:col-span-3 lg:col-span-2">
-                                                    <label htmlFor="name"
-                                                         className="block text-sm font-medium text-gray-700">Name</label>
-                                                    <input {...register("name")} type="text" name="name" id="name" autoComplete="address-level1"
-                                                         className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
-                                                </div>
-                                                <div  className="col-span-6 sm:col-span-3 lg:col-span-2">
-                                                    <label htmlFor="phone"
-                                                         className="block text-sm font-medium text-gray-700">Phone</label>
-                                                    <input
-                                                        {...register("phone", { required: true.valueOf, minLength: 11 })}
-                                                        type="number" name="phone" id="phone" autoComplete="address-level1"
-                                                         className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
-                                                    {errors.phone && <span className='text-red-500'>Phone number is required</span>}
-                                                </div>
-                                                <div  className="col-span-6 sm:col-span-3 lg:col-span-2">
-                                                    <label htmlFor="address"
-                                                         className="block text-sm font-medium text-gray-700">Address</label>
-                                                    <textarea
-                                                        {...register("address")}
-                                                        rows={6} type="text" name="address" id="address" autoComplete="address-level1"
-                                                         className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
-                                                </div>
-
-                                            </div>
-                                            <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                                                <button
-                                              
-                                                    type="submit"
-                                                    className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                                                >
-                                                    Save
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form>
+                                    {children}
 
 
                                 </div>
@@ -182,3 +300,8 @@ export function AddressFrom({ open, setOpen, setSelectAddress, selectAddress }) 
         </Transition.Root>
     )
 }
+
+
+
+
+

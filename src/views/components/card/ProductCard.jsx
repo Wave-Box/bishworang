@@ -2,14 +2,15 @@ import React from 'react';
 import { HeartIcon, EyeIcon } from '@heroicons/react/outline'
 import { motion } from "framer-motion"
 import './productCard.css'
-import { BsShuffle, BsBagPlus } from "react-icons/bs";
+import { BsBagPlus } from "react-icons/bs";
 import { NavLink } from 'react-router-dom';
 import Badge from '../utils/Badge';
 import { productImg } from '../../../siteSetting/siteUrl';
 import { getPrice } from '../utils/getPrice';
+import Taka from '../utils/Taka';
 
 const ProductCard = ({ item }) => {
-   
+
     const price = getPrice(item?.regular_price, item?.discount_price, item?.discount_type)
     const secondImg = item?.image[1] ? item?.image[1] : item?.image[0];
 
@@ -34,33 +35,33 @@ const ProductCard = ({ item }) => {
                             transition: { duration: 1 }
                         }} src={productImg + secondImg} alt="Shoes" className='w-full h-auto group-hover:block group-hover:scale-105 transition-all duration-500 ease-linear hidden ' />
 
-                    <div className="absolute hidden gap-2 top-28 group-hover:flex justify-center left-0 right-0">
+                    <div className="absolute hidden gap-2 top-[45%] group-hover:flex justify-center left-0 right-0">
                         <HoverIcon text={"Quick View"} >
-                            <EyeIcon className='h-5 w-5 text-2xl font-serif font-bold' />
+                            <EyeIcon className='h-5 w-5 text-2xl font-serif font-semibold' />
                         </HoverIcon>
-                        <HoverIcon text={"Quick View"} >
-                            <HeartIcon className='h-5 w-5 text-2xl font-serif font-bold' />
+                        <HoverIcon text={"Favorite"} >
+                            <HeartIcon className='h-5 w-5 text-2xl font-serif font-semibold' />
                         </HoverIcon>
-                        <HoverIcon text={"Quick View"} >
-                            <BsShuffle className='h-5 w-5 text-2xl font-serif font-bold' />
-                        </HoverIcon>
+                        {/* <HoverIcon text={"Compaire"} >
+                            <BsShuffle className='h-5 w-5 text-2xl font-serif font-semibold' />
+                        </HoverIcon> */}
 
                     </div>
                     {/* <div className="badge badge-secondary absolute top-2 left-3">NEW</div> */}
                     <Badge msg={"New"} />
                 </figure>
                 <div className="card-body p-4 bg-white">
-                    <p className='text-xs '>{item?.name}</p>
+                    <p className='text-xs '>{item?.name?.slice(0, 18)} {item?.name?.length > 18 ? "..." : null}</p>
                     <h2 className="tracking-widest font-normal text-sm text-gray-600">
-                        <p> {item?.description}</p>
+                        <p>{item?.description?.slice(0, 25)} {item?.description?.length > 25 ? "..." : null}</p>
                     </h2>
 
-                    <h6 className='text-lg font-semibold text-orange-400'>
-                        ${price} <span className='line-through text-sm text-gray-400'> ${item?.regular_price}</span>
+                    <h6 className='text-lg font-medium '>
+                        <Taka tk={price} /> <span className='line-through text-sm'> <Taka tk={item?.regular_price} /></span>
                     </h6>
 
-                    <div className="absolute bottom-6 right-6">
-                        <HoverIcon text={"Add to Cart"} >
+                    <div onClick={()=>alert("click")} className="absolute bottom-6 right-6">
+                        <HoverIcon  text={"Add to Cart"} >
                             <BsBagPlus className='h-5 w-5 text-2xl font-serif font-bold' />
                         </HoverIcon>
                     </div>

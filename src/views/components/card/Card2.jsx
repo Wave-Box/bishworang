@@ -10,7 +10,6 @@ import { HoverIcon } from './ProductCard';
 import { productImg } from '../../../siteSetting/siteUrl';
 
 const Card2 = ({ item }) => {
-    console.log(item?.image[1]);
     const secondImg = item?.image[1] ? item?.image[1] : item?.image[0];
     return (
         <NavLink to={'/product/' + item?.id} className="cursor-pointer border shadow">
@@ -51,7 +50,7 @@ const Card2 = ({ item }) => {
             </div>
             <div className="py-2 space-y-0 bg-white">
                 <p className="tracking-widest font-normal text-sm text-gray-600 text-center">
-                    {item?.name}
+                    {item?.name?.slice(0, 18)} {item?.name?.length > 18 ? "..." : null}
                 </p>
 
 

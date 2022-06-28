@@ -8410,6 +8410,13 @@ react-loader-spinner@^6.0.0-0:
     styled-tools "^1.7.2"
     tslib "^2.3.0"
 
+react-messenger-customer-chat@^0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/react-messenger-customer-chat/-/react-messenger-customer-chat-0.8.0.tgz#c0696af9f71d5804a1b1149ae67d672802dee15d"
+  integrity sha512-7HItF+2nElXCBLi1q5eccgE9X4P86BmjmzF5nBcok+hJNWVjdKJTdWxl9VZTQnjkp3GHB7WwTwN2l3d/RKmFuQ==
+  dependencies:
+    prop-types "^15.6.0"
+
 react-property@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/react-property/-/react-property-2.0.0.tgz#2156ba9d85fa4741faf1918b38efc1eae3c6a136"

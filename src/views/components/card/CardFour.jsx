@@ -11,7 +11,7 @@ const CardFour = ({ pro }) => {
                 <div className="overlay"></div>
             </div>
             <div className="bg-white px-1 py-2">
-                <h6 className=' text-left tracking-widest text-sm'>{pro?.name}</h6>
+                <h6 className=' text-left tracking-widest text-sm'>{pro?.name?.slice(0, 18)}{pro?.name?.length > 18 ? "..." : null}</h6>
                 <p className='tracking-widest'> <Taka tk={getPrice(pro?.regular_price, pro?.discount_price, pro?.discount_type)} /></p>
             </div>
         </div>

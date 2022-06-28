@@ -1,11 +1,12 @@
 import React from 'react';
+import Taka from './Taka';
 
-const Price = ({currentPrice,oldPrice}) => {
+const Price = ({ currentPrice, oldPrice }) => {
     return (
         <>
-            <h6 className='text-lg font-semibold text-center text-orange-400 m-0'>
-                    ${currentPrice} <span className='line-through text-sm text-gray-400'> ${oldPrice}</span>
-                </h6>
+            <h6 className='text-lg font-medium text-center  m-0'>
+                <Taka tk={currentPrice} /> <span className='line-through text-sm '>  <Taka tk={oldPrice} /></span>
+            </h6>
         </>
     );
 };

@@ -11,7 +11,7 @@ const HeaderTop = () => {
         dispatch(logout());
     };
     return (
-        <div className=" w-full py-2 text-sm hidden md:block" style={{ backgroundColor: '#AD171A' }}>
+        <div className=" w-full py-0 text-sm hidden md:block" style={{ backgroundColor: '#AD171A' }}>
             <div className='container mx-auto text-white flex justify-between items-center'>
                 <div className="flex items-center divide-x">
                     <HeaderTopMenu icon={mobile} doc={"01521739306"} />

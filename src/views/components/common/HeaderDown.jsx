@@ -7,11 +7,14 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { logOut } from '../../../redux/slices/userSlice';
 import { profileImg } from '../../../siteSetting/siteUrl';
+import { motion } from 'framer-motion'
+import SearchBox from './SearchBox';
 
 const HeaderDown = () => {
     const { user } = useSelector((state) => state.auth)
     return (
         <div className="py-1" style={{ background: `white`, position: 'relative' }}>
+
             <div className=' container mx-auto my-2'>
                 <div className="grid md:grid-cols-3 grid-cols-1 gap-2">
 
@@ -111,27 +114,36 @@ export default HeaderDown;
 
 const Search = () => {
     const [show, setshow] = useState(false)
+    const [text, setText] = useState(null)
+    console.log(text);
     return (
 
         <>
+            {text && <div className="absolute top-0 z-0  w-screen h-screen" onClick={() => setText('')}></div>}
             <div className="relative w-full">
-                {show && <>
+                {show && <motion.div initial={{ x: 20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} exit={{ y: 20, opacity: 0 }}  transition={{ duration: 0.6 }} >
 
                     <input
+                        onChange={(e) => setText(e.target.value)}
                         type="text"
                         name={"search"}
                         autoComplete="given-name"
                         placeholder={"Search for items"}
-                        className={`mt-1 focus:outline-0 focus:border-0 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md border py-3 pl-10 placeholder:text-gray-500 bg-gray-50 ${show ? "opacity-100 visible  transition-all duration-[3000ms] ease-linear" : "opacity-0 invisible  transition-all duration-[3000ms] ease-linear"}`}
+                        defaultValue={text}
+                        className={`mt-1 focus:outline-0 focus:border-0 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md border py-3 pl-10 placeholder:text-gray-500 bg-gray-50`}
                     />
 
                     <SearchIcon className=' absolute left-2 top-4 bottom-0 font-semibold text-xs h-6 w-6' />
-                    <XIcon onClick={() => setshow(!show)} className=' absolute right-2 top-4 bottom-0 font-semibold text-xs h-6 w-6' />
+                    <XIcon onClick={() => {
+                         setText('')
+                        setshow(!show)
+                        }} className=' absolute right-2 top-4 bottom-0 font-semibold text-xs h-6 w-6' />
 
-                </>
+                </motion.div>
                 }
+                {text && <SearchBox search={text} setSearch={setText} />}
             </div>
-            {!show && <SearchIcon onClick={() => setshow(!show)} width={30} fontWeight={900} className='mt-[6px]' />}
+            {!show && <SearchIcon onClick={() =>setshow(!show)} width={30} fontWeight={900} className='mt-[6px]' />}
         </>
     )
 }
