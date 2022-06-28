@@ -23,12 +23,14 @@ const useData = () => {
     const [popularProduct, setPopularProduct] = useState([])
     const [featureProduct, setFeatureProduct] = useState([])
     const [blogs, setBlogs] = useState([])
+    const [settings, setSettings] = useState({})
+    const [topdeals, setTopdeals] = useState([])
 
 
     const fetchHeader = useCallback(
         async () => {
             // get the data from the api
-            const { category, subcategory, subsubcategory, slider, product, banner, singleBanner, offer, campaign, } = await httpReq.get('allfrontendcontent');
+            const { category, subcategory, subsubcategory, slider, product, banner, singleBanner, offer, campaign, topdeals, settings } = await httpReq.get('allfrontendcontent');
             const popular = await httpReq.get('popular_product');
             const feature = await httpReq.get('feature_product');
             const season = await httpReq.get('season');
@@ -53,6 +55,8 @@ const useData = () => {
             setSeason(season)
             setDecore(decore)
             setBlogs(blog)
+            setSettings(settings)
+            setTopdeals(topdeals)
 
             // set state with the result
             setPopularProduct(popular)
@@ -97,7 +101,9 @@ const useData = () => {
         decore,
         popularProduct,
         featureProduct,
-        blogs
+        blogs,
+        topdeals,
+        settings,
 
     }
 

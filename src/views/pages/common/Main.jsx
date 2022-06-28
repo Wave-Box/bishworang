@@ -29,6 +29,7 @@ import Blog from "../home/blog/Blog";
 import Success from "../payment/Success";
 import Failed from "../payment/Failed";
 import Risk from "../payment/Risk";
+import StoreLocation from "../static/StoreLocation";
 // import PrivateRoute from "../../../privateRoute/PrivateRoute";
 
 
@@ -58,6 +59,7 @@ const Main = () => {
 
                     <Route path="/about" element={<About />} />
                     <Route path="/contact" element={<Contact />} />
+                    <Route path="/location" element={<StoreLocation />} />
                     <Route path="/delivery-policy" element={<DeliveryPolicy />} />
                     <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                     <Route path="/refund-policy" element={<RefundPolicy />} />
@@ -71,10 +73,10 @@ const Main = () => {
                     <Route path="profile" element={<PrivateRoute><Dashboard /></PrivateRoute>}>
                         <Route path="/profile" element={<PrivateRoute><Profile /></PrivateRoute>} />
                         <Route path="change-password" element={<PrivateRoute><ChangePassword /></PrivateRoute>} />
-                        <Route path="order" element={<Order />} />
-                        <Route path="order/:id" element={<OrderDetails />} />
+                        <Route path="order" element={<PrivateRoute><Order /></PrivateRoute>} />
+                        <Route path="order/:id" element={<PrivateRoute><OrderDetails /></PrivateRoute>} />
                     </Route>
-                    <Route path="checkout" element={<CheckOut />} />
+                    <Route path="checkout" element={<PrivateRoute><CheckOut /></PrivateRoute>} />
 
                     <Route path="/verify-otp" element={<PublicRoute><VerifyOtp /></PublicRoute>} />
                     <Route path="/login" element={<PublicRoute><User /></PublicRoute>} />

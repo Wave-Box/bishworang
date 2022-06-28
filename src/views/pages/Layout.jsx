@@ -1,5 +1,5 @@
 import React from 'react';
-import MessengerCustomerChat from 'react-messenger-customer-chat';
+// import MessengerCustomerChat from 'react-messenger-customer-chat';
 import Footer from './common/Footer';
 import Main from './common/Main';
 import ackground from '../../assets/images/bg.jpg'
@@ -26,11 +26,11 @@ const Layout = () => {
                 </div>
             </div>
             <div id="fb-root"></div>
-            <MessengerCustomerChat
+            {/* <MessengerCustomerChat
                 pageId="503044216521761"
                 appId="852617662106865"
                 htmlRef="fb-root"
-            />,
+            /> */}
 
         </>
     );

@@ -7,12 +7,13 @@ import { clearMessage } from '../../../redux/slices/message';
 import { NavLink, useNavigate } from "react-router-dom";
 import useAuth from '../../../hooks/useAuth';
 import { facebook, google } from '../../../constant';
+import { toast } from 'react-toastify';
 
 const Login = () => {
     const [loading, setLoading] = useState(false);
     // const [authUser, setAuthUser] = useState({})
 
-    const { 
+    const {
         // loginUser, isLoading, user, authError, 
         signInWithGoogle, signInWithFacebook } = useAuth()
 
@@ -27,22 +28,28 @@ const Login = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
-        dispatch(clearMessage());
-        console.log(data)
         setLoading(true);
         dispatch(login(data))
             .unwrap()
-            .then(({ user }) => {
-                if (user.otp === 'NULL') {
-                    navigate("/profile");
-                    
-                }else{
-                    
-                    navigate("/verify-otp");
+            .then(({ verify, error }) => {
+                console.log(error);
+                if (error) {
+                    toast(error, { type: 'error' })
+                }
+                if (verify) {
+                    console.log(verify);
+                    // navigate("/profile", {
+                    //     replace: true
+                    // });
+                    window.location.replace("/profile");
+                } else {
+                    navigate('/verify-otp')
                 }
 
             })
-            .catch(() => {
+            .catch((er) => {
+
+                toast("Credential Doesn\"t Match", { type: 'error' })
 
                 setLoading(false);
             });
@@ -62,32 +69,32 @@ const Login = () => {
                 <h4 className='text-3xl font-semibold my-3 text-black'>Login</h4>
 
 
-              
-                    <input
-                        {...register("phone", { required: true })}
-                        type="number"
-                        placeholder='Your Phone'
-                        className='py-3 px-4 border border-gray-300 rounded-md placeholder:text-gray-500 text-sm focus:outline-0' />
-                    <p className='text-red-400'> {errors.phone?.type === 'required' && "phone Number is required"}</p>
+
+                <input
+                    {...register("phone", { required: true })}
+                    type="number"
+                    placeholder='Your Phone'
+                    className='py-3 px-4 border border-gray-300 rounded-md placeholder:text-gray-500 text-sm focus:outline-0' />
+                <p className='text-red-400'> {errors.phone?.type === 'required' && "phone Number is required"}</p>
 
 
-                    <input
-                        {...register("password", { required: true })}
-                        type='password'
-                        placeholder='Password'
-                        className='py-3 px-4 border border-gray-300 rounded-md placeholder:text-gray-500 text-sm focus:outline-0' />
-                    <p className='text-red-400'> {errors.password?.type === 'required' && "Password is required"}</p>
+                <input
+                    {...register("password", { required: true })}
+                    type='password'
+                    placeholder='Password'
+                    className='py-3 px-4 border border-gray-300 rounded-md placeholder:text-gray-500 text-sm focus:outline-0' />
+                <p className='text-red-400'> {errors.password?.type === 'required' && "Password is required"}</p>
 
 
 
-                    <div className="flex justify-between items-center">
-                        <label htmlFor='remember' className="label cursor-pointer gap-4">
-                            <input type="checkbox" id='remember' className="checkbox border border-gray-300" />
-                            <span className="label-text">Remember me</span>
-                        </label>
-                        <NavLink to='/forgot-password' className="label-text">Forgot password?</NavLink>
-                    </div>
-                    
+                <div className="flex justify-between items-center">
+                    <label htmlFor='remember' className="label cursor-pointer gap-4">
+                        <input type="checkbox" id='remember' className="checkbox border border-gray-300" />
+                        <span className="label-text">Remember me</span>
+                    </label>
+                    <NavLink to='/forgot-password' className="label-text">Forgot password?</NavLink>
+                </div>
+
                 <div className="">
                     {loading ?
                         <p className='text-left py-3 px-8 w-28 rounded-md text-gray-400' style={{ backgroundColor: button1.defaultButton }} >Loading</p>

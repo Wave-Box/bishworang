@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { productImg } from '../../../siteSetting/siteUrl'
 import { addToCartList, decrementQty, removeToCartList } from '../../../redux/slices/productslice'
 import { NavLink } from 'react-router-dom'
+import { red } from '../../../siteSetting/theme'
 
 export default function Drawer({ open, setOpen }) {
 
@@ -77,7 +78,7 @@ export default function Drawer({ open, setOpen }) {
                                                     </div>
                                                     <div className="border-t border-black space-y-2 pt-3">
                                                         <h6 className='text-right font-serif font-semibold text-lg'>Total : <Taka tk={parseInt(total)} /></h6>
-                                                        <NavLink to="/checkout" onClick={() => setOpen(false)} className='w-full block text-center bg-orange-200 py-2 rounded font-semibold outline-0 border-0'>Proceed to pay</NavLink>
+                                                        <NavLink style={{ backgroundColor: red, color: "white" }} to="/checkout" onClick={() => setOpen(false)} className='w-full block text-center py-2 rounded font-semibold outline-0 border-0'>Checkout</NavLink>
                                                     </div>
                                                 </div>
                                             </div>
@@ -99,7 +100,7 @@ export default function Drawer({ open, setOpen }) {
 
 const SingleItem = ({ item }) => {
     const dispatch = useDispatch()
-   
+
     // const price = getPrice(item?.regular_price, item?.discount_price, item?.discount_type)
     return (
         <div className="md:flex items-center py-4 border-b border-gray-300 last:border-b-0 scroll-smooth bg-scroll">

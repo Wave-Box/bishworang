@@ -19,7 +19,7 @@ import { catImg } from '../../../siteSetting/siteUrl'
 
 
 export default function HeaderMid() {
-    const { category } = useTheme()
+    const { category, settings } = useTheme()
     const [isShowing, setIsShowing] = useState(false)
     return (
         <Popover style={{ background: `white`, position: 'relative' }} className="relative bg-gray-50 shadow-lg mb-2">
@@ -86,17 +86,17 @@ export default function HeaderMid() {
                             Home
                         </NavLink>
                         {category?.map(item =>
-                            <NavLink key={item?.id} to={'/category/'+item?.id} className="text-base font-medium text-gray-500 hover:text-gray-900">
+                            <NavLink key={item?.id} to={'/category/' + item?.id} className="text-base font-medium text-gray-500 hover:text-gray-900">
                                 {item?.name}
                             </NavLink>)}
 
 
 
                     </Popover.Group>
-                    <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0 group gap-1">
+                    <div className="hidden md:flex items-center justify-end md:flex-1 lg:max-w-fit group gap-1">
                         <PhoneIcon className='ml-2 h-5 w-5 group-hover:text-orange-400' />
                         <NavLink to='/' className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-orange-400">
-                            Hotline <span className='text-orange-400'> 1900 - 888</span>
+                            Hotline <span className='text-orange-400'>{settings?.phone}</span>
                         </NavLink>
 
                     </div>

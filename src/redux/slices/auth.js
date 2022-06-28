@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { setMessage } from "./message";
 import AuthService from "../../services/auth.service";
-import { toast } from "react-toastify";
 const user = JSON.parse(localStorage.getItem("user"));
 export const signUp = createAsyncThunk(
   "auth/register",
@@ -72,8 +71,8 @@ export const login = createAsyncThunk(
   "auth/login",
   async ({ phone, password }, thunkAPI) => {
     try {
-      const { details } = await AuthService.login(phone, password);
-      return { user: details };
+      const data = await AuthService.login(phone, password);
+      return data
     } catch (error) {
       const message =
         (error.response &&
@@ -92,8 +91,8 @@ export const googleLogin = createAsyncThunk(
   "auth/googleLogin",
   async ({ name, email, access_token, imageurl }, thunkAPI) => {
     try {
-      const { details } = await AuthService.googleLogin(name, email, access_token, imageurl);
-      return { user: details };
+      const data = await AuthService.googleLogin(name, email, access_token, imageurl);
+      return data;
     } catch (error) {
       const message =
         (error.response &&
@@ -120,26 +119,32 @@ const authSlice = createSlice({
   initialState,
   extraReducers: {
     [signUp.fulfilled]: (state, action) => {
-      state.isLoggedIn = false;
+      state.isLoggedIn = true;
       // custom 
-      state.success = action.payload.success
-      state.user = action.payload.user
+      state.user = action.payload
+
     },
     [signUp.rejected]: (state, action) => {
       state.isLoggedIn = false;
       // custom 
       state.success = ''
+      state.user = null;
+    },
+    [login.fulfilled]: (state, action) => {
+      state.isLoggedIn = true;
+      state.user = action.payload;
+    },
+    [login.rejected]: (state, action) => {
+      state.isLoggedIn = false;
+      state.user = null;
     },
 
     [verify.fulfilled]: (state, action) => {
       state.isLoggedIn = true;
-      state.user = action.payload.user;
-      state.success = action.payload.success
-      if (action.payload.error) {
-        setMessage(action.payload.error)
-        state.success = ''
+      if (!action.payload.error) {
+        state.user = action.payload;
       }
-      console.log(action.payload);
+
     },
 
     [verify.rejected]: (state, action) => {
@@ -147,18 +152,6 @@ const authSlice = createSlice({
       state.success = ''
     },
 
-    [login.fulfilled]: (state, action) => {
-      if (action.payload?.user?.otp === 'NULL') {
-        state.isLoggedIn = true;
-        state.user = action.payload.user;
-      } else {
-        toast('verify your otp', { type: 'info ' })
-      }
-    },
-    [login.rejected]: (state, action) => {
-      state.isLoggedIn = false;
-      state.user = null;
-    },
     [googleLogin.fulfilled]: (state, action) => {
       state.isLoggedIn = true;
       state.user = action.payload.user;

@@ -10,7 +10,7 @@ function PrivateRoute({ children, ...rest }) {
 
     let location = useLocation()
     //   if (isLoading) { return <p>Loading...</p> }
-    if (user?.otp === "NULL") {
+    if (user?.verify) {
         return children;
     }
     return <Navigate to="/login" state={{ from: location }} />

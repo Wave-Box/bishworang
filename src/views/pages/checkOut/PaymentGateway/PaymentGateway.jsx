@@ -47,7 +47,7 @@ const PaymentGateway = ({ selectPayment, setSelectPayment }) => {
 
                                 </div>
                                 <input
-                                    className=""
+                                    className="hidden"
                                     name="address_type"
                                     type="radio"
                                     value={"online"}
@@ -63,7 +63,7 @@ const PaymentGateway = ({ selectPayment, setSelectPayment }) => {
                                 </div>
 
                                 <input
-                                    className=""
+                                    className="hidden"
                                     name="address_type"
                                     type="radio"
                                     value={"cod"}

@@ -53,11 +53,12 @@ const ProductCard = ({ item }) => {
                 <div className="card-body p-4 bg-white">
                     <p className='text-xs '>{item?.name?.slice(0, 18)} {item?.name?.length > 18 ? "..." : null}</p>
                     <h2 className="tracking-widest font-normal text-sm text-gray-600">
-                        <p>{item?.description?.slice(0, 25)} {item?.description?.length > 25 ? "..." : null}</p>
+                        <p>{item?.description?.slice(0, 18)} {item?.description?.length > 18 ? "..." : null}</p>
                     </h2>
 
                     <h6 className='text-lg font-medium '>
-                        <Taka tk={price} /> <span className='line-through text-sm'> <Taka tk={item?.regular_price} /></span>
+                        <Taka tk={price} />
+                        {/* <span className='line-through text-sm'> <Taka tk={item?.regular_price} /></span> */}
                     </h6>
 
                     <div onClick={()=>alert("click")} className="absolute bottom-6 right-6">

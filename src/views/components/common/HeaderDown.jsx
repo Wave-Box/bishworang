@@ -1,7 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import logo from '../../../assets/images/headerLogo.png'
-import { heart } from '../../../assets/svg';
-import { SearchIcon, XIcon } from '@heroicons/react/outline'
+import { HeartIcon, SearchIcon, XIcon } from '@heroicons/react/outline'
 import { Menu, Transition } from '@headlessui/react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -20,37 +19,27 @@ const HeaderDown = () => {
 
 
                     <div className="col-span-1 flex justify-center items-center">
-                        {/* <div className="relative w-full">
-                            <input
-                                type="text"
-                                name={"search"}
-                                autoComplete="given-name"
-                                placeholder={"Search for items"}
-                                className="mt-1 focus:outline-0 focus:border-0 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md border py-3 pl-10 placeholder:text-gray-500 bg-gray-50"
-                            />
 
-                            <SearchIcon className=' absolute left-2 top-4 bottom-0 font-semibold text-xs h-6 w-6' />
-                        </div> */}
                     </div>
                     <div className="col-span-1 flex justify-center items-center">
                         <NavLink to={'/'}>
                             <img src={logo} alt="" width={150} height={200} />
                         </NavLink>
                     </div>
-                    <div className="col-span-1 flex justify-end items-center">
+                    <div className="col-span-1 flex justify-end items-center space-x-2">
                         <Search />
-                        <div className="flex ">
-                            <a href='/' className="indicator tab tab-lifted  border-0 mr-2 text-black">
-                                {heart}
-                                <span className="indicator-item badge border-0 bg-orange-400 text-white">8</span>
-                            </a>
+                        <div className="flex items-center space-x-3">
+                            <NavLink to='/' className="relative">
+                                <HeartIcon width={30} />
+                                <span className="absolute -top-2 -right-1 bg-orange-300 rounded-full px-1 py-0 font-serif text-2xs">8</span>
+                            </NavLink>
 
                             {/* Profile dropdown */}
                             {user?.otp === 'NULL' && <Menu as="div" className="ml-3 relative">
                                 <div>
-                                    <Menu.Button className="bg-gray-800 flex text-sm rounded-full focus:outline-none focus:ring-offset-gray-800 focus:ring-white">
+                                    <Menu.Button className="bg-gray-800 flex h-[30px] w-[30px] text-sm rounded-full focus:outline-none focus:ring-offset-gray-800 focus:ring-white">
                                         <span className="sr-only">Open user menu</span>
-                                        {user?.image ? user?.authby === 'google' ? <img src={user?.image} alt='' className='object-cover h-10 w-10 rounded-full' /> : <img src={profileImg + user?.image} alt='' className='object-cover h-10 w-10 rounded-full' /> : <svg className="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                                        {user?.image ? user?.authby === 'google' ? <img src={user?.image} alt='' className='object-cover h-10 w-10 rounded-full' /> : <img src={profileImg + user?.image} alt='' className=' h-full w-full rounded-full' /> : <svg className="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
                                             <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
                                         </svg>}
                                     </Menu.Button>
@@ -121,7 +110,7 @@ const Search = () => {
         <>
             {text && <div className="absolute top-0 z-0  w-screen h-screen" onClick={() => setText('')}></div>}
             <div className="relative w-full">
-                {show && <motion.div initial={{ x: 20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} exit={{ y: 20, opacity: 0 }}  transition={{ duration: 0.6 }} >
+                {show && <motion.div initial={{ x: 20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} exit={{ y: 20, opacity: 0 }} transition={{ duration: 0.6 }} >
 
                     <input
                         onChange={(e) => setText(e.target.value)}
@@ -133,17 +122,17 @@ const Search = () => {
                         className={`mt-1 focus:outline-0 focus:border-0 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md border py-3 pl-10 placeholder:text-gray-500 bg-gray-50`}
                     />
 
-                    <SearchIcon className=' absolute left-2 top-4 bottom-0 font-semibold text-xs h-6 w-6' />
+                    <SearchIcon width={25} className=' absolute left-2 top-4 bottom-0 font-semibold text-xs' />
                     <XIcon onClick={() => {
-                         setText('')
+                        setText('')
                         setshow(!show)
-                        }} className=' absolute right-2 top-4 bottom-0 font-semibold text-xs h-6 w-6' />
+                    }} className=' absolute right-2 top-4 bottom-0 font-semibold text-xs h-6 w-6' />
 
                 </motion.div>
                 }
                 {text && <SearchBox search={text} setSearch={setText} />}
             </div>
-            {!show && <SearchIcon onClick={() =>setshow(!show)} width={30} fontWeight={900} className='mt-[6px]' />}
+            {!show && <SearchIcon onClick={() => setshow(!show)} width={38} fontWeight={900} className='mt-[6px]' />}
         </>
     )
 }

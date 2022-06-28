@@ -15,7 +15,7 @@ import { motion } from 'framer-motion'
 
 
 const HeaderSticky = () => {
-    const { category } = useTheme()
+    const { category, settings } = useTheme()
 
     const [openMenu, setOpenMenu] = useState(false);
     const changeNavbar = () => {
@@ -27,7 +27,7 @@ const HeaderSticky = () => {
         }
     };
     window.addEventListener('scroll', changeNavbar);
-    
+
     return (
         <>
             {openMenu &&
@@ -62,10 +62,10 @@ const HeaderSticky = () => {
 
 
                                 </Popover.Group>
-                                <div className="hidden md:flex items-center justify-end md:flex-1 lg:w-0 group gap-1">
+                                <div className="hidden md:flex items-center justify-end md:flex-1 lg:max-w-fit group gap-1">
                                     <PhoneIcon className='ml-2 h-5 w-5 group-hover:text-orange-400' />
                                     <NavLink to="/" className="whitespace-nowrap text-base font-medium text-black hover:text-orange-400">
-                                        Hotline <span className='text-orange-400'> 1900 - 888</span>
+                                        Hotline <span className='text-orange-400 tracking-tight'> {settings?.phone}</span>
                                     </NavLink>
 
                                 </div>

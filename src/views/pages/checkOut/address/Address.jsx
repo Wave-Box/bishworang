@@ -4,23 +4,22 @@ import { Dialog, Transition } from '@headlessui/react'
 import { useForm } from "react-hook-form";
 import { PencilAltIcon, TrashIcon } from '@heroicons/react/outline';
 import { toast } from 'react-toastify'
-import useTheme from '../../../../hooks/useTheme';
 import httpReq from '../../../../services/http.service';
-
+import { red } from '../../../../siteSetting/theme';
+import { useSelector } from 'react-redux'
 
 const Address = ({ selectAddress, setSelectAddress }) => {
     const [address, setAddress] = useState(null)
     const [open, setOpen] = useState(false)
     const [call, setCall] = useState(null)
-    const { store_id } = useTheme()
-
+    const { user } = useSelector((state) => state.auth);
     useEffect(() => {
-        httpReq.post("address", { store_id })
+        httpReq.post("address", { id: user?.id })
             .then(({ address }) => {
                 setAddress(address);
             })
             .catch(err => console.log(err))
-    }, [store_id, call])
+    }, [call, user.id])
 
     console.log("selectAddress", selectAddress);
 
@@ -70,9 +69,8 @@ export default Address;
 
 const Single = ({ item, selectAddress, setSelectAddress, setCall }) => {
     const [open, setOpen] = useState(false)
-    const { design } = useTheme()
     const delete_address = (id) => {
-        httpReq.post('address/delete', { id })
+        httpReq.post('address/delete', { address_id: id })
             .then(({ success }) => {
                 toast(success, { type: 'success' })
                 setCall(Math.random() * 100)
@@ -81,8 +79,8 @@ const Single = ({ item, selectAddress, setSelectAddress, setCall }) => {
     return (
         <label
             style={{
-                backgroundColor: selectAddress?.id === item?.id ? design?.header_color : '#fff',
-                color: selectAddress?.id === item?.id ? design?.text_color : "#000",
+                backgroundColor: selectAddress?.id === item?.id ? red : '#fff',
+                color: selectAddress?.id === item?.id ? 'white' : "#000",
             }}
             className={`border border-gray-300 p-5 rounded space-y-2 w-full transition-colors duration-300`}>
             <div className="flex justify-between cursor-pointer">
@@ -110,15 +108,22 @@ const Single = ({ item, selectAddress, setSelectAddress, setCall }) => {
 
 export function SaveAddress({ open, setOpen, setCall }) {
 
-
+    const { user } = useSelector((state) => state.auth);
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const onSubmit = data => {
+        data['id'] = user?.id
         httpReq.post('address/save', data)
-            .then(({ success }) => {
-                reset()
-                setCall(Math.random() * 100)
-                toast(success, { type: 'success' })
-                setOpen(false)
+            .then(({ success, error }) => {
+                if (success) {
+                    reset()
+                    setCall(Math.random() * 100)
+                    toast(success, { type: 'success' })
+                    setOpen(false)
+                }
+                if (error) {
+
+                    toast(error, { type: 'error' })
+                }
             })
             .catch(err => console.log(err))
     };
@@ -182,20 +187,26 @@ export function SaveAddress({ open, setOpen, setCall }) {
 
 export function UpdateAddress({ open, setOpen, item, setCall }) {
 
-
+    const { user } = useSelector((state) => state.auth);
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
         defaultValues: {
             ...item
         }
     });
     const onSubmit = data => {
-        data['id'] = item?.id
+        data['id'] = user?.id
+        data['address_id'] = item?.id
         console.log(data);
         httpReq.post('address/edit', data)
-            .then(({ success }) => {
-                setCall(Math.random() * 100)
-                toast(success, { type: 'success' })
-                setOpen(false)
+            .then(({ success, error }) => {
+                if (success) {
+                    setCall(Math.random() * 100)
+                    toast(success, { type: 'success' })
+                    setOpen(false)
+                }
+                if (error) {
+                    toast(error, { type: 'error' })
+                }
             })
             .catch(err => console.log(err))
         reset()
