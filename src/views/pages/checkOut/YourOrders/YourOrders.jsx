@@ -9,6 +9,7 @@ import { toast } from 'react-toastify';
 import { addToCartList, clearCartList, decrementQty, removeToCartList } from '../../../../redux/slices/productslice';
 import httpReq from '../../../../services/http.service';
 import { productImg } from '../../../../siteSetting/siteUrl';
+import { red } from '../../../../siteSetting/theme';
 import { getPrice } from '../../../components/utils/getPrice';
 import Taka from '../../../components/utils/Taka';
 ;
@@ -113,12 +114,12 @@ const YourOrders = ({ cuponDis, selectAddress, selectPayment, shipping_area }) =
             <h3 className='text-center font-semibold text-lg text-black'>Your Items</h3>
             {cartList ? <>
 
-                <div className="my-16">
-                    <div className=" flex flex-col justify-between bg-white shadow-xl  mt-16 pt-5">
+                <div className="my-1">
+                    <div className=" flex flex-col justify-between bg-white shadow-xl mt-5 pt-5">
 
 
                         {/* Replace with your content */}
-                        <div className="px-4 sm:px-2 h-2/3 overflow-y-scroll">
+                        <div className="px-4 sm:px-2 h-[285px] overflow-y-scroll rounded-md">
                             {
                                 cartList?.map((item) =>
 
@@ -160,7 +161,7 @@ const YourOrders = ({ cuponDis, selectAddress, selectPayment, shipping_area }) =
             </div>
 
             <button
-                className='font-semibold tracking-wider my-1 rounded-sm border border-gray-300 w-full py-3'
+                className={`font-semibold tracking-wider my-1 rounded-sm border border-gray-300 w-full py-3 bg-[${red}] text-white transition-all duration-200 ease-linear hover:bg-red-900 hover:text-gray-100 hover:shadow-lg rounded-md`}
                 style={{ backgroundColor: primary }}
                 onClick={() => handleCheckout()}
             >

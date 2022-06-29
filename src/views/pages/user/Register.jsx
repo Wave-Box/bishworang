@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { button1 } from '../../../constant/color';
 import { signUp } from '../../../redux/slices/auth';
 import { clearMessage } from '../../../redux/slices/message';
@@ -22,17 +23,23 @@ const Register = () => {
         setSuccessful(true);
         dispatch(signUp(data))
             .unwrap()
-            .then(() => {
-                setSuccessful(false);
-                navigate("/verify-otp");
-                window.location.reload();
+            .then((res) => {
+                if (res?.error) {
+                    toast(res?.error, { type: 'error' })
+                }else{
+
+                    setSuccessful(false);
+                    navigate("/verify-otp");
+                    window.location.reload();
+                }
             })
-            .catch(() => {
+            .catch((err) => {
                 setSuccessful(false);
+                console.log(err);
             });
 
     }
-  
+
 
 
     return (
@@ -101,9 +108,9 @@ const Register = () => {
                         <input type="submit" value="Register" className='text-left py-3 px-8 rounded-md text-white' style={{ backgroundColor: button1.color }} />
                     }
                 </div>
-            <p className='text-center text-gray-500'>Already Have an Account? <a href="/" style={{ color: button1.color }}>Sign in now</a></p>
+                <p className='text-center text-gray-500'>Already Have an Account? <a href="/" style={{ color: button1.color }}>Sign in now</a></p>
             </form>
-            
+
         </>
     );
 };

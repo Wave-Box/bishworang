@@ -6,10 +6,10 @@ export const signUp = createAsyncThunk(
   "auth/register",
   async ({ name, email, phone, password }, thunkAPI) => {
     try {
-      const response = await AuthService.signUp(name, email, phone, password);
-
-      thunkAPI.dispatch(setMessage(response.data.message));
-      return response.data;
+      const {data} = await AuthService.signUp(name, email, phone, password);
+      console.log("response ", data);
+      thunkAPI.dispatch(setMessage(data.message));
+      return data;
     } catch (error) {
       const message =
         (error.response &&
@@ -25,12 +25,12 @@ export const signUp = createAsyncThunk(
 
 export const verify = createAsyncThunk(
   "auth/verify",
-  async ({ userid, otp }, thunkAPI) => {
+  async ({ otp }, thunkAPI) => {
     try {
-      const response = await AuthService.verify_phone(userid, otp);
+      const {data} = await AuthService.verify_phone(otp);
 
-      thunkAPI.dispatch(setMessage(response.data.error));
-      return response.data;
+      thunkAPI.dispatch(setMessage(data.error));
+      return data;
     } catch (error) {
       const message =
         (error.response &&
@@ -107,9 +107,22 @@ export const googleLogin = createAsyncThunk(
 );
 
 
-export const logout = createAsyncThunk("auth/logout", async () => {
-  await AuthService.logout();
-});
+export const logout = createAsyncThunk("logout",
+  async (thunkAPI) => {
+    try {
+      return await AuthService.logout();
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      thunkAPI.dispatch(setMessage(message));
+      return thunkAPI.rejectWithValue();
+    }
+  }
+);
 
 const initialState = user
   ? { isLoggedIn: true, user, success: '' }
@@ -119,7 +132,7 @@ const authSlice = createSlice({
   initialState,
   extraReducers: {
     [signUp.fulfilled]: (state, action) => {
-      state.isLoggedIn = true;
+      state.isLoggedIn = false;
       // custom 
       state.user = action.payload
 
@@ -140,7 +153,7 @@ const authSlice = createSlice({
     },
 
     [verify.fulfilled]: (state, action) => {
-      state.isLoggedIn = true;
+      state.isLoggedIn = false;
       if (!action.payload.error) {
         state.user = action.payload;
       }

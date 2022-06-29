@@ -26,7 +26,7 @@ const ProductCard = ({ item }) => {
         setResult(cartList?.find(c => c.id === item.id))
 
     }, [cartList, item.id])
-console.log(item);
+    console.log(item);
     const add_to_favourite = (id) => {
         httpReq.post('favourite', { product_id: id })
             .then(({ error, success }) => {
@@ -115,7 +115,7 @@ console.log(item);
                         <HoverIcon text={"Add to Cart"} >
                             <BsBagPlus className='h-5 w-5 text-2xl font-serif font-bold' />
                         </HoverIcon>
-                    </div> : !item?.variant ?
+                    </div> : !parseInt(item?.variant) ?
                         <div onClick={() => add_to_cart(item)} className="absolute bottom-6 right-6">
                             <HoverIcon text={"Add to Cart"} >
                                 <BsBagPlus className='h-5 w-5 text-2xl font-serif font-bold' />

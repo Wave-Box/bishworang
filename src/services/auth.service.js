@@ -9,9 +9,8 @@ const signUp = (name, email, phone, password) => {
         password,
     });
 };
-const verify_phone = (userid, otp) => {
-    return axiosInstance.post("register/checkotp", {
-        userid,
+const verify_phone = ( otp) => {
+    return axiosInstance.post("verifyotp", {
         otp,
     });
 };
@@ -53,8 +52,12 @@ const forgot = (store_id, phone) => {
 };
 
 const logout = () => {
-    localStorage.removeItem("user");
+    return axiosInstance.post("logout")
+        .then((response) => {
+            return response.data;
+        });
 };
+
 
 const authService = {
     forgot,

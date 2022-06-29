@@ -3,15 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { mobile, location, userIcon, logoutIcon } from '../../../assets/svg';
 import useTheme from '../../../hooks/useTheme';
-import { logout } from '../../../redux/slices/auth';
 import Marquee from "react-fast-marquee";
+import { logout } from '../../../redux/slices/auth';
 
 const HeaderTop = () => {
-    const { isLoggedIn } = useSelector((state) => state.auth);
+    const { user } = useSelector((state) => state.auth);
     const dispatch = useDispatch()
-    const logOut = () => {
-        dispatch(logout());
-    };
+  
     const { topdeals } = useTheme()
     return (
         <div className=" w-full py-0 text-sm hidden md:block" style={{ backgroundColor: '#AD171A' }}>
@@ -35,8 +33,9 @@ const HeaderTop = () => {
                         <option className='text-black' value="">BDT</option>
                         <option className='text-black' value="">USD</option>
                     </select>
-                    {isLoggedIn ?
-                        <div className='cursor-pointer' onClick={() => logOut()}> <HeaderTopMenu icon={logoutIcon} doc={"Logout"} /></div> :
+                    {user?.verify ?
+                        <div className='cursor-pointer'  onClick={() => dispatch(logout())}> <HeaderTopMenu icon={logoutIcon} doc={"Logout"} />
+                        </div> :
                         <NavLink to='/login'> <HeaderTopMenu icon={userIcon} doc={"Log In/Sign Up"} /></NavLink>
                     }
                 </div>

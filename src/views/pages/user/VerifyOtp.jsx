@@ -28,8 +28,8 @@ const VerifyOtp = () => {
         dispatch(verify(data))
             .unwrap()
             .then(() => {
-                navigate("/profile");
-                // window.location.reload();
+                // navigate("/profile");
+                window.location.replace("/profile");
                 setLoading(false);
 
             })
