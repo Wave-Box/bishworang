@@ -30,6 +30,7 @@ import Success from "../payment/Success";
 import Failed from "../payment/Failed";
 import Risk from "../payment/Risk";
 import StoreLocation from "../static/StoreLocation";
+import Favourite from "../favourite/Favourite";
 // import PrivateRoute from "../../../privateRoute/PrivateRoute";
 
 
@@ -55,6 +56,7 @@ const Main = () => {
                     <Route path="/product/:id" element={<SingleProduct />} />
                     <Route path="/category/:id" element={<Shop />} />
                     <Route path="/shop" element={<Shop />} />
+                    <Route path="/favourite" element={<Favourite />} />
 
 
                     <Route path="/about" element={<About />} />

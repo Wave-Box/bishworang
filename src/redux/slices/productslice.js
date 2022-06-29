@@ -60,6 +60,15 @@ export const productSlice = createSlice({
         removeToCartList: (state, action) => {
             state.cartList = state.cartList.filter((items) => items.cartId !== action.payload)
         },
+        incrementQty: (state, action) => {
+            const cartItem = state.cartList?.find((item) => item.cartId === action.payload);
+
+
+            if (cartItem) {
+                cartItem.qty = cartItem.qty + 1;
+            }
+
+        },
         decrementQty: (state, action) => {
             const cartItem = state.cartList.find((item) => item.cartId === action.payload);
 
@@ -91,13 +100,13 @@ export const productSlice = createSlice({
 })
 
 
-export const noLoginUser = () => { 
-    return (dispatch) => { 
+export const noLoginUser = () => {
+    return (dispatch) => {
         dispatch(userPopUp(true))
-     }
- }
+    }
+}
 
-export const { searchInput, userPopUp, addToCartList, removeToCartList, decrementQty,clearCartList } = productSlice.actions
+export const { searchInput, userPopUp, addToCartList, removeToCartList, incrementQty, decrementQty, clearCartList } = productSlice.actions
 
 
 export default productSlice.reducer

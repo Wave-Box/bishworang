@@ -18,7 +18,7 @@ const RelatedProducts = ({ id }) => {
                 <Title text={"Related products"} />
             </div>
             <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">
-                {products?.slice(0, 4).map((p) => <ProductCard item={p} />)}
+                {products?.slice(0, 4).map((p) => <ProductCard key={p?.id} item={p} />)}
 
             </div>
 

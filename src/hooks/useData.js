@@ -1,13 +1,16 @@
 
 import { useCallback, useEffect, useState } from "react";
+import { token } from "../services/AxiosInstance";
 
 
 import httpReq from "../services/http.service";
 
+export const v = JSON.parse(localStorage.getItem("persist:root"))?.auth ? JSON.parse(JSON.parse(localStorage.getItem("persist:root"))?.auth)?.user : null
 
 
 const useData = () => {
-
+    const [userData, setUser] = useState(null)
+    const [favourite, setFavourite] = useState([])
 
     const [category, setCategory] = useState([])
     const [subcategory, setSubcategory] = useState([])
@@ -39,7 +42,12 @@ const useData = () => {
 
 
 
-
+            if (token && v?.verify) {
+                const user = await httpReq.get('getuser');
+                const { favourite } = await httpReq.get('favourite/get');
+                setUser(user)
+                setFavourite(favourite)
+            }
 
             // set state with the result
 
@@ -88,6 +96,8 @@ const useData = () => {
 
     return {
         makeid,
+        userData,
+        favourite,
         category,
         subcategory,
         subsubcategory,

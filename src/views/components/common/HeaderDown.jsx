@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import logo from '../../../assets/images/headerLogo.png'
-import { HeartIcon, SearchIcon, XIcon } from '@heroicons/react/outline'
+import { HeartIcon, SearchIcon, UserIcon, XIcon } from '@heroicons/react/outline'
 import { Menu, Transition } from '@headlessui/react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -8,9 +8,11 @@ import { logOut } from '../../../redux/slices/userSlice';
 import { profileImg } from '../../../siteSetting/siteUrl';
 import { motion } from 'framer-motion'
 import SearchBox from './SearchBox';
+import useTheme from '../../../hooks/useTheme';
 
 const HeaderDown = () => {
     const { user } = useSelector((state) => state.auth)
+    const { userData, favourite } = useTheme()
     return (
         <div className="py-1" style={{ background: `white`, position: 'relative' }}>
 
@@ -29,19 +31,17 @@ const HeaderDown = () => {
                     <div className="col-span-1 flex justify-end items-center space-x-2">
                         <Search />
                         <div className="flex items-center space-x-3">
-                            <NavLink to='/' className="relative">
+                            <NavLink to='/favourite' className="relative">
                                 <HeartIcon width={30} />
-                                <span className="absolute -top-2 -right-1 bg-orange-300 rounded-full px-1 py-0 font-serif text-2xs">8</span>
+                                <span className="absolute -top-2 -right-1 bg-orange-300 rounded-full px-1 py-0 font-serif text-2xs">{favourite?.length}</span>
                             </NavLink>
 
                             {/* Profile dropdown */}
-                            {user?.otp === 'NULL' && <Menu as="div" className="ml-3 relative">
+                            {user?.verify && <Menu as="div" className="ml-3 relative">
                                 <div>
                                     <Menu.Button className="bg-gray-800 flex h-[30px] w-[30px] text-sm rounded-full focus:outline-none focus:ring-offset-gray-800 focus:ring-white">
                                         <span className="sr-only">Open user menu</span>
-                                        {user?.image ? user?.authby === 'google' ? <img src={user?.image} alt='' className='object-cover h-10 w-10 rounded-full' /> : <img src={profileImg + user?.image} alt='' className=' h-full w-full rounded-full' /> : <svg className="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
-                                            <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-                                        </svg>}
+                                        {userData?.image ? user?.authby === 'google' ? <img src={userData?.image} alt='' className='object-cover h-full w-full rounded-full' /> : <img src={profileImg + userData?.image} alt='' className=' h-full w-full rounded-full' /> : <div className='flex justify-center items-center w-full h-full'><UserIcon width={30} color={'white'} /></div>}
                                     </Menu.Button>
                                 </div>
                                 <Transition
@@ -104,7 +104,7 @@ export default HeaderDown;
 const Search = () => {
     const [show, setshow] = useState(false)
     const [text, setText] = useState(null)
-    console.log(text);
+
     return (
 
         <>

@@ -17,9 +17,7 @@ const Order = () => {
         // declare the async data fetching function
         const fetchData = async () => {
             // get the data from the api
-            const data = await httpReq.post('getorder', {
-                user_id: user?.id,
-            });
+            const data = await httpReq.post('getorder');
 
 
             setOrder(data)

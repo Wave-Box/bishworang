@@ -6,6 +6,9 @@ const axiosInstance = axios.create({
 
 });
 
+
+export const token = JSON.parse(localStorage.getItem("persist:root"))?.auth ? JSON.parse(JSON.parse(localStorage.getItem("persist:root"))?.auth)?.user?.token : null
+
 // Add a request interceptor
 axiosInstance.interceptors.request.use((config) => {
     // Do something before request is sent
@@ -13,6 +16,7 @@ axiosInstance.interceptors.request.use((config) => {
     // config.params['auth'] = 'iazadur'
     // console.log(config);
     // console.log(config.headers);
+    config.headers['Authorization'] = token ? 'Bearer ' + token : null
     return config;
 });
 

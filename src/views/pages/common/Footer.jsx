@@ -129,9 +129,9 @@ const Footer = () => {
                             </div>
                         </div> */}
                         <div className="flex items-center gap-2">
-                       
+
                             {
-                                socialInfo?.map((i) => <div className='w-10 h-10  rounded-full'>
+                                socialInfo?.map((i, id) => <div key={id} className='w-10 h-10  rounded-full'>
                                     <a href={i.link} target="_blank" rel="noopener noreferrer"><img src={i.img} alt="" /></a>
                                 </div>)
                             }

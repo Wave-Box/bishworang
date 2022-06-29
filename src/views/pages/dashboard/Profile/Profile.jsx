@@ -8,24 +8,20 @@ import DataLoader from '../../../components/Loader/DataLoader';
 
 
 const Profile = () => {
-
     const { user } = useSelector((state) => state.auth)
-    
-    const [userDetails, setuserDetails] = useState(null)
+
+    const [userData, setuserDetails] = useState(null)
     const [call, setCall] = useState(false)
 
     const { register, handleSubmit } = useForm({
-        defaultValues: userDetails
+        defaultValues: userData
     });
 
     useEffect(() => {
         // declare the async data fetching function
         const fetchData = async () => {
             // get the data from the api
-            const data = await httpReq.post('user/details', {
-                user_id: user?.id,
-                phone: user?.phone,
-            });
+            const data = await httpReq.get('getuser');
 
 
             // set state with the result
@@ -36,7 +32,7 @@ const Profile = () => {
         fetchData()
             // make sure to catch any error
             .catch(console.error);
-    }, [call, user?.id, user?.phone])
+    }, [call])
 
     const toBase64 = file => new Promise((resolve, reject) => {
         const reader = new FileReader();
@@ -75,7 +71,7 @@ const Profile = () => {
 
                     update_profile({
                         user_id: user?.id,
-                        phone:user?.phone,
+                        phone: user?.phone,
                         ...data,
                         image: res,
                     })
@@ -87,7 +83,7 @@ const Profile = () => {
             console.log(data);
             update_profile({
                 user_id: user?.id,
-                phone:user?.phone,
+                phone: user?.phone,
                 ...data,
             })
         }
@@ -111,7 +107,7 @@ const Profile = () => {
                             {/* <p className="text-base font-medium leading-6 text-gray-600">Use a permanent address where you can receive mail.</p> */}
                         </div>
                     </div>
-                    {userDetails ?
+                    {userData ?
                         <div className="mt-5 md:mt-0 md:col-span-3">
                             <form onSubmit={handleSubmit(onSubmit)}>
                                 <div className="shadow overflow-hidden sm:rounded-md">
@@ -123,7 +119,7 @@ const Profile = () => {
                                                 <label className="block text-sm font-medium text-gray-700">Photo</label>
                                                 <div className="mt-1 flex items-center">
                                                     <span className="inline-block h-12 w-12 rounded-full overflow-hidden bg-gray-100">
-                                                        {userDetails.image ? <img src={profileImg + userDetails?.image} alt='' className='object-fit' /> : <svg className="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                                                        {userData.image ? <img src={profileImg + userData?.image} alt='' className='object-fit' /> : <svg className="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
                                                             <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
                                                         </svg>}
                                                     </span>
@@ -145,7 +141,7 @@ const Profile = () => {
                                                     Full name
                                                 </label>
                                                 <input
-                                                    defaultValue={userDetails?.name}
+                                                    defaultValue={userData?.name}
                                                     {...register("name")}
                                                     type="text"
 
@@ -162,7 +158,7 @@ const Profile = () => {
 
                                                     {...register("email")}
                                                     type='email'
-                                                    defaultValue={userDetails?.email}
+                                                    defaultValue={userData?.email}
                                                     autoComplete="email"
                                                     className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                 />
@@ -173,7 +169,7 @@ const Profile = () => {
                                                     Mobile Number
                                                 </label>
                                                 <input
-                                                    defaultValue={userDetails?.phone}
+                                                    defaultValue={userData?.phone}
                                                     disabled={true}
                                                     type="tel"
 
@@ -188,7 +184,7 @@ const Profile = () => {
                                                 </label>
                                                 <div className="mt-1">
                                                     <textarea
-                                                        defaultValue={userDetails?.address}
+                                                        defaultValue={userData?.address}
                                                         {...register("address")}
 
                                                         rows={3}

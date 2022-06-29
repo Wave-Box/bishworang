@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { CgCrown } from 'react-icons/cg'
 import { VscCreditCard } from 'react-icons/vsc'
 import { HiOutlineRefresh } from 'react-icons/hi'
-import { BsHeart } from "react-icons/bs";
 import ColorSelect from '../../components/utils/ColorSelect';
 import SizeSelect from '../../components/utils/SizeSelect';
 import { primaryColor } from '../../../constant';
@@ -17,7 +16,8 @@ import useTheme from '../../../hooks/useTheme';
 import httpReq from '../../../services/http.service';
 import { getPrice } from '../../components/utils/getPrice';
 import { addToCartList, decrementQty } from '../../../redux/slices/productslice';
-import { MinusIcon, PlusIcon } from '@heroicons/react/outline';
+import { HeartIcon, MinusIcon, PlusIcon } from '@heroicons/react/outline';
+import { toast } from 'react-toastify';
 
 
 
@@ -131,7 +131,17 @@ const SingleProduct = () => {
 
 
     }
-
+    const add_to_favourite = (id) => {
+        httpReq.post('favourite', { product_id: id })
+            .then(({ error, success }) => {
+                if (success) {
+                    toast(success, {type: "success"});
+                }
+                if (error) {
+                    toast(error, { type: 'error' });
+                }
+            })
+    }
 
     useEffect(() => {
         if (cartList?.length) {
@@ -147,8 +157,8 @@ const SingleProduct = () => {
 
     if (loading) {
         return <div className="flex justify-center h-screen items-center">
-        <button className="btn loading">loading</button>
-    </div>
+            <button className="btn loading">loading</button>
+        </div>
     }
     if (!product?.id) {
         return (<div className='flex justify-center h-screen items-center capitalize text-3xl font-bold'>Product not Found</div>)
@@ -211,17 +221,6 @@ const SingleProduct = () => {
                     </div>}
 
                     <div className="flex gap-1">
-                        {/* <div className="flex justify-around border border-gray-300 w-20 rounded-md ">
-                            <div className="flex justify-center items-center">
-                                <p className='text-black'>{quantity}</p>
-                            </div>
-                            <div className="flex flex-col justify-around items-center text-black">
-                                <MdKeyboardArrowUp onClick={() => setQuantity(quantity + 1)} />
-                                <MdKeyboardArrowDown onClick={() => quantity && setQuantity(quantity - 1)} />
-                            </div>
-                        </div> */}
-
-
 
                         {result?.qty ? <div style={{ backgroundColor: primaryColor }} className=" px-3 py-1 rounded-md shadow-sm flex justify-between text-black w-40 items-center">
                             <MinusIcon height={18}
@@ -239,8 +238,9 @@ const SingleProduct = () => {
                             </div>
                         }
 
-                        <motion.div className="border border-gray-300 rounded-md w-10 flex justify-center items-center text-black font-semibold" whileHover={{ y: -7, transition: { duration: 0.5 }, backgroundColor: primaryColor, color: 'white' }} >
-                            <BsHeart size={15} className="" />
+
+                        <motion.div onClick={() => add_to_favourite(product?.id)} className="border border-gray-300 rounded-md w-10 flex justify-center items-center text-black font-semibold" whileHover={{ y: -7, transition: { duration: 0.5 }, backgroundColor: primaryColor, color: 'white' }} >
+                            <HeartIcon width={25} className="" />
                         </motion.div>
                         {/* <motion.div className="border border-gray-300 rounded-md w-10 flex justify-center items-center text-black font-semibold" whileHover={{ y: -7, transition: { duration: 0.5 }, backgroundColor: primaryColor, color: 'white' }} >
                             <BsShuffle size={15} className="" />
