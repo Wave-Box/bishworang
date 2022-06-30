@@ -33,7 +33,7 @@ const HeaderSticky = () => {
             {openMenu &&
                 <motion.div initial={{ y: -20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.6 }} className="" style={{
                     position: 'sticky',
-                    top: 0, zIndex: 10,
+                    top: 0, zIndex: 11,
                 }}>
                     <Popover style={{ backgroundColor: yellow, position: 'relative' }} className="relative shadow-lg mb-2">
                         <div className="container mx-auto px-4 sm:px-6">

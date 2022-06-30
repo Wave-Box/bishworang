@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { apiUrl } from '../../siteSetting/ApiUrl'
-
+import { toast } from 'react-toastify'
 
 
 export const fetchProducts = createAsyncThunk(
@@ -39,8 +39,12 @@ export const productSlice = createSlice({
             console.log(cartItem);
             if (cartItem) {
                 cartItem.qty = cartItem.qty + 1;
+                toast("Successfully you have added to cart", { type: "success" });
+
             } else {
                 state.cartList.push({ ...action.payload, qty: action.payload.qty || 1 });
+                toast("successfully you have to added cart", { type: "success" });
+
             }
 
 
@@ -59,6 +63,7 @@ export const productSlice = createSlice({
         // },
         removeToCartList: (state, action) => {
             state.cartList = state.cartList.filter((items) => items.cartId !== action.payload)
+            toast("Remove from cart this item", { type: 'warning' });
         },
         incrementQty: (state, action) => {
             const cartItem = state.cartList?.find((item) => item.cartId === action.payload);
@@ -66,6 +71,7 @@ export const productSlice = createSlice({
 
             if (cartItem) {
                 cartItem.qty = cartItem.qty + 1;
+                toast("successfully you have to added cart", { type: "success" });
             }
 
         },
@@ -75,9 +81,11 @@ export const productSlice = createSlice({
 
             if (cartItem.qty === 1) {
                 state.cartList = state.cartList.filter(i => i.cartId !== action.payload)
+                toast("Remove from cart this item", { type: 'warning' });
             }
             if (cartItem.qty > 1) {
                 cartItem.qty = cartItem.qty - 1;
+                toast("Remove from cart this item", { type: 'warning' });
             }
 
 

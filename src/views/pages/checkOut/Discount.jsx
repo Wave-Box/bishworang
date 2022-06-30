@@ -91,7 +91,7 @@ const Discount = ({ setCupon, setShipping_area }) => {
                                         <input {...register("code", { required: true })} type={'text'} className="border border-gray-400 py-2 px-2 rounded-sm" />
                                         {errors.code && <span className='text-red-500'>Field is empty</span>}
                                     </div>
-                                    <input type={'submit'} value={'Apply'} style={{ backgroundColor: red, color: "white" }} htmlFor='discount' className={`px-4 py-2 ml-2 font-semibold rounded-sm text-lg`} />
+                                    <input type={'submit'} value={'Apply'} htmlFor='discount' className={`px-4 py-2 ml-2 font-semibold rounded-sm text-lg bg-[${red}] hover:bg-red-600 hover:text-gray-100 text-white`} />
                                 </form>
                             </div>
 

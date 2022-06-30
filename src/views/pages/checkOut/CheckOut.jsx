@@ -4,17 +4,25 @@ import Address from './address/Address';
 import Discount from './Discount';
 import PaymentGateway from './PaymentGateway/PaymentGateway';
 import YourOrders from './YourOrders/YourOrders';
+import { useSelector } from 'react-redux'
 // import PaymentGateway from './PaymentGateway/PaymentGateway';
 // import YourOrders from './YourOrders/YourOrders';
 
 const CheckOutFour = () => {
+    const cartList = useSelector((state) => state.cart.cartList)
     const [cuponDis, setCuponDis] = useState(0)
     const [shipping_area, setShipping_area] = useState(0)
-    
+
     const [selectPayment, setSelectPayment] = useState(null)
     const [selectAddress, setSelectAddress] = useState(null)
-    // httpReq.get('/customer/address/list').then(res=>console.log(res))
 
+    if (!cartList?.length) {
+        return (
+            <div className='flex justify-center items-center w-full h-screen'>
+                <h1 className='text-gray-400 font-bold text-3xl font-sans capitalize'>You have no product in your cart</h1>
+            </div>
+        )
+    }
 
     return (
         <>
@@ -23,7 +31,7 @@ const CheckOutFour = () => {
                 <div className="">
                     <div className="md:grid md:grid-cols-3 md:gap-6 mt-1 py-4 px-2">
                         <div className="mt-5 md:mt-0 md:col-span-2">
-                        <h3 className='text-center font-semibold text-lg text-black'>Shipping Info</h3>
+                            <h3 className='text-center font-semibold text-lg text-black'>Shipping Info</h3>
                             <Address selectAddress={selectAddress} setSelectAddress={setSelectAddress} />
 
                             <Discount setCupon={setCuponDis} setShipping_area={setShipping_area} />

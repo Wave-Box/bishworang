@@ -157,7 +157,7 @@ const Shop = () => {
 
                 </div>
 
-                <div className="flex justify-center my-5">
+                {/* <div className="flex justify-center my-5">
                     <div className="flex gap-3 items-center">
                         <button className="p-2">«</button>
                         <button className=" p-2">1</button>
@@ -166,7 +166,7 @@ const Shop = () => {
                         <button className=" p-2">3</button>
                         <button className="p-2">»</button>
                     </div>
-                </div>
+                </div> */}
 
             </div>
 

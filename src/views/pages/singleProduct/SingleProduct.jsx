@@ -16,10 +16,12 @@ import useTheme from '../../../hooks/useTheme';
 import httpReq from '../../../services/http.service';
 import { getPrice } from '../../components/utils/getPrice';
 import { addToCartList, decrementQty } from '../../../redux/slices/productslice';
-import { HeartIcon, MinusIcon, PlusIcon } from '@heroicons/react/outline';
+import { EyeIcon, HeartIcon, MinusIcon, PlusIcon } from '@heroicons/react/outline';
 import { toast } from 'react-toastify';
+import sizeImg from '../../../assets/images/size.jpg';
 
-
+import { Fragment, useRef } from 'react'
+import { Dialog, Transition } from '@headlessui/react'
 
 
 const SingleProduct = () => {
@@ -135,7 +137,7 @@ const SingleProduct = () => {
         httpReq.post('favourite', { product_id: id })
             .then(({ error, success }) => {
                 if (success) {
-                    toast(success, {type: "success"});
+                    toast(success, { type: "success" });
                 }
                 if (error) {
                     toast(error, { type: 'error' });
@@ -211,6 +213,7 @@ const SingleProduct = () => {
                     {size.length !== 0 && <div className="flex gap-1 justify-start items-center mt-4 mb-7">
                         <h6 className='text-md font-semibold text-gray-700 mr-2'>Size</h6>
                         {size?.map((i) => <SizeSelect key={i.id} select={selectSize} setSelect={setSelectSize} setVariant={set_variant} data={i} selectSize={i?.size} />)}
+                        <SizeView />
 
                     </div>}
                     {!vrcolor?.length && <div className="flex gap-1 justify-start items-center mt-4 mb-7">
@@ -234,7 +237,14 @@ const SingleProduct = () => {
                         </div> :
                             <div className="">
                                 {/* <label htmlFor="add">add to cart</label> */}
-                                <button style={{ backgroundColor: primaryColor }} onClick={() => add_to_cart(product)} className="px-10 py-2 rounded-md shadow-sm flex justify-between text-black items-center cursor-pointer text-lg font-medium">Add to cart</button>
+                                <motion.button initial={{
+                                    backgroundColor: primaryColor,
+                                    color: "black"
+                                }} whileHover={{
+                                    backgroundColor: "#f08e48"
+                                }}
+                                    transition={{ duration: 0.4, ease: 'easeInOut' }}
+                                    onClick={() => add_to_cart(product)} className={`px-10 py-2 rounded-md shadow-sm flex justify-between text-black items-center cursor-pointer text-lg font-medium `}>Add to cart</motion.button>
                             </div>
                         }
 
@@ -284,3 +294,57 @@ const SingleProduct = () => {
 };
 
 export default SingleProduct;
+
+
+
+const SizeView = () => {
+    const [open, setOpen] = useState(false)
+    const cancelButtonRef = useRef(null)
+    return (<>
+        <motion.div onClick={() => setOpen(!open)} className="border border-gray-300 rounded-md w-10 flex justify-center items-center text-black font-semibold" whileHover={{ y: -7, transition: { duration: 0.5 }, backgroundColor: primaryColor, color: 'white' }} >
+            <EyeIcon width={25} className="" />
+        </motion.div>
+
+        <Transition.Root show={open} as={Fragment}>
+            <Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={setOpen}>
+                <Transition.Child
+                    as={Fragment}
+                    enter="ease-out duration-300"
+                    enterFrom="opacity-0"
+                    enterTo="opacity-100"
+                    leave="ease-in duration-200"
+                    leaveFrom="opacity-100"
+                    leaveTo="opacity-0"
+                >
+                    <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+                </Transition.Child>
+
+                <div className="fixed z-10 inset-0 overflow-y-auto">
+                    <div className="flex items-end sm:items-center justify-center min-h-full p-4 text-center sm:p-0">
+                        <Transition.Child
+                            as={Fragment}
+                            enter="ease-out duration-300"
+                            enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                            enterTo="opacity-100 translate-y-0 sm:scale-100"
+                            leave="ease-in duration-200"
+                            leaveFrom="opacity-100 translate-y-0 sm:scale-100"
+                            leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                        >
+                            <Dialog.Panel className="relative bg-white rounded-lg text-left max-h-[80vh] py-3 overflow-y-scroll shadow-xl transform transition-all sm:my-8 ">
+                                <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+
+                                        <img className='w-full h-full' src={sizeImg} alt="" />
+                                   
+                                </div>
+
+                            </Dialog.Panel>
+                        </Transition.Child>
+                    </div>
+                </div>
+            </Dialog>
+        </Transition.Root>
+    </>
+    )
+}
+
+

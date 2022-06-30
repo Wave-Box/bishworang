@@ -4,7 +4,7 @@ import { HeartIcon, SearchIcon, UserIcon, XIcon } from '@heroicons/react/outline
 import { Menu, Transition } from '@headlessui/react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { logOut } from '../../../redux/slices/userSlice';
+// import { logOut } from '../../../redux/slices/userSlice';
 import { profileImg } from '../../../siteSetting/siteUrl';
 import { motion } from 'framer-motion'
 import SearchBox from './SearchBox';
@@ -73,7 +73,7 @@ const HeaderDown = () => {
                                             </NavLink>
 
                                         </Menu.Item>
-                                        <Menu.Item>
+                                        {/* <Menu.Item>
 
                                             <div
                                                 onClick={() => logOut()}
@@ -82,7 +82,7 @@ const HeaderDown = () => {
                                                 Sign out
                                             </div>
 
-                                        </Menu.Item>
+                                        </Menu.Item> */}
                                     </Menu.Items>
                                 </Transition>
                             </Menu>}
