@@ -6,7 +6,7 @@ export const signUp = createAsyncThunk(
   "auth/register",
   async ({ name, email, phone, password }, thunkAPI) => {
     try {
-      const {data} = await AuthService.signUp(name, email, phone, password);
+      const { data } = await AuthService.signUp(name, email, phone, password);
       console.log("response ", data);
       thunkAPI.dispatch(setMessage(data.message));
       return data;
@@ -27,7 +27,7 @@ export const verify = createAsyncThunk(
   "auth/verify",
   async ({ otp }, thunkAPI) => {
     try {
-      const {data} = await AuthService.verify_phone(otp);
+      const { data } = await AuthService.verify_phone(otp);
 
       thunkAPI.dispatch(setMessage(data.error));
       return data;
@@ -144,8 +144,13 @@ const authSlice = createSlice({
       state.user = null;
     },
     [login.fulfilled]: (state, action) => {
-      state.isLoggedIn = true;
-      state.user = action.payload;
+      if (action.payload.verify) {
+        state.isLoggedIn = true;
+        state.user = action.payload;
+      } else {
+        state.isLoggedIn = false;
+        state.user = action.payload;
+      }
     },
     [login.rejected]: (state, action) => {
       state.isLoggedIn = false;
@@ -153,9 +158,13 @@ const authSlice = createSlice({
     },
 
     [verify.fulfilled]: (state, action) => {
-      state.isLoggedIn = false;
-      if (!action.payload.error) {
+      if (action.payload.verify) {
+        state.isLoggedIn = true;
         state.user = action.payload;
+      }else{
+        state.isLoggedIn = false;
+        state.user = action.payload;
+
       }
 
     },

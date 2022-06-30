@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { button1 } from '../../../constant/color';
 import { login } from '../../../redux/slices/auth';
 import { clearMessage } from '../../../redux/slices/message';
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import useAuth from '../../../hooks/useAuth';
 import { facebook, google } from '../../../constant';
 import { toast } from 'react-toastify';
@@ -21,7 +21,6 @@ const Login = () => {
 
 
     const dispatch = useDispatch();
-    const navigate = useNavigate()
     useEffect(() => {
         dispatch(clearMessage());
     }, [dispatch]);
@@ -43,7 +42,8 @@ const Login = () => {
                     // });
                     window.location.replace("/profile");
                 } else {
-                    navigate('/verify-otp')
+                    window.location.replace("/verify-otp");
+                    
                 }
 
             })
