@@ -82,8 +82,8 @@ const Shop = () => {
                                 <TitleBorder />
 
                                 <div className="flex justify-between items-center">
-                                    <label for="range" className=" mb-2 text-sm font-semibold"><Taka tk={0} /></label>
-                                    <label for="range" className=" mb-2 text-sm font-semibold"><Taka tk={val} /></label>
+                                    <label htmlFor="range" className=" mb-2 text-sm font-semibold"><Taka tk={0} /></label>
+                                    <label htmlFor="range" className=" mb-2 text-sm font-semibold"><Taka tk={val} /></label>
                                 </div>
                                 <input
                                     min="1" max="10000"

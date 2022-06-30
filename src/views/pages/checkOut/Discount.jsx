@@ -64,7 +64,7 @@ const Discount = ({ setCupon, setShipping_area }) => {
 
                         <div className="col-span-6 sm:col-span-3">
                             <div className="flex justify-start gap-4 items-center pb-3">
-                                <label htmlFor="name" className="block text-xl font-semibold text-gray-700">
+                                <label htmlhtmlFor="name" className="block text-xl font-semibold text-gray-700">
                                     Shipping Area
                                 </label>
                                 <div>
@@ -83,7 +83,7 @@ const Discount = ({ setCupon, setShipping_area }) => {
                         </div>
                         <div className="col-span-6 sm:col-span-3">
                             <div className="flex flex-wrap sm:justify-between sm:items-center pb-3 items-start">
-                                <label htmlFor="name" className="block text-xl font-semibold text-gray-700">
+                                <label htmlhtmlFor="name" className="block text-xl font-semibold text-gray-700">
                                     Discount
                                 </label>
                                 <form onSubmit={handleSubmit(onSubmit)} className='flex flex-wrap justify-center items-start'>
@@ -91,7 +91,7 @@ const Discount = ({ setCupon, setShipping_area }) => {
                                         <input {...register("code", { required: true })} type={'text'} className="border border-gray-400 py-2 px-2 rounded-sm" />
                                         {errors.code && <span className='text-red-500'>Field is empty</span>}
                                     </div>
-                                    <input type={'submit'} value={'Apply'} htmlFor='discount' className={`px-4 py-2 ml-2 font-semibold rounded-sm text-lg bg-[${red}] hover:bg-red-600 hover:text-gray-100 text-white`} />
+                                    <input type={'submit'} value={'Apply'} htmlhtmlFor='discount' className={`px-4 py-2 ml-2 font-semibold rounded-sm text-lg bg-[${red}] hover:bg-red-600 hover:text-gray-100 text-white`} />
                                 </form>
                             </div>
 

@@ -25,7 +25,7 @@ const Address = () => {
 
                     <div className="col-span-6 sm:col-span-4">
                         <div className="flex justify-between items-center pb-3">
-                            <label htmlFor="name" className="block text-xl font-semibold text-gray-700">
+                            <label htmlhtmlFor="name" className="block text-xl font-semibold text-gray-700">
                                 Addresses
                             </label>
                             <span className='text-green-600 font-semibold tracking-wider cursor-pointer' onClick={() => setOpen(true)}> + Add</span>

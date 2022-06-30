@@ -33,7 +33,7 @@ const Address = ({ selectAddress, setSelectAddress }) => {
 
                     <div className="col-span-6 sm:col-span-4">
                         <div className="flex justify-between items-center pb-3">
-                            <label htmlFor="name" className="block text-xl font-semibold text-gray-700">
+                            <label htmlhtmlFor="name" className="block text-xl font-semibold text-gray-700">
                                 Addresses
                             </label>
                             <span className='text-green-600 font-semibold tracking-wider cursor-pointer' onClick={() => setOpen(true)}> + Add</span>
@@ -140,14 +140,14 @@ export function SaveAddress({ open, setOpen, setCall }) {
 
 
                             <div className="col-span-6 sm:col-span-3 lg:col-span-2">
-                                <label htmlFor="name"
+                                <label htmlhtmlFor="name"
                                     className="block text-sm font-medium text-gray-700">Name</label>
                                 <input {...register("name", { required: true })} type="text" name="name" id="name" autoComplete="address-level1"
                                     className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                 {errors.name && <span className='text-red-500'>Phone name is required</span>}
                             </div>
                             <div className="col-span-6 sm:col-span-3 lg:col-span-2">
-                                <label htmlFor="phone"
+                                <label htmlhtmlFor="phone"
                                     className="block text-sm font-medium text-gray-700">Phone</label>
                                 <input
                                     {...register("phone", { required: true.valueOf, minLength: 11 })}
@@ -158,7 +158,7 @@ export function SaveAddress({ open, setOpen, setCall }) {
                                 {errors.phone?.type === 'minLength' && <span className='text-red-500'>Please enter correct phone number</span>}
                             </div>
                             <div className="col-span-6 sm:col-span-3 lg:col-span-2">
-                                <label htmlFor="address"
+                                <label htmlhtmlFor="address"
                                     className="block text-sm font-medium text-gray-700">Address</label>
                                 <textarea
                                     {...register("address", { required: true })}
@@ -226,13 +226,13 @@ export function UpdateAddress({ open, setOpen, item, setCall }) {
 
 
                         <div className="col-span-6 sm:col-span-3 lg:col-span-2">
-                            <label htmlFor="name"
+                            <label htmlhtmlFor="name"
                                 className="block text-sm font-medium text-gray-700">Name</label>
                             <input {...register("name")} type="text" name="name" id="name" autoComplete="address-level1"
                                 className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                         </div>
                         <div className="col-span-6 sm:col-span-3 lg:col-span-2">
-                            <label htmlFor="phone"
+                            <label htmlhtmlFor="phone"
                                 className="block text-sm font-medium text-gray-700">Phone</label>
                             <input
                                 {...register("phone", { required: true.valueOf, minLength: 11 })}
@@ -241,7 +241,7 @@ export function UpdateAddress({ open, setOpen, item, setCall }) {
                             {errors.phone && <span className='text-red-500'>Phone number is required</span>}
                         </div>
                         <div className="col-span-6 sm:col-span-3 lg:col-span-2">
-                            <label htmlFor="address"
+                            <label htmlhtmlFor="address"
                                 className="block text-sm font-medium text-gray-700">Address</label>
                             <textarea
                                 {...register("address")}

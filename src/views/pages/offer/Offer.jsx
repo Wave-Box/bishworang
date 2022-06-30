@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { primaryColor } from '../../../constant';
+import { ProductCard } from '../../components/card';
 import Card3 from '../../components/card/Card3.';
 import { Link1 } from '../../components/links';
 import Title from '../../components/utils/Title';
@@ -8,48 +9,34 @@ import banner3 from '../../../assets/images/shop/banner-11.jpg'
 import { ViewGridIcon, ChevronDownIcon } from '@heroicons/react/outline'
 import TitleBorder from '../../components/utils/TitleBorder';
 import useTheme from '../../../hooks/useTheme';
-import httpReq from '../../../services/http.service';
 import { getPrice } from '../../components/utils/getPrice';
 import Taka from '../../components/utils/Taka';
-import { productImg } from '../../../siteSetting/siteUrl';
-import { TrashIcon } from '@heroicons/react/solid';
-import { HoverIcon } from '../../components/card/ProductCard';
-import { confirmAlert } from 'react-confirm-alert';
-import { toast } from 'react-toastify';
 
 
 
-const Favourite = () => {
+const Offer = () => {
     const [val, setVal] = useState(0)
     const [store, setStore] = useState([])
     const [products, setProducts] = useState([])
-    const { category } = useTheme()
+    const { category, offer, product } = useTheme()
     const [loading, setloading] = useState(false)
-    const [call, setCall] = useState(0)
 
     useEffect(() => {
-        setloading(true)
-        // declare the async data fetching function
-        const fetchData = async () => {
-            // get the data from the api
-            const { product } = await httpReq.get('favourite/get');
+
+        const data = product?.filter(p => offer?.products?.find(o => parseInt(o) === p?.id))
 
 
-            // set state with the result
-            setProducts(product);
-            setStore(product);
-            setloading(false)
+        // set state with the result
+        setProducts(data);
+        setStore(data);
+        setloading(false)
 
-        }
+
 
         // call the function
-        fetchData()
-            // make sure to catch any error
-            .catch((error) => {
-                setloading(false)
-                console.log(error);
-            }).finally(() => setloading(false))
-    }, [call])
+
+
+    }, [offer?.products, product])
 
 
 
@@ -61,7 +48,7 @@ const Favourite = () => {
                     <div className="text-sm breadcrumbs md:mt-6 my-4 ">
                         <ul>
                             <li><Link to='/'>Home</Link></li>
-                            <li>Favourite</li>
+                            <li>Offer</li>
                         </ul>
                     </div>
                 </div>
@@ -107,7 +94,7 @@ const Favourite = () => {
                             <div className="relative">
                                 <img alt="gallery" className="w-full object-cover object-center block" src={banner3} />
                                 <div className="absolute top-0 bottom-0 left-4 flex justify-start items-center ">
-                                    <Card3 offerType={'Smart Offer'} title={'Great Summer Collection'} link={'Favourite Now'} />
+                                    <Card3 offerType={'Smart Offer'} title={'Great Summer Collection'} link={'Offer Now'} />
                                 </div>
                             </div>
                         </div>
@@ -150,7 +137,7 @@ const Favourite = () => {
 
                             products.length ?
                                 <div className="grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-2">
-                                    {products?.map((i) => <Single key={i.id} item={i} setCall={setCall} />)}
+                                    {products?.map((i) => <ProductCard key={i.id} item={i} />)}
                                 </div> : <div className="flex justify-center h-[400px] items-center">
                                     <h3 className=" font-sans font-semibold text-3xl text-gray-400 ">Product Not Found!</h3>
                                 </div>
@@ -161,16 +148,7 @@ const Favourite = () => {
 
                 </div>
 
-                {/* <div className="flex justify-center my-5">
-                    <div className="flex gap-3 items-center">
-                        <button className="p-2">«</button>
-                        <button className=" p-2">1</button>
-                        <button className=" p-2">2</button>
-                        <button className=" p-2">2</button>
-                        <button className=" p-2">3</button>
-                        <button className="p-2">»</button>
-                    </div>
-                </div> */}
+
 
             </div>
 
@@ -179,62 +157,8 @@ const Favourite = () => {
     );
 };
 
-export default Favourite;
+export default Offer;
 
-
-
-const Single = ({ item, setCall }) => {
-    const remove_fevorite = (id) => {
-        confirmAlert({
-            title: 'Confirm to Done',
-            message: 'Are you sure to cancel this order.',
-            buttons: [
-                {
-                    label: 'Yes',
-                    onClick: () => {
-                        httpReq.post('favourite/delete', { product_id: id })
-                            .then(res => {
-                                console.log(res);
-                                if (res?.success) {
-                                    setCall(Math.random() * 1000)
-                                    toast(res?.success, {
-                                        type: "success"
-                                    });
-                                }
-                            })
-
-                    }
-                },
-                {
-                    label: 'No',
-                    onClick: () => toast('rejected', {
-                        type: "warning"
-                    })
-                }
-            ]
-        });
-    }
-    return (
-        <div className="w-full drop-shadow-md mb-3">
-            <div className="image relative cursor-pointer">
-                <img src={productImg + item?.image[0]} className={"w-full h-52 cursor-pointer hover:bg-gray-900"} alt="" />
-                <div className="overlay"></div>
-            </div>
-            <div className="bg-white px-1 py-2">
-                <h6 className=' text-left tracking-widest text-sm'>{item?.name?.slice(0, 18)}{item?.name?.length > 18 ? "..." : null}</h6>
-                <div className="flex justify-between items-center">
-                    <p className='tracking-widest '> <Taka tk={getPrice(item?.regular_price, item?.discount_price, item?.discount_type)} /></p>
-                    <div onClick={() => remove_fevorite(item?.id)} className="mr-4">
-                        <HoverIcon text={"Remove"}>
-
-                            <TrashIcon width={18} color="gray" />
-                        </HoverIcon>
-                    </div>
-                </div>
-            </div>
-        </div>
-    )
-}
 
 
 

@@ -124,7 +124,7 @@ const Profile = () => {
                                                         </svg>}
                                                     </span>
                                                     <label
-                                                        htmlFor="image"
+                                                        htmlhtmlFor="image"
                                                         className="ml-5 bg-white py-2 px-3 border border-gray-300 rounded-md shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none hover:ring-2 focus:ring-offset-2 hover:ring-indigo-500  cursor-pointer"
                                                     >
 
@@ -137,7 +137,7 @@ const Profile = () => {
 
 
                                             <div className="col-span-6 ">
-                                                <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
+                                                <label htmlhtmlFor="first-name" className="block text-sm font-medium text-gray-700">
                                                     Full name
                                                 </label>
                                                 <input
@@ -151,7 +151,7 @@ const Profile = () => {
                                             </div>
 
                                             <div className="col-span-6 ">
-                                                <label htmlFor="email-address" className="block text-sm font-medium text-gray-700">
+                                                <label htmlhtmlFor="email-address" className="block text-sm font-medium text-gray-700">
                                                     Email address
                                                 </label>
                                                 <input
@@ -165,7 +165,7 @@ const Profile = () => {
                                             </div>
 
                                             <div className="col-span-6 ">
-                                                <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
+                                                <label htmlhtmlFor="first-name" className="block text-sm font-medium text-gray-700">
                                                     Mobile Number
                                                 </label>
                                                 <input
@@ -179,7 +179,7 @@ const Profile = () => {
                                             </div>
 
                                             <div className="col-span-6 ">
-                                                <label htmlFor="last-name" className="block text-sm font-medium text-gray-700">
+                                                <label htmlhtmlFor="last-name" className="block text-sm font-medium text-gray-700">
                                                     Address
                                                 </label>
                                                 <div className="mt-1">

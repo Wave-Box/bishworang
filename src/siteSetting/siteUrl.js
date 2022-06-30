@@ -7,3 +7,4 @@ export const testimonialImg = 'https://bishworang.wavebox.net/assets/images/test
 export const profileImg = 'https://bishworang.wavebox.net/assets/images/img/'
 export const campaignImg = 'https://bishworang.wavebox.net/assets/images/campaign/'
 export const blogImg = 'https://bishworang.wavebox.net/assets/images/blog/'
+export const offerImg = 'https://bishworang.wavebox.net/assets/images/offer/'

@@ -88,7 +88,7 @@ const Login = () => {
 
 
                 <div className="flex justify-between items-center">
-                    <label htmlFor='remember' className="label cursor-pointer gap-4">
+                    <label htmlhtmlFor='remember' className="label cursor-pointer gap-4">
                         <input type="checkbox" id='remember' className="checkbox border border-gray-300" />
                         <span className="label-text">Remember me</span>
                     </label>
