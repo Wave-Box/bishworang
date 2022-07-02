@@ -13,8 +13,11 @@ import httpReq from '../../../services/http.service';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCartList, incrementQty } from '../../../redux/slices/productslice';
 import useTheme from '../../../hooks/useTheme';
+import Details from '../../pages/singleProduct/Details';
+import QuickView from './QuickView';
 
 const ProductCard = ({ item }) => {
+    const [open, setOpen] = useState(false)
     const [result, setResult] = useState({})
     const { makeid } = useTheme()
     const price = getPrice(item?.regular_price, item?.discount_price, item?.discount_type)
@@ -81,9 +84,11 @@ const ProductCard = ({ item }) => {
 
                     </NavLink>
                     <div className="absolute hidden gap-2 top-[45%] group-hover:flex justify-center left-0 right-0">
-                        <HoverIcon text={"Quick View"} >
-                            <EyeIcon className='h-5 w-5 text-2xl font-serif font-semibold' />
-                        </HoverIcon>
+                        <div onClick={() => setOpen(!open)} className="">
+                            <HoverIcon text={"Quick View"} >
+                                <EyeIcon className='h-5 w-5 text-2xl font-serif font-semibold' />
+                            </HoverIcon>
+                        </div>
                         <div className="" onClick={() => add_to_favourite(item?.id)}>
                             <HoverIcon text={"Favorite"} >
                                 <HeartIcon className='h-5 w-5 text-2xl font-serif font-semibold' />
@@ -127,6 +132,10 @@ const ProductCard = ({ item }) => {
                         </NavLink>}
                 </div>
             </div>
+
+            <QuickView open={open} setOpen={setOpen} >
+                <Details data={{ product_id: item?.id }} />
+            </QuickView>
         </div>
     );
 };

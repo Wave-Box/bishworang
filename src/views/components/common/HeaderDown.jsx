@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import logo from '../../../assets/images/headerLogo.png'
-import { HeartIcon, SearchIcon, UserIcon, XIcon } from '@heroicons/react/outline'
+import { HeartIcon, SearchIcon, ShoppingCartIcon, UserIcon, XIcon } from '@heroicons/react/outline'
 import { Menu, Transition } from '@headlessui/react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -9,6 +9,7 @@ import { profileImg } from '../../../siteSetting/siteUrl';
 import { motion } from 'framer-motion'
 import SearchBox from './SearchBox';
 import useTheme from '../../../hooks/useTheme';
+import Drawer from './Drawer';
 
 const HeaderDown = () => {
     const { user } = useSelector((state) => state.auth)
@@ -33,6 +34,7 @@ const HeaderDown = () => {
                             <Search />
                         </div>
                         <div className="flex items-center space-x-3">
+                            <ShoppingCart />
                             <NavLink to='/favourite' className="relative">
                                 <HeartIcon width={30} />
                                 <span className="absolute -top-2 -right-1 bg-[#AD171A] text-white rounded-full px-1 py-0 font-serif text-2xs">{favourite?.length}</span>
@@ -112,8 +114,8 @@ export const Search = () => {
         <>
             {text && <div className="absolute top-0 z-0  w-screen h-screen" onClick={() => setText('')}></div>}
             <div className="relative w-full">
-                {show && <motion.div initial={{ x: 20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} exit={{ y: 20, opacity: 0 }} transition={{ duration: 0.6 }} 
-            
+                {show && <motion.div initial={{ x: 20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} exit={{ y: 20, opacity: 0 }} transition={{ duration: 0.6 }}
+
                 >
 
                     <input
@@ -137,6 +139,17 @@ export const Search = () => {
                 {text && <SearchBox search={text} setSearch={setText} />}
             </div>
             {!show && <SearchIcon onClick={() => setshow(!show)} className='h-5 w-5 sm:h-7 sm:w-7' />}
+        </>
+    )
+}
+
+
+const ShoppingCart = () => {
+    const [open, setOpen] = useState(false)
+    return (
+        <>
+            <ShoppingCartIcon onClick={() => setOpen(!open)} className='h-6 w-6 flex sm:hidden' />
+            <Drawer open={open} setOpen={setOpen} />
         </>
     )
 }

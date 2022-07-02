@@ -2,6 +2,7 @@
 import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
 import { token } from "../services/AxiosInstance";
+import { toast } from 'react-toastify'
 
 
 import httpReq from "../services/http.service";
@@ -81,6 +82,19 @@ const useData = () => {
 
         // call the function
         fetchHeader()
+
+        // Visiter Counter 
+        axios.get("https://geolocation-db.com/json/").then(({ data }) => {
+            if (data?.IPv4) {
+                httpReq.post('visitor', { ip: data?.IPv4 })
+                    .then(({ success }) => {
+                        toast(success, { type: 'success' })
+                    })
+            }
+            console.log(data);
+        })
+
+
             // make sure to catch any error
             .catch(console.error);;
     }, [fetchHeader])
@@ -97,12 +111,7 @@ const useData = () => {
         return result;
     }
 
-    // useEffect(() => {
-    //     axios.get('https://v6.exchangerate-api.com/v6/db25471ea0108ac45b9cfdc4/latest/USD')
-    //         .then(res => {
-    //             setcurrencyInfo(res)
-    //         })
-    // }, [currency])
+
 
 
 

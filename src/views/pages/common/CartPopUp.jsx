@@ -20,7 +20,7 @@ const CartPopUp = () => {
                         <div className="flex justify-center gap-x-1 items-center mb-2">
                             <GiShoppingBag className='font-semibold text-sm text-white' />
                             <div className="flex flex-col leading ">
-                                <span className='font-semibold text-white text-sm mt-1'>{cartList.length} Item
+                                <span className='font-semibold text-white text-sm mt-1'>{cartList?.length} Item
                                 </span>
 
                             </div>

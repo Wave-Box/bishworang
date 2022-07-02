@@ -71,6 +71,10 @@ export const DownSlider = ({ prev, next, product }) => {
             <ChevronRightIcon className={next + " absolute right-0 top-24 bg-gray-600 z-10"} height={30} width={18} color={"white"} />
             <SliderTwo nextEl={next} prevEl={prev} breakpoint={
                 {
+                    40: {
+                        slidesPerView: 2,
+                        spaceBetween: 10,
+                    },
                     640: {
                         slidesPerView: 2,
                         spaceBetween: 10,

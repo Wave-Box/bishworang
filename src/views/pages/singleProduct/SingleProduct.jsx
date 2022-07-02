@@ -166,7 +166,7 @@ const SingleProduct = () => {
         return (<div className='flex justify-center h-screen items-center capitalize text-3xl font-bold'>Product not Found</div>)
     }
     return (
-        <div className='container mx-auto px-4 sm:px-0'>
+        <div className='container mx-auto'>
             <div className="text-sm breadcrumbs md:mt-6 my-4 ">
                 <ul>
                     <li><Link to='/'>Home</Link></li>
@@ -181,7 +181,7 @@ const SingleProduct = () => {
 
                 </div>
                 <div className="md:col-span-4 md:px-2">
-                    <h2 className='text-xl sm:text-3xl font-semibold text-black'>{product?.name}</h2>
+                    <h2 className='text-3xl font-semibold text-black'>{product?.name}</h2>
                     <div className="flex justify-between items-center mt-6">
                         <div className=""><p className='capitalize' style={{ color: primaryColor }}> <span className='text-black'>Category: </span> {product?.category}</p></div>
                         {/* <div className="flex justify-start items-center gap-2"><p className='text-xl'><Rate rating={4.5} /></p> <p>(25 reviews)</p></div> */}

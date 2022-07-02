@@ -25,7 +25,7 @@ const Product_Section = () => {
     const { product, popularProduct, featureProduct } = useTheme()
     return (
         <div className=' py-12'>
-            <div className="mx-auto container">
+            <div className="mx-auto container px-4 sm:px-0">
                 <div className="flex justify-between items-center my-7 ">
                     <div className="flex justify-center sm:justify-start flex-wrap gap-2">
                         {btn?.map((i) => <Button1 setActive={setActive} text={i.text} active={active} key={i.text} />)}
@@ -33,7 +33,7 @@ const Product_Section = () => {
                     </div>
                 </div>
 
-                <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 px-4 lg:px-0 gap-2'>
+                <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2'>
                     {active === 'New Added' &&
                         product?.slice(0, 8).map((i) => (
 

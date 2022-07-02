@@ -20,12 +20,7 @@ const login = (phone, password) => {
         phone,
         password,
     })
-        .then((response) => {
-            if (response.data.accessToken) {
-                localStorage.setItem("user", JSON.stringify(response.data));
-            }
-            return response.data;
-        });
+        
 };
 
 const googleLogin = (name, email, access_token, imageurl) => {
@@ -35,12 +30,7 @@ const googleLogin = (name, email, access_token, imageurl) => {
         access_token,
         imageurl
     })
-        .then((response) => {
-            if (response.data.accessToken) {
-                localStorage.setItem("user", JSON.stringify(response.data));
-            }
-            return response.data;
-        });
+        
 };
 
 const forgot = (store_id, phone) => {
@@ -53,9 +43,7 @@ const forgot = (store_id, phone) => {
 
 const logout = () => {
     return axiosInstance.post("logout")
-        .then((response) => {
-            return response.data;
-        });
+        
 };
 
 
