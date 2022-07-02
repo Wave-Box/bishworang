@@ -2,7 +2,7 @@
 import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
 import { token } from "../services/AxiosInstance";
-import { toast } from 'react-toastify'
+// import { toast } from 'react-toastify'
 
 
 import httpReq from "../services/http.service";
@@ -88,7 +88,7 @@ const useData = () => {
             if (data?.IPv4) {
                 httpReq.post('visitor', { ip: data?.IPv4 })
                     .then(({ success }) => {
-                        toast(success, { type: 'success' })
+                        // toast(success, { type: 'success' })
                     })
             }
             console.log(data);
