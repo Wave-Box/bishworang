@@ -1,4 +1,5 @@
 
+import axios from "axios";
 import { useCallback, useEffect, useState } from "react";
 import { token } from "../services/AxiosInstance";
 
@@ -29,6 +30,9 @@ const useData = () => {
     const [settings, setSettings] = useState({})
     const [topdeals, setTopdeals] = useState([])
 
+    const [currency, setCurrency] = useState('BDT')
+    const [currencyInfo, setcurrencyInfo] = useState({})
+
 
     const fetchHeader = useCallback(
         async () => {
@@ -40,7 +44,8 @@ const useData = () => {
             const decore = await httpReq.get('home_decore');
             const blog = await httpReq.get('blog');
 
-
+            const { data } = await axios.get('https://v6.exchangerate-api.com/v6/db25471ea0108ac45b9cfdc4/latest/USD')
+            setcurrencyInfo(data)
 
             if (token && v?.verify) {
                 const user = await httpReq.get('getuser');
@@ -92,6 +97,13 @@ const useData = () => {
         return result;
     }
 
+    // useEffect(() => {
+    //     axios.get('https://v6.exchangerate-api.com/v6/db25471ea0108ac45b9cfdc4/latest/USD')
+    //         .then(res => {
+    //             setcurrencyInfo(res)
+    //         })
+    // }, [currency])
+
 
 
     return {
@@ -114,6 +126,9 @@ const useData = () => {
         blogs,
         topdeals,
         settings,
+        currency,
+        setCurrency,
+        currencyInfo
 
     }
 

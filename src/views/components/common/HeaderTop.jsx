@@ -9,7 +9,7 @@ import { logout } from '../../../redux/slices/auth';
 const HeaderTop = () => {
     const { user } = useSelector((state) => state.auth);
     const dispatch = useDispatch()
-  
+
     const { topdeals } = useTheme()
     return (
         <div className=" w-full py-0 text-sm hidden md:block" style={{ backgroundColor: '#AD171A' }}>
@@ -29,12 +29,9 @@ const HeaderTop = () => {
                     </Marquee>
                 </div>
                 <div className="flex items-center divide-x gap-x-4">
-                    <select className=' bg-transparent border-0 outline-0 text-white'>
-                        <option className='text-black' value="">BDT</option>
-                        <option className='text-black' value="">USD</option>
-                    </select>
+                    <CurrencyFrom />
                     {user?.verify ?
-                        <div className='cursor-pointer'  onClick={() => dispatch(logout())}> <HeaderTopMenu icon={logoutIcon} doc={"Logout"} />
+                        <div className='cursor-pointer' onClick={() => dispatch(logout())}> <HeaderTopMenu icon={logoutIcon} doc={"Logout"} />
                         </div> :
                         <NavLink to='/login'> <HeaderTopMenu icon={userIcon} doc={"Log In/Sign Up"} /></NavLink>
                     }
@@ -53,5 +50,17 @@ const HeaderTopMenu = (props) => {
             {props.icon}
             <p>{props.doc}</p>
         </div>
+    )
+}
+
+
+const CurrencyFrom = () => {
+    const { currency, setCurrency } = useTheme()
+    console.log("currency", currency);
+    return (
+        <select onChange={(e) => setCurrency(e.target.value)} className='bg-transparent border-0 outline-0 text-white'>
+            <option className='text-black' value="BDT">BDT</option>
+            <option className='text-black' value="USD">USD</option>
+        </select>
     )
 }
