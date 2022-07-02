@@ -87,11 +87,7 @@ const Login = () => {
 
 
 
-                <div className="flex justify-between items-center">
-                    <label htmlhtmlFor='remember' className="label cursor-pointer gap-4">
-                        <input type="checkbox" id='remember' className="checkbox border border-gray-300" />
-                        <span className="label-text">Remember me</span>
-                    </label>
+                <div className="flex justify-end items-center">
                     <NavLink to='/forgot-password' className="label-text">Forgot password?</NavLink>
                 </div>
 
@@ -104,16 +100,16 @@ const Login = () => {
                 </div>
             </form>
             <div className="divider">OR</div>
-            <div className="flex justify-center">
-                <div className="flex gap-4">
-                    <button
+            
+                <div className="flex space-x-2 justify-center">
+                    <div
                         onClick={handleFacebookSignIn}
-                        className='text-white font-semibold text-base px-6 py-3 rounded-md' style={{ backgroundColor: facebook }}>Login With Facebook</button>
-                    <button
+                        className='text-white self-center font-semibold text-xs sm:text-base  px-6 py-3 rounded-md' style={{ backgroundColor: facebook }}>Login With Facebook</div>
+                    <div
                         onClick={handleGoogleSignIn}
-                        className='text-white font-semibold text-base px-6 py-3 rounded-md' style={{ backgroundColor: google }}>Login With Google</button>
+                        className='text-white self-center font-semibold text-xs sm:text-base px-6 py-3 rounded-md' style={{ backgroundColor: google }}>Login With Google</div>
                 </div>
-            </div>
+          
         </>
     );
 };

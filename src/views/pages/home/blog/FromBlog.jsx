@@ -10,7 +10,7 @@ const FromBlog = () => {
     return (
         <div>
             <section className="text-gray-600 body-font bg-white">
-                <div className="container py-12 mx-auto">
+                <div className="container py-12 mx-auto sm:px-0 px-4">
                     <div className="md:p-2 p-1 w-full flex gap-2">
                         <Title text={'From'} >Blog</Title>
                     </div>

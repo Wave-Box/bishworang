@@ -12,7 +12,7 @@ const NewArrivals = () => {
     const prev = 'new_Prev'
     const next = 'new_Next'
     return (
-       <div className="container my-12">
+       <div className="container my-12 sm:px-0 px-4">
             <div className="flex justify-between items-center">
                 <Title text={'New'} >Arrivals</Title>
 

@@ -24,6 +24,10 @@ const Slider1 = ({ nextEl, prevEl, children }) => {
             }}
             modules={[Autoplay, A11y, EffectFade, Navigation, Controller]}
             breakpoints={{
+                40: {
+                    slidesPerView: 2,
+                    spaceBetween: 10,
+                },
                 640: {
                     slidesPerView: 2,
                     spaceBetween: 10,

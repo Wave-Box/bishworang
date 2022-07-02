@@ -58,7 +58,7 @@ const CurrencyFrom = () => {
     const { currency, setCurrency } = useTheme()
     console.log("currency", currency);
     return (
-        <select onChange={(e) => setCurrency(e.target.value)} className='bg-transparent border-0 outline-0 text-white'>
+        <select onChange={(e) => setCurrency(e.target.value)} className='bg-transparent border-0 outline-0 text-white focus:ring-0 focus:border-0 focus:outline-0'>
             <option className='text-black' value="BDT">BDT</option>
             <option className='text-black' value="USD">USD</option>
         </select>

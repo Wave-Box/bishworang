@@ -12,7 +12,7 @@ import { offerImg } from '../../../../siteSetting/siteUrl';
 const TimerSection = () => {
     const { offer } = useTheme()
     return (
-        <div className="container mb-14">
+        <div className="container mb-14 sm:px-0 px-4">
             <div className='grid md:grid-cols-2 grid-cols-1 gap-5'>
                 {Object.keys(offer).length && <div className="relative rounded-md">
                     <img alt="gallery" className="w-full min-h-[600px] sm:min-h-full object-cover object-center block" src={offerImg + offer?.image} />

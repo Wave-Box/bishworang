@@ -40,7 +40,7 @@ const ChangePassword = () => {
       <div className="md:grid md:grid-cols-3 md:gap-6">
         <div className="md:col-span-3">
           <div className="px-4 sm:px-0">
-            <h3 className="text-3xl lg:text-4xl font-semibold leading-7 lg:leading-9  text-gray-800">Change Your Password</h3>
+            <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold leading-7 lg:leading-9  text-gray-800">Change Your Password</h3>
 
           </div>
         </div>
@@ -56,11 +56,11 @@ const ChangePassword = () => {
 
                 
 
-                  <div className="col-span-3 ">
+                  <div className="col-span-5 sm:col-span-3 ">
                     <SinglePassword label={"New Password"} register={register} registerName={'password'} />
                   </div>
 
-                  <div className="col-span-3 ">
+                  <div className="col-span-5 sm:col-span-3 ">
                     <SinglePassword label={"Re-Type New Password"} register={register} registerName={'confirm_password'} />
                   </div>
 
@@ -72,10 +72,10 @@ const ChangePassword = () => {
 
                 </div>
               </div>
-              <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
+              <div className="px-4 py-3 bg-gray-50 text-left sm:px-6">
                 <button
                   type="submit"
-                  className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-[#AD171A] hover:bg-[#AD173A] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#AD171A]"
                 >
                   Update Password
                 </button>

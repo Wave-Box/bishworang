@@ -13,7 +13,7 @@ const PopularCategories = () => {
     const next = 'cat_Next'
     return (
         <div className="bg-white">
-            <div className='gap-4 py-5 container'>
+            <div className='gap-4 py-5 container px-4 sm:px-0'>
                 <div className="my-5 pt-1 flex justify-between items-center">
                     <Title text={'Popular'} >Categories</Title>
                     <Arrow prevEl={prev} nextEl={next}></Arrow>

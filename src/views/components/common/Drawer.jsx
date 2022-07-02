@@ -20,7 +20,7 @@ export default function Drawer({ open, setOpen }) {
 
     return (
         <Transition.Root show={open} as={Fragment}>
-            <Dialog as="div" className="relative z-10" onClose={setOpen}>
+            <Dialog as="div" className="relative z-[1110]" onClose={setOpen}>
                 <Transition.Child
                     as={Fragment}
                     enter="ease-in-out duration-500"
@@ -59,7 +59,7 @@ export default function Drawer({ open, setOpen }) {
 
                                         </div>
                                     </Transition.Child>
-                                    <div className="flex h-full flex-col z-20 bg-white py-8 shadow-xl">
+                                    <div className="flex h-full flex-col z-[1120] bg-white py-8 shadow-xl">
                                         <div className="px-4 sm:px-6">
                                             <Dialog.Title className="text-lg font-medium text-gray-900 text-right border-b pb-2 border-black font-serif ">Item(s) added to your bag </Dialog.Title>
                                             <div className=' divide-black'></div>

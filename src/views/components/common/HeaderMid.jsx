@@ -11,8 +11,10 @@ import {
 
 import { NavLink } from 'react-router-dom'
 import useTheme from '../../../hooks/useTheme'
-import { catImg } from '../../../siteSetting/siteUrl'
-
+import { catImg, imgUrl } from '../../../siteSetting/siteUrl'
+import { Search } from './HeaderDown'
+import { logout } from '../../../redux/slices/auth'
+import { useDispatch, useSelector } from 'react-redux'
 
 
 
@@ -21,9 +23,11 @@ import { catImg } from '../../../siteSetting/siteUrl'
 export default function HeaderMid() {
     const { category, settings } = useTheme()
     const [isShowing, setIsShowing] = useState(false)
+    const { user } = useSelector((state) => state.auth);
+    const dispatch = useDispatch()
     return (
         <Popover style={{ background: `white`, position: 'relative' }} className="relative bg-gray-50 shadow-lg mb-2">
-            <div className="container mx-auto">
+            <div className="container mx-auto px-4 sm:px-0">
                 <div className="flex justify-between items-center  py-1 md:justify-start md:space-x-10">
                     <div className="flex justify-start lg:w-0 lg:flex-1">
                         <div className="relative">
@@ -48,8 +52,8 @@ export default function HeaderMid() {
                             {isShowing && (
                                 <div onMouseEnter={() => setIsShowing(true)}
                                     onMouseLeave={() => setIsShowing(false)} className="absolute z-10 -ml-4 mt-0 transform px-2 w-screen max-w-max sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2">
-                                    <div className="shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
-                                        <div className="relative grid gap-3  py-6 sm:gap-8 sm:p-8 bg-[#AD171A] text-white">
+                                    <div className="shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden rounded">
+                                        <div className="relative grid gap-3  py-6 sm:gap-8 px-4 sm:p-8 bg-[#fff] text-black">
                                             {category?.map((item) => (
                                                 <NavLink
                                                     to={"/category/" + item?.id} key={item?.id}
@@ -73,10 +77,13 @@ export default function HeaderMid() {
 
                         </div>
                     </div>
-                    <div className="-mr-2 -my-2 md:hidden">
-                        <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                    <div className="-mr-2 -my-2 md:hidden flex items-center">
+                        <div className="block sm:hidden">
+                            <Search />
+                        </div>
+                        <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center  hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-0 focus:ring-inset">
                             <span className="sr-only">Open menu</span>
-                            <MenuIcon className="h-6 w-6" aria-hidden="true" />
+                            <MenuIcon className="h-7 w-7" aria-hidden="true" />
                         </Popover.Button>
                     </div>
                     <Popover.Group as="nav" className="hidden lg:flex flex-wrap xl:space-x-10 space-x-3">
@@ -119,12 +126,12 @@ export default function HeaderMid() {
                                 <div>
                                     <img
                                         className="h-8 w-auto"
-                                        src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+                                        src={imgUrl + settings?.logo}
                                         alt="Workflow"
                                     />
                                 </div>
                                 <div className="-mr-2">
-                                    <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                                    <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-0 focus:ring-inset focus:ring-[#AD171A]">
                                         <span className="sr-only">Close menu</span>
                                         <XIcon className="h-6 w-6" aria-hidden="true" />
                                     </Popover.Button>
@@ -132,51 +139,36 @@ export default function HeaderMid() {
                             </div>
                             <div className="mt-6">
                                 <nav className="grid gap-y-8">
-                                    {category.map((item) => (
+                                    {category?.map((item) => (
                                         <NavLink
-                                            to={"/" + item.id}
-                                            key={item.id}
+                                            to={"/category/" + item?.id}
+                                            key={item?.id}
                                             className="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
                                         >
-                                            <item.icon className="flex-shrink-0 h-6 w-6 text-indigo-600" aria-hidden="true" />
-                                            <span className="ml-3 text-base font-medium text-gray-900">{item.name}</span>
+                                            <div className="flex-shrink-0 h-6 w-6" aria-hidden="true" >
+                                                <img src={catImg + item?.icon} className={"w-full h-full"} alt="" />
+                                            </div>
+                                            <span className="ml-3 text-xs sm:text-base font-semibold text-gray-900">{item.name}</span>
                                         </NavLink>
                                     ))}
                                 </nav>
                             </div>
                         </div>
                         <div className="py-6 px-5 space-y-6">
-                            <div className="grid grid-cols-2 gap-y-4 gap-x-8">
-                                <NavLink to='/' className="text-base font-medium text-gray-900 hover:text-gray-700">
-                                    Pricing
-                                </NavLink>
 
-                                <NavLink to='/' className="text-base font-medium text-gray-900 hover:text-gray-700">
-                                    Docs
-                                </NavLink>
-                                {/* {resources.map((item) => (
-                                    <NavLink
-                                        to='/' key={item.name}
-                                        href={item.href}
-                                        className="text-base font-medium text-gray-900 hover:text-gray-700"
-                                    >
-                                        {item.name}
-                                    </NavLink>
-                                ))} */}
-                            </div>
                             <div>
-                                <NavLink
-                                    to='/' href="/"
-                                    className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
+                                {user?.verify ? <button
+                                    onClick={() => dispatch(logout())}
+                                    className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-[#AD171A] hover:bg-red-600"
                                 >
-                                    Sign up
-                                </NavLink>
-                                <p className="mt-6 text-center text-base font-medium text-gray-500">
-                                    Existing customer?{' '}
-                                    <NavLink to='/' className="text-indigo-600 hover:text-indigo-500">
-                                        Sign in
-                                    </NavLink>
-                                </p>
+                                    Logout
+                                </button> : <NavLink
+                                    to='/login'
+                                    className="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-[#AD171A] hover:bg-red-600"
+                                >
+                                    Sign in
+                                </NavLink>}
+
                             </div>
                         </div>
                     </div>

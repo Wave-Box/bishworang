@@ -17,7 +17,7 @@ const Dashboard = () => {
     // }
     return (
         <div>
-            <div className="md:grid md:grid-cols-3 md:gap-6 mt-16 py-8 px-2">
+            <div className="md:grid md:grid-cols-3 md:gap-6 mt-0 sm:mt-16 sm:py-8 px-2">
                 <LeftSide />
                 <div className="mt-5 md:mt-0 md:col-span-2">
                     <Outlet />

@@ -58,7 +58,7 @@ const Favourite = () => {
         <>
             <div className="">
                 <div className="container mx-auto">
-                    <div className="text-sm breadcrumbs md:mt-6 my-4 ">
+                    <div className="text-sm breadcrumbs md:mt-6 my-4 px-4 sm:px-0 ">
                         <ul>
                             <li><Link to='/'>Home</Link></li>
                             <li>Favourite</li>
@@ -67,9 +67,9 @@ const Favourite = () => {
                 </div>
             </div>
 
-            <div className="container mx-auto">
-                <div className="grid grid-cols-12 space-x-4">
-                    <div className="col-span-3">
+            <div className="container mx-auto px-4 sm:px-0">
+                <div className="grid grid-cols-12 sm:space-x-4">
+                    <div className="hidden sm:block sm:col-span-3">
                         <div className="flex flex-col gap-4">
                             <div className="border border-gray-100 p-4  bg-white rounded shadow">
                                 <Title text={"Category"} color={'black'} />
@@ -112,23 +112,22 @@ const Favourite = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="col-span-9">
-                        <div className="flex justify-between my-2 px-4">
-                            <div className="flex justify-start items-center">
-                                <p className='text-base'>We found <span style={{ color: primaryColor, fontWeight: 600 }}>{products?.length ? products.length : 0}</span> items for you!</p>
+                    <div className="col-span-12 sm:col-span-9">
+                        <div className="flex justify-between my-2">
+                            <div className="flex justify-start items-center ">
+                                <p className='text-xs sm:text-base'>We found <span style={{ color: primaryColor, fontWeight: 600 }}>{products?.length ? products.length : 0}</span> items for you!</p>
                             </div>
-                            <div className="flex items-center gap-3">
-
-                                <div className="">
+                            <div className="flex items-center gap-2">
+                                <div className="text-xs sm:text-lg">
                                     <div className="dropdown dropdown-end">
                                         <label tabIndex="0" className=" m-0">
-                                            <div className="border border-gray-300 rounded-full px-4 py-2 bg-gray-100 flex justify-start items-center gap-2">
-                                                <ViewGridIcon className='h-6 w-6 text-gray-400' />
+                                            <div className="border border-gray-300 rounded-full px-4 py-1 sm:py-2 bg-gray-100 flex justify-start items-center gap-2">
+                                                <ViewGridIcon className='h-4 w-4 sm:h-6 sm:w-6 text-gray-400' />
                                                 <span> Show: {products.length ? products.length : 0}</span>
                                                 <ChevronDownIcon className='h-3 w-3' />
                                             </div>
                                         </label>
-                                        <ul tabIndex="0" className="dropdown-content menu  py-4 text-lg text-gray-500  shadow-lg bg-base-100 w-36 space-y-2">
+                                        <ul tabIndex="0" className="dropdown-content menu  py-4 text-xs sm:text-lg text-gray-500  shadow-lg bg-base-100 w-[120px] sm:w-36 space-y-2">
                                             <li onClick={() => setProducts(store.slice(0, 50))} className='px-4 py-2 hover:text-white hover:bg-orange-500'>50</li>
                                             <li onClick={() => setProducts(store.slice(0, 100))} className='px-4 py-2 hover:text-white hover:bg-orange-500'>100</li>
                                             <li onClick={() => setProducts(store.slice(0, 150))} className='px-4 py-2 hover:text-white hover:bg-orange-500'>150</li>

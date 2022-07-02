@@ -15,7 +15,7 @@ const User = () => {
     return (
         <>
 
-            <div className='container mx-auto'>
+            <div className='container mx-auto px-4 sm:px-0'>
                 <div className="text-sm breadcrumbs mt-6">
                     <ul>
                         <li><Link to='/'>Home</Link></li>
@@ -24,7 +24,7 @@ const User = () => {
                     </ul>
                 </div>
             
-                <section className="grid grid-cols-2 gap-20">
+                <section className="grid grid-cols-1 sm:grid-cols-2 gap-20">
                     <div className="">
                         <Login />
                     </div>

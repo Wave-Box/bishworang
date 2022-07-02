@@ -14,7 +14,7 @@ const Furniture = () => {
     const { decore } = useTheme()
     return (
         <div className="bg-white py-10">
-            <div className='container'>
+            <div className='container sm:px-0 px-4'>
                 <h5 className='text-center text-3xl font-normal tracking-widest font-serif text-gray-700 my-8'>{decore[0]?.title}</h5>
                 <p className='text-center text-lg font-normal my-8 tracking-wide font-sans sm:mx-10'>{decore[0]?.subtitle}</p>
                 <SliderOne>

@@ -15,7 +15,7 @@ const LatestSession = () => {
 
     const { season } = useTheme()
     return (
-        <div className='container my-10'>
+        <div className='container my-10 sm:px-0 px-4' >
 
 
             <h6 className='text-center font-medium font-sans text-3xl tracking-widest text-gray-700'>LATEST FROM THE SEASON</h6>

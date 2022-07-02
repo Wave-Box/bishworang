@@ -116,10 +116,10 @@ const Order = () => {
                     </div>
                     <div className="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10">
                         <div className="sm:flex items-center justify-between">
-                            <div className="flex flex-wrap items-center gap-2">
-                                {ar.map((i, id) =>
+                            <div className="flex flex-wrap items-center gap-1 sm:gap-2">
+                                {ar?.map((i, id) =>
                                     <div key={id} onClick={() => get_filter(i)}>
-                                        <div className={`${btn === i ? "bg-indigo-100 text-indigo-700" : null} py-2 px-8 font-medium bg-gray-100 text-gray-700 rounded-full`}>
+                                        <div className={`${btn === i ? "bg-indigo-100 text-[#AD173A]" : null} py-2 px-4 sm:px-8 font-medium bg-gray-100 text-gray-700 rounded-full text-xs sm:text-base`}>
                                             <p>{i}</p>
                                         </div>
                                     </div>

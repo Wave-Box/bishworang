@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link1 } from '../../components/links';
-import logo from '../../../assets/images/headerLogo.png'
 import fb from '../../../assets/images/footer/facebook.png'
 import wp from '../../../assets/images/footer/whatsapp.png'
 import ins from '../../../assets/images/footer/instagram.png'
 import yt from '../../../assets/images/footer/youtube.png'
 import payment from '../../../assets/images/footer/SSLCOMMERZ Pay With logo All Size_Aug 21-05-Nov-18-2021-05-46-29-86-AM (1).png'
 import { primaryColor } from '../../../constant';
+import useTheme from '../../../hooks/useTheme';
+import { imgUrl } from '../../../siteSetting/siteUrl';
 
 
 const about = [
@@ -86,12 +87,15 @@ const contact = [
 ]
 
 const Footer = () => {
+    const { settings } = useTheme()
     return (
         <footer className="text-gray-600 body-font bg-white mt-10 drop-shadow-xl">
             <div className="container pt-12 mx-auto">
                 <div className="flex flex-wrap md:text-left text-center order-first">
                     <div className="lg:w-2/5 md:w-1/2 w-full px-4">
-                        <img className="mb-8" src={logo} width={'120'} alt='' />
+                        <div className="flex justify-center sm:justify-start w-full">
+                            <img className="mb-8" src={imgUrl + settings?.logo} width={'120'} alt='' />
+                        </div>
                         <h2 className=" font-semibold text-gray-900 tracking-widest text-xl my-2">Contact</h2>
                         <nav className="list-none mb-10 space-y-1">
                             {contact.map((item, idx) => (
@@ -118,7 +122,7 @@ const Footer = () => {
                         </nav>
                     </div>
 
-                    <div className="lg:w-1/5 md:w-1/2 w-full px-4 flex flex-col items-end">
+                    <div className="lg:w-1/5 md:w-1/2 w-full px-4 flex flex-col items-center justify-center md:items-end">
                         <h2 className=" font-semibold text-gray-900 tracking-widest text-xl mb-3">Social Media</h2>
 
                         {/* <div className="">
