@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 
 import Price from '../utils/Price';
@@ -10,8 +10,11 @@ import { HoverIcon } from './ProductCard';
 import { productImg } from '../../../siteSetting/siteUrl';
 import httpReq from '../../../services/http.service';
 import { toast } from 'react-toastify';
+import QuickView from './QuickView';
+import Details from '../../pages/singleProduct/Details';
 
 const Card2 = ({ item }) => {
+    const [open, setOpen] = useState(false)
     const secondImg = item?.image[1] ? item?.image[1] : item?.image[0];
     const add_to_favourite = (id) => {
         httpReq.post('favourite', { product_id: id })
@@ -49,9 +52,12 @@ const Card2 = ({ item }) => {
                             }} src={productImg + secondImg} alt="Shoes" className='group-hover:block group-hover:scale-125 transition-all duration-500 ease-linear hidden w-full h-full' />
                     </NavLink>
                     <div className="absolute hidden group-hover:flex  gap-2 top-28  justify-center left-0 right-0">
+                        
+                        <div onClick={() => setOpen(!open)}>
                         <HoverIcon text={"Quick View"} >
                             <EyeIcon className='h-4 w-4 text-2xl font-serif font-bold' />
                         </HoverIcon>
+                        </div>
                         <div onClick={() => add_to_favourite(item?.id)}>
                             <HoverIcon text={"Fevorite"} >
                                 <HeartIcon className='h-4 w-4 text-2xl font-serif font-bold' />
@@ -75,6 +81,9 @@ const Card2 = ({ item }) => {
 
 
             </div>
+            <QuickView open={open} setOpen={setOpen} >
+                <Details data={{ product_id: item?.id }} />
+            </QuickView>
         </div>
     );
 };

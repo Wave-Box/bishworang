@@ -146,7 +146,7 @@ const Details = ({ data }) => {
     }, [call, cartList, product?.id, singleVariant?.size, singleVariant?.color, singleVariant?.volume, singleVariant?.unit])
 
     if (loading) {
-        return <div className="flex justify-center h-screen items-center">
+        return <div className="flex justify-center h-[80vh] w-[100vh] items-center">
             <button className="btn loading">loading</button>
         </div>
     }
@@ -154,7 +154,7 @@ const Details = ({ data }) => {
         return (<div className='flex justify-center h-screen items-center capitalize text-3xl font-bold'>Product not Found</div>)
     }
     return (
-        <div className="grid md:grid-cols-8 grid-cols-1 md:gap-4 ">
+        <div className="grid md:grid-cols-8 grid-cols-1 md:gap-4 p-6">
 
             <div className="md:col-span-3">
                 <ImageSection images={product?.image} />
