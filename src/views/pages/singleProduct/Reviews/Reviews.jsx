@@ -24,7 +24,7 @@ const Reviews = ({ id }) => {
             <div className='grid md:grid-cols-8 grid-cols-1 gap-8'>
                 <div className="md:col-span-4">
                     {reviews.length === 0 ? 
-                    <div className='flex flex-1 justify-center items-center'><h3 className='text-xl font-sans font-bold'>No Found Review</h3></div> : <CustomerQuestions reviews={reviews} />}
+                    <div className='flex flex-1 justify-start items-center'><h3 className='text-xl font-sans font-bold'>No Found Review</h3></div> : <CustomerQuestions reviews={reviews} />}
                 </div>
                 <div className="md:col-span-4">
                     {/* <CustomerReviews /> */}
