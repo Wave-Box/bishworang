@@ -16,7 +16,7 @@ const HeaderDown = () => {
     return (
         <div className="py-1" style={{ background: `white`, position: 'relative' }}>
 
-            <div className=' container mx-auto my-2 px-4 sm:px-0'>
+            <div className=' my-2 md:px-4 lg:px-6 sm:px-0'>
                 <div className="grid md:grid-cols-2 grid-cols-2 gap-2">
 
 

@@ -18,7 +18,7 @@ const Card1 = ({ cat }) => {
                     }}
                     src={catImg + cat?.banner} alt="" className=' w-32 h-32 sm:w-52 sm:h-52' />
             </figure>
-            <h3 className='text-center font-normal text-sm text-gray-400 tracking-wider hover:text-orange-400 my-3'>{cat?.name}</h3>
+            <h3 className='text-center font-normal text-sm text-gray-400 tracking-wider hover:text-[#AD171A] my-3'>{cat?.name}</h3>
         </NavLink>
     );
 };

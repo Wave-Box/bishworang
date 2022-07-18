@@ -13,7 +13,7 @@ const HeaderTop = () => {
     const { topdeals } = useTheme()
     return (
         <div className=" w-full py-0 text-sm hidden md:block" style={{ backgroundColor: '#AD171A' }}>
-            <div className='container mx-auto text-white flex justify-between items-center'>
+            <div className='  md:px-4 lg:px-6 text-white flex justify-between items-center'>
                 <div className="flex items-center divide-x">
                     <HeaderTopMenu icon={mobile} doc={"+88 01730 068 036"} />
                     <NavLink to="/location"> <HeaderTopMenu icon={location} doc={"Our Outlates"} /></NavLink>
