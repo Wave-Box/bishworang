@@ -23,12 +23,12 @@ const VerifyOtp = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
         data['userid'] = user?.id
-        console.log(data)
+        
         setLoading(true);
         dispatch(verify(data))
             .unwrap()
             .then((res) => {
-                console.log(res);
+                
                 // navigate("/profile");
                 window.location.replace("/profile");
                 setLoading(false);

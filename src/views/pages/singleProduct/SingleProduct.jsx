@@ -29,8 +29,7 @@ const SingleProduct = () => {
     const [selectSize, setSelectSize] = useState('')
     const [tab, setTab] = useState('desc')
 
-    // const location = useLocation()
-    // console.log(location.pathname);
+    
     const activeStyle = {
         borderBottom: `2px solid ${primaryColor}`,
         color: primaryColor,
@@ -47,7 +46,7 @@ const SingleProduct = () => {
     const [loading, setLoading] = useState(false)
     const [result, setResult] = useState({})
     const [call, setCall] = useState(false)
-    // console.log(product);
+    
     const { makeid } = useTheme()
 
 
@@ -61,7 +60,7 @@ const SingleProduct = () => {
             // get the data from the api
             const { product, variant, vrcolor } = await httpReq.post('product-details', { product_id: params?.id });
 
-            // console.log(result);
+            
             // set state with the result
             setProduct(product);
             setVariant(variant);
@@ -98,9 +97,9 @@ const SingleProduct = () => {
             const resul = cartList?.find(c => c?.id === product?.id && c?.color === data?.color && c?.size === data?.size && c?.unit === data?.unit && c?.volume === data?.volume)
             setResult(resul)
 
-            console.log(resul);
+            
         }
-        console.log(data);
+        
         setSingleVariant(data)
     }
 
@@ -110,9 +109,9 @@ const SingleProduct = () => {
         if (variant.length) {
             if (singleVariant.id) {
 
-                console.log("enough quantity");
+                
                 if (singleVariant) {
-                    console.log("singe", singleVariant);
+                    
                     dispatch(addToCartList({
                         cartId: makeid(100), variant_quantity: singleVariant?.quantity, variantId: singleVariant.id, ...singleVariant,
 

@@ -13,12 +13,13 @@ import "swiper/css/effect-fade";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-import useTheme from "../../../../hooks/useTheme";
+// import useTheme from "../../../../hooks/useTheme";
 import { sliderImg } from "../../../../siteSetting/siteUrl";
-
+import httpReq from "../../../../services/http.service";
+import { useQuery } from 'react-query'
 const Hero = () => {
 
-    const { slider } = useTheme()
+    const { data } = useQuery(['allfrontendcontent'], () => httpReq.get('allfrontendcontent'))
     return (
         <>
             <Swiper
@@ -35,7 +36,7 @@ const Hero = () => {
                 modules={[EffectFade, Pagination, Autoplay]}
                 className="mySwiper"
             >
-                {slider?.map((i, id) => <SwiperSlide key={id}>
+                {data?.slider?.map((i, id) => <SwiperSlide key={id}>
                     <img alt="" className={"w-full "} src={sliderImg + i.image} />
                 </SwiperSlide>)}
 

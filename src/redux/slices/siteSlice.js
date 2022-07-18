@@ -50,7 +50,6 @@ export const siteSlice = createSlice({
             state.token = action.payload
         },
         login: (state, action) => {
-            console.log(state.login);
             // state.login = action.payload
         }
     },

@@ -61,14 +61,14 @@ export default Forget;
 const Finding = ({ setPage, setUser }) => {
     const [loading, setLoading] = useState(false)
     const { register, handleSubmit, formState: { errors } } = useForm();
-    // console.log(errors);
+    
     const onSubmit = data => {
         setLoading(true)
         if (data?.phone) {
 
             httpReq.post('forget-pass', { phone: data.phone })
                 .then(res => {
-                    console.log(res);
+                    
 
                     if (res?.id) {
 
@@ -136,7 +136,7 @@ const Verifying = ({ setPage, setUser, user }) => {
                 })
                 .catch(er => {
                     setLoading(false);
-                    console.log(er)
+                    
                 })
 
         }
@@ -195,7 +195,7 @@ const Changeing = ({ setPage, setUser, user }) => {
                 })
                 .catch(er => {
                     setLoading(false)
-                    console.log(er)
+                    
                 })
         } else {
             toast("your password dosen't match", { type: 'warning', position: 'top-center', delay: 1 })

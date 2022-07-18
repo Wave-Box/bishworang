@@ -6,13 +6,11 @@ import Aside from '../../static/aside';
 import parse from 'html-react-parser';
 const BlogDetails = () => {
     const params = useParams()
-    console.log(params.slug);
     const [blog, setBlog] = useState({})
 
     useEffect(() => {
         httpReq.post('blog/details', { slug: params.slug })
             .then(res => {
-                console.log(res);
                 setBlog(res)
             })
     }, [params.slug])

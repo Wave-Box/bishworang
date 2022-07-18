@@ -89,7 +89,6 @@ const useFirebase = () => {
                 // const destination = location?.state?.from || '/'
                 // history.replace(destination)
                 // save user to the database
-                console.log(user);
                 // saveUser(user.email, user.displayName, user.accessToken, user?.photoURL)
                 setAuthError('')
                 // if (user.accessToken) {
@@ -127,7 +126,6 @@ const useFirebase = () => {
                 // const destination = location?.state?.from || '/'
                 // history.replace(destination)
                 // save user to the database
-                console.log(user);
                 // saveUser(user.email, user.displayName, user.accessToken, user?.photoURL)
                 setAuthError('')
                 if (user.accessToken) {

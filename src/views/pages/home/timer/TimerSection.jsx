@@ -37,7 +37,6 @@ export default TimerSection;
 const InnerCard = ({ item }) => {
 
     const end_date = new Date(item?.end_date).setHours(23, 59, 59)
-    console.log(Date.now() + end_date - Date.now());
     // Renderer callback with condition
     const renderer = ({ hours, minutes, seconds, completed }) => {
         if (completed) {

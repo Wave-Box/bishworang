@@ -115,21 +115,21 @@ const Shop = () => {
                             </div>
                             <div className="flex items-center gap-3">
 
-                                <div className="text-xs sm:text-lg">
+                                <div className="text-xs sm:text-base">
                                     <div className="dropdown dropdown-end">
                                         <label tabIndex="0" className=" m-0">
-                                            <div className="border border-gray-300 rounded-full px-4 py-2 bg-gray-100 flex justify-start items-center gap-2">
-                                                <ViewGridIcon className='h-4 w-4 sm:h-6 sm:w-6 text-gray-400' />
-                                                <span> Show: {products.length ? products.length : 0}</span>
+                                            <div className="border border-gray-300 rounded-full px-4 py-1 bg-gray-100 flex justify-start items-center gap-2">
+                                                <ViewGridIcon className='h-4 w-4 sm:h-5 sm:w-5 text-gray-400' />
+                                                <span > Show: {products.length ? products.length : 0}</span>
                                                 <ChevronDownIcon className='h-3 w-3' />
                                             </div>
                                         </label>
-                                        <ul tabIndex="0" className="dropdown-content menu  py-4 text-xs sm:text-lg text-gray-500  shadow-lg bg-base-100 w-[120px] sm:w-36 space-y-2 ">
-                                            <li onClick={() => setProducts(store.slice(0, 50))} className='px-4 py-2 hover:text-white hover:bg-orange-500'>50</li>
-                                            <li onClick={() => setProducts(store.slice(0, 100))} className='px-4 py-2 hover:text-white hover:bg-orange-500'>100</li>
-                                            <li onClick={() => setProducts(store.slice(0, 150))} className='px-4 py-2 hover:text-white hover:bg-orange-500'>150</li>
-                                            <li onClick={() => setProducts(store.slice(0, 200))} className='px-4 py-2 hover:text-white hover:bg-orange-500'>200</li>
-                                            <li onClick={() => setProducts(store.slice(0, 250))} className='px-4 py-2 hover:text-white hover:bg-orange-500'>250</li>
+                                        <ul tabIndex="0" className="dropdown-content menu  py-2 text-xs sm:text-base text-gray-500  shadow-lg bg-base-100 w-[120px] sm:w-36 space-y-2 ">
+                                            <li onClick={() => setProducts(store.slice(0, 50))} className='px-4 py-1 hover:text-white hover:bg-orange-500'>50</li>
+                                            <li onClick={() => setProducts(store.slice(0, 100))} className='px-4 py-1 hover:text-white hover:bg-orange-500'>100</li>
+                                            <li onClick={() => setProducts(store.slice(0, 150))} className='px-4 py-1 hover:text-white hover:bg-orange-500'>150</li>
+                                            <li onClick={() => setProducts(store.slice(0, 200))} className='px-4 py-1 hover:text-white hover:bg-orange-500'>200</li>
+                                            <li onClick={() => setProducts(store.slice(0, 250))} className='px-4 py-1 hover:text-white hover:bg-orange-500'>250</li>
                                         </ul>
                                     </div>
                                 </div>

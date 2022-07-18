@@ -1,13 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { button1 } from '../../../constant/color';
 const Button1 = ({ text, active, setActive }) => {
 
     return (
         <motion.button
             onClick={() => setActive(text)}
-            className='px-6 py-2 rounded text-xs sm:text-base font-semibold text-black hover:text-orange-500'
-            style={{ backgroundColor: `${active === text ? button1.hoverButton : button1.defaultButton}`, color: `${active === text && button1.color}` }}
+            className={`px-6 py-2 rounded text-xs sm:text-base font-semibold text-black hover:text-[#AD171A] ${active === text ? "bg-[#FDE1BD] text-[#AD171A]" : "bg-[#EEEEEE] text-[#000]"}`}
+        
             whileHover={{
                 // backgroundColor: button1.hoverButton,
                 // style: { color: button1.color },

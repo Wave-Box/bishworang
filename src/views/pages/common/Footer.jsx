@@ -125,13 +125,6 @@ const Footer = () => {
                     <div className="lg:w-1/5 md:w-1/2 w-full px-4 flex flex-col items-center justify-center md:items-end">
                         <h2 className=" font-semibold text-gray-900 tracking-widest text-xl mb-3">Social Media</h2>
 
-                        {/* <div className="">
-                            <p className="text-gray-500 text-base mt-2 md:text-left text-center">From App Store or Google Play</p>
-                            <div className="flex gap-2 my-3 justify-center lg:justify-start">
-                                <motion.img whileHover={{ y: -7, transition: { duration: 0.5 } }} src={store1} className='border-2 border-orange-400 rounded' alt="" />
-                                <motion.img whileHover={{ y: -7, transition: { duration: 0.5 } }} src={store2} className='border-2 border-orange-400 rounded' alt="" />
-                            </div>
-                        </div> */}
                         <div className="flex items-center gap-2">
 
                             {

@@ -7,8 +7,10 @@ import Header from './common/Header';
 import HeaderSticky from '../components/common/HeaderSticky';
 import { ToastContainer } from 'react-toastify';
 import { bg_gary } from '../../siteSetting/theme';
-const Layout = () => {
 
+
+const Layout = () => {
+   
     return (
         <>
             <ToastContainer position="top-right" newestOnTop />

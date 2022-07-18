@@ -17,7 +17,7 @@ const Register = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
 
-        console.log(data)
+        
         dispatch(clearMessage());
 
         setSuccessful(true);
@@ -35,7 +35,7 @@ const Register = () => {
             })
             .catch((err) => {
                 setSuccessful(false);
-                console.log(err);
+                
             });
 
     }

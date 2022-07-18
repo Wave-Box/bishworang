@@ -6,7 +6,6 @@ import { NavLink } from 'react-router-dom';
 import { productImg } from '../../../siteSetting/siteUrl';
 import Taka from '../utils/Taka';
 const SearchBox = ({ search, setSearch }) => {
-    console.log("search ", search);
     const { product } = useTheme()
 
     const result = product.filter(item => item?.name.toLowerCase().includes(search?.toLowerCase()))

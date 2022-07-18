@@ -17,12 +17,12 @@ const OrderDetails = () => {
     const [orderItem, setOrderItem] = useState([])
     // const [transaction, setTransaction] = useState({})
     const { user } = useSelector((state) => state.auth);
-    console.log(order);
+
     const params = useParams()
-    console.log("transaction", params);
+    
     const [call, setCall] = useState(false)
     const { userData } = useTheme()
-    console.log(userData);
+    
     useEffect(() => {
         // declare the async data fetching function
         const fetchData = async () => {
@@ -43,7 +43,7 @@ const OrderDetails = () => {
     }, [params?.id, user?.id, call])
 
     const order_create_time = new Date(order?.created_at).getTime()
-    console.log("time", order_create_time);
+    
     // Renderer callback with condition
     const renderer = ({ hours, minutes, seconds, completed }) => {
         if (completed) {
@@ -184,7 +184,7 @@ const SingleItem = ({ item, setCall, call, order }) => {
             // make sure to catch any error
             .catch(console.error);
     }, [item?.product_id])
-    console.log(item);
+    
     return (
         <>
             {!product?.id ? <DataLoader /> : <div className="mt-4 md:mt-6 flex  flex-col md:flex-row justify-start items-start md:items-center md:space-x-6 xl:space-x-8 w-full ">

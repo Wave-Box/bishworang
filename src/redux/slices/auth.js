@@ -7,7 +7,6 @@ export const signUp = createAsyncThunk(
   async ({ name, email, phone, password }, thunkAPI) => {
     try {
       const { data } = await AuthService.signUp(name, email, phone, password);
-      console.log("response ", data);
       thunkAPI.dispatch(setMessage(data.message));
       return data;
     } catch (error) {
@@ -144,7 +143,6 @@ const authSlice = createSlice({
       state.user = null;
     },
     [login.fulfilled]: (state, action) => {
-      console.log(action.payload);
       if (action.payload.verify) {
         state.isLoggedIn = true;
         state.user = action.payload;
@@ -171,12 +169,10 @@ const authSlice = createSlice({
     },
 
     [verify.rejected]: (state, action) => {
-      console.log(action.payload);
       state.success = ''
     },
 
     [googleLogin.fulfilled]: (state, action) => {
-      console.log(action.payload);
       if (action.payload.verify) {
         state.isLoggedIn = true;
         state.user = action.payload;

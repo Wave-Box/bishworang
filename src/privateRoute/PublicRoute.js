@@ -11,7 +11,7 @@ function PublicRoute({ children, ...rest }) {
     // const token = true
 
     let location = useLocation()
-    //   if (isLoading) { return <p>Loading...</p> }
+    
     if (!user?.verify) {
         return children;
     }

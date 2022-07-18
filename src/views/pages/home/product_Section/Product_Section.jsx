@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Button1 } from '../../../components/button';
 import ProductCard from '../../../components/card/ProductCard';
+import { useQuery } from 'react-query'
+import httpReq from '../../../../services/http.service';
 
 
-
-import useTheme from '../../../../hooks/useTheme';
 const btn = [
     {
         text: "Featured",
@@ -22,7 +22,15 @@ const btn = [
 
 const Product_Section = () => {
     const [active, setActive] = useState('Featured')
-    const { product, popularProduct, featureProduct } = useTheme()
+
+    const { error, data } = useQuery(['allfrontendcontent'], () => httpReq.get('allfrontendcontent'))
+    const { error: popularProductError, data: popularProduct } = useQuery(['popular_product'], () => httpReq.get('popular_product'))
+    const { error: featureProductError, data: featureProduct } = useQuery(['feature_product'], () => httpReq.get('feature_product'))
+
+
+    if (error || popularProductError || featureProductError) return 'An error has occurred: ' + error.message
+
+
     return (
         <div className=' py-12'>
             <div className="mx-auto container px-4 sm:px-0">
@@ -33,9 +41,9 @@ const Product_Section = () => {
                     </div>
                 </div>
 
-                <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2'>
+                {<div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2'>
                     {active === 'New Added' &&
-                        product?.slice(0, 8).map((i) => (
+                        data?.product?.slice(0, 8).map((i) => (
 
                             <ProductCard key={i.id} item={i} />
                         ))
@@ -52,7 +60,7 @@ const Product_Section = () => {
                             <ProductCard key={i.id} item={i} />
                         ))
                     }
-                </div>
+                </div>}
             </div>
         </div>
     );

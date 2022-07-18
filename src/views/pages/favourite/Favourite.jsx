@@ -193,7 +193,6 @@ const Single = ({ item, setCall }) => {
                     onClick: () => {
                         httpReq.post('favourite/delete', { product_id: id })
                             .then(res => {
-                                console.log(res);
                                 if (res?.success) {
                                     setCall(Math.random() * 1000)
                                     toast(res?.success, {

@@ -91,7 +91,6 @@ const useData = () => {
                         // toast(success, { type: 'success' })
                     })
             }
-            console.log(data);
         })
 
 

@@ -21,7 +21,6 @@ const Address = ({ selectAddress, setSelectAddress }) => {
             .catch(err => console.log(err))
     }, [call, user.id])
 
-    console.log("selectAddress", selectAddress);
 
     return (
         <>
@@ -128,7 +127,6 @@ export function SaveAddress({ open, setOpen, setCall }) {
             .catch(err => console.log(err))
     };
 
-    console.log(errors);
     return (
         <>
             <Modal open={open} setOpen={setOpen}>
@@ -196,7 +194,6 @@ export function UpdateAddress({ open, setOpen, item, setCall }) {
     const onSubmit = data => {
         data['id'] = user?.id
         data['address_id'] = item?.id
-        console.log(data);
         httpReq.post('address/edit', data)
             .then(({ success, error }) => {
                 if (success) {

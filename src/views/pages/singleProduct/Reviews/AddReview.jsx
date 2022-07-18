@@ -6,7 +6,7 @@ import Title from './Title';
 
 const AddReview = () => {
     const [GiveRate, setGiveRate] = useState(null)
-    // console.log(GiveRate);
+    
     return (
         <>
             <Title text="Add a review" />

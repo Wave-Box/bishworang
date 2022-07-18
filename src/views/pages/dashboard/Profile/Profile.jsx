@@ -41,7 +41,7 @@ const Profile = () => {
         reader.onerror = error => reject(error);
     });
     const update_profile = (res) => {
-        console.log(res);
+        
         httpReq.post('user/updateprofile', res)
             .then(res => {
                 setCall(!call)
@@ -57,9 +57,9 @@ const Profile = () => {
 
     const onSubmit = data => {
 
-        console.log("data", data);
+        
         if (data?.image[0]) {
-            console.log("our file size", data?.image[0].size);
+            
 
             if (data?.image[0].size > 2024000) {
                 toast("Your Image very large more then 2MB!", {
@@ -80,7 +80,7 @@ const Profile = () => {
 
 
         } else {
-            console.log(data);
+            
             update_profile({
                 user_id: user?.id,
                 phone: user?.phone,

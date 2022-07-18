@@ -15,7 +15,7 @@ const ChangePassword = () => {
 
 
   const onSubmit = data => {
-    console.log(data);
+    
     if (data.password === data.confirm_password) {
       httpReq.post('password-change', {
         user_id: user?.id,

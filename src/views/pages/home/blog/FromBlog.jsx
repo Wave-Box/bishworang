@@ -3,9 +3,13 @@ import Title from '../../../components/utils/Title';
 import { primaryColor } from '../../../../constant';
 import { NavLink } from 'react-router-dom';
 import { blogImg } from '../../../../siteSetting/siteUrl';
-import useTheme from '../../../../hooks/useTheme';
+// import useTheme from '../../../../hooks/useTheme';
+import httpReq from '../../../../services/http.service';
+import { useQuery } from 'react-query'
+
 const FromBlog = () => {
-    const { blogs } = useTheme()
+    // const { blogs } = useTheme()
+    const { data } = useQuery(['blog'], () => httpReq.get('blog'))
 
     return (
         <div>
@@ -16,7 +20,7 @@ const FromBlog = () => {
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
 
-                        {blogs?.map((blog) => <SingleBlog blog={blog} key={blog.id} />)}
+                        {data?.blogs?.map((blog) => <SingleBlog blog={blog} key={blog.id} />)}
 
 
 

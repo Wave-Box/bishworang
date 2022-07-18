@@ -31,12 +31,12 @@ const Login = () => {
         dispatch(login(data))
             .unwrap()
             .then(({ verify, error }) => {
-                console.log(error);
+                
                 if (error) {
                     toast(error, { type: 'error' })
                 }
                 if (verify) {
-                    console.log(verify);
+                    
                     // navigate("/profile", {
                     //     replace: true
                     // });

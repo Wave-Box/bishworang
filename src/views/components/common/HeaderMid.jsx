@@ -10,18 +10,20 @@ import {
 
 
 import { NavLink } from 'react-router-dom'
-import useTheme from '../../../hooks/useTheme'
 import { catImg, imgUrl } from '../../../siteSetting/siteUrl'
 import { Search } from './HeaderDown'
 import { logout } from '../../../redux/slices/auth'
 import { useDispatch, useSelector } from 'react-redux'
 
-
+import { useQuery } from 'react-query'
+import httpReq from '../../../services/http.service'
+import SetLoaing from '../Loader/SetLoaing'
 
 
 
 export default function HeaderMid() {
-    const { category, settings } = useTheme()
+    // const { category, settings } = useTheme()
+    const { isLoading, data } = useQuery(['allfrontendcontent'], () => httpReq.get('allfrontendcontent'))
     const [isShowing, setIsShowing] = useState(false)
     const { user } = useSelector((state) => state.auth);
     const dispatch = useDispatch()
@@ -53,8 +55,8 @@ export default function HeaderMid() {
                                 <div onMouseEnter={() => setIsShowing(true)}
                                     onMouseLeave={() => setIsShowing(false)} className="absolute z-10 -ml-4 mt-0 transform px-2 w-screen max-w-max sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2">
                                     <div className="shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden rounded">
-                                        <div className="relative grid gap-3  py-6 sm:gap-8 px-4 sm:p-8 bg-[#fff] text-black">
-                                            {category?.map((item) => (
+                                        {isLoading ? <SetLoaing /> : <div className="relative grid gap-3  py-6 sm:gap-8 px-4 sm:p-8 bg-[#fff] text-black">
+                                            {data?.category?.map((item) => (
                                                 <NavLink
                                                     to={"/category/" + item?.id} key={item?.id}
 
@@ -68,7 +70,7 @@ export default function HeaderMid() {
                                                     </div>
                                                 </NavLink>
                                             ))}
-                                        </div>
+                                        </div>}
 
                                     </div>
                                 </div>
@@ -92,7 +94,7 @@ export default function HeaderMid() {
                         <NavLink to='/' className="text-base font-medium text-gray-500 hover:text-gray-900">
                             Home
                         </NavLink>
-                        {category?.map(item =>
+                        {data?.category?.map(item =>
                             <NavLink key={item?.id} to={'/category/' + item?.id} className="text-base font-medium text-gray-500 hover:text-gray-900">
                                 {item?.name}
                             </NavLink>)}
@@ -103,7 +105,7 @@ export default function HeaderMid() {
                     <div className="hidden md:flex items-center justify-end md:flex-1 lg:max-w-fit group gap-1">
                         <PhoneIcon className='ml-2 h-5 w-5 group-hover:text-orange-400' />
                         <NavLink to='/' className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-orange-400">
-                            Hotline <span className='text-orange-400'>{settings?.phone}</span>
+                            Hotline <span className='text-orange-400'>{data?.settings?.phone}</span>
                         </NavLink>
 
                     </div>
@@ -126,7 +128,7 @@ export default function HeaderMid() {
                                 <div>
                                     <img
                                         className="h-8 w-auto"
-                                        src={imgUrl + settings?.logo}
+                                        src={imgUrl + data?.settings?.logo}
                                         alt="Workflow"
                                     />
                                 </div>
@@ -139,7 +141,7 @@ export default function HeaderMid() {
                             </div>
                             <div className="mt-6">
                                 <nav className="grid gap-y-8">
-                                    {category?.map((item) => (
+                                    {data?.category?.map((item) => (
                                         <NavLink
                                             to={"/category/" + item?.id}
                                             key={item?.id}

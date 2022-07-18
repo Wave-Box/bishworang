@@ -17,7 +17,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 
 const ImageSection = ({ images }) => {
     const [thumbsSwiper, setThumbsSwiper] = useState(null);
-    // console.log(images);
+    
     return (
         <>
             <Swiper

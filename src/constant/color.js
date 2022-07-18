@@ -1,6 +1,6 @@
 
 export const button1 = {
-    color: "#F27820",
+    color: "#AD171A",
     defaultButton: '#EEEEEE',
     hoverButton: '#FDE1BD',
     

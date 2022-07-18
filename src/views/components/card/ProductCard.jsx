@@ -29,7 +29,7 @@ const ProductCard = ({ item }) => {
         setResult(cartList?.find(c => c.id === item.id))
 
     }, [cartList, item.id])
-    console.log(item);
+    
     const add_to_favourite = (id) => {
         httpReq.post('favourite', { product_id: id })
             .then(({ error, success }) => {

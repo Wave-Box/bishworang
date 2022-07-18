@@ -9,7 +9,7 @@ const Reviews = ({ id }) => {
     useEffect(() => {
         httpReq.post('get/review', { product_id: id })
             .then(res => {
-                // console.log(res);
+                
                 if (res.error) {
                     return
                 }

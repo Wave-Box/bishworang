@@ -44,7 +44,6 @@ const Order = () => {
                     onClick: () => {
                         httpReq.post('order/cancel', { id, user_id: user?.id })
                             .then(res => {
-                                console.log(res);
                                 if (res?.success) {
 
                                     setCall(!call)
@@ -191,7 +190,6 @@ export default Order;
 
 const OrderItem = ({ item, cancel_request }) => {
     const date = new Date(item?.created_at)
-    console.log("");
 
 
     return (

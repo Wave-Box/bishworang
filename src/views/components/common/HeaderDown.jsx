@@ -6,7 +6,6 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 // import { logOut } from '../../../redux/slices/userSlice';
 import { profileImg } from '../../../siteSetting/siteUrl';
-import { motion } from 'framer-motion'
 import SearchBox from './SearchBox';
 import useTheme from '../../../hooks/useTheme';
 import Drawer from './Drawer';
@@ -18,19 +17,17 @@ const HeaderDown = () => {
         <div className="py-1" style={{ background: `white`, position: 'relative' }}>
 
             <div className=' container mx-auto my-2 px-4 sm:px-0'>
-                <div className="grid md:grid-cols-3 grid-cols-2 gap-2">
+                <div className="grid md:grid-cols-2 grid-cols-2 gap-2">
 
 
-                    <div className="col-span-1 sm:flex justify-center items-center hidden">
-
-                    </div>
-                    <div className="col-span-1 flex justify-start sm:justify-center items-center">
+                   
+                    <div className="col-span-1 flex justify-start items-center">
                         <NavLink to={'/'}>
-                            <img src={logo} alt="" width={120} height={200} />
+                            <img src={logo} alt="" width={150} height={200} />
                         </NavLink>
                     </div>
                     <div className="col-span-1 flex justify-end items-center space-x-2">
-                        <div className="hidden sm:block">
+                        <div className="hidden sm:block w-full max-w-md">
                             <Search />
                         </div>
                         <div className="flex items-center space-x-3">
@@ -106,7 +103,7 @@ export default HeaderDown;
 
 
 export const Search = () => {
-    const [show, setshow] = useState(false)
+    // const [show, setshow] = useState(false)
     const [text, setText] = useState(null)
 
     return (
@@ -114,9 +111,7 @@ export const Search = () => {
         <>
             {text && <div className="absolute top-0 z-0  w-screen h-screen" onClick={() => setText('')}></div>}
             <div className="relative w-full">
-                {show && <motion.div initial={{ x: 20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} exit={{ y: 20, opacity: 0 }} transition={{ duration: 0.6 }}
-
-                >
+                <div>
 
                     <input
                         onChange={(e) => setText(e.target.value)}
@@ -125,20 +120,17 @@ export const Search = () => {
                         autoComplete="given-name"
                         placeholder={"Search for items"}
                         defaultValue={text}
-                        className={`mt-1 focus:outline-0 focus:ring-0 focus:border-0 block w-full shadow-sm text-xs sm:text-sm border-gray-300 rounded-md border py-1 sm:py-3 pl-10 placeholder:text-gray-500 bg-gray-50`}
+                        className={`mt-1 focus:outline-0 focus:ring-0 focus:border-0 block w-full shadow-sm text-xs sm:text-sm border-gray-300 rounded-md border py-1 sm:py-2 pl-10 placeholder:text-gray-500 bg-gray-50`}
                     />
 
-                    <SearchIcon className='w-5 h-5 sm:w-6 sm:h-6 absolute left-1 sm:left-2 top-1 sm:top-4 bottom-0 font-semibold text-xs' />
-                    <XIcon onClick={() => {
-                        setText('')
-                        setshow(!show)
-                    }} className=' absolute right-1 sm:right-2 top-1 sm:top-4 bottom-0 font-semibold text-xs w-5 h-5 sm:w-6 sm:h-6' />
+                    <SearchIcon className='w-5 h-5 sm:w-6 sm:h-6 absolute left-1 sm:left-2 top-1 sm:top-2 bottom-0 font-semibold text-xs' />
+                    <XIcon onClick={() => setText('')} className=' absolute right-1 sm:right-2 top-1 sm:top-2 bottom-0 font-semibold text-xs w-5 h-5 sm:w-6 sm:h-6' />
 
-                </motion.div>
-                }
+                </div>
+                
                 {text && <SearchBox search={text} setSearch={setText} />}
             </div>
-            {!show && <SearchIcon onClick={() => setshow(!show)} className='h-5 w-5 sm:h-7 sm:w-7' />}
+            {/* {!show && <SearchIcon onClick={() => setshow(!show)} className='h-5 w-5 sm:h-7 sm:w-7' />} */}
         </>
     )
 }

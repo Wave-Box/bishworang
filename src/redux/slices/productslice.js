@@ -28,7 +28,6 @@ export const productSlice = createSlice({
             state.search = action.payload
         },
         userPopUp: (state, action) => {
-            console.log(action.payload);
             state.openUser = action.payload
         },
 
@@ -36,7 +35,6 @@ export const productSlice = createSlice({
             // const cartItem = state.cartList?.find((item) => item.id === action.payload.id & item.color === action.payload.color && item.size === action.payload.size);
             const cartItem = state.cartList?.find((item) => item.id === action.payload.id && item.size === action.payload.size && item.color === action.payload.color && item.unit === action.payload.unit && item.volume === action.payload.volume);
 
-            console.log(cartItem);
             if (cartItem) {
                 cartItem.qty = cartItem.qty + 1;
                 toast("Successfully you have added to cart", { type: "success" });

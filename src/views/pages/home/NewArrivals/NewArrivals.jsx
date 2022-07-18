@@ -4,11 +4,14 @@ import { Slider1 } from '../../../components/slider';
 import { SwiperSlide } from 'swiper/react';
 import Title from '../../../components/utils/Title';
 import Arrow from '../../../components/utils/Arrow';
-import useTheme from '../../../../hooks/useTheme';
+// import useTheme from '../../../../hooks/useTheme';
+
+import { useQuery } from 'react-query'
+import httpReq from '../../../../services/http.service';
 
 
 const NewArrivals = () => {
-    const { product } = useTheme()
+    const { data } = useQuery(['allfrontendcontent'], () => httpReq.get('allfrontendcontent'))
     const prev = 'new_Prev'
     const next = 'new_Next'
     return (
@@ -22,7 +25,7 @@ const NewArrivals = () => {
                 prevEl={prev}
                 nextEl={next}
             >
-                {product?.map((item) => 
+                {data?.product?.map((item) => 
                 <SwiperSlide key={item?.id}>
                     <Card2 item={item} />
                 </SwiperSlide>

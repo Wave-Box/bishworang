@@ -66,11 +66,9 @@ const YourOrders = ({ cuponDis, selectAddress, selectPayment, shipping_area }) =
             //   AlertWraning("Please Select Payment Method") 
         }
         if (data.total && data.payment_type && data.product) {
-            console.log(data);
 
             httpReq.post(`placeorder`, data)
                 .then((response) => {
-                    console.log(response);
                     if (response?.order) {
                         toast(`Your #${response?.order?.reference_no} order complete successfully!`, {
                             type: "success"
@@ -83,7 +81,6 @@ const YourOrders = ({ cuponDis, selectAddress, selectPayment, shipping_area }) =
                         localStorage.setItem("easy", response?.payment)
                         window.location.replace(response?.payment)
                     }
-                    // console.log(response);
 
                     if (response?.user) {
                         localStorage.setItem("user", JSON.stringify(response.user));

@@ -36,7 +36,7 @@ const Details = ({ data }) => {
     const [loading, setLoading] = useState(false)
     const [result, setResult] = useState({})
     const [call, setCall] = useState(false)
-    // console.log(product);
+    
     const { makeid } = useTheme()
 
 
@@ -86,9 +86,9 @@ const Details = ({ data }) => {
             const resul = cartList?.find(c => c?.id === product?.id && c?.color === data?.color && c?.size === data?.size && c?.unit === data?.unit && c?.volume === data?.volume)
             setResult(resul)
 
-            console.log(resul);
+            
         }
-        console.log(data);
+        
         setSingleVariant(data)
     }
 
@@ -98,9 +98,9 @@ const Details = ({ data }) => {
         if (variant.length) {
             if (singleVariant.id) {
 
-                console.log("enough quantity");
+                
                 if (singleVariant) {
-                    console.log("singe", singleVariant);
+                    
                     dispatch(addToCartList({
                         cartId: makeid(100), variant_quantity: singleVariant?.quantity, variantId: singleVariant.id, ...singleVariant,
 
