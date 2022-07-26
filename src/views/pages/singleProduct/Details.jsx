@@ -216,7 +216,7 @@ const Details = ({ data }) => {
                         <PlusIcon height={18} onClick={() => add_to_cart(product)} className='text-2xl cursor-pointer ' />
                     </div> :
                         <div className="">
-                            {/* <label htmlhtmlFor="add">add to cart</label> */}
+                            {/* <label htmlFor="add">add to cart</label> */}
                             <motion.button initial={{
                                 backgroundColor: primaryColor,
                                 color: "black"

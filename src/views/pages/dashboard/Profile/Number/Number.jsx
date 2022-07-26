@@ -16,7 +16,7 @@ export default function Number() {
 
                     <div className="col-span-6 sm:col-span-4">
                         <div className="flex justify-between items-center pb-3">
-                            <label htmlhtmlFor="email-address" className="block text-xl font-semibold text-gray-700">
+                            <label htmlFor="email-address" className="block text-xl font-semibold text-gray-700">
                                 Contact Number
                             </label>
                             <span className='text-green-600 font-semibold tracking-wider cursor-pointer' onClick={() => setOpen(!open)}> + Update</span>

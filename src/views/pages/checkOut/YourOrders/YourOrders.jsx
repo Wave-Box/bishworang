@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { addToCartList, clearCartList, decrementQty, removeToCartList } from '../../../../redux/slices/productslice';
+import { HomePage } from '../../../../services';
 import httpReq from '../../../../services/http.service';
 import { productImg } from '../../../../siteSetting/siteUrl';
 import { red } from '../../../../siteSetting/theme';
@@ -17,6 +18,7 @@ import Taka from '../../../components/utils/Taka';
 const YourOrders = ({ cuponDis, selectAddress, selectPayment, shipping_area }) => {
     const cartList = useSelector((state) => state.cart.cartList)
     const { user } = useSelector((state) => state.auth)
+    const { data } = HomePage.GetInfo()
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const priceList = cartList?.map(p => p.qty * p.price)
@@ -24,10 +26,10 @@ const YourOrders = ({ cuponDis, selectAddress, selectPayment, shipping_area }) =
         (previousValue, currentValue) => previousValue + currentValue,
         0
     );
-    const tax = 0
+    const tax = (parseFloat(data?.settings?.tax).toFixed(2) / 100) * parseFloat(total).toFixed(2)
 
     // const alert = useAlert()
-
+    console.log(data?.settings?.tax);
     const handleCheckout = () => {
 
         const cart = cartList.map(item => ({
@@ -183,15 +185,15 @@ const Single = ({ item }) => {
 
         </div>
         <div className="flex flex-col gap-x-2 gap-y-1 pl-2">
-            <h3 className='text-black text-md  font-normal'><NavLink to={`/product/${item.id}`}>{item.name}</NavLink></h3>
-            <p className='text-sm'>&#2547; {parseInt(item?.price)} </p>
+            <h3 className='text-black text-md  font-normal'><NavLink to={`/product/${item.id}`}>{item?.name?.slice(0,30)}</NavLink></h3>
+            <p className='text-sm'><Taka tk={parseInt(item?.price)} /> </p>
         </div>
         <div className="flex flex-col gap-1 justify-center items-center">
             <MdOutlineKeyboardArrowUp onClick={() => dispatch(addToCartList({ ...item }))} />
             <p>{item.qty}</p>
             <MdKeyboardArrowDown onClick={() => dispatch(decrementQty(item.cartId))} />
         </div>
-        <div className="text-md font-semibold">{parseInt(item?.price * item.qty)}</div>
+        <div className="text-md font-semibold"><Taka tk={parseInt(item?.price * item.qty)} /></div>
         <div className="">
             <MdDelete onClick={() => dispatch(removeToCartList(item.cartId))} className='text-2xl cursor-pointer' />
         </div>

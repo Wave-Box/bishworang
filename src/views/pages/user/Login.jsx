@@ -11,11 +11,8 @@ import { toast } from 'react-toastify';
 
 const Login = () => {
     const [loading, setLoading] = useState(false);
-    // const [authUser, setAuthUser] = useState({})
 
-    const {
-        // loginUser, isLoading, user, authError, 
-        signInWithGoogle, signInWithFacebook } = useAuth()
+    const { signInWithGoogle, signInWithFacebook } = useAuth()
 
 
 
@@ -24,6 +21,7 @@ const Login = () => {
     useEffect(() => {
         dispatch(clearMessage());
     }, [dispatch]);
+
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
@@ -36,10 +34,6 @@ const Login = () => {
                     toast(error, { type: 'error' })
                 }
                 if (verify) {
-                    
-                    // navigate("/profile", {
-                    //     replace: true
-                    // });
                     window.location.replace("/profile");
                 } else {
                     window.location.replace("/verify-otp");
@@ -104,10 +98,10 @@ const Login = () => {
                 <div className="flex space-x-2 justify-center">
                     <div
                         onClick={handleFacebookSignIn}
-                        className='text-white self-center font-semibold text-xs sm:text-base  px-6 py-3 rounded-md' style={{ backgroundColor: facebook }}>Login With Facebook</div>
+                        className='cursor-pointer text-white self-center font-semibold text-xs sm:text-base  px-6 py-3 rounded-md' style={{ backgroundColor: facebook }}>Login With Facebook</div>
                     <div
                         onClick={handleGoogleSignIn}
-                        className='text-white self-center font-semibold text-xs sm:text-base px-6 py-3 rounded-md' style={{ backgroundColor: google }}>Login With Google</div>
+                        className='cursor-pointer text-white self-center font-semibold text-xs sm:text-base px-6 py-3 rounded-md' style={{ backgroundColor: google }}>Login With Google</div>
                 </div>
           
         </>

@@ -3,7 +3,9 @@
   src: local('azad'), url(./assets/CenturyGothic.ttf) format('opentype');
 }
 
-
+.option:hover{
+  background-color: #AD171A !important;
+}
 
 .hover_text:hover {
   color: #f27820 !important;

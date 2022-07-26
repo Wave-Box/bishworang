@@ -97,7 +97,7 @@ const SinglePassword = ({ label, register, registerName }) => {
   const [hide, setHide] = useState(false)
   return (
     <>
-      <label htmlhtmlFor="first-name" className="block text-sm font-medium text-gray-700">
+      <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
         {label}
       </label>
       <div className="relative">

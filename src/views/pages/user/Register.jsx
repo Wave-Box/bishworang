@@ -93,7 +93,7 @@ const Register = () => {
 
 
                 <div className="flex justify-between items-center">
-                    <label htmlhtmlFor='agree' className="label cursor-pointer gap-4">
+                    <label htmlFor='agree' className="label cursor-pointer gap-4">
                         <input type="checkbox" id='agree' className="checkbox border border-gray-300" />
                         <span className="label-text">I agree to <NavLink to="/terms-condition" className={"cursor-pointer"}>terms & conditions</NavLink></span>
                     </label>

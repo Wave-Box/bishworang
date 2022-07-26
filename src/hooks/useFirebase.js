@@ -81,6 +81,7 @@ const useFirebase = () => {
 
     // Google pop Up sign 
 
+    console.log(user);
     const signInWithGoogle = () => {
         setIsLoading(true)
         signInWithPopup(auth, googleProvider)
@@ -91,20 +92,19 @@ const useFirebase = () => {
                 // save user to the database
                 // saveUser(user.email, user.displayName, user.accessToken, user?.photoURL)
                 setAuthError('')
-                // if (user.accessToken) {
-                //     navigate("/profile", { replace: true })
-                // }
-                dispatch(clearMessage());
+                if (user.accessToken) {
+                    dispatch(clearMessage());
+                    dispatch(googleLogin({ name: user?.displayName, email: user?.email, access_token: user?.accessToken, imageurl: user?.photoURL }))
+                        .then((res) => {
+                            if (res?.payload?.token) {
+                                navigate("/profile");
+                                window.location.reload()
+                            }
+                        })
+                        .catch(() => {
 
-                dispatch(googleLogin({ name: user?.displayName, email: user?.email, access_token: user?.accessToken, imageurl: user?.photoURL }))
-                    .unwrap()
-                    .then(() => {
-                        navigate("/profile");
-
-                    })
-                    .catch(() => {
-
-                    });
+                        });
+                }
 
             }).catch((error) => {
                 console.log("authentication error ->", error);
@@ -130,6 +130,7 @@ const useFirebase = () => {
                 setAuthError('')
                 if (user.accessToken) {
                     navigate("/profile", { replace: true })
+                    window.location.reload()
                 }
             }).catch((error) => {
                 console.log("authentication error ->", error);

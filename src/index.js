@@ -10,15 +10,13 @@ import ThemeProvider from './hooks/ThemeProvider';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
 ReactDOM.render(
-  <React.StrictMode>
     <ThemeProvider>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <App />
         </PersistGate>
       </Provider>
-    </ThemeProvider>
-  </React.StrictMode>,
+    </ThemeProvider>,
   document.getElementById('root')
 );
 

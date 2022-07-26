@@ -74,7 +74,7 @@ const AddressFrom = ({ call, setCall, setOpen, open }) => {
                                                                         value={"Billing"}
                                                                         className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
                                                                     />
-                                                                    <label htmlhtmlFor="Billing" className="ml-3 block text-sm font-medium text-gray-700">
+                                                                    <label htmlFor="Billing" className="ml-3 block text-sm font-medium text-gray-700">
                                                                         Billing
                                                                     </label>
                                                                 </div>
@@ -87,7 +87,7 @@ const AddressFrom = ({ call, setCall, setOpen, open }) => {
                                                                         value={'Shipping'}
                                                                         className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
                                                                     />
-                                                                    <label htmlhtmlFor="Shipping" className="ml-3 block text-sm font-medium text-gray-700">
+                                                                    <label htmlFor="Shipping" className="ml-3 block text-sm font-medium text-gray-700">
                                                                         Shipping
                                                                     </label>
                                                                 </div>
@@ -97,7 +97,7 @@ const AddressFrom = ({ call, setCall, setOpen, open }) => {
 
 
                                                         <div className="col-span-6 sm:col-span-4">
-                                                            <label htmlhtmlFor="name" className="block text-sm font-semibold text-gray-700 text-left">
+                                                            <label htmlFor="name" className="block text-sm font-semibold text-gray-700 text-left">
                                                                 Name
                                                             </label>
                                                             <input
@@ -111,7 +111,7 @@ const AddressFrom = ({ call, setCall, setOpen, open }) => {
                                                         </div>
 
                                                         <div>
-                                                            <label htmlhtmlFor="address" className="block text-sm font-semibold text-gray-700 text-left">
+                                                            <label htmlFor="address" className="block text-sm font-semibold text-gray-700 text-left">
                                                                 Address
                                                             </label>
                                                             <div className="mt-1">
