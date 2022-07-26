@@ -12,16 +12,11 @@ const PaymentGateway = ({ selectPayment, setSelectPayment }) => {
 
 
 
+                    {/* 
+                <p className="block text-xl font-semibold text-gray-700">
+                Terms & Conditions
+                            </p> */}
 
-
-                    <p className=' font-semibold'>I have read and agree with the website's
-                        <NavLink to={'terms-condition'} className=" text-indigo-400 underline ml-1">terms & conditions</NavLink>,
-
-                        <NavLink to={'privacy-policy'} className=" text-indigo-400 underline">  Privacy Policy </NavLink>
-                        and
-
-                        <NavLink to={'refund-policy'} className=" text-indigo-400 underline ml-1">Refund Policy</NavLink>
-                    </p>
 
 
                     <div className="col-span-6 sm:col-span-4">
@@ -70,7 +65,14 @@ const PaymentGateway = ({ selectPayment, setSelectPayment }) => {
 
                     </div>
 
+                    <p className=' font-semibold'>I have read and agree with the website's
+                        <NavLink to={'terms-condition'} className=" text-indigo-400 underline ml-1">Terms & Conditions</NavLink>,
 
+                        <NavLink to={'privacy-policy'} className=" text-indigo-400 underline">  Privacy Policy </NavLink>
+                        and
+
+                        <NavLink to={'refund-policy'} className=" text-indigo-400 underline ml-1">Refund Policy</NavLink>
+                    </p>
                 </div>
 
             </div>

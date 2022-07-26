@@ -146,7 +146,7 @@ const YourOrders = ({ cuponDis, selectAddress, selectPayment, shipping_area }) =
                     <p><Taka tk={cuponDis ? cuponDis : 0} /></p>
                 </div>
                 <div className="flex justify-between items-center">
-                    <p>Tax</p>
+                    <p>Tax{" ( " + data?.settings?.tax + "% )"}</p>
                     <p><Taka tk={parseInt(tax)} /></p>
                 </div>
                 <div className="flex justify-between items-center">
@@ -185,7 +185,7 @@ const Single = ({ item }) => {
 
         </div>
         <div className="flex flex-col gap-x-2 gap-y-1 pl-2">
-            <h3 className='text-black text-md  font-normal'><NavLink to={`/product/${item.id}`}>{item?.name?.slice(0,30)}</NavLink></h3>
+            <h3 className='text-black text-md  font-normal'><NavLink to={`/product/${item.id}`}>{item?.name?.slice(0, 30)}</NavLink></h3>
             <p className='text-sm'><Taka tk={parseInt(item?.price)} /> </p>
         </div>
         <div className="flex flex-col gap-1 justify-center items-center">
