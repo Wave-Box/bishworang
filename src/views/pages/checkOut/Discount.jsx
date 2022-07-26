@@ -9,6 +9,11 @@ import { red } from '../../../siteSetting/theme';
 import { HomePage } from '../../../services';
 
 const Discount = ({ setCupon, setShipping_area }) => {
+    const styless = `
+    option:hover{
+        background-color:'yellow'
+    }
+    `
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { data } = HomePage.GetInfo()
@@ -50,7 +55,7 @@ const Discount = ({ setCupon, setShipping_area }) => {
         <>
             <div className="shadow sm:rounded-md sm:overflow-hidden my-5">
                 <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
-
+                    <style>{styless}</style>
                     <div className="grid grid-cols-6 gap-6">
 
                         <div className="col-span-6 sm:col-span-3">
