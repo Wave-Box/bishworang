@@ -1,12 +1,9 @@
 import React from 'react';
-// import useTheme from '../../../../hooks/useTheme';
 import { bannerImg } from '../../../../siteSetting/siteUrl';
-import { useQuery } from 'react-query'
-import httpReq from '../../../../services/http.service';
 import SetLoaing from '../../../components/Loader/SetLoaing';
+import { HomePage } from '../../../../services';
 const Features = () => {
-    // const { banner } = useTheme()
-    const { isLoading, data } = useQuery(['allfrontendcontent'], () => httpReq.get('allfrontendcontent'))
+    const { data, isLoading } = HomePage.GetInfo()
     if (isLoading) {
         return <SetLoaing />
     }

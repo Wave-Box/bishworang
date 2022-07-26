@@ -32,20 +32,17 @@ import Risk from "../payment/Risk";
 import StoreLocation from "../static/StoreLocation";
 import Favourite from "../favourite/Favourite";
 import Offer from "../offer/Offer";
-// import PrivateRoute from "../../../privateRoute/PrivateRoute";
-
-
-// const OtherComponent = React.lazy(() => import('./OtherComponent'));
 
 const Home = React.lazy(() => import("../home/Home"));
 const User = React.lazy(() => import("../user/User"));
 const SingleProduct = React.lazy(() => import("../singleProduct/SingleProduct"));
 const Shop = React.lazy(() => import("../shop/Shop"));
-// code-splitting
+
 
 
 const Main = () => {
 
+  
     return (
         <div className="relative">
             <ScrollToTop />

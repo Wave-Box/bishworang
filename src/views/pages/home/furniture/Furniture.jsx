@@ -5,25 +5,25 @@ import SliderOne from '../latestSession/SliderOne';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 import SliderTwo from '../latestSession/SliderTwo';
 import CardFour from '../../../components/card/CardFour';
-import useTheme from '../../../../hooks/useTheme';
 import { bannerImg } from '../../../../siteSetting/siteUrl';
+import { HomePage } from '../../../../services';
 
 
 
 const Furniture = () => {
-    const { decore } = useTheme()
+    const { data } = HomePage.GetDecore()
     return (
         <div className="bg-white py-10">
             <div className='container sm:px-0 px-4'>
-                <h5 className='text-center text-3xl font-normal tracking-widest font-serif text-gray-700 my-8'>{decore[0]?.title}</h5>
-                <p className='text-center text-lg font-normal my-8 tracking-wide font-sans sm:mx-10'>{decore[0]?.subtitle}</p>
+                <h5 className='text-center text-3xl font-normal tracking-widest font-serif text-gray-700 my-8'>{data?.title}</h5>
+                <p className='text-center text-lg font-normal my-8 tracking-wide font-sans sm:mx-10'>{data?.subtitle}</p>
                 <SliderOne>
-                    {decore[0]?.slider.map((dec) => <SwiperSlide key={dec}>
+                    {data?.slider.map((dec) => <SwiperSlide key={dec}>
                         <img className=' object-cover  w-full h-full max-h-[700px]' src={bannerImg + dec} alt="" />
                     </SwiperSlide>)}
                 </SliderOne>
                 <div className="my-5 w-full relative">
-                    <DownSlider prev={"furniturePrev"} next={"furnitureNext"} product={decore[0]?.product} />
+                    <DownSlider prev={"furniturePrev"} next={"furnitureNext"} product={data?.product} />
                 </div>
             </div>
         </div>

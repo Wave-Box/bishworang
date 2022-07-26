@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Button1 } from '../../../components/button';
 import ProductCard from '../../../components/card/ProductCard';
-import { useQuery } from 'react-query'
-import httpReq from '../../../../services/http.service';
+import { HomePage, Product } from '../../../../services';
 
 
 const btn = [
@@ -23,9 +22,9 @@ const btn = [
 const Product_Section = () => {
     const [active, setActive] = useState('Featured')
 
-    const { error, data } = useQuery(['allfrontendcontent'], () => httpReq.get('allfrontendcontent'))
-    const { error: popularProductError, data: popularProduct } = useQuery(['popular_product'], () => httpReq.get('popular_product'))
-    const { error: featureProductError, data: featureProduct } = useQuery(['feature_product'], () => httpReq.get('feature_product'))
+    const { data, error } = HomePage.GetInfo()
+    const { error: popularProductError, data: popularProduct } = Product.GetPopularProduct()
+    const { error: featureProductError, data: featureProduct } = Product.GetFeatureProduct()
 
 
     if (error || popularProductError || featureProductError) return 'An error has occurred: ' + error.message

@@ -1,11 +1,11 @@
 import React from 'react';
-import useTheme from '../../../../hooks/useTheme';
+import { HomePage } from '../../../../services';
 import Title from '../../../components/utils/Title';
 import Aside from '../../static/aside';
 import { SingleBlog } from './FromBlog';
 
 const Blog = () => {
-    const { blogs } = useTheme()
+    const { data } = HomePage.GetInfo()
     return (
         <div className="flex md:flex-nowrap flex-wrap gap-6 px-4">
             <div className="min-w-max">
@@ -18,7 +18,7 @@ const Blog = () => {
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
 
-                    {blogs?.map((blog) => <SingleBlog blog={blog} key={blog.id} />)}
+                    {data?.blogs?.map((blog) => <SingleBlog blog={blog} key={blog.id} />)}
 
 
 

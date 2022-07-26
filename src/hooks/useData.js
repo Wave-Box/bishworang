@@ -14,36 +14,12 @@ const useData = () => {
     const [userData, setUser] = useState(null)
     const [favourite, setFavourite] = useState([])
 
-    const [category, setCategory] = useState([])
-    const [subcategory, setSubcategory] = useState([])
-    const [subsubcategory, setSubSubCategory] = useState([])
-    const [slider, setSlider] = useState([])
-    const [product, setProduct] = useState([])
-    const [banner, setBanner] = useState([])
-    const [singleBanner, setSingleBanner] = useState([])
-    const [offer, setOffer] = useState({})
-    const [season, setSeason] = useState([])
-    const [decore, setDecore] = useState([])
-    const [campaign, setCampaign] = useState([])
-    const [popularProduct, setPopularProduct] = useState([])
-    const [featureProduct, setFeatureProduct] = useState([])
-    const [blogs, setBlogs] = useState([])
-    const [settings, setSettings] = useState({})
-    const [topdeals, setTopdeals] = useState([])
-
     const [currency, setCurrency] = useState('BDT')
     const [currencyInfo, setcurrencyInfo] = useState({})
 
 
     const fetchHeader = useCallback(
         async () => {
-            // get the data from the api
-            const { category, subcategory, subsubcategory, slider, product, banner, singleBanner, offer, campaign, topdeals, settings } = await httpReq.get('allfrontendcontent');
-            const popular = await httpReq.get('popular_product');
-            const feature = await httpReq.get('feature_product');
-            const season = await httpReq.get('season');
-            const decore = await httpReq.get('home_decore');
-            const blog = await httpReq.get('blog');
 
             const { data } = await axios.get('https://v6.exchangerate-api.com/v6/db25471ea0108ac45b9cfdc4/latest/USD')
             setcurrencyInfo(data)
@@ -55,26 +31,8 @@ const useData = () => {
                 setFavourite(favourite)
             }
 
-            // set state with the result
+          
 
-            setCategory(category)
-            setSubcategory(subcategory)
-            setSubSubCategory(subsubcategory)
-            setSlider(slider)
-            setProduct(product)
-            setBanner(banner)
-            setSingleBanner(singleBanner)
-            setOffer(offer)
-            setCampaign(campaign)
-            setSeason(season)
-            setDecore(decore)
-            setBlogs(blog)
-            setSettings(settings)
-            setTopdeals(topdeals)
-
-            // set state with the result
-            setPopularProduct(popular)
-            setFeatureProduct(feature)
         }, [])
 
     useEffect(() => {
@@ -118,22 +76,6 @@ const useData = () => {
         makeid,
         userData,
         favourite,
-        category,
-        subcategory,
-        subsubcategory,
-        slider,
-        product,
-        banner,
-        singleBanner,
-        offer,
-        campaign,
-        season,
-        decore,
-        popularProduct,
-        featureProduct,
-        blogs,
-        topdeals,
-        settings,
         currency,
         setCurrency,
         currencyInfo

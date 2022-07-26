@@ -13,13 +13,10 @@ import "swiper/css/effect-fade";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-// import useTheme from "../../../../hooks/useTheme";
 import { sliderImg } from "../../../../siteSetting/siteUrl";
-import httpReq from "../../../../services/http.service";
-import { useQuery } from 'react-query'
+import { HomePage } from "../../../../services";
 const Hero = () => {
-
-    const { data } = useQuery(['allfrontendcontent'], () => httpReq.get('allfrontendcontent'))
+    const { data } = HomePage.GetInfo()
     return (
         <>
             <Swiper

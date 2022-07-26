@@ -3,14 +3,10 @@ import Title from '../../../components/utils/Title';
 import { primaryColor } from '../../../../constant';
 import { NavLink } from 'react-router-dom';
 import { blogImg } from '../../../../siteSetting/siteUrl';
-// import useTheme from '../../../../hooks/useTheme';
-import httpReq from '../../../../services/http.service';
-import { useQuery } from 'react-query'
+import { HomePage } from '../../../../services';
 
 const FromBlog = () => {
-    // const { blogs } = useTheme()
-    const { data } = useQuery(['blog'], () => httpReq.get('blog'))
-
+    const { data } = HomePage.GetBlog()
     return (
         <div>
             <section className="text-gray-600 body-font bg-white">
@@ -20,7 +16,7 @@ const FromBlog = () => {
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
 
-                        {data?.blogs?.map((blog) => <SingleBlog blog={blog} key={blog.id} />)}
+                        {data?.map((blog) => <SingleBlog blog={blog} key={blog.id} />)}
 
 
 

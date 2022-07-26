@@ -5,12 +5,13 @@ import { mobile, location, userIcon, logoutIcon } from '../../../assets/svg';
 import useTheme from '../../../hooks/useTheme';
 import Marquee from "react-fast-marquee";
 import { logout } from '../../../redux/slices/auth';
+import { HomePage } from '../../../services';
 
 const HeaderTop = () => {
     const { user } = useSelector((state) => state.auth);
     const dispatch = useDispatch()
 
-    const { topdeals } = useTheme()
+    const { data } = HomePage.GetInfo()
     return (
         <div className=" w-full py-0 text-sm hidden md:block" style={{ backgroundColor: '#AD171A' }}>
             <div className='  md:px-4 lg:px-6 text-white flex justify-between items-center'>
@@ -23,7 +24,7 @@ const HeaderTop = () => {
                     <Marquee pauseOnHover direction='left' delay={2} speed={30} >
                         <ul className='space-x-8'>
 
-                            {topdeals?.map((i) => <li key={i?.id} style={{ float: 'left' }}> <a href={i?.link}>{i?.title}</a> </li>)}
+                            {data?.topdeals?.map((i) => <li key={i?.id} style={{ float: 'left' }}> <a href={i?.link}>{i?.title}</a> </li>)}
                         </ul>
 
                     </Marquee>

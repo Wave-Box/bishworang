@@ -14,16 +14,13 @@ import { catImg, imgUrl } from '../../../siteSetting/siteUrl'
 import { Search } from './HeaderDown'
 import { logout } from '../../../redux/slices/auth'
 import { useDispatch, useSelector } from 'react-redux'
-
-import { useQuery } from 'react-query'
-import httpReq from '../../../services/http.service'
 import SetLoaing from '../Loader/SetLoaing'
+import { HomePage } from '../../../services'
 
 
 
 export default function HeaderMid() {
-    // const { category, settings } = useTheme()
-    const { isLoading, data } = useQuery(['allfrontendcontent'], () => httpReq.get('allfrontendcontent'))
+    const { data, isLoading } = HomePage.GetInfo()
     const [isShowing, setIsShowing] = useState(false)
     const { user } = useSelector((state) => state.auth);
     const dispatch = useDispatch()

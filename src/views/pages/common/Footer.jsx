@@ -6,8 +6,8 @@ import ins from '../../../assets/images/footer/instagram.png'
 import yt from '../../../assets/images/footer/youtube.png'
 import payment from '../../../assets/images/footer/SSLCOMMERZ Pay With logo All Size_Aug 21-05-Nov-18-2021-05-46-29-86-AM (1).png'
 import { primaryColor } from '../../../constant';
-import useTheme from '../../../hooks/useTheme';
 import { imgUrl } from '../../../siteSetting/siteUrl';
+import { HomePage } from '../../../services';
 
 
 const about = [
@@ -87,14 +87,14 @@ const contact = [
 ]
 
 const Footer = () => {
-    const { settings } = useTheme()
+    const { data } = HomePage.GetInfo()
     return (
         <footer className="text-gray-600 body-font bg-white mt-10 drop-shadow-xl">
             <div className="container pt-12 mx-auto">
                 <div className="flex flex-wrap md:text-left text-center order-first">
                     <div className="lg:w-2/5 md:w-1/2 w-full px-4">
                         <div className="flex justify-center sm:justify-start w-full">
-                            <img className="mb-8" src={imgUrl + settings?.logo} width={'120'} alt='' />
+                            <img className="mb-8" src={imgUrl + data?.settings?.logo} width={'120'} alt='' />
                         </div>
                         <h2 className=" font-semibold text-gray-900 tracking-widest text-xl my-2">Contact</h2>
                         <nav className="list-none mb-10 space-y-1">

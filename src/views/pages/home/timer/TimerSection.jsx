@@ -3,27 +3,29 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import img2 from '../../../../assets/images/banner/menu-banner-8.jpg'
 import { primaryColor } from '../../../../constant';
-// import { useTime } from 'react-timer-hook';
-import useTheme from '../../../../hooks/useTheme';
 import Countdown from 'react-countdown';
 import { offerImg } from '../../../../siteSetting/siteUrl';
+import { HomePage } from '../../../../services';
 
 
 const TimerSection = () => {
-    const { offer } = useTheme()
+    const { data, isLoading, isFetching } = HomePage.GetInfo()
+    if (isLoading || isFetching) {
+        return
+    }
     return (
         <div className="container mb-14 sm:px-0 px-4">
             <div className='grid md:grid-cols-2 grid-cols-1 gap-5'>
-                {Object.keys(offer).length && <div className="relative rounded-md">
-                    <img alt="gallery" className="w-full min-h-[600px] sm:min-h-full object-cover object-center block" src={offerImg + offer?.image} />
+                {Object.keys(data?.offer)?.length && <div className="relative rounded-md">
+                    <img alt="gallery" className="w-full min-h-[600px] sm:min-h-full object-cover object-center block" src={offerImg + data?.offer?.image} />
                     <div className="absolute top-0 bottom-0 left-4 flex justify-start items-center ">
-                        <InnerCard item={offer} />
+                        <InnerCard item={data?.offer} />
                     </div>
                 </div>}
                 <div className="relative rounded-md">
                     <img alt="gallery" className="w-full min-h-[600px] sm:min-h-full object-cover object-center block" src={img2} />
                     <div className="absolute top-0 bottom-0 left-4 flex justify-start items-center ">
-                        {Object.keys(offer).length && <InnerCard item={offer} />}
+                        {Object.keys(data?.offer).length && <InnerCard item={data?.offer} />}
                     </div>
                 </div>
             </div>

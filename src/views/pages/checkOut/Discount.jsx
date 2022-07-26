@@ -1,17 +1,17 @@
 
 import React from 'react';
 import { useSelector } from 'react-redux';
-import useTheme from '../../../hooks/useTheme';
 import httpReq from '../../../services/http.service';
 import { getDiscount } from '../../components/utils/getDiscount';
 import { getPrice } from '../../components/utils/getPrice';
 import { useForm } from 'react-hook-form'
 import { red } from '../../../siteSetting/theme';
+import { HomePage } from '../../../services';
 
 const Discount = ({ setCupon, setShipping_area }) => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { store_id, settings } = useTheme()
+    const { data } = HomePage.GetInfo()
     const cartList = useSelector((state) => state.cart.cartList)
     const get_discout = (res) => {
         const priceList = cartList?.map(p => p.qty * getPrice(p.regular_price, p.discount_price, p.discount_type))
@@ -25,7 +25,6 @@ const Discount = ({ setCupon, setShipping_area }) => {
         return parseInt(dis)
     }
     const onSubmit = data => {
-        data['store_id'] = store_id
 
         // declare the async data fetching function
         const fetchData = async () => {
@@ -72,9 +71,9 @@ const Discount = ({ setCupon, setShipping_area }) => {
                                     <select onChange={(e) => setShipping_area(e.target.value)} id="country" name="country" autoComplete="country-name"
                                         className="mt-1 block w-full py-2 text-lg font-semibold border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                         <option value={0}>--Select Area--</option>
-                                        <option value={parseInt(settings?.shipping_area_1_cost)}>{settings?.shipping_area_1}</option>
-                                        <option value={parseInt(settings?.shipping_area_2_cost)}>{settings?.shipping_area_2}</option>
-                                        <option value={parseInt(settings?.shipping_area_3_cost)}>{settings?.shipping_area_3}</option>
+                                        <option value={parseInt(data?.settings?.shipping_area_1_cost)}>{data?.settings?.shipping_area_1}</option>
+                                        <option value={parseInt(data?.settings?.shipping_area_2_cost)}>{data?.settings?.shipping_area_2}</option>
+                                        <option value={parseInt(data?.settings?.shipping_area_3_cost)}>{data?.settings?.shipping_area_3}</option>
                                     </select>
                                 </div>
                             </div>

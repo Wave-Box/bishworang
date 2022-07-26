@@ -7,7 +7,6 @@ import Title from '../../components/utils/Title';
 import banner3 from '../../../assets/images/shop/banner-11.jpg'
 import { ViewGridIcon, ChevronDownIcon } from '@heroicons/react/outline'
 import TitleBorder from '../../components/utils/TitleBorder';
-import useTheme from '../../../hooks/useTheme';
 import httpReq from '../../../services/http.service';
 import { getPrice } from '../../components/utils/getPrice';
 import Taka from '../../components/utils/Taka';
@@ -16,6 +15,7 @@ import { TrashIcon } from '@heroicons/react/solid';
 import { HoverIcon } from '../../components/card/ProductCard';
 import { confirmAlert } from 'react-confirm-alert';
 import { toast } from 'react-toastify';
+import { HomePage } from '../../../services';
 
 
 
@@ -23,10 +23,9 @@ const Favourite = () => {
     const [val, setVal] = useState(0)
     const [store, setStore] = useState([])
     const [products, setProducts] = useState([])
-    const { category } = useTheme()
     const [loading, setloading] = useState(false)
     const [call, setCall] = useState(0)
-
+    const { data } = HomePage.GetInfo()
     useEffect(() => {
         setloading(true)
         // declare the async data fetching function
@@ -77,7 +76,7 @@ const Favourite = () => {
 
                                 <nav className="list-none mb-6 space-y-3 px-4">
 
-                                    {category?.map((item) => <Link1 key={item?.id} text={item.name} href={"/category/" + item?.id} />)}
+                                    {data?.category?.map((item) => <Link1 key={item?.id} text={item.name} href={"/category/" + item?.id} />)}
 
                                 </nav>
                             </div>

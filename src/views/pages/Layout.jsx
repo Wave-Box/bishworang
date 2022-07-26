@@ -7,10 +7,16 @@ import Header from './common/Header';
 import HeaderSticky from '../components/common/HeaderSticky';
 import { ToastContainer } from 'react-toastify';
 import { bg_gary } from '../../siteSetting/theme';
+import { HomePage } from '../../services';
 
 
 const Layout = () => {
-   
+    const { isLoading } = HomePage.GetInfo()
+    if (isLoading) {
+        return <div className="flex justify-center h-screen items-center">
+            <button className="btn loading">loading</button>
+        </div>
+    }
     return (
         <>
             <ToastContainer position="top-right" newestOnTop />

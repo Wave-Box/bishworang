@@ -22,6 +22,7 @@ import sizeImg from '../../../assets/images/size.jpg';
 
 import { Fragment, useRef } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
+import Taka from '../../components/utils/Taka';
 
 
 const SingleProduct = () => {
@@ -29,7 +30,7 @@ const SingleProduct = () => {
     const [selectSize, setSelectSize] = useState('')
     const [tab, setTab] = useState('desc')
 
-    
+
     const activeStyle = {
         borderBottom: `2px solid ${primaryColor}`,
         color: primaryColor,
@@ -46,7 +47,7 @@ const SingleProduct = () => {
     const [loading, setLoading] = useState(false)
     const [result, setResult] = useState({})
     const [call, setCall] = useState(false)
-    
+
     const { makeid } = useTheme()
 
 
@@ -60,7 +61,7 @@ const SingleProduct = () => {
             // get the data from the api
             const { product, variant, vrcolor } = await httpReq.post('product-details', { product_id: params?.id });
 
-            
+
             // set state with the result
             setProduct(product);
             setVariant(variant);
@@ -97,9 +98,9 @@ const SingleProduct = () => {
             const resul = cartList?.find(c => c?.id === product?.id && c?.color === data?.color && c?.size === data?.size && c?.unit === data?.unit && c?.volume === data?.volume)
             setResult(resul)
 
-            
+
         }
-        
+
         setSingleVariant(data)
     }
 
@@ -109,9 +110,9 @@ const SingleProduct = () => {
         if (variant.length) {
             if (singleVariant.id) {
 
-                
+
                 if (singleVariant) {
-                    
+
                     dispatch(addToCartList({
                         cartId: makeid(100), variant_quantity: singleVariant?.quantity, variantId: singleVariant.id, ...singleVariant,
 
@@ -188,8 +189,8 @@ const SingleProduct = () => {
                     <div className="divider mt-2"></div>
                     <div className="flex justify-start items-center gap-x-4">
                         <h6 className='text-3xl font-semibold text-center m-0' style={{ color: primaryColor }}>
-                            ${singleVariant?.additional_price ? parseInt(price) + parseInt(singleVariant?.additional_price) : price} </h6>
-                        <p className='line-through text-md text-gray-400'> ${product?.regular_price}</p>
+                            <Taka tk={singleVariant?.additional_price ? parseInt(price) + parseInt(singleVariant?.additional_price) : price} /> </h6>
+                        <p className='line-through text-md text-gray-400'> <Taka tk={product?.regular_price} /></p>
                         {product?.discount_type === 'percent' && <p className='text-md text-gray-400'> {product?.discount_price}% Off</p>}
 
                     </div>
@@ -224,7 +225,7 @@ const SingleProduct = () => {
 
                     <div className="flex gap-1">
 
-                        {result?.qty ? <div style={{ backgroundColor: primaryColor }} className=" px-3 py-1 rounded-md shadow-sm flex justify-between text-black w-40 items-center">
+                        {result?.qty ? <div style={{ backgroundColor: "primaryColor" }} className=" px-3 py-1 rounded-md shadow-sm flex justify-between text-black w-40 items-center">
                             <MinusIcon height={18}
                                 onClick={() => {
                                     setCall(!call)
@@ -238,7 +239,7 @@ const SingleProduct = () => {
                                 {/* <label htmlhtmlFor="add">add to cart</label> */}
                                 <motion.button initial={{
                                     backgroundColor: primaryColor,
-                                    color: "black"
+                                    color: "white"
                                 }} whileHover={{
                                     backgroundColor: "#f08e48"
                                 }}
@@ -332,8 +333,8 @@ const SizeView = () => {
                             <Dialog.Panel className="relative bg-white rounded-lg text-left max-h-[80vh] py-3 overflow-y-scroll shadow-xl transform transition-all sm:my-8 ">
                                 <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
 
-                                        <img className='w-full h-full' src={sizeImg} alt="" />
-                                   
+                                    <img className='w-full h-full' src={sizeImg} alt="" />
+
                                 </div>
 
                             </Dialog.Panel>

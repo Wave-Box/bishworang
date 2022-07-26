@@ -7,12 +7,12 @@ import { useSelector } from 'react-redux';
 // import { logOut } from '../../../redux/slices/userSlice';
 import { profileImg } from '../../../siteSetting/siteUrl';
 import SearchBox from './SearchBox';
-import useTheme from '../../../hooks/useTheme';
 import Drawer from './Drawer';
+import { HomePage } from '../../../services';
 
 const HeaderDown = () => {
     const { user } = useSelector((state) => state.auth)
-    const { userData, favourite } = useTheme()
+    const { data } = HomePage.GetInfo()
     return (
         <div className="py-1" style={{ background: `white`, position: 'relative' }}>
 
@@ -34,7 +34,7 @@ const HeaderDown = () => {
                             <ShoppingCart />
                             <NavLink to='/favourite' className="relative">
                                 <HeartIcon width={30} />
-                                <span className="absolute -top-2 -right-1 bg-[#AD171A] text-white rounded-full px-1 py-0 font-serif text-2xs">{favourite?.length}</span>
+                                <span className="absolute -top-2 -right-1 bg-[#AD171A] text-white rounded-full px-1 py-0 font-serif text-2xs">{data?.favourite?.length}</span>
                             </NavLink>
 
                             {/* Profile dropdown */}
@@ -42,7 +42,7 @@ const HeaderDown = () => {
                                 <div>
                                     <Menu.Button className="bg-gray-800 flex h-[30px] w-[30px] text-sm rounded-full focus:outline-none focus:ring-offset-gray-800 focus:ring-white">
                                         <span className="sr-only">Open user menu</span>
-                                        {userData?.image ? user?.authby === 'google' ? <img src={userData?.image} alt='' className='object-cover h-full w-full rounded-full' /> : <img src={profileImg + userData?.image} alt='' className=' h-full w-full rounded-full' /> : <div className='flex justify-center items-center w-full h-full'><UserIcon className='w-full h-full p-1' color={'white'} /></div>}
+                                        {data?.userData?.image ? user?.authby === 'google' ? <img src={data?.userData?.image} alt='' className='object-cover h-full w-full rounded-full' /> : <img src={profileImg + data?.userData?.image} alt='' className=' h-full w-full rounded-full' /> : <div className='flex justify-center items-center w-full h-full'><UserIcon className='w-full h-full p-1' color={'white'} /></div>}
                                     </Menu.Button>
                                 </div>
                                 <Transition

@@ -4,14 +4,11 @@ import { Slider1 } from '../../../components/slider';
 import { SwiperSlide } from 'swiper/react';
 import Title from '../../../components/utils/Title';
 import Arrow from '../../../components/utils/Arrow';
-// import useTheme from '../../../../hooks/useTheme';
-
-import { useQuery } from 'react-query'
-import httpReq from '../../../../services/http.service';
+import { HomePage } from '../../../../services';
 
 
 const NewArrivals = () => {
-    const { data } = useQuery(['allfrontendcontent'], () => httpReq.get('allfrontendcontent'))
+    const { data } = HomePage.GetInfo()
     const prev = 'new_Prev'
     const next = 'new_Next'
     return (

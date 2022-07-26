@@ -10,15 +10,15 @@ import {
 import logo from '../../../assets/images/headerLogo.png'
 import { NavLink } from 'react-router-dom'
 import { yellow } from '../../../siteSetting/theme'
-import useTheme from '../../../hooks/useTheme'
 import { motion } from 'framer-motion'
 import { catImg, imgUrl } from '../../../siteSetting/siteUrl'
 import { logout } from '../../../redux/slices/auth'
 import { useDispatch, useSelector } from 'react-redux'
+import { HomePage } from '../../../services'
 
 
 const HeaderSticky = () => {
-    const { category, settings } = useTheme()
+    const { data } = HomePage.GetInfo()
 
     const { user } = useSelector((state) => state.auth);
     const dispatch = useDispatch()
@@ -61,7 +61,7 @@ const HeaderSticky = () => {
                                     <NavLink to='/' className="text-base font-medium text-black hover:text-gray-900">
                                         Home
                                     </NavLink>
-                                    {category?.map(item =>
+                                    {data?.category?.map(item =>
                                         <NavLink key={item?.id} to={'/category/' + item?.id} className="text-base font-medium text-black hover:text-gray-900">
                                             {item?.name}
                                         </NavLink>)}
@@ -71,7 +71,7 @@ const HeaderSticky = () => {
                                 <div className="hidden md:flex items-center justify-end md:flex-1 lg:max-w-fit group gap-1">
                                     <PhoneIcon className='ml-2 h-5 w-5 group-hover:text-orange-400' />
                                     <NavLink to="/" className="whitespace-nowrap text-base font-medium text-black hover:text-orange-400">
-                                        Hotline <span className='text-orange-400 tracking-tight'> {settings?.phone}</span>
+                                        Hotline <span className='text-orange-400 tracking-tight'> {data?.settings?.phone}</span>
                                     </NavLink>
 
                                 </div>
@@ -94,7 +94,7 @@ const HeaderSticky = () => {
                                 <div>
                                     <img
                                         className="h-8 w-auto"
-                                        src={imgUrl + settings?.logo}
+                                        src={imgUrl + data?.settings?.logo}
                                         alt="Workflow"
                                     />
                                 </div>
@@ -107,7 +107,7 @@ const HeaderSticky = () => {
                             </div>
                             <div className="mt-6">
                                 <nav className="grid gap-y-8">
-                                    {category?.map((item) => (
+                                    {data?.category?.map((item) => (
                                         <NavLink
                                             to={"/category/" + item?.id}
                                             key={item?.id}

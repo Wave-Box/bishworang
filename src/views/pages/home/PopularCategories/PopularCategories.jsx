@@ -4,14 +4,10 @@ import { Slider1 } from '../../../components/slider';
 import { SwiperSlide, } from 'swiper/react';
 import Title from '../../../components/utils/Title';
 import Arrow from '../../../components/utils/Arrow';
-// import useTheme from '../../../../hooks/useTheme';
-import { useQuery } from 'react-query'
-import SetLoaing from '../../../components/Loader/SetLoaing';
-import httpReq from '../../../../services/http.service';
+import { HomePage } from '../../../../services';
 
 const PopularCategories = () => {
-    // const { category } = useTheme()
-    const { isLoading, data } = useQuery(['allfrontendcontent'], () => httpReq.get('allfrontendcontent'))
+    const { data } = HomePage.GetInfo()
     const prev = 'cat_Prev'
     const next = 'cat_Next'
     return (
@@ -21,7 +17,7 @@ const PopularCategories = () => {
                     <Title text={'Popular'} >Categories</Title>
                     <Arrow prevEl={prev} nextEl={next}></Arrow>
                 </div>
-               {isLoading ? <SetLoaing /> : <Slider1
+               <Slider1
                     prevEl={prev}
                     nextEl={next}
                 >
@@ -29,7 +25,7 @@ const PopularCategories = () => {
                         <Card1 cat={cat} />
                     </SwiperSlide>
                     )}
-                </Slider1>}
+                </Slider1>
             </div>
         </div>
     );

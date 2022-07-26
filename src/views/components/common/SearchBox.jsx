@@ -1,14 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import useTheme from '../../../hooks/useTheme';
 import { getPrice } from '../utils/getPrice';
 import { NavLink } from 'react-router-dom';
 import { productImg } from '../../../siteSetting/siteUrl';
 import Taka from '../utils/Taka';
+import { HomePage } from '../../../services';
 const SearchBox = ({ search, setSearch }) => {
-    const { product } = useTheme()
+    const { data } = HomePage.GetInfo()
 
-    const result = product.filter(item => item?.name.toLowerCase().includes(search?.toLowerCase()))
+    const result = data?.product.filter(item => item?.name.toLowerCase().includes(search?.toLowerCase()))
 
     return (
         <motion.div

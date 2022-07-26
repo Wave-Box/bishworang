@@ -7,29 +7,22 @@ import SliderTwo from './SliderTwo';
 
 // import useTheme from '../../../../hooks/useTheme';
 import { bannerImg } from '../../../../siteSetting/siteUrl';
-import { useQuery } from 'react-query'
-import httpReq from '../../../../services/http.service';
 import SetLoaing from '../../../components/Loader/SetLoaing';
+import { HomePage } from '../../../../services';
 
 
 
 const LatestSession = () => {
-
-    // const { season } = useTheme()
-    const { isLoading, data } = useQuery(['season'], () => httpReq.get('season'))
+    const { data, isLoading } = HomePage.GetSeason()
     return (
         <div className='container my-10 sm:px-0 px-4' >
-
-
             <h6 className='text-center font-medium font-sans text-3xl tracking-widest text-gray-700'>LATEST FROM THE SEASON</h6>
-           {isLoading ? <SetLoaing /> : <div className="grid grid-cols-2 gap-8 my-5">
+            {isLoading ? <SetLoaing /> : <div className="grid grid-cols-2 gap-8 my-5">
                 {
-                    data?.season?.slice(0, 2).map((s) =>
+                    data?.slice(0, 2).map((s) =>
                         <Single key={s.id} title={s.title} shortTitle={s.subtitle} slider={s?.slider} product={s?.product} />
                     )
                 }
-
-
             </div>}
 
         </div >

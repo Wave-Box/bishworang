@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 import { red } from '../../../../siteSetting/theme';
 
@@ -13,8 +14,14 @@ const PaymentGateway = ({ selectPayment, setSelectPayment }) => {
 
 
 
+                    <p className=' font-semibold'>I have read and agree with the website's
+                        <NavLink to={'terms-condition'} className=" text-indigo-400 underline ml-1">terms & conditions</NavLink>,
 
+                        <NavLink to={'privacy-policy'} className=" text-indigo-400 underline">  Privacy Policy </NavLink>
+                        and
 
+                        <NavLink to={'refund-policy'} className=" text-indigo-400 underline ml-1">Refund Policy</NavLink>
+                    </p>
 
 
                     <div className="col-span-6 sm:col-span-4">

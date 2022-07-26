@@ -12,7 +12,6 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider>
-
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <App />
