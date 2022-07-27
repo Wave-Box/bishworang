@@ -5,7 +5,7 @@ import Aside from '../../static/aside';
 import { SingleBlog } from './FromBlog';
 
 const Blog = () => {
-    const { data } = HomePage.GetInfo()
+    const { data } = HomePage.GetBlog()
     return (
         <div className="flex md:flex-nowrap flex-wrap gap-6 px-4">
             <div className="min-w-max">
@@ -18,7 +18,7 @@ const Blog = () => {
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
 
-                    {data?.blogs?.map((blog) => <SingleBlog blog={blog} key={blog.id} />)}
+                    {data?.map((blog) => <SingleBlog blog={blog} key={blog.id} />)}
 
 
 

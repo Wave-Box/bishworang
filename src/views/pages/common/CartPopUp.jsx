@@ -3,6 +3,7 @@ import { GiShoppingBag } from 'react-icons/gi'
 import { useSelector } from 'react-redux';
 import Drawer from '../../components/common/Drawer';
 import Taka from '../../components/utils/Taka';
+import { useLocation } from 'react-router-dom'
 
 const CartPopUp = () => {
     const [open, setOpen] = useState(false)
@@ -12,8 +13,10 @@ const CartPopUp = () => {
         (previousValue, currentValue) => previousValue + currentValue,
         0
     );
+    const location = useLocation()
+    console.log(location?.pathname);
     return (
-        <>
+        <div className={`${location?.pathname === "/checkout" && "hidden"}`}>
             <div onClick={() => setOpen(!open)} className={`${open ? "hidden" : "hidden md:block"} `}>
                 <div className='fixed z-[120] p-2  right-0 top-1/2  shadow-lg rounded-l-md cursor-pointer md:block w-24 pb-3 bg-gray-500'>
                     <div className="flex flex-col items-center space-y-1">
@@ -38,7 +41,7 @@ const CartPopUp = () => {
 
             </div>
             <Drawer open={open} setOpen={setOpen} />
-        </>
+        </div>
     );
 };
 
