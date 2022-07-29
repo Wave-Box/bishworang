@@ -61,7 +61,7 @@ const OrderDetails = () => {
                 <h1 className="text-3xl lg:text-4xl font-semibold leading-7 lg:leading-9  text-gray-800">Order #{order?.reference_no}</h1>
                 <p className="text-base font-medium leading-6 text-gray-600">{new Date(order?.created_at).toLocaleString()}</p>
             </div>
-            <div className="mt-10 flex flex-col xl:flex-row jusitfy-center items-stretch  w-full xl:space-x-8 space-y-4 md:space-y-6 xl:space-y-0">
+            <div className="mt-10 flex flex-col xl:flex-row justify-center items-stretch  w-full xl:space-x-8 space-y-4 md:space-y-6 xl:space-y-0">
                 <div className="flex flex-col justify-start items-start w-full space-y-4 md:space-y-6 xl:space-y-8">
                     <div className="flex flex-col justify-start items-start bg-gray-50 px-4 py-4 md:py-6 md:p-6 xl:p-8 w-full">
                         <p className="text-lg md:text-xl font-semibold leading-6 xl:leading-5 text-gray-800">Customer’s Cart</p>
@@ -111,7 +111,7 @@ const OrderDetails = () => {
 
                             {userData?.phone ?
                                 <div className="flex justify-center  md:justify-start items-center space-x-4 py-4 border-b border-gray-200 w-full">
-                                    <PhoneIcon className='font-extralight' height={20} />
+                                    <PhoneIcon className='font-thin' height={20} />
 
                                     <p className="cursor-pointer text-sm leading-5 text-gray-800">{userData?.phone}</p>
                                 </div> : null
@@ -142,7 +142,7 @@ const OrderDetails = () => {
                                 </div>
 
                             </div>
-                            {order?.status === "Pending" && order?.payurl && <div className='text-red-500'>Exprie In:  <Countdown date={order_create_time + 3000000} renderer={renderer} /></div>}
+                            {order?.status === "Pending" && order?.payurl && <div className='text-red-500'>Expire In:  <Countdown date={order_create_time + 3000000} renderer={renderer} /></div>}
                             {order?.status === "Pending" && order?.payurl && pay === 'show' && <div className="flex w-full justify-center items-center md:justify-start md:items-start">
                                 <button
                                     onClick={() => window.location.replace(order?.payurl)}
