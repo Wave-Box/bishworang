@@ -13,7 +13,7 @@ const HeaderTop = () => {
 
     const { data } = HomePage.GetInfo()
     return (
-        <div className=" w-full py-0 text-sm hidden md:block" style={{ backgroundColor: '#AD171A' }}>
+        <div className=" w-full py-0 text-sm hidden md:block bg-[#AD171A]">
             <div className='  md:px-4 lg:px-6 text-white flex justify-between items-center'>
                 <div className="flex items-center divide-x">
                     <HeaderTopMenu icon={mobile} doc={"+88 01730 068 036"} />

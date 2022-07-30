@@ -16,6 +16,8 @@ import { logout } from '../../../redux/slices/auth'
 import { useDispatch, useSelector } from 'react-redux'
 import SetLoaing from '../Loader/SetLoaing'
 import { HomePage } from '../../../services'
+// import SingleCat from './SingleCat'
+import HoverCat from './HoverCat'
 
 
 
@@ -85,16 +87,15 @@ export default function HeaderMid() {
                             <MenuIcon className="h-7 w-7" aria-hidden="true" />
                         </Popover.Button>
                     </div>
-                    <Popover.Group as="nav" className="hidden lg:flex flex-wrap xl:space-x-10 space-x-3">
+                    <Popover.Group as="nav" className="hidden lg:flex flex-wrap xl:space-x-10 space-x-3 h-[40px]">
 
 
-                        <NavLink to='/' className="text-base font-medium text-gray-500 hover:text-gray-900">
-                            Home
-                        </NavLink>
-                        {data?.category?.map(item =>
-                            <NavLink key={item?.id} to={'/category/' + item?.id} className="text-base font-medium text-gray-500 hover:text-gray-900">
-                                {item?.name}
-                            </NavLink>)}
+                        <div className="flex justify-center items-center h-full">
+                            <NavLink to='/' className="text-base font-medium text-gray-500 hover:text-gray-900 ">
+                                Home
+                            </NavLink>
+                        </div>
+                        {data?.category?.map(item => <HoverCat key={item?.id} item={item} />)}
 
 
 

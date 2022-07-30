@@ -28,8 +28,9 @@ const Shop = () => {
         // declare the async data fetching function
         const fetchData = async () => {
             // get the data from the api
-            const data = await httpReq.post('getcatproduct', { id: params.id });
+            const {data} = await httpReq.post('getcatproduct', { id: params?.id });
 
+            console.log(data);
 
             // set state with the result
             setProducts(data);
@@ -45,7 +46,7 @@ const Shop = () => {
                 setloading(false)
                 console.log(error);
             }).finally(() => setloading(false))
-    }, [params.id])
+    }, [params?.id])
 
 
 
@@ -144,7 +145,7 @@ const Shop = () => {
                         </div> :
 
 
-                            products.length ?
+                            products?.length ?
                                 <div className="grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-2">
                                     {products?.map((i) => <ProductCard key={i.id} item={i} />)}
                                 </div> : <div className="flex justify-center h-[400px] items-center">

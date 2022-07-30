@@ -14,7 +14,6 @@ const CartPopUp = () => {
         0
     );
     const location = useLocation()
-    console.log(location?.pathname);
     return (
         <div className={`${location?.pathname === "/checkout" && "hidden"}`}>
             <div onClick={() => setOpen(!open)} className={`${open ? "hidden" : "hidden md:block"} `}>

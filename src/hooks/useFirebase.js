@@ -80,8 +80,6 @@ const useFirebase = () => {
 
 
     // Google pop Up sign 
-
-    console.log(user);
     const signInWithGoogle = () => {
         setIsLoading(true)
         signInWithPopup(auth, googleProvider)

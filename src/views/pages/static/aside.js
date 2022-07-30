@@ -37,7 +37,7 @@ const about = [
 const Aside = () => {
     return (
         <div className='flex flex-col list-none w-[287px] border-r pr-4'>
-            {about.map((item, idx) => <div className='border-b border-black py-4  font-bold'><Link1 key={idx} text={item.name} href={item.link} /></div>)}
+            {about.map((item, idx) => <div key={idx} className='border-b border-black py-4  font-bold'><Link1  text={item.name} href={item.link} /></div>)}
         </div>
     );
 };
