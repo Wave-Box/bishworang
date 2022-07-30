@@ -21,7 +21,7 @@ const ProductCard = ({ item }) => {
     const [result, setResult] = useState({})
     const { makeid } = useTheme()
     const price = getPrice(item?.regular_price, item?.discount_price, item?.discount_type)
-    const secondImg = item?.images[1] ? item?.images[1] : item?.images[0];
+    const secondImg = item?.image[1] ? item?.image[1] : item?.image[0];
 
     const dispatch = useDispatch()
     const cartList = useSelector((state) => state.cart.cartList)
@@ -67,7 +67,7 @@ const ProductCard = ({ item }) => {
                                 scale: 1,
                                 transition: { duration: 1 }
 
-                            }} src={productImg + item?.images[0]} alt="Shoes" className='w-full h-full group-hover:hidden group-hover:scale-105 transition-all duration-500 ease-linear ' />
+                            }} src={productImg + item?.image[0]} alt="Shoes" className='w-full h-full group-hover:hidden group-hover:scale-105 transition-all duration-500 ease-linear ' />
 
 
                     </NavLink>
