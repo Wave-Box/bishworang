@@ -36,7 +36,7 @@ const TimerSection = () => {
 export default TimerSection;
 
 
-const InnerCard = ({ item }) => {
+const InnerCard = ({ item, data }) => {
 
     const end_date = new Date(item?.end_date).setHours(23, 59, 59)
     // Renderer callback with condition
@@ -48,21 +48,22 @@ const InnerCard = ({ item }) => {
         } else {
             // Render a countdown
             return (
-                <div className='text-2xl font-semibold flex my-2 justify-start gap-2'>
-                    <div className="flex flex-col justify-center ">
-                        <span className='rounded-md text-white p-2 ' style={{ backgroundColor: primaryColor }}>{hours}</span>
-                        <p className='font-normal text-gray-500 text-lg'>HOURS</p>
-                    </div> <span className='mt-2'>:</span>
-                    <div className="flex flex-col">
-                        <span className='rounded-md text-white p-2 ' style={{ backgroundColor: primaryColor }}>{minutes}</span>
-                        <p className='font-normal text-gray-500 text-lg'>MINS</p>
-                    </div><span className='mt-2'>:</span>
-                    <div className="flex flex-col">
-                        <span className='rounded-md text-white p-2 ' style={{ backgroundColor: primaryColor }}>{seconds}</span>
-                        <p className='font-normal text-gray-500 text-lg'>SEC</p>
+                <div className="container mb-14 sm:px-0 px-4">
+                <div className='grid md:grid-cols-2 grid-cols-1 gap-5'>
+                    {Object.keys(data?.offer2)?.length && <div className="relative rounded-md">
+                        <img alt="gallery" className="w-full min-h-[600px] sm:min-h-full object-cover object-center block" src={offerImg + data?.offer2?.image} />
+                        <div className="absolute top-0 bottom-0 left-4 flex justify-start items-center ">
+                            <InnerCard item={data?.offer2} />
+                        </div>
+                    </div>}
+                    <div className="relative rounded-md">
+                        <img alt="gallery" className="w-full min-h-[600px] sm:min-h-full object-cover object-center block" src={img2} />
+                        <div className="absolute top-0 bottom-0 left-4 flex justify-start items-center ">
+                            {Object.keys(data?.offer2).length && <InnerCard item={data?.offer2} />}
+                        </div>
                     </div>
-
                 </div>
+            </div>
             )
         }
     };
