@@ -87,11 +87,11 @@ export default function HeaderMid() {
                             <MenuIcon className="h-7 w-7" aria-hidden="true" />
                         </Popover.Button>
                     </div>
-                    <Popover.Group as="nav" className="hidden lg:flex flex-wrap xl:space-x-10 space-x-3 h-[40px]">
+                    <Popover.Group as="nav" className="hidden lg:flex items-center flex-wrap xl:space-x-10 space-x-3 ">
 
 
                         <div className="flex justify-center items-center h-full">
-                            <NavLink to='/' className="text-base font-medium text-gray-500 hover:text-gray-900 ">
+                            <NavLink to='/' className="text-base font-medium text-gray-500 hover:text-gray-900 py-2">
                                 Home
                             </NavLink>
                         </div>
