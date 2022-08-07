@@ -1,7 +1,6 @@
 import { ArrowRightIcon } from '@heroicons/react/outline';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import img2 from '../../../../assets/images/banner/menu-banner-8.jpg'
 import { primaryColor } from '../../../../constant';
 import Countdown from 'react-countdown';
 import { offerImg } from '../../../../siteSetting/siteUrl';
