@@ -1,3 +1,4 @@
+
 /* This example requires Tailwind CSS v2.0+ */
 import { Fragment, useState } from 'react'
 import { Popover, Transition } from '@headlessui/react'
@@ -44,7 +45,7 @@ const HeaderSticky = () => {
                 }}>
                     <Popover style={{ backgroundColor: yellow, position: 'relative' }} className="relative shadow-lg mb-2">
                         <div className="container mx-auto px-4 sm:px-6">
-                            <div className="flex justify-between items-center py-2 md:justify-start md:space-x-10">
+                            <div className="flex justify-between items-center py-2 md:justify-start gap-2">
                                 <div className="flex justify-start lg:w-0 lg:flex-1">
                                     <NavLink to={'/'}>
                                         <img src={logo} alt="" width={100} />
@@ -56,11 +57,11 @@ const HeaderSticky = () => {
                                         <MenuIcon className="h-6 w-6" aria-hidden="true" />
                                     </Popover.Button>
                                 </div>
-                                <Popover.Group as="nav" className="hidden lg:flex flex-wrap xl:space-x-10 space-x-3 h-[40px]">
+                                <Popover.Group as="nav" className="hidden lg:flex items-center xl:space-x-10 space-x-3 h-[40px]">
 
 
                                     <div className="flex justify-center items-center h-full">
-                                        <NavLink to='/' className="text-base font-medium text-gray-500 hover:text-gray-900 ">
+                                        <NavLink to='/' className="xl:text-base lg:text-sm font-medium text-gray-500 hover:text-gray-900 py-2">
                                             Home
                                         </NavLink>
                                     </div>

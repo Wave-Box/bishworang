@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link1 } from '../../components/links';
 import fb from '../../../assets/images/footer/facebook.png'
@@ -40,24 +41,6 @@ const about = [
         link: '/terms-condition'
     }]
 
-const socialInfo = [
-    {
-        img: fb,
-        link: "https://www.facebook.com/bishworangfanclub"
-    },
-    {
-        img: wp,
-        link: "https://api.whatsapp.com/send?phone=8801730068036"
-    },
-    {
-        img: ins,
-        link: "https://www.instagram.com/bishworang_official/"
-    },
-    {
-        img: yt,
-        link: "https://www.youtube.com/channel/UCqq5ZkCqQ-_MR2-2OPLlo4Q"
-    },
-]
 
 const my_account = [{
     name: "Sign In",
@@ -127,11 +110,11 @@ const Footer = () => {
 
                         <div className="flex items-center gap-2">
 
-                            {
-                                socialInfo?.map((i, id) => <div key={id} className='w-10 h-10  rounded-full'>
-                                    <a href={i.link} target="_blank" rel="noopener noreferrer"><img src={i.img} alt="" /></a>
-                                </div>)
-                            }
+                            <a href={data.settings.facebook_link} target="_blank" rel="noopener noreferrer" className='w-10 h-10  rounded-full'><img src={fb} alt="" /></a>
+                            <a href={"https://api.whatsapp.com/send?phone=" + data.settings.facebook_link} target="_blank" rel="noopener noreferrer" className='w-10 h-10  rounded-full'><img src={wp} alt="" /></a>
+                            <a href={data.settings.instagram_link} target="_blank" rel="noopener noreferrer" className='w-10 h-10  rounded-full'><img src={ins} alt="" /></a>
+                            <a href={data.settings.youtube_link} target="_blank" rel="noopener noreferrer" className='w-10 h-10  rounded-full'><img src={yt} alt="" /></a>
+
                         </div>
                     </div>
                 </div>

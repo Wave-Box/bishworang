@@ -1,3 +1,4 @@
+
 import { ChevronRightIcon } from '@heroicons/react/solid';
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
@@ -11,16 +12,16 @@ const HoverCat = ({ item }) => {
 
 
             <NavLink to={"/category/" + item?.id} className="relative">
-                <h1 className="text-base font-medium text-gray-500 hover:text-gray-900 py-2 ">
+                <h1 className="xl:text-base lg:text-sm font-medium text-gray-500 hover:text-gray-900 py-2 ">
                     {item.name}
                 </h1>
                 {item.subcategory.length !== 0 && <div className='h-4 w-4 hidden group-hover:block bg-red-700 absolute top-8 left-[50%] -translate-x-[50%] rotate-45 z-20'></div>}
             </NavLink>
-            <div className='absolute z-50 top-[44px] hidden group-hover:block w-full left-0 px-40 h-[40vh]'>
+            <div className='absolute z-50 top-[44px] hidden group-hover:block w-full left-0 px-40 h-max'>
             
                 {item.subcategory.length !== 0 &&
                 
-                    <div className='flex justify-between bg-white space-x-14 p-5 w-full h-full border-t-2 border-red-700'>
+                    <div className='flex justify-between bg-white space-x-14 p-10 w-full h-full border-t-2 border-red-700'>
                         
                         {item?.subcategory?.map((sub) => (
                             <div>
@@ -121,4 +122,5 @@ export default HoverCat;
 //             </NavLink>
 //         </>
 //     )
+
 // }
