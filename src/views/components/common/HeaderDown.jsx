@@ -1,3 +1,4 @@
+
 import React, { Fragment, useState } from 'react';
 import logo from '../../../assets/images/headerLogo.png'
 import { HeartIcon, SearchIcon, ShoppingCartIcon, UserIcon, XIcon } from '@heroicons/react/outline'
@@ -16,7 +17,7 @@ const HeaderDown = () => {
     return (
         <div className="py-1" style={{ background: `white`, position: 'relative' }}>
 
-            <div className=' my-2 md:px-4 lg:px-6 sm:px-0'>
+            <div className=' my-2 px-4 lg:px-6'>
                 <div className="grid md:grid-cols-2 grid-cols-2 gap-2">
 
 
