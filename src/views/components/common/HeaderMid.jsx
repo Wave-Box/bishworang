@@ -29,7 +29,7 @@ export default function HeaderMid() {
     return (
         <Popover style={{ background: `white`, position: 'relative' }} className="relative bg-gray-50 shadow-lg mb-2">
             <div className="lg:px-6 mx-auto px-4 ">
-                <div className="flex justify-between items-center  py-1 md:justify-between ">
+                <div className="flex justify-between items-center py-0 md:justify-between ">
                     <div className="flex justify-start ">
                         <div className="relative">
 
@@ -37,7 +37,7 @@ export default function HeaderMid() {
                             <button
                                 onMouseEnter={() => setIsShowing(true)}
                                 onMouseLeave={() => setIsShowing(false)}
-                                className={'group  rounded-md inline-flex items-center text-base font-medium hover:text-orange-400 gap-1 py-2'}
+                                className={'group  rounded-md inline-flex items-center text-base font-medium hover:text-orange-400 gap-1 py-3'}
                             >
                                 <ViewGridIcon
                                     className={
@@ -52,7 +52,7 @@ export default function HeaderMid() {
 
                             {isShowing && (
                                 <div onMouseEnter={() => setIsShowing(true)}
-                                    onMouseLeave={() => setIsShowing(false)} className="absolute z-10 -ml-4 mt-0 transform px-2 w-screen max-w-max sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2">
+                                    onMouseLeave={() => setIsShowing(false)} className="absolute z-10 -ml-4 mt-0 transform px-2 w-screen max-w-max sm:px-0 lg:ml-0 lg:left-0 ">
                                     <div className="shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden rounded">
                                         {isLoading ? <SetLoaing /> : <div className="relative grid gap-3  py-6 sm:gap-8 px-4 sm:p-8 bg-[#fff] text-black">
                                             {data?.category?.map((item) => (
@@ -91,7 +91,7 @@ export default function HeaderMid() {
 
 
                         <div className="flex justify-center items-center h-full">
-                            <NavLink to='/' className="xl:text-base lg:text-sm font-medium text-gray-500 hover:text-gray-900 py-2">
+                            <NavLink to='/' className="xl:text-base lg:text-sm font-medium text-gray-500 hover:text-gray-900 py-3">
                                 Home
                             </NavLink>
                         </div>
@@ -100,7 +100,7 @@ export default function HeaderMid() {
 
 
                     </Popover.Group>
-                    <div className="hidden md:flex items-center justify-end md:flex-1 lg:max-w-fit group gap-1">
+                    <div className="hidden md:flex items-center justify-end md:flex-1 lg:max-w-fit group gap-1 py-3">
                         <PhoneIcon className='xl:ml-2 h-5 w-5 group-hover:text-orange-400' />
                         <NavLink to='/' className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-orange-400">
                             Hotline <span className='text-orange-400'>{data?.settings?.phone}</span>

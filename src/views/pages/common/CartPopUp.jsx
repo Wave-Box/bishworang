@@ -14,8 +14,10 @@ const CartPopUp = () => {
         0
     );
     const location = useLocation()
+
     return (
-        <div className={`${location?.pathname === "/checkout" && "hidden"}`}>
+        <div>
+        {cartList.length > 0 && <div className={`${location?.pathname === "/checkout" && "hidden"}`}>
             <div onClick={() => setOpen(!open)} className={`${open ? "hidden" : "hidden md:block"} `}>
                 <div className='fixed z-[120] p-2  right-0 top-1/2  shadow-lg rounded-l-md cursor-pointer md:block w-24 pb-3 bg-gray-500'>
                     <div className="flex flex-col items-center space-y-1">
@@ -40,6 +42,7 @@ const CartPopUp = () => {
 
             </div>
             <Drawer open={open} setOpen={setOpen} />
+        </div>}
         </div>
     );
 };

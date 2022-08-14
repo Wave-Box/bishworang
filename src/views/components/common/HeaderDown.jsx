@@ -1,19 +1,60 @@
 
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import logo from '../../../assets/images/headerLogo.png'
 import { HeartIcon, SearchIcon, ShoppingCartIcon, UserIcon, XIcon } from '@heroicons/react/outline'
 import { Menu, Transition } from '@headlessui/react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-// import { logOut } from '../../../redux/slices/userSlice';
 import { profileImg } from '../../../siteSetting/siteUrl';
 import SearchBox from './SearchBox';
 import Drawer from './Drawer';
 import { HomePage } from '../../../services';
+import { Dialog } from '@headlessui/react'
+import { CgClose } from 'react-icons/cg';
+import { motion } from 'framer-motion';
+import { useForm } from "react-hook-form";
+import { toast } from 'react-toastify'
+import httpReq from '../../../services/http.service';
+import { red } from '../../../siteSetting/theme';
+
 
 const HeaderDown = () => {
     const { user } = useSelector((state) => state.auth)
     const { data } = HomePage.GetInfo()
+
+    const [isOpen, setIsOpen] = useState(false)
+    const { register, handleSubmit } = useForm();
+
+    const onSubmit = data => {
+        httpReq.post("subscribe", data)
+            .then(({ success, error }) => {
+                if (error) {
+                    toast(error, { type: 'error', autoClose: 500 })
+                }
+                if (success) {
+                    toast(success, { type: 'success', autoClose: 500 })
+                }
+            })
+    };
+
+    function closeModal() {
+        setIsOpen(false)
+    }
+
+    useEffect(() => {
+
+        setTimeout(() => {
+
+            let is_modal_show = sessionStorage.getItem('alreadyShow');
+            if (is_modal_show !== 'already shown') {
+                setIsOpen(true)
+                sessionStorage.setItem('alreadyShow', 'already shown');
+            }
+
+        }, 3000)
+    }, [])
+
+
     return (
         <div className="py-1" style={{ background: `white`, position: 'relative' }}>
 
@@ -21,7 +62,7 @@ const HeaderDown = () => {
                 <div className="grid md:grid-cols-2 grid-cols-2 gap-2">
 
 
-                   
+
                     <div className="col-span-1 flex justify-start items-center">
                         <NavLink to={'/'}>
                             <img src={logo} alt="" width={150} height={200} />
@@ -95,6 +136,61 @@ const HeaderDown = () => {
 
                 </div>
             </div>
+
+            <Transition appear show={isOpen} as={Fragment}>
+                <Dialog as="div" className="relative z-[100]" onClose={closeModal}>
+                    <Transition.Child
+                        as={Fragment}
+                        enter="ease-out duration-300"
+                        enterFrom="opacity-0"
+                        enterTo="opacity-100"
+                        leave="ease-in duration-200"
+                        leaveFrom="opacity-100"
+                        leaveTo="opacity-0"
+                    >
+                        <div className="fixed inset-0 bg-black bg-opacity-25" />
+                    </Transition.Child>
+
+                    <div className="fixed inset-0 overflow-y-auto">
+                        <div className="flex min-h-full items-center justify-center p-4 text-center">
+                            <Transition.Child
+                                as={Fragment}
+                                enter="ease-out duration-300"
+                                enterFrom="opacity-0 scale-95"
+                                enterTo="opacity-100 scale-100"
+                                leave="ease-in duration-200"
+                                leaveFrom="opacity-100 scale-100"
+                                leaveTo="opacity-0 scale-95"
+                            >
+                                <Dialog.Panel className="w-[250px] sm:w-[480px] md:w-[600px] relative transform rounded-2xl bg-white text-left align-middle shadow-xl transition-all">
+                                    <div className="w-full" style={{ backgroundColor: red }}>
+                                        <div className='py-10 sm:p-20 px-5 w-full flex flex-col gap-y-5 justify-center items-center'>
+                                            <div className=" flex justify-center items-center gap-x-2">
+                                                <svg xmlns="http://www.w3.org/2000/svg" className="sm:h-10 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                                                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                                </svg>
+                                                <h2 className='sm:text-xl text-sm text-white font-semibold'>Sign up to Newsletter</h2>
+                                            </div>
+
+                                            <form onSubmit={handleSubmit(onSubmit)} className="flex justify-center items-center flex-col w-full gap-y-4">
+                                                <input {...register("email", { required: true })} type='email' placeholder='Enter Your Email' className='bg-white w-full py-2 px-4 focus:outline-0 hover:border-0 hover:outline-0' />
+                                                <motion.input whileHover={{ backgroundColor: '#F27820' }} type="submit" value={"Subscribe"} className='bg-black cursor-pointer text-gray-200 w-max  py-2 px-4 text-semibold' />
+                                            </form>
+
+                                        </div>
+                                        <div onClick={closeModal} className="absolute top-1 right-1 cursor-pointer ">
+
+                                        <CgClose className='text-lg font-medium text-white' />
+
+                                    </div>
+                                    </div>
+                                </Dialog.Panel>
+                            </Transition.Child>
+                        </div>
+                    </div>
+                </Dialog>
+            </Transition>
+
         </div>
     );
 };
@@ -128,7 +224,7 @@ export const Search = () => {
                     <XIcon onClick={() => setText('')} className=' absolute right-1 sm:right-2 top-1 sm:top-2 bottom-0 font-semibold text-xs w-5 h-5 sm:w-6 sm:h-6' />
 
                 </div>
-                
+
                 {text && <SearchBox search={text} setSearch={setText} />}
             </div>
             {/* {!show && <SearchIcon onClick={() => setshow(!show)} className='h-5 w-5 sm:h-7 sm:w-7' />} */}

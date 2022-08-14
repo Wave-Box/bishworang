@@ -35,7 +35,6 @@ export default function QuickView({ children, open, setOpen }) {
                         >
                             <Dialog.Panel className="relative bg-white rounded-lg text-left h-full overflow-y-auto shadow-xl transform transition-all container ">
                                 <div className="text-center sm:text-left w-full bg-white">
-
                                     {children}
                                 </div>
 

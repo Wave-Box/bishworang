@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button1 } from '../../../components/button';
 import ProductCard from '../../../components/card/ProductCard';
+import NewProductCard from '../../../components/card/NewProductCard';
 import { HomePage, Product } from '../../../../services';
 
 
@@ -44,7 +45,7 @@ const Product_Section = () => {
                     {active === 'New Added' &&
                         data?.product?.slice(0, 8).map((i) => (
 
-                            <ProductCard key={i.id} item={i} />
+                            <NewProductCard key={i.id} item={i} />
                         ))
                     }
                     {active === 'Featured' &&

@@ -100,7 +100,12 @@ const ProductCard = ({ item }) => {
 
                     </div>
                     {/* <div className="badge badge-secondary absolute top-2 left-3">NEW</div> */}
-                    <Badge msg={"New"} />
+                    {/* <Badge msg={"10% off"} /> */}
+                    {item.discount_price === '0.00' ?  '' : <Badge msg={`${item.discount_type === "fixed" ? "BDT" : ''} ${Math.trunc(item.discount_price)} ${item.discount_type === "percent" ? "%" : ''}`} />}
+                
+                    {/* {item.discount_price === '0.00' ?  '' : <div className='absolute text-xs px-2 py-1 bg-color text-white top-2 right-2 '>
+                <p>- {item.discount_type === "fixed" ? "BDT" : ''} {Math.trunc(item.discount_price)} {item.discount_type === "percent" ? "%" : ''}</p>
+            </div>} */}
                 </figure>
 
                 <div className="card-body p-4 bg-white">
@@ -113,7 +118,7 @@ const ProductCard = ({ item }) => {
 
                     <h6 className='text-lg font-medium '>
                         <Taka tk={price} />
-                        {/* <span className='line-through text-sm'> <Taka tk={item?.regular_price} /></span> */}
+                        <span className='line-through text-sm ml-2 text-[#AD171A]'> <Taka tk={item?.regular_price} /></span>
                     </h6>
 
                     {result?.qty ? <div onClick={() => dispatch(incrementQty(result?.cartId))} className="absolute bottom-6 right-6">

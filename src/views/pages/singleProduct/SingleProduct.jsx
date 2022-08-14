@@ -19,10 +19,15 @@ import { addToCartList, decrementQty } from '../../../redux/slices/productslice'
 import { EyeIcon, HeartIcon, MinusIcon, PlusIcon } from '@heroicons/react/outline';
 import { toast } from 'react-toastify';
 import sizeImg from '../../../assets/images/size.jpg';
-
 import { Fragment, useRef } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import Taka from '../../components/utils/Taka';
+import {
+    FacebookIcon,
+    FacebookShareButton,
+    WhatsappShareButton,
+    WhatsappIcon,
+} from "react-share";
 
 
 const SingleProduct = () => {
@@ -54,6 +59,7 @@ const SingleProduct = () => {
     const cartList = useSelector((state) => state.cart.cartList)
     const dispatch = useDispatch()
     const params = useParams()
+
     useEffect(() => {
         setLoading(true)
         // declare the async data fetching function
@@ -165,6 +171,11 @@ const SingleProduct = () => {
     if (!product?.id) {
         return (<div className='flex justify-center h-screen items-center capitalize text-3xl font-bold'>Product not Found</div>)
     }
+    const quantity = (parseInt(Math.trunc(product?.quantity)));
+    // console.log(result?.qty,"res");
+
+    // const res = parseInt(Math.trunc(product?.quantity)) - parseInt(result?.qty);
+    // console.log(res, "result");
     return (
         <div className='container mx-auto'>
             <div className="text-sm breadcrumbs md:mt-6 my-4 ">
@@ -223,8 +234,16 @@ const SingleProduct = () => {
 
                     </div>}
 
-                    <div className="flex gap-1">
+                    {quantity === 0 ? <motion.button initial={{
+                        backgroundColor: primaryColor,
+                        color: "white"
+                    }} whileHover={{
+                        backgroundColor: "#f08e48"
+                    }}
 
+                        transition={{ duration: 0.4, ease: 'easeInOut' }} className='px-10 py-2 disabled rounded-md shadow-sm flex justify-between text-black items-center cursor-pointer text-lg font-medium'><h1>Out Of Stock</h1></motion.button> : 
+
+                        <div className="flex gap-1">
                         {result?.qty ? <div style={{ backgroundColor: "primaryColor" }} className=" px-3 py-1 rounded-md shadow-sm flex justify-between text-black w-40 items-center">
                             <MinusIcon height={18}
                                 onClick={() => {
@@ -243,8 +262,9 @@ const SingleProduct = () => {
                                 }} whileHover={{
                                     backgroundColor: "#f08e48"
                                 }}
+
                                     transition={{ duration: 0.4, ease: 'easeInOut' }}
-                                    onClick={() => add_to_cart(product)} className={`px-10 py-2 rounded-md shadow-sm flex justify-between text-black items-center cursor-pointer text-lg font-medium `}>Add to cart</motion.button>
+                                    onClick={() => add_to_cart(product)} className={`px-10 py-2 disabled rounded-md shadow-sm flex justify-between text-black items-center cursor-pointer text-lg font-medium `}>Add to cart</motion.button>
                             </div>
                         }
 
@@ -255,12 +275,27 @@ const SingleProduct = () => {
                         {/* <motion.div className="border border-gray-300 rounded-md w-10 flex justify-center items-center text-black font-semibold" whileHover={{ y: -7, transition: { duration: 0.5 }, backgroundColor: primaryColor, color: 'white' }} >
                             <BsShuffle size={15} className="" />
                         </motion.div> */}
-                    </div>
+                    </div>}
                     <div className="divider mt-12"></div>
                     <div className="flex flex-col gap-2">
                         <h6 className='text-black'> SKU: <span style={{ color: primaryColor }}>FWM15VKT</span></h6>
                         <h6 className='text-black' >Tags: <span style={{ color: primaryColor }}>Cloth, Women, Dress</span></h6>
                         {singleVariant?.quantity ? <h6 className='text-black'>Availability: <span className='text-green-400'>{singleVariant?.quantity} Items In Stock</span></h6> : <h6 className='text-black'>Availability: <span className='text-green-400'>{product?.quantity} Items In Stock</span></h6>}
+                        <div className='flex items-center gap-x-3'>
+                            <h6 className='text-black' >Share:</h6>
+                            <div className="flex gap-x-3 items-center">
+
+                                <FacebookShareButton url={window.location.href}>
+                                    <FacebookIcon size={32} round={true} />
+                                </FacebookShareButton>
+                                <WhatsappShareButton url={window.location.href} >
+                                    <WhatsappIcon size={32} round={true} />
+                                </WhatsappShareButton>
+
+
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
