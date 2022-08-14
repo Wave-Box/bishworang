@@ -29,10 +29,10 @@ const HeaderDown = () => {
         httpReq.post("subscribe", data)
             .then(({ success, error }) => {
                 if (error) {
-                    toast(error, { type: 'error' })
+                    toast(error, { type: 'error', autoClose: 500 })
                 }
                 if (success) {
-                    toast(success, { type: 'success' })
+                    toast(success, { type: 'success', autoClose: 500 })
                 }
             })
     };

@@ -79,11 +79,11 @@ export const productSlice = createSlice({
 
             if (cartItem.qty === 1) {
                 state.cartList = state.cartList.filter(i => i.cartId !== action.payload)
-                toast("Remove from cart this item", { type: 'warning' });
+                toast("Remove from cart this item", { type: 'warning', autoClose: 500 });
             }
             if (cartItem.qty > 1) {
                 cartItem.qty = cartItem.qty - 1;
-                toast("Remove from cart this item", { type: 'warning' });
+                toast("Remove from cart this item", { type: 'warning', autoClose: 500 });
             }
 
 
