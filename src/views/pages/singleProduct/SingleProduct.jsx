@@ -175,6 +175,7 @@ const SingleProduct = () => {
     
     const quantity = (parseInt(Math.trunc(product?.quantity)));
 
+
     return (
         <div className='container mx-auto'>
             <div className="text-sm breadcrumbs md:mt-6 my-4 ">
