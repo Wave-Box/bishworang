@@ -1,6 +1,6 @@
-
-import { ChevronRightIcon } from '@heroicons/react/solid';
-import React, { useState } from 'react';
+import React from 'react';
+// import { ChevronRightIcon } from '@heroicons/react/solid';
+// import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 const HoverCat = ({ item }) => {
