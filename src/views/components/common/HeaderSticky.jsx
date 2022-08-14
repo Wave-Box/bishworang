@@ -45,14 +45,14 @@ const HeaderSticky = () => {
                 }}>
                     <Popover style={{ backgroundColor: yellow, position: 'relative' }} className="relative shadow-lg mb-2">
                         <div className="container mx-auto px-4 sm:px-6">
-                            <div className="flex justify-between items-center py-2 md:justify-start gap-2">
+                            <div className="flex justify-between items-center py-1 md:justify-start gap-2">
                                 <div className="flex justify-start lg:w-0 lg:flex-1">
                                     <NavLink to={'/'}>
                                         <img src={logo} alt="" width={100} />
                                     </NavLink>
                                 </div>
                                 <div className="-mr-2 -my-2 md:hidden">
-                                    <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-black hover:bg-gray-100 focus:outline-none focus:ring-0">
+                                    <Popover.Button className="bg-white rounded-md p-0 inline-flex items-center justify-center text-black hover:bg-gray-100 focus:outline-none focus:ring-0">
                                         <span className="sr-only">Open menu</span>
                                         <MenuIcon className="h-6 w-6" aria-hidden="true" />
                                     </Popover.Button>

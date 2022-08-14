@@ -37,11 +37,11 @@ export const productSlice = createSlice({
 
             if (cartItem) {
                 cartItem.qty = cartItem.qty + 1;
-                toast("Successfully you have added to cart", { type: "success" });
+                toast("Successfully you have added to cart", { type: "success", autoClose: 500, });
 
             } else {
                 state.cartList.push({ ...action.payload, qty: action.payload.qty || 1 });
-                toast("successfully you have to added cart", { type: "success" });
+                toast("Successfully you have to added cart", { type: "success", autoClose: 500, });
 
             }
 
@@ -61,7 +61,7 @@ export const productSlice = createSlice({
         // },
         removeToCartList: (state, action) => {
             state.cartList = state.cartList.filter((items) => items.cartId !== action.payload)
-            toast("Remove from cart this item", { type: 'warning' });
+            toast("Remove from cart this item", { type: 'warning', autoClose: 500, });
         },
         incrementQty: (state, action) => {
             const cartItem = state.cartList?.find((item) => item.cartId === action.payload);
@@ -69,7 +69,7 @@ export const productSlice = createSlice({
 
             if (cartItem) {
                 cartItem.qty = cartItem.qty + 1;
-                toast("successfully you have to added cart", { type: "success" });
+                toast("successfully you have to added cart", { type: "success", autoClose: 500, });
             }
 
         },

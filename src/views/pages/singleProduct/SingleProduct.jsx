@@ -19,10 +19,15 @@ import { addToCartList, decrementQty } from '../../../redux/slices/productslice'
 import { EyeIcon, HeartIcon, MinusIcon, PlusIcon } from '@heroicons/react/outline';
 import { toast } from 'react-toastify';
 import sizeImg from '../../../assets/images/size.jpg';
-
 import { Fragment, useRef } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import Taka from '../../components/utils/Taka';
+import {
+    FacebookIcon,
+    FacebookShareButton,
+    WhatsappShareButton,
+    WhatsappIcon,
+} from "react-share";
 
 
 const SingleProduct = () => {
@@ -54,6 +59,7 @@ const SingleProduct = () => {
     const cartList = useSelector((state) => state.cart.cartList)
     const dispatch = useDispatch()
     const params = useParams()
+    
     useEffect(() => {
         setLoading(true)
         // declare the async data fetching function
@@ -137,7 +143,7 @@ const SingleProduct = () => {
         httpReq.post('favourite', { product_id: id })
             .then(({ error, success }) => {
                 if (success) {
-                    toast(success, { type: "success" });
+                    toast(success, { type: "success"});
                 }
                 if (error) {
                     toast(error, { type: 'error' });
@@ -261,6 +267,21 @@ const SingleProduct = () => {
                         <h6 className='text-black'> SKU: <span style={{ color: primaryColor }}>FWM15VKT</span></h6>
                         <h6 className='text-black' >Tags: <span style={{ color: primaryColor }}>Cloth, Women, Dress</span></h6>
                         {singleVariant?.quantity ? <h6 className='text-black'>Availability: <span className='text-green-400'>{singleVariant?.quantity} Items In Stock</span></h6> : <h6 className='text-black'>Availability: <span className='text-green-400'>{product?.quantity} Items In Stock</span></h6>}
+                        <div className='flex items-center gap-x-3'>
+                            <h6 className='text-black' >Share:</h6>
+                            <div className="flex gap-x-3 items-center">
+
+                                <FacebookShareButton url={window.location.href}>
+                                    <FacebookIcon size={32} round={true} />
+                                </FacebookShareButton>
+                                <WhatsappShareButton url={window.location.href} >
+                                    <WhatsappIcon size={32} round={true} />
+                                </WhatsappShareButton>
+                               
+
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 
