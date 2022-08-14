@@ -67,7 +67,7 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
+  "Dependencies": {
     "@tailwindcss/forms": "^0.5.2",
     "autoprefixer": "^10.4.4",
     "postcss": "^8.4.12",
