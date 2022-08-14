@@ -171,11 +171,11 @@ const SingleProduct = () => {
     if (!product?.id) {
         return (<div className='flex justify-center h-screen items-center capitalize text-3xl font-bold'>Product not Found</div>)
     }
-    const quantity = (parseInt(Math.trunc(product?.quantity)));
-    // console.log(result?.qty,"res");
 
-    // const res = parseInt(Math.trunc(product?.quantity)) - parseInt(result?.qty);
-    // console.log(res, "result");
+    
+    const quantity = (parseInt(Math.trunc(product?.quantity)));
+
+
     return (
         <div className='container mx-auto'>
             <div className="text-sm breadcrumbs md:mt-6 my-4 ">
@@ -201,7 +201,8 @@ const SingleProduct = () => {
                     <div className="flex justify-start items-center gap-x-4">
                         <h6 className='text-3xl font-semibold text-center m-0' style={{ color: primaryColor }}>
                             <Taka tk={singleVariant?.additional_price ? parseInt(price) + parseInt(singleVariant?.additional_price) : price} /> </h6>
-                        <p className='line-through text-md text-gray-400'> <Taka tk={product?.regular_price} /></p>
+                        
+                        {product.discount_price === '0.00' ? " " : <p className='line-through text-md text-gray-400'> <Taka tk={product?.regular_price} /></p>}
                         {product?.discount_type === 'percent' && <p className='text-md text-gray-400'> {product?.discount_price}% Off</p>}
 
                     </div>
