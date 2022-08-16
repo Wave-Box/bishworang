@@ -45,8 +45,8 @@ const HeaderSticky = () => {
                 }}>
                     <Popover style={{ backgroundColor: yellow, position: 'relative' }} className="relative shadow-lg mb-2">
                         <div className="container mx-auto px-4 sm:px-6">
-                            <div className="flex justify-between items-center py-1 md:justify-start gap-2">
-                                <div className="flex justify-start lg:w-0 lg:flex-1">
+                            <div className="flex justify-between items-center py-1 gap-2">
+                                <div className="justify-start">
                                     <NavLink to={'/'}>
                                         <img src={logo} alt="" width={100} />
                                     </NavLink>
@@ -57,7 +57,7 @@ const HeaderSticky = () => {
                                         <MenuIcon className="h-6 w-6" aria-hidden="true" />
                                     </Popover.Button>
                                 </div>
-                                <Popover.Group as="nav" className="hidden lg:flex items-center xl:space-x-10 space-x-3 h-[40px]">
+                                <Popover.Group as="nav" className="hidden lg:flex justify-center items-center xl:space-x-10 space-x-3 h-[40px]">
 
 
                                     <div className="flex justify-center items-center h-full">

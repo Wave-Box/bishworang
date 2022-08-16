@@ -57,6 +57,7 @@ const NewProductCard = ({ item }) => {
     }
 
     // const add_to_cart = (item) => {
+        
     //     const cartItem = {
     //         cartId: makeid(100),
     //         price: price,
