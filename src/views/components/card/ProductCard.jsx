@@ -38,8 +38,6 @@ const ProductCard = ({ item }) => {
     const offer = data?.offer?.category?.find(o => parseInt(o) === cat || parseInt(o) === subCat || parseInt(o) === subSubCat)
     const offer2 = data?.offer2?.category?.find(o => parseInt(o) === cat || parseInt(o) === subCat || parseInt(o) === subSubCat)
 
-    console.log(offer, "result offer p");
-    console.log(offer2, "result offer2 p");
 
     useEffect(() => {
         setResult(cartList?.find(c => c.id === item.id))

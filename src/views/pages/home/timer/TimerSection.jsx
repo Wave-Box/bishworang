@@ -40,7 +40,8 @@ export default TimerSection;
 const InnerCard = ({ item }) => {
 
     const end_date = new Date(item?.end_date).setHours(23, 59, 59)
-    const start_date= new Date(item?.start_date)
+    const start_date= new Date(item?.start_date).setHours(0, 0, -1)
+
     // Renderer callback with condition
     const renderer = ({days, hours, minutes, seconds, completed }) => {
         if (completed) {
@@ -74,7 +75,7 @@ const InnerCard = ({ item }) => {
     };
     return (
         <div className="">
-             {start_date - Date.now() <= 0 ? " " : <div className='text-4xl text-white font-semibold mb-1'>UPCOMING</div>}
+             {start_date - Date.now() < 0 ? " " : <div className='text-4xl text-white font-semibold mb-1'>UPCOMING</div>}
             <div className="">
                 <h2 className='font-semibold text-3xl' style={{ color: primaryColor }}>{item?.name}</h2>
                 <h5 className='text-black'>{item?.subtitle}</h5>
@@ -84,7 +85,7 @@ const InnerCard = ({ item }) => {
                 <h6 className='text-lg font-semibold text-orange-400'> BDT {item?.discount_type === 'fixed' ? item?.discount_amount : item?.discount_amount + " %"}
                 </h6>
             </div>
-            {start_date - Date.now() <= 0 &&
+            {start_date - Date.now() < 0 ?
             <div className="flex justify-start space-y-2 flex-col">
                 <p className='text-gray-600'>Hurry Up! Offer End In:</p>
                 <Countdown date={Date.now() + (end_date - Date.now())} renderer={renderer} />
@@ -92,6 +93,11 @@ const InnerCard = ({ item }) => {
                 <div className="flex ">
                     <a href={`${item.link}`} className='flex gap-1 px-5 py-3 items-center rounded-md text-sm font-semibold link_hover' style={{ color: primaryColor, border: `1px solid ${primaryColor}` }}>Shop Now<ArrowRightIcon className='h-4 w-4 text-xl font-serif font-bold' /></a>
                 </div>
+            </div> : <div className="flex justify-start space-y-2 flex-col">
+                <p className='text-gray-600'>Offer Will Start :</p>
+                <Countdown date={Date.now() + (start_date - Date.now())} renderer={renderer} />
+
+                
             </div>}
         </div>
     )
@@ -99,7 +105,7 @@ const InnerCard = ({ item }) => {
 const InnerCardTwo = ({ item }) => {
 
     const end_date = new Date(item?.end_date).setHours(23, 59, 59)
-    const start_date= new Date(item?.start_date)
+    const start_date= new Date(item?.start_date).setHours(0, 0, -1)
     
     // Renderer callback with condition
     const renderer = ({ days, hours, minutes, seconds, completed }) => {
@@ -134,7 +140,7 @@ const InnerCardTwo = ({ item }) => {
     };
     return (
         <div className="">
-             {start_date - Date.now() <= 0 ? " " : <div className='text-4xl text-white font-semibold mb-1'>UPCOMING</div>}
+             {start_date - Date.now() < 0 ? " " : <div className='text-4xl text-white font-semibold mb-1'>UPCOMING</div>}
             <div className="">
                 <h2 className='font-semibold text-3xl' style={{ color: primaryColor }}>{item?.name}</h2>
                 <h5 className='text-black'>{item?.subtitle}</h5>
@@ -146,7 +152,7 @@ const InnerCardTwo = ({ item }) => {
                 <h6 className='text-lg font-semibold text-orange-400'> BDT {item?.discount_type === 'fixed' ? item?.discount_amount : item?.discount_amount + " %"}
                 </h6>
             </div>
-            {start_date - Date.now() <= 0 &&
+            {start_date - Date.now() < 0 ?
             <div className="flex justify-start space-y-2 flex-col">
                 <p className='text-gray-600'>Hurry Up! Offer End In:</p>
                 <Countdown date={Date.now() + (end_date - Date.now())} renderer={renderer} />
@@ -154,6 +160,10 @@ const InnerCardTwo = ({ item }) => {
                 <div className="flex ">
                     <a href={`${item.link}`}  className='flex gap-1 px-5 py-3 items-center rounded-md text-sm font-semibold link_hover' style={{ color: primaryColor, border: `1px solid ${primaryColor}` }}>{"Shop Now"}<ArrowRightIcon className='h-4 w-4 text-xl font-serif font-bold' /></a>
                 </div>
+            </div>: <div className="flex justify-start space-y-2 flex-col">
+                <p className='text-gray-600'>Offer Will Start :</p>
+                <Countdown date={Date.now() + (start_date - Date.now())} renderer={renderer} />
+
             </div>}
         </div>
     )
