@@ -28,9 +28,13 @@ import {
     WhatsappShareButton,
     WhatsappIcon,
 } from "react-share";
+import { HomePage } from '../../../services';
 
 
 const SingleProduct = () => {
+
+    const { data } = HomePage.GetInfo()
+
     const [selectColor, setSelectColor] = useState('')
     const [selectSize, setSelectSize] = useState('')
     const [tab, setTab] = useState('desc')
@@ -54,6 +58,21 @@ const SingleProduct = () => {
     const [call, setCall] = useState(false)
 
     const { makeid } = useTheme()
+
+
+    const cat = product?.category_id;
+    const subCat = parseInt(product?.subcategory_id);
+    const subSubCat = parseInt(product?.subsubcategory_id);
+
+    // console.log(product,"helo");
+    // console.log(product.,"helo");
+    // console.log(data?.offer?.category,"offer");
+    // console.log(data?.offer2?.category,"offer2");
+
+    const offer = data?.offer?.category?.find(o => parseInt(o) === cat || parseInt(o) === subCat || parseInt(o) === subSubCat )
+    const offer2 = data?.offer2?.category?.find(o => parseInt(o) === cat || parseInt(o) === subCat || parseInt(o) === subSubCat )
+    // console.log(offer, "result offer");
+    // console.log(offer2, "result offer2");
 
 
     const cartList = useSelector((state) => state.cart.cartList)
@@ -91,6 +110,7 @@ const SingleProduct = () => {
 
 
     const price = parseInt(getPrice(product?.regular_price, product?.discount_price, product?.discount_type))
+
     const getColor = (color) => {
         setSelectColor(color)
         const result = variant?.filter(i => i.color === color)
@@ -111,9 +131,43 @@ const SingleProduct = () => {
     }
 
     const add_to_cart = (product) => {
+        // console.log(product, "product");
+        
         const productPrice = parseInt(getPrice(product?.regular_price, product?.discount_price, product?.discount_type))
+        // httpReq.post('checkofferavail', {cat_id: product.category_id, price: product?.regular_price })
+       
+
         setCall(!call)
-        if (variant.length) {
+        if (offer || offer2 !== undefined) {
+            
+                    dispatch(addToCartList({
+                        cartId: makeid(100), variant_quantity: singleVariant?.quantity, variantId: singleVariant.id, ...singleVariant,
+
+                        price: !isNaN(parseInt(singleVariant?.additional_price)) ? (productPrice + parseInt(singleVariant?.additional_price))-(productPrice*(parseInt(offer !== undefined ? data?.offer?.discount_amount : data?.offer2?.discount_amount)/100)) : productPrice-(productPrice*(parseInt(offer !== undefined ? data?.offer?.discount_amount : data?.offer2?.discount_amount)/100)),
+                        ...product
+                    }))
+              
+        }
+        else if ((offer || offer2 !== undefined) && variant.length) {
+            if (singleVariant.id) {
+
+
+                if (singleVariant) {
+
+                    dispatch(addToCartList({
+                        cartId: makeid(100), variant_quantity: singleVariant?.quantity, variantId: singleVariant.id, ...singleVariant,
+
+                        price: !isNaN(parseInt(singleVariant?.additional_price)) ? (productPrice + parseInt(singleVariant?.additional_price))-(productPrice*(parseInt(offer !== undefined ? data?.offer?.discount_amount : data?.offer2?.discount_amount)/100)) : productPrice-(productPrice*(parseInt(offer !== undefined ? data?.offer?.discount_amount : data?.offer2?.discount_amount)/100)),
+                        ...product
+                    }))
+                }
+            } else {
+                // dispatch(addToCartList({ cartId: makeid(100), color: null, size: null, additional_price: null, ...product }))
+                alert('please select color and size')
+            }
+        }
+        
+        else if (variant.length) {
             if (singleVariant.id) {
 
 
@@ -130,7 +184,9 @@ const SingleProduct = () => {
                 // dispatch(addToCartList({ cartId: makeid(100), color: null, size: null, additional_price: null, ...product }))
                 alert('please select color and size')
             }
-        } else {
+        } 
+        
+        else {
             dispatch(addToCartList({ cartId: makeid(100), price: productPrice, color: null, size: null, additional_price: null, ...product }))
 
         }
@@ -210,10 +266,10 @@ const SingleProduct = () => {
                     <div className="mb-5">
                         <p className='text-black'>{product?.description}</p>
                     </div>
-                    <div className="flex flex-col space-y-2 text-black">
+                    <div className="flex flex-col space-y-2 text-black mb-4">
                         <div className="flex gap-2 justify-start items-center"><CgCrown size={20} /> <span>1 Year AL Jazeera Brand Warranty</span></div>
                         <div className="flex gap-2 justify-start items-center"><HiOutlineRefresh size={20} /> <span>30 Day Return Policy</span></div>
-                        <div className="flex gap-2 justify-start items-center"><VscCreditCard size={20} /> <span>Cash on Delivery available</span></div>
+                        <div className="flex gap-2 justify-start items-center "><VscCreditCard size={20} /> <span>Cash on Delivery available</span></div>
                     </div>
 
                     {vrcolor?.length && <div className="flex gap-2 justify-start items-center mt-6 mb-2">
@@ -228,7 +284,7 @@ const SingleProduct = () => {
                         <SizeView />
 
                     </div>}
-                    {!vrcolor?.length && <div className="flex gap-1 justify-start items-center mt-4 mb-7">
+                    {!vrcolor?.length && size.length !== 0 && <div className="flex gap-1 justify-start items-center mt-4 mb-7">
                         <h6 className='text-md font-semibold text-gray-700 mr-2'>Size</h6>
                         {variant?.map((i) =>
                             <SizeSelect key={i.id} select={selectSize} setSelect={setSelectSize} setVariant={set_variant} data={i} selectSize={i?.size} />)}

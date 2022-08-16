@@ -90,7 +90,7 @@ const InnerCard = ({ item }) => {
                 <Countdown date={Date.now() + (end_date - Date.now())} renderer={renderer} />
 
                 <div className="flex ">
-                    <NavLink to={'/offer'} className='flex gap-1 px-5 py-3 items-center rounded-md text-sm font-semibold link_hover' style={{ color: primaryColor, border: `1px solid ${primaryColor}` }}>{"Shop Now"}<ArrowRightIcon className='h-4 w-4 text-xl font-serif font-bold' /></NavLink>
+                    <a href={`${item.link}`} className='flex gap-1 px-5 py-3 items-center rounded-md text-sm font-semibold link_hover' style={{ color: primaryColor, border: `1px solid ${primaryColor}` }}>Shop Now<ArrowRightIcon className='h-4 w-4 text-xl font-serif font-bold' /></a>
                 </div>
             </div>}
         </div>
@@ -152,7 +152,7 @@ const InnerCardTwo = ({ item }) => {
                 <Countdown date={Date.now() + (end_date - Date.now())} renderer={renderer} />
 
                 <div className="flex ">
-                    <NavLink to={'/offer'} className='flex gap-1 px-5 py-3 items-center rounded-md text-sm font-semibold link_hover' style={{ color: primaryColor, border: `1px solid ${primaryColor}` }}>{"Shop Now"}<ArrowRightIcon className='h-4 w-4 text-xl font-serif font-bold' /></NavLink>
+                    <a href={`${item.link}`}  className='flex gap-1 px-5 py-3 items-center rounded-md text-sm font-semibold link_hover' style={{ color: primaryColor, border: `1px solid ${primaryColor}` }}>{"Shop Now"}<ArrowRightIcon className='h-4 w-4 text-xl font-serif font-bold' /></a>
                 </div>
             </div>}
         </div>

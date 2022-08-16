@@ -30,7 +30,7 @@ const Shop = () => {
             // get the data from the api
             const {data} = await httpReq.post('getcatproduct', { id: params?.id });
 
-            console.log(data);
+            // console.log(data);
 
             // set state with the result
             setProducts(data);

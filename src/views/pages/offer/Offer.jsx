@@ -21,6 +21,8 @@ const Offer = () => {
     const [loading, setloading] = useState(false)
     const { data } = HomePage.GetInfo()
 
+    console.log(data?.offer,"products");
+
     useEffect(() => {
 
         const result = data?.product?.filter(p => data?.offer?.products?.find(o => parseInt(o) === p?.id))
