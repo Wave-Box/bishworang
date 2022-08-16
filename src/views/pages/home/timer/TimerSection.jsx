@@ -79,9 +79,7 @@ const InnerCard = ({ item }) => {
                 <h2 className='font-semibold text-3xl' style={{ color: primaryColor }}>{item?.name}</h2>
                 <h5 className='text-black'>{item?.subtitle}</h5>
             </div>
-            {/* <div className="">
-                <h6 className='text-2xl text-black w-80 my-0' >{item?.subtitle} </h6>
-            </div> */}
+          
             <div className="my-2">
                 <h6 className='text-lg font-semibold text-orange-400'> BDT {item?.discount_type === 'fixed' ? item?.discount_amount : item?.discount_amount + " %"}
                 </h6>
@@ -92,7 +90,7 @@ const InnerCard = ({ item }) => {
                 <Countdown date={Date.now() + (end_date - Date.now())} renderer={renderer} />
 
                 <div className="flex ">
-                    <NavLink to={'/offer'} className='flex gap-1 px-5 py-3 items-center rounded-md text-sm font-semibold link_hover' style={{ color: primaryColor, border: `1px solid ${primaryColor}` }}>{"Shop Now"}<ArrowRightIcon className='h-4 w-4 text-xl font-serif font-bold' /></NavLink>
+                    <a href={`${item.link}`} className='flex gap-1 px-5 py-3 items-center rounded-md text-sm font-semibold link_hover' style={{ color: primaryColor, border: `1px solid ${primaryColor}` }}>Shop Now<ArrowRightIcon className='h-4 w-4 text-xl font-serif font-bold' /></a>
                 </div>
             </div>}
         </div>
@@ -154,7 +152,7 @@ const InnerCardTwo = ({ item }) => {
                 <Countdown date={Date.now() + (end_date - Date.now())} renderer={renderer} />
 
                 <div className="flex ">
-                    <NavLink to={'/offer'} className='flex gap-1 px-5 py-3 items-center rounded-md text-sm font-semibold link_hover' style={{ color: primaryColor, border: `1px solid ${primaryColor}` }}>{"Shop Now"}<ArrowRightIcon className='h-4 w-4 text-xl font-serif font-bold' /></NavLink>
+                    <a href={`${item.link}`}  className='flex gap-1 px-5 py-3 items-center rounded-md text-sm font-semibold link_hover' style={{ color: primaryColor, border: `1px solid ${primaryColor}` }}>{"Shop Now"}<ArrowRightIcon className='h-4 w-4 text-xl font-serif font-bold' /></a>
                 </div>
             </div>}
         </div>

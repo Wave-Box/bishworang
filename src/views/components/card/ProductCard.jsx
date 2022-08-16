@@ -15,8 +15,11 @@ import { addToCartList, incrementQty } from '../../../redux/slices/productslice'
 import useTheme from '../../../hooks/useTheme';
 import Details from '../../pages/singleProduct/Details';
 import QuickView from './QuickView';
+import { HomePage } from '../../../services';
 
 const ProductCard = ({ item }) => {
+    const { data } = HomePage.GetInfo();
+
     const [open, setOpen] = useState(false)
     const [result, setResult] = useState({})
     const { makeid } = useTheme()
@@ -25,11 +28,24 @@ const ProductCard = ({ item }) => {
 
     const dispatch = useDispatch()
     const cartList = useSelector((state) => state.cart.cartList)
+
+
+    // offer implement
+    const cat = item?.category_id;
+    const subCat = parseInt(item?.subcategory_id);
+    const subSubCat = parseInt(item?.subsubcategory_id);
+
+    const offer = data?.offer?.category?.find(o => parseInt(o) === cat || parseInt(o) === subCat || parseInt(o) === subSubCat)
+    const offer2 = data?.offer2?.category?.find(o => parseInt(o) === cat || parseInt(o) === subCat || parseInt(o) === subSubCat)
+
+    console.log(offer, "result offer p");
+    console.log(offer2, "result offer2 p");
+
     useEffect(() => {
         setResult(cartList?.find(c => c.id === item.id))
 
     }, [cartList, item.id])
-    
+
     const add_to_favourite = (id) => {
         httpReq.post('favourite', { product_id: id })
             .then(({ error, success }) => {
@@ -42,18 +58,41 @@ const ProductCard = ({ item }) => {
             })
     }
 
+    // const add_to_cart = (item) => {
+    //     const cartItem = {
+    //         cartId: makeid(100),
+    //         price: price,
+    //         color: null,
+    //         size: null,
+    //         additional_price: null,
+    //         ...item
+
+    //     }
+    //     dispatch(addToCartList({ ...cartItem }))
+    // }
+
     const add_to_cart = (item) => {
-        const cartItem = {
-            cartId: makeid(100),
-            price: price,
-            color: null,
-            size: null,
-            additional_price: null,
-            ...item
+
+        const productPrice = parseInt(getPrice(item?.regular_price, item?.discount_price, item?.discount_type))
+
+
+        if (offer || offer2 !== undefined) {
+
+            dispatch(addToCartList({
+                cartId: makeid(100),
+                price: productPrice - (productPrice * (parseInt(offer !== undefined ? data?.offer?.discount_amount : data?.offer2?.discount_amount) / 100)),
+                ...item
+            }))
 
         }
-        dispatch(addToCartList({ ...cartItem }))
+
+        else {
+            dispatch(addToCartList({ cartId: makeid(100), price: productPrice, color: null, size: null, additional_price: null, ...item }))
+
+        }
+
     }
+
     return (
         <div className="group cursor-pointer">
             <div className="drop-shadow-xl w-full ">
@@ -101,8 +140,8 @@ const ProductCard = ({ item }) => {
                     </div>
                     {/* <div className="badge badge-secondary absolute top-2 left-3">NEW</div> */}
                     {/* <Badge msg={"10% off"} /> */}
-                    {item.discount_price === '0.00' ?  '' : <Badge msg={`${item.discount_type === "fixed" ? "BDT" : ''} ${Math.trunc(item.discount_price)} ${item.discount_type === "percent" ? "%" : ''}`} />}
-                
+                    {item.discount_price === '0.00' ? '' : <Badge msg={`${item.discount_type === "fixed" ? "BDT" : ''} ${Math.trunc(item.discount_price)} ${item.discount_type === "percent" ? "%" : ''}`} />}
+
                     {/* {item.discount_price === '0.00' ?  '' : <div className='absolute text-xs px-2 py-1 bg-color text-white top-2 right-2 '>
                 <p>- {item.discount_type === "fixed" ? "BDT" : ''} {Math.trunc(item.discount_price)} {item.discount_type === "percent" ? "%" : ''}</p>
             </div>} */}
@@ -117,8 +156,8 @@ const ProductCard = ({ item }) => {
                     </h2>
 
                     <h6 className='text-lg font-medium '>
+                        {item.discount_price === '0.00' ? " " : <p className='line-through text-sm text-[#AD171A]'> <Taka tk={item?.regular_price} /></p>}
                         <Taka tk={price} />
-                        <span className='line-through text-sm ml-2 text-[#AD171A]'> <Taka tk={item?.regular_price} /></span>
                     </h6>
 
                     {result?.qty ? <div onClick={() => dispatch(incrementQty(result?.cartId))} className="absolute bottom-6 right-6">
