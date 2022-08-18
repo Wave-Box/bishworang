@@ -143,7 +143,7 @@ const SingleProduct = () => {
                     dispatch(addToCartList({
                         cartId: makeid(100), variant_quantity: singleVariant?.quantity, variantId: singleVariant.id, ...singleVariant,
 
-                        price: !isNaN(parseInt(singleVariant?.additional_price)) ? (productPrice + parseInt(singleVariant?.additional_price))-(productPrice*(parseInt(offer !== undefined ? data?.offer?.discount_amount : data?.offer2?.discount_amount)/100)) : productPrice-(productPrice*(parseInt(offer !== undefined ? data?.offer?.discount_amount : data?.offer2?.discount_amount)/100)),
+                        price: !isNaN(parseInt(singleVariant?.additional_price)) ? (productPrice + parseInt(singleVariant?.additional_price))-(data?.offer?.discount_type || data?.offer2?.discount_type  === "percent" ? (productPrice * (parseInt(offer !== undefined ? data?.offer?.discount_amount : data?.offer2?.discount_amount) / 100)): parseInt(offer !== undefined ? data?.offer?.discount_amount : data?.offer2?.discount_amount)): productPrice-(data?.offer?.discount_type || data?.offer2?.discount_type  === "percent" ? (productPrice * (parseInt(offer !== undefined ? data?.offer?.discount_amount : data?.offer2?.discount_amount) / 100)): parseInt(offer !== undefined ? data?.offer?.discount_amount : data?.offer2?.discount_amount)),
                         ...product
                     }))
               
@@ -157,7 +157,7 @@ const SingleProduct = () => {
                     dispatch(addToCartList({
                         cartId: makeid(100), variant_quantity: singleVariant?.quantity, variantId: singleVariant.id, ...singleVariant,
 
-                        price: !isNaN(parseInt(singleVariant?.additional_price)) ? (productPrice + parseInt(singleVariant?.additional_price))-(productPrice*(parseInt(offer !== undefined ? data?.offer?.discount_amount : data?.offer2?.discount_amount)/100)) : productPrice-(productPrice*(parseInt(offer !== undefined ? data?.offer?.discount_amount : data?.offer2?.discount_amount)/100)),
+                        price: !isNaN(parseInt(singleVariant?.additional_price)) ? (productPrice + parseInt(singleVariant?.additional_price))-(data?.offer?.discount_type || data?.offer2?.discount_type  === "percent" ? (productPrice * (parseInt(offer !== undefined ? data?.offer?.discount_amount : data?.offer2?.discount_amount) / 100)): parseInt(offer !== undefined ? data?.offer?.discount_amount : data?.offer2?.discount_amount)) : productPrice-(data?.offer?.discount_type || data?.offer2?.discount_type  === "percent" ? (productPrice * (parseInt(offer !== undefined ? data?.offer?.discount_amount : data?.offer2?.discount_amount) / 100)): parseInt(offer !== undefined ? data?.offer?.discount_amount : data?.offer2?.discount_amount)),
                         ...product
                     }))
                 }
