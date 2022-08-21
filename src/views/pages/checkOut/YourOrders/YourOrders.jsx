@@ -16,7 +16,7 @@ import Taka from '../../../components/utils/Taka';
 ;
 
 const YourOrders = ({ cuponDis, selectAddress, selectPayment, shipping_area }) => {
-    
+    console.log(cuponDis);
     const cartList = useSelector((state) => state.cart.cartList)
     const { user } = useSelector((state) => state.auth)
     const { data } = HomePage.GetInfo()

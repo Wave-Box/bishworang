@@ -116,7 +116,7 @@ const SingleProduct = () => {
 
         if (cartList.length) {
 
-            const resul = cartList?.find(c => c?.id === product?.id && c?.color === data?.color && c?.size === data?.size && c?.unit === data?.unit && c?.volume === data?.volume)
+            const resul = cartList?.find(c => c?.id === product?.id || c?.color === data?.color || c?.size === data?.size || c?.unit === data?.unit || c?.volume === data?.volume)
             setResult(resul)
 
 
@@ -136,7 +136,7 @@ const SingleProduct = () => {
         if (offer || offer2 !== undefined) {
             
                     dispatch(addToCartList({
-                        cartId: makeid(100), variant_quantity: singleVariant?.quantity, variantId: singleVariant.id, ...singleVariant,
+                        cartId: makeid(100),
 
                         price: !isNaN(parseInt(singleVariant?.additional_price)) ? (productPrice + parseInt(singleVariant?.additional_price))-(data?.offer?.discount_type || data?.offer2?.discount_type  === "percent" ? (productPrice * (parseInt(offer !== undefined ? data?.offer?.discount_amount : data?.offer2?.discount_amount) / 100)): parseInt(offer !== undefined ? data?.offer?.discount_amount : data?.offer2?.discount_amount)): productPrice-(data?.offer?.discount_type || data?.offer2?.discount_type  === "percent" ? (productPrice * (parseInt(offer !== undefined ? data?.offer?.discount_amount : data?.offer2?.discount_amount) / 100)): parseInt(offer !== undefined ? data?.offer?.discount_amount : data?.offer2?.discount_amount)),
                         ...product

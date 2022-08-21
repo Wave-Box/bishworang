@@ -28,10 +28,11 @@ const Discount = ({ setCupon, setShipping_area }) => {
         const total = priceList.reduce((previousValue, currentValue) => previousValue + currentValue, 0);
         if (res?.max_purchase >= total && res?.min_purchase <= total) {
             const result = getDiscount(total, res?.discount_amount)
-            const dis = total - result
+            const dis = total - result;
             return parseInt(dis)
         }
         else {
+            alert(`Please purchase minimum ${res?.min_purchase}tk to maximum ${res?.max_purchase }tk`);
             return null;
         }
 
