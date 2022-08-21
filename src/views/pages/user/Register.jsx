@@ -69,11 +69,11 @@ const Register = () => {
                     placeholder='Name'
                     className='py-3 px-4 border border-gray-300 rounded-md placeholder:text-gray-500 text-sm focus:outline-0' />
 
-                <input
+                {/* <input
                     {...register("email")}
                     type="email"
                     placeholder='Email'
-                    className='py-3 px-4 border border-gray-300 rounded-md placeholder:text-gray-500 text-sm focus:outline-0' />
+                    className='py-3 px-4 border border-gray-300 rounded-md placeholder:text-gray-500 text-sm focus:outline-0' /> */}
 
 
                 <input
