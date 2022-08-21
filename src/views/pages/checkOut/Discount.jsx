@@ -7,24 +7,34 @@ import { getPrice } from '../../components/utils/getPrice';
 import { useForm } from 'react-hook-form'
 import { red } from '../../../siteSetting/theme';
 import { HomePage } from '../../../services';
+import { useState } from 'react';
 
 const Discount = ({ setCupon, setShipping_area }) => {
+
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { data } = HomePage.GetInfo()
+    const cartList = useSelector((state) => state.cart.cartList)
+
+
     const styless = `
     option:hover{
         background-color:'yellow'
     }
     `
 
-    const { register, handleSubmit, formState: { errors } } = useForm();
-    const { data } = HomePage.GetInfo()
-    const cartList = useSelector((state) => state.cart.cartList)
+
     const get_discout = (res) => {
         const priceList = cartList?.map(p => p.qty * getPrice(p.regular_price, p.discount_price, p.discount_type))
         const total = priceList.reduce((previousValue, currentValue) => previousValue + currentValue, 0);
+        if (res?.max_purchase >= total && res?.min_purchase <= total) {
+            const result = getDiscount(total, res?.discount_amount)
+            const dis = total - result
+            return parseInt(dis)
+        }
+        else {
+            return null;
+        }
 
-        const result = getDiscount(total, res?.discount_amount)
-        const dis = total - result
-        return parseInt(dis)
     }
     const onSubmit = data => {
 
@@ -32,6 +42,7 @@ const Discount = ({ setCupon, setShipping_area }) => {
         const fetchData = async () => {
             // get the data from the api
             const res = await httpReq.post('verifycoupon', data)
+
             if (res.error) {
                 setCupon(0)
                 return alert(res?.error)
@@ -87,7 +98,7 @@ const Discount = ({ setCupon, setShipping_area }) => {
                                         <input {...register("code", { required: true })} type={'text'} className="border border-gray-400 py-2 px-2 rounded-sm" />
                                         {errors.code && <span className='text-red-500'>Field is empty</span>}
                                     </div>
-                                    <input type={'submit'} value={'Apply'} htmlFor='discount' className={`px-4 py-2 ml-2 font-semibold rounded-sm text-lg bg-[${red}] hover:bg-red-600 hover:text-gray-100 text-white`} />
+                                    <input type={'submit'} value={'Apply'} htmlFor='discount' className={`px-4 cursor-pointer py-2 ml-2 font-semibold rounded-sm text-lg bg-[${red}] hover:bg-red-600 hover:text-gray-100 text-white`} />
                                 </form>
                             </div>
 

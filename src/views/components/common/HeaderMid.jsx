@@ -3,7 +3,9 @@ import { Fragment, useState } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import {
     MenuIcon,
+    MinusIcon,
     PhoneIcon,
+    PlusIcon,
     ViewGridIcon,
     XIcon,
 } from '@heroicons/react/outline'
@@ -140,16 +142,17 @@ export default function HeaderMid() {
                             <div className="mt-6">
                                 <nav className="grid gap-y-8">
                                     {data?.category?.map((item) => (
-                                        <NavLink
-                                            to={"/category/" + item?.id}
-                                            key={item?.id}
-                                            className="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
-                                        >
-                                            <div className="flex-shrink-0 h-6 w-6" aria-hidden="true" >
-                                                <img src={catImg + item?.icon} className={"w-full h-full"} alt="" />
-                                            </div>
-                                            <span className="ml-3 text-xs sm:text-base font-semibold text-gray-900">{item.name}</span>
-                                        </NavLink>
+                                        <SingleCat key={item?.id} item={item} />
+                                        // <NavLink
+                                        //     to={"/category/" + item?.id}
+                                        //     key={item?.id}
+                                        //     className="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
+                                        // >
+                                        //     <div className="flex-shrink-0 h-6 w-6" aria-hidden="true" >
+                                        //         <img src={catImg + item?.icon} className={"w-full h-full"} alt="" />
+                                        //     </div>
+                                        //     <span className="ml-3 text-xs sm:text-base font-semibold text-gray-900">{item.name}</span>
+                                        // </NavLink>
                                     ))}
                                 </nav>
                             </div>
@@ -175,5 +178,63 @@ export default function HeaderMid() {
                 </Popover.Panel>
             </Transition>
         </Popover>
+    )
+}
+
+
+const SingleCat = ({ item }) => {
+    const [show, setShow] = useState(false)
+
+    return (
+        <>
+            <div className="w-full flex items-center rounded-md hover:bg-gray-50">
+                <NavLink to={'/category/' + item.id} className="flex-1 flex gap-x-2 items-center text-gray-600 hover:ml-2 py-3 duration-300 " >
+                    <div className="flex-shrink-0 h-6 w-6" aria-hidden="true" >
+                        <img src={catImg + item?.icon} className={"w-full h-full"} alt="" />
+                    </div>
+                    <p>{item.name}</p></NavLink>
+                {item?.subcategory.length ? <div className="h-full mt-8">
+                    {show ? <MinusIcon onClick={() => setShow(!show)} className='h-4 w-4 text-gray-800 cursor-pointer' /> :
+                        <PlusIcon onClick={() => setShow(!show)} className='h-4 w-4 text-gray-800 cursor-pointer' />}
+                </div> : null}
+            </div>
+
+            {show && <>
+                <div className="ml-2">
+                    {
+                        item?.subcategory?.map((sub) =>
+                            <SingleSub key={sub?.id} item={sub} />)
+                    }
+                </div>
+            </>}
+        </>
+    )
+}
+const SingleSub = ({ item }) => {
+
+    const [open, setOpen] = useState(false)
+
+    return (
+        <>
+            <div className="w-full flex items-center px-4 py-3">
+                <NavLink to={'/category/' + item.id} className="flex-1 text-gray-600 hover:ml-2 duration-300" > <p>{item.name}</p></NavLink>
+                {item?.subsubcategory.length ? <div className="px-4 h-full">
+                    {open ? <MinusIcon onClick={() => setOpen(!open)} className='h-4 w-4 text-gray-800 cursor-pointer' /> :
+                        <PlusIcon onClick={() => setOpen(!open)} className='h-4 w-4 text-gray-800 cursor-pointer' />}
+                </div> : null}
+            </div>
+
+            {open && <>
+                <div className="ml-8">
+                    {
+                        item?.subsubcategory?.map((sub) =>
+                            <div className='py-2'>
+                                <NavLink to={'/category/' + sub.id} className="flex-1 text-gray-600 !hover:ml-10 duration-300" > <p>{sub.name}</p></NavLink>
+                            </div>)
+                    }
+                </div>
+
+            </>}
+        </>
     )
 }

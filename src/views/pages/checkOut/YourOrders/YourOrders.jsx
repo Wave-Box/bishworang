@@ -16,6 +16,7 @@ import Taka from '../../../components/utils/Taka';
 ;
 
 const YourOrders = ({ cuponDis, selectAddress, selectPayment, shipping_area }) => {
+    
     const cartList = useSelector((state) => state.cart.cartList)
     const { user } = useSelector((state) => state.auth)
     const { data } = HomePage.GetInfo()
@@ -29,7 +30,7 @@ const YourOrders = ({ cuponDis, selectAddress, selectPayment, shipping_area }) =
     const tax = (parseFloat(data?.settings?.tax).toFixed(2) / 100) * parseFloat(total).toFixed(2)
 
     // const alert = useAlert()
-    console.log(data?.settings?.tax);
+    // console.log(data?.settings?.tax);
     const handleCheckout = () => {
 
         const cart = cartList.map(item => ({

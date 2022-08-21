@@ -59,23 +59,18 @@ const SingleProduct = () => {
 
     const { makeid } = useTheme()
 
-
+    // offer implement 
     const cat = product?.category_id;
     const subCat = parseInt(product?.subcategory_id);
     const subSubCat = parseInt(product?.subsubcategory_id);
 
-    // console.log(product,"helo");
-    // console.log(product.,"helo");
-    // console.log(data?.offer?.category,"offer");
-    // console.log(data?.offer2?.category,"offer2");
-
     const offer = data?.offer?.category?.find(o => parseInt(o) === cat || parseInt(o) === subCat || parseInt(o) === subSubCat )
     const offer2 = data?.offer2?.category?.find(o => parseInt(o) === cat || parseInt(o) === subCat || parseInt(o) === subSubCat )
-    // console.log(offer, "result offer");
-    // console.log(offer2, "result offer2");
+
 
 
     const cartList = useSelector((state) => state.cart.cartList)
+    console.log(cartList, "");
     const dispatch = useDispatch()
     const params = useParams()
 
@@ -148,7 +143,7 @@ const SingleProduct = () => {
                     }))
               
         }
-        else if ((offer || offer2 !== undefined) && variant.length) {
+        else if ((offer || offer2 !== undefined) && variant.length > 0) {
             if (singleVariant.id) {
 
 
@@ -167,7 +162,7 @@ const SingleProduct = () => {
             }
         }
         
-        else if (variant.length) {
+        else if (variant.length > 0) {
             if (singleVariant.id) {
 
 

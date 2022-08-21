@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, NavLink, useParams } from 'react-router-dom';
 import { primaryColor } from '../../../constant';
 import { ProductCard } from '../../components/card';
 import Card3 from '../../components/card/Card3.';
 import { Link1 } from '../../components/links';
 import Title from '../../components/utils/Title';
 import banner3 from '../../../assets/images/shop/banner-11.jpg'
-import { ViewGridIcon, ChevronDownIcon } from '@heroicons/react/outline'
+import { ViewGridIcon, ChevronDownIcon, MinusIcon, PlusIcon } from '@heroicons/react/outline'
 import TitleBorder from '../../components/utils/TitleBorder';
 import httpReq from '../../../services/http.service';
 import { getPrice } from '../../components/utils/getPrice';
@@ -28,7 +28,7 @@ const Shop = () => {
         // declare the async data fetching function
         const fetchData = async () => {
             // get the data from the api
-            const {data} = await httpReq.post('getcatproduct', { id: params?.id });
+            const { data } = await httpReq.post('getcatproduct', { id: params?.id });
 
             // console.log(data);
 
@@ -64,17 +64,17 @@ const Shop = () => {
                 </div>
             </div>
 
-            <div className="container mx-auto px-4 sm:px-0">
+            <div className="lg:container mx-auto px-4 lg:px-0">
                 <div className="grid grid-cols-12 sm:space-x-4">
-                    <div className="hidden sm:block sm:col-span-3">
+                    <div className=" sm:col-span-5 md:col-span-4 lg:col-span-3 col-span-12">
                         <div className="flex flex-col gap-4">
-                            <div className="border border-gray-100 p-4  bg-white rounded shadow">
+                            <div className="border border-gray-100 p-4  bg-white rounded shadow hidden sm:block">
                                 <Title text={"Category"} color={'black'} />
                                 <TitleBorder />
 
                                 <nav className="list-none mb-6 space-y-3 px-4">
 
-                                    {data?.category?.map((item) => <Link1 key={item?.id} text={item.name} href={"/category/" + item?.id} />)}
+                                    {data?.category?.map((item) => <SingleCat key={item?.id} item={item} />)}
 
                                 </nav>
                             </div>
@@ -87,7 +87,7 @@ const Shop = () => {
                                     <label htmlFor="range" className=" mb-2 text-sm font-semibold"><Taka tk={val} /></label>
                                 </div>
                                 <input
-                                    min="1" max="10000"
+                                    min="1" max="50000"
                                     defaultValue={0}
                                     onChange={(e) => {
                                         setVal(e.target.value)
@@ -97,11 +97,9 @@ const Shop = () => {
                                     type="range"
                                     className="mb-6 w-full h-2 rounded-lg bg-gray-300 cursor-pointer"></input>
 
-
-
                             </div>
 
-                            <div className="relative">
+                            <div className="relative hidden sm:block">
                                 <img alt="gallery" className="w-full object-cover object-center block" src={banner3} />
                                 <div className="absolute top-0 bottom-0 left-4 flex justify-start items-center ">
                                     <Card3 offerType={'Smart Offer'} title={'Great Summer Collection'} link={'Shop Now'} />
@@ -109,7 +107,7 @@ const Shop = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="col-span-12 sm:col-span-9">
+                    <div className="col-span-12 sm:col-span-7 md:col-span-8 lg:col-span-9">
                         <div className="flex justify-between my-2">
                             <div className="flex justify-start items-center">
                                 <p className='text-xs sm:text-base'>We found <span style={{ color: primaryColor, fontWeight: 600 }}>{products?.length ? products.length : 0}</span> items for you!</p>
@@ -146,7 +144,7 @@ const Shop = () => {
 
 
                             products?.length ?
-                                <div className="grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-2">
+                                <div className="grid lg:grid-cols-3 grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-2">
                                     {products?.map((i) => <ProductCard key={i.id} item={i} />)}
                                 </div> : <div className="flex justify-center h-[400px] items-center">
                                     <h3 className=" font-sans font-semibold text-3xl text-gray-400 ">Product Not Found!</h3>
@@ -177,6 +175,60 @@ const Shop = () => {
 };
 
 export default Shop;
+
+
+const SingleCat = ({ item }) => {
+    const [show, setShow] = useState(false)
+
+    return (
+        <>
+            <div className="w-full flex py-3">
+                <NavLink to={'/category/' + item.id} className="flex-1 text-gray-600 hover:ml-2 duration-300" > <p>{item.name}</p></NavLink>
+                {item?.subcategory.length ? <div className="px-4 h-full">
+                    {show ? <MinusIcon onClick={() => setShow(!show)} className='h-4 w-4 text-gray-800 cursor-pointer' /> :
+                        <PlusIcon onClick={() => setShow(!show)} className='h-4 w-4 text-gray-800 cursor-pointer' />}
+                </div> : null}
+            </div>
+           
+            {show && <>
+                <div className="ml-2">
+                    {
+                        item?.subcategory?.map((sub) =>
+                            <SingleSub key={sub?.id} item={sub} />)
+                    }
+                </div>
+            </>}
+        </>
+    )
+}
+const SingleSub = ({ item }) => {
+
+    const [open, setOpen] = useState(false)
+
+    return (
+        <>
+            <div className="w-full flex px-4 py-3">
+                <NavLink to={'/category/' + item.id} className="flex-1 text-gray-600 hover:ml-2 duration-300" > <p>{item.name}</p></NavLink>
+                {item?.subsubcategory.length ? <div className="px-4 h-full">
+                    {open ? <MinusIcon onClick={() => setOpen(!open)} className='h-4 w-4 text-gray-800 cursor-pointer' /> :
+                        <PlusIcon onClick={() => setOpen(!open)} className='h-4 w-4 text-gray-800 cursor-pointer' />}
+                </div> : null}
+            </div>
+          
+            {open && <>
+                <div className="ml-8">
+                    {
+                        item?.subsubcategory?.map((sub) =>
+                            <div className='py-2'>
+                                <NavLink to={'/category/' + sub.id} className="flex-1 text-gray-600 !hover:ml-10 duration-300" > <p>{sub.name}</p></NavLink>
+                            </div>)
+                    }
+                </div>
+
+            </>}
+        </>
+    )
+}
 
 
 
