@@ -52,7 +52,6 @@ const SingleProduct = () => {
     const [singleVariant, setSingleVariant] = useState({})
     const [size, setSize] = useState([])
 
-    console.log(variant, "v");
     // const [color, setSelesdctColor] = useState(null)
     const [vrcolor, setVrcolor] = useState([])
     const [loading, setLoading] = useState(false)
@@ -62,12 +61,8 @@ const SingleProduct = () => {
     const { makeid } = useTheme()
 
     const sizeV = variant.find(item => item.size !== null)
-    const colorV = variant.find(item => item.color !== null)
-    console.log(sizeV, "size");
-    console.log(colorV, "color");
-    console.log(size, "size2");
-    // const found = array1.find(element => element > 10);
 
+    // const colorV = variant.find(item => item.color !== null)
 
     // offer implement 
     const cat = product?.category_id;
@@ -80,8 +75,6 @@ const SingleProduct = () => {
 
 
     const cartList = useSelector((state) => state.cart.cartList)
-
-    console.log("cartList", cartList);
 
     const dispatch = useDispatch()
     const params = useParams()

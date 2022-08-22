@@ -1,7 +1,6 @@
 import React from 'react';
 
 const ColorSelect = ({ setSelect, select, selectColor, bg, getColor }) => {
-    console.log(bg,"bg");
 
     return (
         <>
