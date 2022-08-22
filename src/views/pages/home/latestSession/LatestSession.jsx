@@ -65,8 +65,8 @@ export const DownSlider = ({ prev, next, product }) => {
 
     return (
         <>
-            <ChevronLeftIcon className={prev + " absolute left-0 top-24 bg-gray-600 z-10"} height={30} width={18} color={"white"} />
-            <ChevronRightIcon className={next + " absolute right-0 top-24 bg-gray-600 z-10"} height={30} width={18} color={"white"} />
+           {product !== undefined &&  <ChevronLeftIcon className={prev + " absolute left-0 top-24 bg-gray-600 z-10"} height={30} width={18} color={"white"} />}
+           {product !== undefined && <ChevronRightIcon className={next + " absolute right-0 top-24 bg-gray-600 z-10"} height={30} width={18} color={"white"} />}
             <SliderTwo nextEl={next} prevEl={prev} breakpoint={
                 {
                     40: {
