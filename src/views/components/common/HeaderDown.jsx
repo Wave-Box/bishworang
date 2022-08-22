@@ -173,7 +173,7 @@ const HeaderDown = () => {
                                             </div>
 
                                             <form onSubmit={handleSubmit(onSubmit)} className="flex justify-center items-center flex-col w-full gap-y-4">
-                                                <input {...register("email", { required: true })} type='email' placeholder='Enter Your Email' className='bg-white w-full py-2 px-4 focus:outline-0 hover:border-0 hover:outline-0' />
+                                                <input {...register("email", { required: true })} type='email' placeholder='Enter Your Email' className='bg-white w-full py-2 px-4 focus:outline-0 hover:border-transparent focus:ring-transparent hover:outline-0' />
                                                 <motion.input whileHover={{ backgroundColor: '#F27820' }} type="submit" value={"Subscribe"} className='bg-black cursor-pointer text-gray-200 w-max  py-2 px-4 text-semibold' />
                                             </form>
 

@@ -8,7 +8,7 @@ const ColorSelect = ({ setSelect, select, selectColor, bg, getColor }) => {
                 getColor(bg)
                 setSelect(selectColor)
             }} className={`avatar ${select === selectColor ? "online" : null}`}>
-                <div className={`text-neutral-content rounded-full w-8`} style={{ backgroundColor: bg }}>
+                <div className={`text-neutral-content rounded-full w-8 cursor-pointer`} style={{ backgroundColor: bg }}>
                 </div>
             </div>
         </>

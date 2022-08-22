@@ -29,6 +29,7 @@ import {
     WhatsappIcon,
 } from "react-share";
 import { HomePage } from '../../../services';
+import ColorSelectOnly from '../../components/utils/ColorSelectOnly';
 
 
 const SingleProduct = () => {
@@ -51,6 +52,7 @@ const SingleProduct = () => {
     const [singleVariant, setSingleVariant] = useState({})
     const [size, setSize] = useState([])
 
+    console.log(variant, "v");
     // const [color, setSelesdctColor] = useState(null)
     const [vrcolor, setVrcolor] = useState([])
     const [loading, setLoading] = useState(false)
@@ -59,18 +61,28 @@ const SingleProduct = () => {
 
     const { makeid } = useTheme()
 
+    const sizeV = variant.find(item => item.size !== null)
+    const colorV = variant.find(item => item.color !== null)
+    console.log(sizeV, "size");
+    console.log(colorV, "color");
+    console.log(size, "size2");
+    // const found = array1.find(element => element > 10);
+
+
     // offer implement 
     const cat = product?.category_id;
     const subCat = parseInt(product?.subcategory_id);
     const subSubCat = parseInt(product?.subsubcategory_id);
 
-    const offer = data?.offer?.category?.find(o => parseInt(o) === cat || parseInt(o) === subCat || parseInt(o) === subSubCat )
-    const offer2 = data?.offer2?.category?.find(o => parseInt(o) === cat || parseInt(o) === subCat || parseInt(o) === subSubCat )
+    const offer = data?.offer?.category?.find(o => parseInt(o) === cat || parseInt(o) === subCat || parseInt(o) === subSubCat)
+    const offer2 = data?.offer2?.category?.find(o => parseInt(o) === cat || parseInt(o) === subCat || parseInt(o) === subSubCat)
 
 
 
     const cartList = useSelector((state) => state.cart.cartList)
-    console.log(cartList, "");
+
+    console.log("cartList", cartList);
+
     const dispatch = useDispatch()
     const params = useParams()
 
@@ -117,6 +129,7 @@ const SingleProduct = () => {
         if (cartList.length) {
 
             const resul = cartList?.find(c => c?.id === product?.id || c?.color === data?.color || c?.size === data?.size || c?.unit === data?.unit || c?.volume === data?.volume)
+
             setResult(resul)
 
 
@@ -126,24 +139,17 @@ const SingleProduct = () => {
     }
 
     const add_to_cart = (product) => {
-        // console.log(product, "product");
-        
+
         const productPrice = parseInt(getPrice(product?.regular_price, product?.discount_price, product?.discount_type))
+        const offerPrice = parseInt(getPrice(!isNaN(parseInt(singleVariant?.additional_price)) ? productPrice + parseInt(singleVariant?.additional_price) : productPrice, data?.offer?.discount_amount || data?.offer2?.discount_amount, data?.offer?.discount_type || data?.offer2?.discount_type))
+
+        // console.log(offerPrice,"price");
         // httpReq.post('checkofferavail', {cat_id: product.category_id, price: product?.regular_price })
-       
+
 
         setCall(!call)
-        if (offer || offer2 !== undefined) {
-            
-                    dispatch(addToCartList({
-                        cartId: makeid(100),
 
-                        price: !isNaN(parseInt(singleVariant?.additional_price)) ? (productPrice + parseInt(singleVariant?.additional_price))-(data?.offer?.discount_type || data?.offer2?.discount_type  === "percent" ? (productPrice * (parseInt(offer !== undefined ? data?.offer?.discount_amount : data?.offer2?.discount_amount) / 100)): parseInt(offer !== undefined ? data?.offer?.discount_amount : data?.offer2?.discount_amount)): productPrice-(data?.offer?.discount_type || data?.offer2?.discount_type  === "percent" ? (productPrice * (parseInt(offer !== undefined ? data?.offer?.discount_amount : data?.offer2?.discount_amount) / 100)): parseInt(offer !== undefined ? data?.offer?.discount_amount : data?.offer2?.discount_amount)),
-                        ...product
-                    }))
-              
-        }
-        else if ((offer || offer2 !== undefined) && variant.length > 0) {
+        if ((offer || offer2 !== undefined) && variant.length > 0) {
             if (singleVariant.id) {
 
 
@@ -152,7 +158,7 @@ const SingleProduct = () => {
                     dispatch(addToCartList({
                         cartId: makeid(100), variant_quantity: singleVariant?.quantity, variantId: singleVariant.id, ...singleVariant,
 
-                        price: !isNaN(parseInt(singleVariant?.additional_price)) ? (productPrice + parseInt(singleVariant?.additional_price))-(data?.offer?.discount_type || data?.offer2?.discount_type  === "percent" ? (productPrice * (parseInt(offer !== undefined ? data?.offer?.discount_amount : data?.offer2?.discount_amount) / 100)): parseInt(offer !== undefined ? data?.offer?.discount_amount : data?.offer2?.discount_amount)) : productPrice-(data?.offer?.discount_type || data?.offer2?.discount_type  === "percent" ? (productPrice * (parseInt(offer !== undefined ? data?.offer?.discount_amount : data?.offer2?.discount_amount) / 100)): parseInt(offer !== undefined ? data?.offer?.discount_amount : data?.offer2?.discount_amount)),
+                        price: offerPrice,
                         ...product
                     }))
                 }
@@ -161,7 +167,7 @@ const SingleProduct = () => {
                 alert('please select color and size')
             }
         }
-        
+
         else if (variant.length > 0) {
             if (singleVariant.id) {
 
@@ -179,8 +185,18 @@ const SingleProduct = () => {
                 // dispatch(addToCartList({ cartId: makeid(100), color: null, size: null, additional_price: null, ...product }))
                 alert('please select color and size')
             }
-        } 
-        
+        }
+        else if (offer || offer2 !== undefined) {
+
+            dispatch(addToCartList({
+                cartId: makeid(100), color: null, size: null, additional_price: null,
+
+                price: offerPrice,
+                ...product
+            }))
+
+        }
+
         else {
             dispatch(addToCartList({ cartId: makeid(100), price: productPrice, color: null, size: null, additional_price: null, ...product }))
 
@@ -223,7 +239,7 @@ const SingleProduct = () => {
         return (<div className='flex justify-center h-screen items-center capitalize text-3xl font-bold'>Product not Found</div>)
     }
 
-    
+
     const quantity = (parseInt(Math.trunc(product?.quantity)));
 
 
@@ -252,7 +268,7 @@ const SingleProduct = () => {
                     <div className="flex justify-start items-center gap-x-4">
                         <h6 className='text-3xl font-semibold text-center m-0' style={{ color: primaryColor }}>
                             <Taka tk={singleVariant?.additional_price ? parseInt(price) + parseInt(singleVariant?.additional_price) : price} /> </h6>
-                        
+
                         {product.discount_price === '0.00' ? " " : <p className='line-through text-md text-gray-400'> <Taka tk={product?.regular_price} /></p>}
                         {product?.discount_type === 'percent' && <p className='text-md text-gray-400'> {product?.discount_price}% Off</p>}
 
@@ -267,19 +283,23 @@ const SingleProduct = () => {
                         <div className="flex gap-2 justify-start items-center "><VscCreditCard size={20} /> <span>Cash on Delivery available</span></div>
                     </div>
 
-                    {vrcolor?.length && <div className="flex gap-2 justify-start items-center mt-6 mb-2">
+                    {vrcolor?.length && sizeV !== undefined && <div className="flex gap-2 justify-start items-center mt-6 mb-2">
                         <h6 className='text-md font-semibold text-gray-700'>Color</h6>
                         {vrcolor?.map((i) => <ColorSelect key={i} select={selectColor} setSelect={setSelectColor} getColor={getColor} selectColor={i} bg={i} />)}
-
-
                     </div>}
-                    {size.length !== 0 && <div className="flex gap-1 justify-start items-center mt-4 mb-7">
+
+                    {vrcolor?.length && sizeV === undefined && <div className="flex gap-2 justify-start items-center mt-6 mb-2">
+                        <h6 className='text-md font-semibold text-gray-700'>Color</h6>
+                        {variant?.map((i) => <ColorSelectOnly key={i.id} select={selectColor} setSelect={setSelectColor} setVariant={set_variant} data={i} selectColor={i.color} bg={i.color} />)}
+                    </div>}
+
+                    {size.length !== 0 && sizeV !== undefined &&  <div className="flex gap-1 justify-start items-center mt-4 mb-7">
                         <h6 className='text-md font-semibold text-gray-700 mr-2'>Size</h6>
                         {size?.map((i) => <SizeSelect key={i.id} select={selectSize} setSelect={setSelectSize} setVariant={set_variant} data={i} selectSize={i?.size} />)}
                         <SizeView />
-
                     </div>}
-                    {!vrcolor?.length && size.length !== 0 && <div className="flex gap-1 justify-start items-center mt-4 mb-7">
+
+                    {!vrcolor?.length && sizeV !== undefined && <div className="flex gap-1 justify-start items-center mt-4 mb-7">
                         <h6 className='text-md font-semibold text-gray-700 mr-2'>Size</h6>
                         {variant?.map((i) =>
                             <SizeSelect key={i.id} select={selectSize} setSelect={setSelectSize} setVariant={set_variant} data={i} selectSize={i?.size} />)}
@@ -293,41 +313,41 @@ const SingleProduct = () => {
                         backgroundColor: "#f08e48"
                     }}
 
-                        transition={{ duration: 0.4, ease: 'easeInOut' }} className='px-10 py-2 disabled rounded-md shadow-sm flex justify-between text-black items-center cursor-pointer text-lg font-medium'><h1>Out Of Stock</h1></motion.button> : 
+                        transition={{ duration: 0.4, ease: 'easeInOut' }} className='px-10 py-2 disabled rounded-md shadow-sm flex justify-between text-black items-center cursor-pointer text-lg font-medium'><h1>Out Of Stock</h1></motion.button> :
 
                         <div className="flex gap-1">
-                        {result?.qty ? <div style={{ backgroundColor: "primaryColor" }} className=" px-3 py-1 rounded-md shadow-sm flex justify-between text-black w-40 items-center">
-                            <MinusIcon height={18}
-                                onClick={() => {
-                                    setCall(!call)
-                                    dispatch(decrementQty(result?.cartId))
-                                }}
-                                className='text-2xl cursor-pointer' />
-                            <span className='text-xl'>{result?.qty}</span>
-                            <PlusIcon height={18} onClick={() => add_to_cart(product)} className='text-2xl cursor-pointer ' />
-                        </div> :
-                            <div className="">
-                                {/* <label htmlFor="add">add to cart</label> */}
-                                <motion.button initial={{
-                                    backgroundColor: primaryColor,
-                                    color: "white"
-                                }} whileHover={{
-                                    backgroundColor: "#f08e48"
-                                }}
+                            {result?.qty ? <div style={{ backgroundColor: "primaryColor" }} className=" px-3 py-1 rounded-md shadow-sm flex justify-between text-black w-40 items-center">
+                                <MinusIcon height={18}
+                                    onClick={() => {
+                                        setCall(!call)
+                                        dispatch(decrementQty(result?.cartId))
+                                    }}
+                                    className='text-2xl cursor-pointer' />
+                                <span className='text-xl'>{result?.qty}</span>
+                                <PlusIcon height={18} onClick={() => add_to_cart(product)} className='text-2xl cursor-pointer ' />
+                            </div> :
+                                <div className="">
+                                    {/* <label htmlFor="add">add to cart</label> */}
+                                    <motion.button initial={{
+                                        backgroundColor: primaryColor,
+                                        color: "white"
+                                    }} whileHover={{
+                                        backgroundColor: "#f08e48"
+                                    }}
 
-                                    transition={{ duration: 0.4, ease: 'easeInOut' }}
-                                    onClick={() => add_to_cart(product)} className={`px-10 py-2 disabled rounded-md shadow-sm flex justify-between text-black items-center cursor-pointer text-lg font-medium `}>Add to cart</motion.button>
-                            </div>
-                        }
+                                        transition={{ duration: 0.4, ease: 'easeInOut' }}
+                                        onClick={() => add_to_cart(product)} className={`px-10 py-2 disabled rounded-md shadow-sm flex justify-between text-black items-center cursor-pointer text-lg font-medium `}>Add to cart</motion.button>
+                                </div>
+                            }
 
 
-                        <motion.div onClick={() => add_to_favourite(product?.id)} className="border border-gray-300 rounded-md w-10 flex justify-center items-center text-black font-semibold" whileHover={{ y: -7, transition: { duration: 0.5 }, backgroundColor: primaryColor, color: 'white' }} >
-                            <HeartIcon width={25} className="" />
-                        </motion.div>
-                        {/* <motion.div className="border border-gray-300 rounded-md w-10 flex justify-center items-center text-black font-semibold" whileHover={{ y: -7, transition: { duration: 0.5 }, backgroundColor: primaryColor, color: 'white' }} >
+                            <motion.div onClick={() => add_to_favourite(product?.id)} className="border border-gray-300 rounded-md w-10 flex justify-center items-center text-black font-semibold" whileHover={{ y: -7, transition: { duration: 0.5 }, backgroundColor: primaryColor, color: 'white' }} >
+                                <HeartIcon width={25} className="" />
+                            </motion.div>
+                            {/* <motion.div className="border border-gray-300 rounded-md w-10 flex justify-center items-center text-black font-semibold" whileHover={{ y: -7, transition: { duration: 0.5 }, backgroundColor: primaryColor, color: 'white' }} >
                             <BsShuffle size={15} className="" />
                         </motion.div> */}
-                    </div>}
+                        </div>}
                     <div className="divider mt-12"></div>
                     <div className="flex flex-col gap-2">
                         <h6 className='text-black'> SKU: <span style={{ color: primaryColor }}>FWM15VKT</span></h6>
