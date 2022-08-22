@@ -34,7 +34,7 @@ const ImageSection = ({ images }) => {
             >
 
                 {images?.map((item, index) => <SwiperSlide key={index}>
-                    <div className="">
+                    <div className="cursor-zoom-in">
                         <ImageZoom img={productImg + item} />
                     </div>
 

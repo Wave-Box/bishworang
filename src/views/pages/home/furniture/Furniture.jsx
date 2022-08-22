@@ -17,11 +17,13 @@ const Furniture = () => {
             <div className='container sm:px-0 px-4'>
                 <h5 className='text-center text-3xl font-normal tracking-widest font-serif text-gray-700 my-8'>{data?.title}</h5>
                 <p className='text-center text-lg font-normal my-8 tracking-wide font-sans sm:mx-10'>{data?.subtitle}</p>
-                <SliderOne>
-                    {data?.slider.map((dec) => <SwiperSlide key={dec}>
-                        <img className=' object-cover  w-full h-full max-h-[700px]' src={bannerImg + dec} alt="" />
-                    </SwiperSlide>)}
-                </SliderOne>
+                <a href={data?.link} target="_blank" rel="noopener noreferrer">
+                    <SliderOne>
+                        {data?.slider.map((dec) => <SwiperSlide key={dec}>
+                            <img className=' object-cover  w-full h-full max-h-[700px]' src={bannerImg + dec} alt="" />
+                        </SwiperSlide>)}
+                    </SliderOne>
+                </a>
                 <div className="my-5 w-full relative">
                     <DownSlider prev={"furniturePrev"} next={"furnitureNext"} product={data?.product} />
                 </div>
