@@ -163,7 +163,7 @@ const SingleProduct = () => {
                 }
             } else {
                 // dispatch(addToCartList({ cartId: makeid(100), color: null, size: null, additional_price: null, ...product }))
-                alert('please select color and size')
+                alert('Please select color and size')
             }
         }
 
@@ -182,7 +182,7 @@ const SingleProduct = () => {
                 }
             } else {
                 // dispatch(addToCartList({ cartId: makeid(100), color: null, size: null, additional_price: null, ...product }))
-                alert('please select color and size')
+                alert('Please select color and size')
             }
         }
         else if (offer || offer2 !== undefined) {
