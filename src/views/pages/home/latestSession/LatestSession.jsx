@@ -20,7 +20,7 @@ const LatestSession = () => {
             {isLoading ? <SetLoaing /> : <div className="grid grid-cols-2 gap-8 my-5">
                 {
                     data?.slice(0, 2).map((s) =>
-                        <Single key={s.id} title={s.title} shortTitle={s.subtitle} slider={s?.slider} product={s?.product} />
+                        <Single key={s.id} title={s.title} link={s.link} shortTitle={s.subtitle} slider={s?.slider} product={s?.product} />
                     )
                 }
             </div>}
@@ -31,13 +31,13 @@ const LatestSession = () => {
 
 export default LatestSession;
 
-const Single = ({ title, shortTitle, slider, product }) => {
+const Single = ({ title, shortTitle, slider, product, link }) => {
     return (
         <div className="col-span-2 sm:col-span-1 ">
             <h5 className='text-center text-2xl font-normal tracking-widest font-serif text-gray-700 my-5 uppercase'>{title}</h5>
             <p className='text-center text-base font-normal my-5 tracking-wide font-sans sm:mx-16 mx-2'>{shortTitle}</p>
 
-            <UpSlider slider={slider} />
+            <UpSlider slider={slider} link={link} />
 
             <div className="my-5 w-full relative">
                 <DownSlider prev={"rightDownSliderPrev"} next={"rightDownSliderNext"} product={product} />
@@ -46,16 +46,18 @@ const Single = ({ title, shortTitle, slider, product }) => {
     )
 }
 
-const UpSlider = ({ slider }) => {
+const UpSlider = ({ slider, link }) => {
     return (
+        <a href={link} target="_blank" rel="noopener noreferrer">
         <SliderOne>
             {slider?.map((slide, id) => <SwiperSlide key={id}>
                 <div className="image relative cursor-pointer">
-                    <img className=' object-cover  w-full h-full' style={{ maxWidth: '710px', maxHeight: '600px' }} src={bannerImg + slide} alt="" />
+                <img className=' object-cover  w-full h-full' style={{ maxWidth: '710px', maxHeight: '600px' }} src={bannerImg + slide} alt="" />
                     <div className="overlay"></div>
                 </div>
             </SwiperSlide>)}
         </SliderOne>
+        </a>
     )
 }
 

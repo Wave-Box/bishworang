@@ -72,13 +72,14 @@ const ProductCard = ({ item }) => {
     const add_to_cart = (item) => {
 
         const productPrice = parseInt(getPrice(item?.regular_price, item?.discount_price, item?.discount_type))
+        const offerPrice = parseInt(getPrice(productPrice, data?.offer?.discount_amount || data?.offer2?.discount_amount, data?.offer?.discount_type || data?.offer2?.discount_type))
 
 
         if (offer || offer2 !== undefined) {
 
             dispatch(addToCartList({
                 cartId: makeid(100),
-                price: productPrice - (data?.offer?.discount_type || data?.offer2?.discount_type  === "percent" ? (productPrice * (parseInt(offer !== undefined ? data?.offer?.discount_amount : data?.offer2?.discount_amount) / 100)): parseInt(offer !== undefined ? data?.offer?.discount_amount : data?.offer2?.discount_amount)),
+                price: offerPrice,
                 ...item
             }))
 

@@ -34,7 +34,7 @@ const Hero = () => {
                 className="mySwiper"
             >
                 {data?.slider?.map((i, id) => <SwiperSlide key={id}>
-                    <img alt="" className={"w-full "} src={sliderImg + i.image} />
+                    <a href={i.link} target="_blank" rel="noopener noreferrer"><img alt="" className={"w-full "} src={sliderImg + i.image} /></a>
                 </SwiperSlide>)}
 
             </Swiper>
