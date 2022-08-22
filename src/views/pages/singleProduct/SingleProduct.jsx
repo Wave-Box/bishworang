@@ -129,7 +129,6 @@ const SingleProduct = () => {
         if (cartList.length) {
 
             const resul = cartList?.find(c => c?.id === product?.id || c?.color === data?.color || c?.size === data?.size || c?.unit === data?.unit || c?.volume === data?.volume)
-
             setResult(resul)
 
 
