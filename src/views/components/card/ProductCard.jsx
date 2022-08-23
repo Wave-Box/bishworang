@@ -105,7 +105,7 @@ const ProductCard = ({ item }) => {
                                 scale: 1,
                                 transition: { duration: 1 }
 
-                            }} src={productImg + item?.image[0]} alt="Shoes" className='w-full h-full group-hover:hidden group-hover:scale-105 transition-all duration-500 ease-linear ' />
+                            }} src={productImg + item?.image[0]} alt="Shoes" className='w-full h-full object-cover group-hover:hidden group-hover:scale-105 transition-all duration-500 ease-linear ' />
 
 
                     </NavLink>
@@ -117,7 +117,7 @@ const ProductCard = ({ item }) => {
                             exit={{
                                 scale: 1,
                                 transition: { duration: 1 }
-                            }} src={productImg + secondImg} alt="Shoes" className='w-full h-full group-hover:block group-hover:scale-105 transition-all duration-500 ease-linear hidden ' />
+                            }} src={productImg + secondImg} alt="Shoes" className='w-full h-full object-cover group-hover:block group-hover:scale-105 transition-all duration-500 ease-linear hidden ' />
 
 
                     </NavLink>
