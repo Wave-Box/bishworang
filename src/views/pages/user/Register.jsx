@@ -17,7 +17,7 @@ const Register = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
 
-        
+
         dispatch(clearMessage());
 
         setSuccessful(true);
@@ -25,8 +25,10 @@ const Register = () => {
             .unwrap()
             .then((res) => {
                 if (res?.error) {
+
+                    setSuccessful(false);
                     toast(res?.error, { type: 'error' })
-                }else{
+                } else {
 
                     setSuccessful(false);
                     navigate("/verify-otp");
@@ -35,7 +37,7 @@ const Register = () => {
             })
             .catch((err) => {
                 setSuccessful(false);
-                
+
             });
 
     }

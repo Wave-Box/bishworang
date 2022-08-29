@@ -7,7 +7,7 @@ const ColorSelect = ({ setSelect, select, selectColor, bg, getColor }) => {
             <div onClick={() => {
                 getColor(bg)
                 setSelect(selectColor)
-            }} className={`avatar ${select === selectColor ? "online" : null}`}>
+            }} className={`avatar ${select === selectColor ? "ring-2 ring-[#AD171A] ring-offset-2 rounded-full" : null}`}>
 
                 {bg !== 'multicolor' && <div className={`text-neutral-content rounded-full w-8 cursor-pointer `} style={{ backgroundColor: bg }}>
                 </div>}
