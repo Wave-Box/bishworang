@@ -58,18 +58,19 @@ export default function HeaderMid() {
                                     <div className="shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden rounded">
                                         {isLoading ? <SetLoaing /> : <div className="relative grid gap-3  py-6 sm:gap-8 px-4 sm:p-8 bg-[#fff] text-black">
                                             {data?.category?.map((item) => (
-                                                <NavLink
-                                                    to={"/category/" + item?.id} key={item?.id}
+                                                <SingleCat key={item?.id} item={item} />
+                                                // <NavLink
+                                                //     to={"/category/" + item?.id} key={item?.id}
 
-                                                    className="-m-3 p-3 flex items-start hover:text-gray-200 "
-                                                >
-                                                    {/* <item.icon className="flex-shrink-0 h-6 w-6 text-indigo-600" aria-hidden="true" /> */}
-                                                    <img src={catImg + item?.icon} className={"h-6 w-6 flex-shrink-0"} alt="" />
-                                                    <div className="ml-4">
-                                                        <p className="text-base font-medium">{item?.name}</p>
+                                                //     className="-m-3 p-3 flex items-start hover:text-gray-200 "
+                                                // >
+                                                //     {/* <item.icon className="flex-shrink-0 h-6 w-6 text-indigo-600" aria-hidden="true" /> */}
+                                                //     <img src={catImg + item?.icon} className={"h-6 w-6 flex-shrink-0"} alt="" />
+                                                //     <div className="ml-4">
+                                                //         <p className="text-base font-medium">{item?.name}</p>
 
-                                                    </div>
-                                                </NavLink>
+                                                //     </div>
+                                                // </NavLink>
                                             ))}
                                         </div>}
 
@@ -122,7 +123,7 @@ export default function HeaderMid() {
                 leaveTo="opacity-0 scale-95"
             >
                 <Popover.Panel focus className="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden z-50">
-                    <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white bg-opacity-80 divide-y-2 divide-gray-50">
+                    <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 bg-white bg-opacity-90 divide-y-2 divide-gray-50">
                         <div className="pt-5 pb-6 px-5">
                             <div className="flex items-center justify-between">
                                 <div>
@@ -187,13 +188,13 @@ const SingleCat = ({ item }) => {
 
     return (
         <>
-            <div className="w-full flex items-center rounded-md hover:bg-gray-50">
+            <div className="w-full flex items-center rounded-md hover:bg-gray-50 px-2">
                 <NavLink to={'/category/' + item.id} className="flex-1 flex gap-x-2 items-center text-gray-600 hover:ml-2 py-3 duration-300 " >
                     <div className="flex-shrink-0 h-6 w-6" aria-hidden="true" >
                         <img src={catImg + item?.icon} className={"w-full h-full"} alt="" />
                     </div>
                     <p>{item.name}</p></NavLink>
-                {item?.subcategory.length ? <div className="h-full mt-8">
+                {item?.subcategory.length ? <div className="h-full mt-8 pl-5">
                     {show ? <MinusIcon onClick={() => setShow(!show)} className='h-4 w-4 text-gray-800 cursor-pointer' /> :
                         <PlusIcon onClick={() => setShow(!show)} className='h-4 w-4 text-gray-800 cursor-pointer' />}
                 </div> : null}
