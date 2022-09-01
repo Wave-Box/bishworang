@@ -270,9 +270,9 @@ const SingleProduct = () => {
                         <p className='text-black'>{product?.description}</p>
                     </div>
                     <div className="flex flex-col space-y-2 text-black mb-4">
-                        <div className="flex gap-2 justify-start items-center"><CgCrown size={20} /> <span>1 Year AL Jazeera Brand Warranty</span></div>
-                        <div className="flex gap-2 justify-start items-center"><HiOutlineRefresh size={20} /> <span>30 Day Return Policy</span></div>
-                        <div className="flex gap-2 justify-start items-center "><VscCreditCard size={20} /> <span>Cash on Delivery available</span></div>
+                        {/* <div className="flex gap-2 justify-start items-center"><CgCrown size={20} /> <span>1 Year AL Jazeera Brand Warranty</span></div> */}
+                        <div className="flex gap-2 justify-start items-center"><HiOutlineRefresh size={20} /> <span>7 Days Return Policy</span></div>
+                        <div className="flex gap-2 justify-start items-center "><VscCreditCard size={20} /> <span>Cash on delivery only available inside Dhaka</span></div>
                     </div>
 
                     {vrcolor?.length && sizeV !== undefined && <div className="flex gap-2 justify-start items-center mt-6 mb-2">
@@ -369,12 +369,12 @@ const SingleProduct = () => {
             <div className="flex justify-start items-center gap-10 my-10 uppercase tracking-wide">
                 <motion.div whileHover={{ y: -5, transition: { duration: 0.3 }, color: primaryColor }} onClick={() => setTab('desc')} style={tab === 'desc' && activeStyle}>
 
-                    <span className='text-lg font-semibold'>Description</span>
+                    <span className='text-lg font-semibold sm:cursor-pointer'>Description</span>
 
                 </motion.div>
 
                 <motion.div whileHover={{ y: -5, transition: { duration: 0.3 }, color: primaryColor }} onClick={() => setTab('review')} style={tab === 'review' && activeStyle}>
-                    <span className='text-lg  font-semibold'>Reviews</span>
+                    <span className='text-lg  font-semibold sm:cursor-pointer'>Reviews</span>
                 </motion.div>
             </div>
 
