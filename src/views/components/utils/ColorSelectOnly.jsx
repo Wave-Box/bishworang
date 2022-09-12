@@ -1,6 +1,7 @@
 import React from 'react';
 
 const ColorSelectOnly = ({ setSelect, select, selectColor, setVariant, data, bg }) => {
+    
     return (
         <>
             <div onClick={() => {

@@ -1,9 +1,9 @@
 
-import { primary } from 'daisyui/src/colors';
+// import { primary } from 'daisyui/src/colors';
 import React from 'react';
+import { useState } from 'react';
 import { MdOutlineKeyboardArrowUp, MdKeyboardArrowDown, MdDelete } from 'react-icons/md'
 import { useDispatch, useSelector } from 'react-redux';
-
 import { NavLink, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { addToCartList, clearCartList, decrementQty, removeToCartList } from '../../../../redux/slices/productslice';
@@ -13,13 +13,15 @@ import { productImg } from '../../../../siteSetting/siteUrl';
 import { red } from '../../../../siteSetting/theme';
 import { getPrice } from '../../../components/utils/getPrice';
 import Taka from '../../../components/utils/Taka';
-;
 
-const YourOrders = ({ cuponDis, selectAddress, selectPayment, shipping_area }) => {
 
+const YourOrders = ({ cuponDis, coupon, selectAddress, selectPayment, shipping_area }) => {
+// console.log(shipping_area,"area");
     const cartList = useSelector((state) => state.cart.cartList)
     const { user } = useSelector((state) => state.auth)
     const { data } = HomePage.GetInfo()
+    const [loading, setLoading] = useState(false);
+
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const priceList = cartList?.map(p => p.qty * p.price)
@@ -30,9 +32,9 @@ const YourOrders = ({ cuponDis, selectAddress, selectPayment, shipping_area }) =
     const tax = (parseFloat(data?.settings?.tax).toFixed(2) / 100) * parseFloat(total).toFixed(2)
 
     // const alert = useAlert()
-    // console.log(data?.settings?.tax);
+    
     const handleCheckout = () => {
-
+        setLoading(true);
         const cart = cartList.map(item => ({
             id: item.id,
             quantity: item.qty,
@@ -58,17 +60,32 @@ const YourOrders = ({ cuponDis, selectAddress, selectPayment, shipping_area }) =
             discount: cuponDis ? cuponDis : 0,
             product: cart,
             tax: 0,
-            cupon: 'khakfdhksf'
+            coupon: coupon ? coupon : null,
         }
-        if (!data.phone) {
-            alert("Please Given The Address")
-            //   AlertWraning("Please Select Delivery Address") 
+
+
+        if (!data.address) {
+            toast("Please Select The Address", {
+                type: 'danger',
+                autoClose: 1000,
+
+            })
         }
         if (!data.payment_type) {
-            alert("Please Select Payment Method")
-            //   AlertWraning("Please Select Payment Method") 
+            toast("Please Select Payment Method", {
+                type: 'danger',
+                autoClose: 1000,
+
+            })
         }
-        if (data.total && data.payment_type && data.product) {
+        if (!shipping_area || shipping_area === "Select Method") {
+            toast("Please Select Shipping Address", {
+                type: 'danger',
+                autoClose: 1000,
+
+            })
+        }
+        if (data.total && data.payment_type && data.product && shipping_area && data.address) {
 
             httpReq.post(`placeorder`, data)
                 .then((response) => {
@@ -92,6 +109,7 @@ const YourOrders = ({ cuponDis, selectAddress, selectPayment, shipping_area }) =
                         toast(response?.error, {
                             type: "warning"
                         });
+                        setLoading(false);
                     }
                 })
                 .catch((error) => {
@@ -102,7 +120,7 @@ const YourOrders = ({ cuponDis, selectAddress, selectPayment, shipping_area }) =
 
                 })
         } else {
-
+            setLoading(false);
         }
     }
 
@@ -150,23 +168,43 @@ const YourOrders = ({ cuponDis, selectAddress, selectPayment, shipping_area }) =
                     <p>Tax{" ( " + data?.settings?.tax + "% )"}</p>
                     <p><Taka tk={parseInt(tax)} /></p>
                 </div>
+                {/* <div className="flex justify-between items-center">
+                    <p>Estimated Shipping</p>
+                    {shipping_area === "--Select Area--" ? <p><Taka /> 0</p> : <p><Taka tk={shipping_area ? shipping_area : 0} /></p>}
+                </div> */}
                 <div className="flex justify-between items-center">
                     <p>Estimated Shipping</p>
-                    <p><Taka tk={shipping_area} /></p>
+                    {shipping_area === "Select Method" ? <p>BDT 0.00</p> : <p><Taka tk={shipping_area ? shipping_area : 0} /></p>}
                 </div>
+                {/* <div className="flex justify-between items-center text-black font-semibold">
+                    <p>Total</p>
+                    {shipping_area === "--Select Area--" || shipping_area === null ? <p>{total < 500 ? parseInt(total) : <Taka tk={(parseInt(total + tax)) - couponDis} />}</p> : <p>{total < 500 ? parseInt(total) : <Taka tk={(parseInt(total + tax) + parseInt(shipping_area)) - couponDis} />}</p>}
+                </div> */}
                 <div className="flex justify-between items-center">
                     <p>Total</p>
-                    <p><Taka tk={(parseInt(total + tax) + parseInt(shipping_area)) - cuponDis} /></p>
+                    {/* <p><Taka tk={(parseInt(total + tax) + parseInt(shipping_area)) - cuponDis} /></p> */}
+                    {shipping_area === "Select Method" || shipping_area === null ? <p>{<Taka tk={(parseInt(total + tax)) - cuponDis} />}</p> : <p>{<Taka tk={(parseInt(total + tax) + parseInt(shipping_area)) - cuponDis} />}</p>}
                 </div>
             </div>
 
-            <button
+            {loading ? <button
+                className={`font-semibold tracking-wider my-1 rounded-sm border border-gray-300 w-full py-3  text-white transition-all duration-200 ease-linear bg-[${red}] hover:bg-red-600 hover:text-gray-100 hover:shadow-lg rounded-md`}
+            >
+                Loading
+            </button> : <button
+                className={`font-semibold tracking-wider my-1 rounded-sm border border-gray-300 w-full py-3  text-white transition-all duration-200 ease-linear bg-[${red}] hover:bg-red-600 hover:text-gray-100 hover:shadow-lg rounded-md`}
+                onClick={() => handleCheckout()}
+            >
+                Place Order
+            </button>}
+
+            {/* <button
                 className={`font-semibold tracking-wider my-1 rounded-sm border border-gray-300 w-full py-3  text-white transition-all duration-200 ease-linear bg-[${red}] hover:bg-red-600 hover:text-gray-100 hover:shadow-lg rounded-md`}
                 style={{ backgroundColor: primary }}
                 onClick={() => handleCheckout()}
             >
                 Place Order
-            </button>
+            </button> */}
         </div>
     );
 };

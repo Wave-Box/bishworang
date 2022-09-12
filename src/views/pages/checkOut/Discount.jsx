@@ -8,11 +8,14 @@ import { useForm } from 'react-hook-form'
 import { red } from '../../../siteSetting/theme';
 import { HomePage } from '../../../services';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
+import { RotatingLines } from 'react-loader-spinner';
 
-const Discount = ({ setCupon, setShipping_area }) => {
+const Discount = ({ setCupon, setShipping_area, setCoupon }) => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { data } = HomePage.GetInfo()
+    const [loading, setLoading] = useState(false);
     const cartList = useSelector((state) => state.cart.cartList)
 
 
@@ -23,22 +26,34 @@ const Discount = ({ setCupon, setShipping_area }) => {
     `
 
 
-    const get_discout = (res) => {
+    const get_discount = (res) => {
+        setCoupon(res?.name)
         const priceList = cartList?.map(p => p.qty * getPrice(p.regular_price, p.discount_price, p.discount_type))
         const total = priceList.reduce((previousValue, currentValue) => previousValue + currentValue, 0);
         if (res?.max_purchase >= total && res?.min_purchase <= total) {
-            const result = getDiscount(total, res?.discount_amount)
+            const result = getDiscount(total, res?.discount_amount, res?.discount_type)
             const dis = total - result;
+            toast("Successfully Apply Coupon", {
+                type: 'success',
+                autoClose: 1000,
+
+            })
             return parseInt(dis)
+            
         }
         else {
-            alert(`Please purchase minimum ${res?.min_purchase}tk to maximum ${res?.max_purchase }tk`);
+            toast(`Please purchase minimum ${res?.min_purchase}tk to maximum ${res?.max_purchase }tk`, {
+                type: 'danger',
+                autoClose: 1500,
+
+            })
+            // alert(`Please purchase minimum ${res?.min_purchase}tk to maximum ${res?.max_purchase }tk`);
             return null;
         }
 
     }
     const onSubmit = data => {
-
+        setLoading(true)
         // declare the async data fetching function
         const fetchData = async () => {
             // get the data from the api
@@ -46,11 +61,13 @@ const Discount = ({ setCupon, setShipping_area }) => {
 
             if (res.error) {
                 setCupon(0)
-                return alert(res?.error)
+                setLoading(false)
+                return toast(res.error, {type: 'danger', autoClose: 1500,})
             }
             if (res.id) {
-                const result = get_discout(res)
+                const result = get_discount(res)
                 setCupon(result)
+                setLoading(false)
             }
         }
 
@@ -79,7 +96,7 @@ const Discount = ({ setCupon, setShipping_area }) => {
 
                                     <select onChange={(e) => setShipping_area(e.target.value)} id="country" name="country" autoComplete="country-name"
                                         className="mt-1 block w-full py-2 text-lg font-semibold border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-[#AD171A] focus:border-[#AD171A] sm:text-sm">
-                                        <option value={0} className="text-center">Select Method</option>
+                                        <option value={null} className="text-center">Select Method</option>
                                         {data?.settings?.shipping_area_1_cost && <option className="text-center option" value={parseInt(data?.settings?.shipping_area_1_cost)}>{data?.settings?.shipping_area_1}</option>}
                                         {data?.settings?.shipping_area_2_cost && <option className="text-center" value={parseInt(data?.settings?.shipping_area_2_cost)}>{data?.settings?.shipping_area_2}</option>}
                                         {data?.settings?.shipping_area_3_cost && <option className="text-center" value={parseInt(data?.settings?.shipping_area_3_cost)}>{data?.settings?.shipping_area_3}</option>}
@@ -99,7 +116,7 @@ const Discount = ({ setCupon, setShipping_area }) => {
                                         <input {...register("code", { required: true })} type={'text'} className="border border-gray-400 py-2 px-2 rounded-sm" />
                                         {errors.code && <span className='text-red-500'>Field is empty</span>}
                                     </div>
-                                    <input type={'submit'} value={'Apply'} htmlFor='discount' className={`px-4 cursor-pointer py-2 ml-2 font-semibold rounded-sm text-lg bg-[${red}] hover:bg-red-600 hover:text-gray-100 text-white`} />
+                                    {loading ? <div className={`flex justify-center items-center w-20 cursor-pointer py-2 ml-2 font-semibold rounded-sm text-lg bg-[${red}] hover:bg-red-600 hover:text-gray-100 text-white`}><RotatingLines width="25" strokeColor="#6495ED" strokeWidth='6' /><input type={'submit'} value={''} htmlFor='discount' className={``} /> </div>: <input type={'submit'} value={'Apply'} htmlFor='discount' className={`w-20 cursor-pointer py-2 ml-2 font-semibold rounded-sm text-lg bg-[${red}] hover:bg-red-600 hover:text-gray-100 text-white`} />}
                                 </form>
                             </div>
 

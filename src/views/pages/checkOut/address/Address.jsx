@@ -7,16 +7,21 @@ import { toast } from 'react-toastify'
 import httpReq from '../../../../services/http.service';
 import { red } from '../../../../siteSetting/theme';
 import { useSelector } from 'react-redux'
+import { RotatingLines } from 'react-loader-spinner';
 
 const Address = ({ selectAddress, setSelectAddress }) => {
     const [address, setAddress] = useState(null)
     const [open, setOpen] = useState(false)
     const [call, setCall] = useState(null)
+    const [loading, setLoading] = useState(false)
     const { user } = useSelector((state) => state.auth);
+
     useEffect(() => {
+        setLoading(true)
         httpReq.post("address", { id: user?.id })
             .then(({ address }) => {
                 setAddress(address);
+                setLoading(false)
             })
             .catch(err => console.log(err))
     }, [call, user.id])
@@ -37,7 +42,7 @@ const Address = ({ selectAddress, setSelectAddress }) => {
                             </label>
                             <span className='text-green-600 font-semibold tracking-wider cursor-pointer' onClick={() => setOpen(true)}> + Add</span>
                         </div>
-                        <div className="grid sm:grid-cols-2 gap-4">
+                        {loading ? <div className='flex items-center'> <RotatingLines width="25" strokeColor="#6495ED" strokeWidth='6' /><p>Loading</p></div> : <div className="grid sm:grid-cols-2 gap-4">
 
                             {
                                 address?.slice(0, 4).map((item) => <Single item={item} key={item?.id} selectAddress={selectAddress} setSelectAddress={setSelectAddress} setCall={setCall} />
@@ -46,7 +51,7 @@ const Address = ({ selectAddress, setSelectAddress }) => {
                             }
 
 
-                        </div>
+                        </div>}
 
                     </div>
 
@@ -73,6 +78,7 @@ const Single = ({ item, selectAddress, setSelectAddress, setCall }) => {
             .then(({ success }) => {
                 toast(success, { type: 'success' })
                 setCall(Math.random() * 100)
+                setSelectAddress(null)
             }).catch(err => console.log(err))
     }
     return (
@@ -87,7 +93,7 @@ const Single = ({ item, selectAddress, setSelectAddress, setCall }) => {
                 <div className="flex flex-col">
                     <TrashIcon width={20} onClick={() => delete_address(item?.id)} />
                     <PencilAltIcon width={20} onClick={() => setOpen(true)} />
-                    <UpdateAddress open={open} setOpen={setOpen} item={item} setCall={setCall} />
+                    <UpdateAddress open={open} setOpen={setOpen} item={item} setCall={setCall} setSelectAddress={setSelectAddress} />
 
                 </div>
             </div>
@@ -124,7 +130,7 @@ export function SaveAddress({ open, setOpen, setCall }) {
                     toast(error, { type: 'error' })
                 }
             })
-            .catch(err => console.log(err))
+            .catch(err => console.log(err,"err"))
     };
 
     return (
@@ -183,7 +189,7 @@ export function SaveAddress({ open, setOpen, setCall }) {
     )
 }
 
-export function UpdateAddress({ open, setOpen, item, setCall }) {
+export function UpdateAddress({ open, setOpen, item, setCall, setSelectAddress }) {
 
     const { user } = useSelector((state) => state.auth);
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
@@ -207,6 +213,7 @@ export function UpdateAddress({ open, setOpen, item, setCall }) {
             })
             .catch(err => console.log(err))
         reset()
+        setSelectAddress(null)
     };
 
 

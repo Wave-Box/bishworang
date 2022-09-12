@@ -115,7 +115,11 @@ const SingleItem = ({ item }) => {
                 </div>
                 {/* <p className="text-xs leading-3 text-gray-600 pt-2">Height: 10 inches</p> */}
                 <div className="flex items-center justify-between w-full">
-                    {item?.color && <p className="text-xs leading-3 text-gray-600 py-1">Color: {item?.color}</p>}
+                    {/* {item?.color && <p className="text-xs leading-3 text-gray-600 py-1">Color: {item?.color}</p>} */}
+                    {item?.color &&<div className='flex items-center gap-2 pr-2'>
+                            <p className="text-xs leading-3 text-gray-600 py-1">Color: </p>
+                            <p style={{ backgroundColor: item?.color }} className="w-3 h-3 rounded-full ring-1 ring-offset-2 ring-gray-600"></p>
+                        </div>}
                     {item?.size && <p className="text-xs leading-3 text-gray-600 py-1">Size: {item.size}</p>}
                     <div className="flex justify-around border border-gray-300 w-20 rounded-md ">
                         <div className="flex justify-center items-center">
