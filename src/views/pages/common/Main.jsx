@@ -42,7 +42,7 @@ const Shop = React.lazy(() => import("../shop/Shop"));
 
 const Main = () => {
 
-  
+
     return (
         <div className="relative">
             <ScrollToTop />

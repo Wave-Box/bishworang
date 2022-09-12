@@ -77,7 +77,7 @@ const OrderDetails = () => {
                                 </div>
                                 <div className="flex justify-between items-center w-full">
                                     <p className="text-base leading-4 text-gray-800">
-                                        Discount <span className="bg-gray-200 p-1 text-xs font-medium leading-3  text-gray-800">STUDENT</span>
+                                        Discount {order?.coupon && <span className="bg-gray-200 p-1 rounded-md capitalize text-xs font-medium leading-3 text-gray-800">{order?.coupon}</span>}
                                     </p>
                                     <p className="text-base leading-4 text-gray-600"><Taka tk={order?.discount} /></p>
                                 </div>
@@ -133,9 +133,9 @@ const OrderDetails = () => {
                                 <div className="flex justify-center md:justify-start  items-center md:items-start flex-col space-y-4 xl:mt-8">
                                     <p className="text-base font-semibold leading-4 text-center md:text-left text-gray-800">Shipping Address</p>
                                     <div className="w-48 lg:w-full xl:w-48 text-center md:text-left text-sm leading-5 text-gray-600">
-                                        <h3 className='font-semibold tracking-wider'>Name: {userData?.name}</h3>
-                                        <p className='font-normal text-sm tracking-wider'><span className='text-base font-medium'>Phone:</span> {userData?.phone}</p>
-                                        <p className='font-normal text-sm tracking-wider'><span className='text-base font-medium'>Address: </span>{userData?.address}
+                                        <h3 className='font-semibold tracking-wider'>Name: {order?.name}</h3>
+                                        <p className='font-normal text-sm tracking-wider'><span className='text-base font-medium'>Phone:</span> {order?.phone}</p>
+                                        <p className='font-normal text-sm tracking-wider'><span className='text-base font-medium'>Address: </span>{order?.address}
                                         </p>
                                     </div>
 
@@ -196,12 +196,15 @@ const SingleItem = ({ item, setCall, call, order }) => {
                     <div className="w-full flex flex-col justify-start items-start space-y-8">
                         <h3 className="text-xl xl:text-2xl font-semibold leading-6 text-gray-800"><NavLink to={"/product/" + item?.product_id}>{product?.name}</NavLink></h3>
                         <div className="flex justify-start items-start flex-col space-y-2">
-                            {item?.color ? <p className="text-sm leading-none text-gray-800">
-                                <span className="text-gray-300">Color: </span> {item?.color}
-                            </p> : null}
+                            {item?.color ?
+                                <div className='flex gap-2 items-center'>
+                                    <p className="text-sm leading-none text-gray-600">Color:</p>
+                                    <p style={{ backgroundColor: item?.color }} className="w-4 h-4 rounded-full ring-1 ring-offset-2 ring-gray-600"></p>
+                                </div> : null}
                             {item?.size ? <p className="text-sm leading-none text-gray-800">
-                                <span className="text-gray-300">Size: </span> {item?.size}
+                                <span className="text-gray-600">Size: </span> {item?.size}
                             </p> : null}
+                           
 
                         </div>
                     </div>

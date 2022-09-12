@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { CgCrown } from 'react-icons/cg'
+// import { CgCrown } from 'react-icons/cg'
 import { VscCreditCard } from 'react-icons/vsc'
 import { HiOutlineRefresh } from 'react-icons/hi'
 import ColorSelect from '../../components/utils/ColorSelect';
@@ -63,6 +63,7 @@ const SingleProduct = () => {
     const sizeV = variant.find(item => item.size !== null)
 
     // const colorV = variant.find(item => item.color !== null)
+    console.log(size,"size");
 
     // offer implement 
     const cat = product?.category_id;
@@ -92,6 +93,7 @@ const SingleProduct = () => {
             setVariant(variant);
             setVrcolor(vrcolor);
             setLoading(false)
+            setSize([])
 
         }
 
