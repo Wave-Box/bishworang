@@ -63,7 +63,7 @@ const SingleProduct = () => {
     const sizeV = variant.find(item => item.size !== null)
 
     // const colorV = variant.find(item => item.color !== null)
-    // console.log(result,"result");
+    // console.log(size,"size");
 
     // offer implement 
     const cat = product?.category_id;
