@@ -63,7 +63,7 @@ const SingleProduct = () => {
     const sizeV = variant.find(item => item.size !== null)
 
     // const colorV = variant.find(item => item.color !== null)
-    console.log(size,"size");
+    // console.log(result,"result");
 
     // offer implement 
     const cat = product?.category_id;
@@ -94,6 +94,9 @@ const SingleProduct = () => {
             setVrcolor(vrcolor);
             setLoading(false)
             setSize([])
+            setSelectColor(null)
+            setSelectSize(null)
+            setSingleVariant({})
 
         }
 
@@ -123,8 +126,8 @@ const SingleProduct = () => {
 
         if (cartList.length) {
 
-            const resul = cartList?.find(c => c?.id === product?.id || c?.color === data?.color || c?.size === data?.size || c?.unit === data?.unit || c?.volume === data?.volume)
-            setResult(resul)
+            const result = cartList?.find(c => c?.id === product?.id && c?.color === data?.color && c?.size === data?.size && c?.unit === data?.unit && c?.volume === data?.volume)
+            setResult(result)
 
 
         }
@@ -158,7 +161,11 @@ const SingleProduct = () => {
                 }
             } else {
                 // dispatch(addToCartList({ cartId: makeid(100), color: null, size: null, additional_price: null, ...product }))
-                alert('Please select color and size')
+                toast("Please Select Variant", {
+                    type: 'danger',
+                    autoClose: 1000,
+
+                })
             }
         }
 
@@ -174,10 +181,15 @@ const SingleProduct = () => {
                         price: !isNaN(parseInt(singleVariant?.additional_price)) ? productPrice + parseInt(singleVariant?.additional_price) : productPrice,
                         ...product
                     }))
+
                 }
             } else {
                 // dispatch(addToCartList({ cartId: makeid(100), color: null, size: null, additional_price: null, ...product }))
-                alert('Please select color and size')
+                toast("Please Select Variant", {
+                    type: 'danger',
+                    autoClose: 1000,
+
+                })
             }
         }
         else if (offer || offer2 !== undefined) {
@@ -282,22 +294,22 @@ const SingleProduct = () => {
                         {vrcolor?.map((i) => <ColorSelect key={i} select={selectColor} setSelect={setSelectColor} getColor={getColor} selectColor={i} bg={i} />)}
                     </div>}
 
-                    {vrcolor?.length && sizeV === undefined && <div className="flex gap-2 justify-start items-center mt-6 mb-2">
-                        <h6 className='text-md font-semibold text-gray-700'>Color</h6>
-                        {variant?.map((i) => <ColorSelectOnly key={i.id} select={selectColor} setSelect={setSelectColor} setVariant={set_variant} data={i} selectColor={i.color} bg={i.color} />)}
-                    </div>}
-
-                    {size.length !== 0 && sizeV !== undefined &&  <div className="flex gap-1 justify-start items-center mt-4 mb-7">
+                    {size.length !== 0 && sizeV !== undefined && <div className="flex gap-1 justify-start items-center mt-4 mb-7">
                         <h6 className='text-md font-semibold text-gray-700 mr-2'>Size</h6>
                         {size?.map((i) => <SizeSelect key={i.id} select={selectSize} setSelect={setSelectSize} setVariant={set_variant} data={i} selectSize={i?.size} />)}
                         <SizeView />
+                    </div>}
+
+                    {vrcolor?.length && sizeV === undefined && <div className="flex gap-2 justify-start items-center mt-6 mb-2">
+                        <h6 className='text-md font-semibold text-gray-700'>Color</h6>
+                        {variant?.map((i) => <ColorSelectOnly key={i.id} select={selectColor} setSelect={setSelectColor} setVariant={set_variant} data={i} selectColor={i.color} bg={i.color} />)}
                     </div>}
 
                     {!vrcolor?.length && sizeV !== undefined && <div className="flex gap-1 justify-start items-center mt-4 mb-7">
                         <h6 className='text-md font-semibold text-gray-700 mr-2'>Size</h6>
                         {variant?.map((i) =>
                             <SizeSelect key={i.id} select={selectSize} setSelect={setSelectSize} setVariant={set_variant} data={i} selectSize={i?.size} />)}
-
+                        <SizeView />
                     </div>}
 
                     {quantity === 0 ? <motion.button initial={{
