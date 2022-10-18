@@ -22,7 +22,7 @@ const PaymentGateway = ({ selectPayment, setSelectPayment }) => {
                     <div className="col-span-6 sm:col-span-4">
                         <div className="flex justify-between items-center pb-3">
                             <label htmlFor="email-address" className="block text-xl font-semibold text-gray-700">
-                                Payment Method
+                                Payment Method <span className='text-sm'>( Please Select Your Payment Method )</span>
                             </label>
 
                         </div>
