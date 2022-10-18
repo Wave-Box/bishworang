@@ -33,12 +33,16 @@ const about = [
         link: '/refund-policy'
     },
     {
-        name: "return-policy",
+        name: "Return-Policy",
         link: '/return-policy'
     },
     {
         name: "Terms & Conditions",
         link: '/terms-condition'
+    },
+    {
+        name: "Our Outlets",
+        link: '/location'
     }]
 
 

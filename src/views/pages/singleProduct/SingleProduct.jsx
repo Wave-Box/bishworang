@@ -63,7 +63,8 @@ const SingleProduct = () => {
     const sizeV = variant.find(item => item.size !== null)
 
     // const colorV = variant.find(item => item.color !== null)
-    // console.log(size,"size");
+    console.log(singleVariant,"singleVariant");
+    console.log(product,"product");
 
     // offer implement 
     const cat = product?.category_id;
@@ -356,8 +357,8 @@ const SingleProduct = () => {
                         </div>}
                     <div className="divider mt-12"></div>
                     <div className="flex flex-col gap-2">
-                        <h6 className='text-black'> SKU: <span style={{ color: primaryColor }}>FWM15VKT</span></h6>
-                        <h6 className='text-black' >Tags: <span style={{ color: primaryColor }}>Cloth, Women, Dress</span></h6>
+                        <h6 className='text-black'> SKU: <span style={{ color: primaryColor }}>{product?.SKU}</span></h6>
+                        <h6 className='text-black' >Tags: <span style={{ color: primaryColor }}>{product?.tag}</span></h6>
                         {singleVariant?.quantity ? <h6 className='text-black'>Availability: <span className='text-green-400'>{singleVariant?.quantity} Items In Stock</span></h6> : <h6 className='text-black'>Availability: <span className='text-green-400'>{product?.quantity} Items In Stock</span></h6>}
                         <div className='flex items-center gap-x-3'>
                             <h6 className='text-black' >Share:</h6>
