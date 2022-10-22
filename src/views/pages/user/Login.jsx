@@ -98,9 +98,9 @@ const Login = () => {
             <div className="divider">OR</div>
             
                 <div className="flex space-x-2 justify-center">
-                    <div
+                    {/* <div
                         onClick={handleFacebookSignIn}
-                        className='cursor-pointer text-white self-center font-semibold text-xs sm:text-base  px-6 py-3 rounded-md' style={{ backgroundColor: facebook }}>Login With Facebook</div>
+                        className='cursor-pointer text-white self-center font-semibold text-xs sm:text-base  px-6 py-3 rounded-md' style={{ backgroundColor: facebook }}>Login With Facebook</div> */}
                     <div
                         onClick={handleGoogleSignIn}
                         className='cursor-pointer text-white self-center font-semibold text-xs sm:text-base px-6 py-3 rounded-md' style={{ backgroundColor: google }}>Login With Google</div>

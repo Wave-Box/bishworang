@@ -13,6 +13,7 @@ import { productImg } from '../../../../siteSetting/siteUrl';
 import { red } from '../../../../siteSetting/theme';
 import { getPrice } from '../../../components/utils/getPrice';
 import Taka from '../../../components/utils/Taka';
+import swal from 'sweetalert';
 
 
 const YourOrders = ({ cuponDis, coupon, selectAddress, selectPayment, shipping_area }) => {
@@ -90,12 +91,15 @@ const YourOrders = ({ cuponDis, coupon, selectAddress, selectPayment, shipping_a
             httpReq.post(`placeorder`, data)
                 .then((response) => {
                     if (response?.order) {
-                        toast(`Your #${response?.order?.reference_no} order complete successfully!`, {
-                            type: "success",
-                            autoClose: 1000,
-                        });
-                        dispatch(clearCartList())
-                        navigate("/profile/order")
+                        
+                        swal({
+                            title: "Thank You",
+                            text: `Your #${response?.order?.reference_no} order has been placed successfully!`,
+                            icon: "success",
+                            button: "Done",
+                          });
+                        dispatch(clearCartList());
+                        navigate("/profile/order");
 
                     }
                     if (response?.payment) {
