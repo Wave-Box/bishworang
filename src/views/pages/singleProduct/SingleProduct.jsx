@@ -269,7 +269,7 @@ const SingleProduct = () => {
 
 
     return (
-        <div className='container mx-auto'>
+        <div className='sm:container mx-auto px-5'>
             <div className="text-sm breadcrumbs md:mt-6 my-4 ">
                 <ul>
                     <li><Link to='/'>Home</Link></li>
