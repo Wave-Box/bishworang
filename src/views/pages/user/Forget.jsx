@@ -81,7 +81,8 @@ const Finding = ({ setPage, setUser }) => {
                 .catch(er => {
                     setLoading(false)
                     if (er.response.data.error) {
-                        toast(er.response.data.error, { type: 'warning' })
+                        toast(er.response.data.error, { type: 'warning',
+                        autoClose: 1000, })
                         setPage('find')
                         setUser({})
                         setLoading(false)
@@ -122,10 +123,12 @@ const Verifying = ({ setPage, setUser, user }) => {
             httpReq.post('forget-verify', data)
                 .then(({ error, verify, success, user_id }) => {
                     if (success) {
-                        toast(success, { type: 'success' })
+                        toast(success, { type: 'success',
+                        autoClose: 1000, })
                     }
                     if (error) {
-                        toast(error, { type: 'warning' })
+                        toast(error, { type: 'warning',
+                        autoClose: 1000, })
                     }
                     if (verify) {
 
@@ -179,7 +182,8 @@ const Changeing = ({ setPage, setUser, user }) => {
                 .then(({ success, error }) => {
                     if (success) {
 
-                        toast(success, { type: 'success' })
+                        toast(success, { type: 'success',
+                        autoClose: 1000, })
 
                         navigate('/login')
                         setLoading(false)
@@ -188,7 +192,8 @@ const Changeing = ({ setPage, setUser, user }) => {
                         setUser({})
                     }
                     if (error) {
-                        toast(error, { type: 'warning' })
+                        toast(error, { type: 'warning',
+                        autoClose: 1000, })
                         setLoading(false)
 
                     }
@@ -198,7 +203,8 @@ const Changeing = ({ setPage, setUser, user }) => {
                     
                 })
         } else {
-            toast("your password dosen't match", { type: 'warning', position: 'top-center', delay: 1 })
+            toast("your password dosen't match", { type: 'warning', position: 'top-center', delay: 1,
+            autoClose: 1000, })
             setLoading(false)
 
         }

@@ -26,6 +26,7 @@ const HeaderDown = () => {
     const { register, handleSubmit } = useForm();
 
     const onSubmit = data => {
+        setIsOpen(false)
         httpReq.post("subscribe", data)
             .then(({ success, error }) => {
                 if (error) {

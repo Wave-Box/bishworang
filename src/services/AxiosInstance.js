@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const axiosInstance = axios.create({
-    baseURL: 'https://bishworang.wavebox.net/api/v1/',
+    baseURL: 'https://bishworang.website/admin/api/v1/',
     timeout: 10000
 
 });

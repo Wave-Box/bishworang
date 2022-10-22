@@ -48,10 +48,12 @@ const ProductCard = ({ item }) => {
         httpReq.post('favourite', { product_id: id })
             .then(({ error, success }) => {
                 if (success) {
-                    toast(success, { type: "success" });
+                    toast(success, { type: "success" ,
+                    autoClose: 1000,});
                 }
                 if (error) {
-                    toast(error, { type: 'error' });
+                    toast(error, { type: 'error',
+                    autoClose: 1000, });
                 }
             })
     }
@@ -177,7 +179,7 @@ const ProductCard = ({ item }) => {
             </div>
 
             <QuickView open={open} setOpen={setOpen} >
-                <Details data={{ product_id: item?.id }} />
+                <Details item={{ product_id: item?.id }} />
             </QuickView>
         </div>
     );

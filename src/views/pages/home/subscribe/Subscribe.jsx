@@ -14,10 +14,12 @@ const Subscribe = () => {
         httpReq.post("subscribe", data)
             .then(({ success, error }) => {
                 if (error) {
-                    toast(error, { type: 'error' })
+                    toast(error, { type: 'error',
+                    autoClose: 1000, })
                 }
                 if (success) {
-                    toast(success, { type: 'success' })
+                    toast(success, { type: 'success',
+                    autoClose: 1000, })
                 }
             })
     };

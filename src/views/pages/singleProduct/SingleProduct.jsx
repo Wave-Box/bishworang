@@ -40,6 +40,7 @@ const SingleProduct = () => {
     const [selectSize, setSelectSize] = useState('')
     const [tab, setTab] = useState('desc')
 
+    // console.log(selectColor, "selectColor");
 
     const activeStyle = {
         borderBottom: `2px solid ${primaryColor}`,
@@ -62,8 +63,14 @@ const SingleProduct = () => {
 
     const sizeV = variant.find(item => item.size !== null)
 
+    // console.log(vrcolor, "vrcolor");
+    // console.log(size, "size");
+    // console.log(variant, "variant");
     // const colorV = variant.find(item => item.color !== null)
 
+  
+
+   
     // offer implement 
     const cat = product?.category_id;
     const subCat = parseInt(product?.subcategory_id);
@@ -93,10 +100,12 @@ const SingleProduct = () => {
             setVrcolor(vrcolor);
             setLoading(false)
             setSize([])
-            setSelectColor(null)
+            setSelectColor(vrcolor[0])
             setSelectSize(null)
             setSingleVariant({})
-
+            const resultSize = variant?.filter(i => i.color === vrcolor[0])
+            console.log(resultSize,"resultSize");
+            setSize(resultSize)
         }
 
 
@@ -112,6 +121,11 @@ const SingleProduct = () => {
     }, [params.id])
 
 
+    // useEffect(() => {
+    //     const resultSize = variant?.filter(i => i.color === vrcolor[0])
+    //     console.log(resultSize,"resultSize");
+    //     setSize(resultSize)
+    // }, [variant, vrcolor])
 
     const price = parseInt(getPrice(product?.regular_price, product?.discount_price, product?.discount_type))
 
@@ -215,10 +229,16 @@ const SingleProduct = () => {
         httpReq.post('favourite', { product_id: id })
             .then(({ error, success }) => {
                 if (success) {
-                    toast(success, { type: "success" });
+                    toast(success, {
+                        type: "success",
+                        autoClose: 1000,
+                    });
                 }
                 if (error) {
-                    toast(error, { type: 'error' });
+                    toast(error, {
+                        type: 'error',
+                        autoClose: 1000,
+                    });
                 }
             })
     }

@@ -48,7 +48,8 @@ const Order = () => {
 
                                     setCall(!call)
                                     toast(res?.success, {
-                                        type: "success"
+                                        type: "success",
+                                        autoClose: 1000,
                                     });
                                 }
                             })
@@ -58,7 +59,8 @@ const Order = () => {
                 {
                     label: 'No',
                     onClick: () => toast('rejected', {
-                        type: "warning"
+                        type: "warning",
+                        autoClose: 1000,
                     })
                 }
             ]

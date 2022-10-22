@@ -46,7 +46,8 @@ const Profile = () => {
             .then(res => {
                 setCall(!call)
                 toast("Profile updated successfully!", {
-                    type: 'success'
+                    type: 'success',
+                    autoClose: 1000,
                 })
             })
             .catch(er => {
@@ -63,7 +64,8 @@ const Profile = () => {
 
             if (data?.image[0].size > 2024000) {
                 toast("Your Image very large more then 2MB!", {
-                    type: 'warning'
+                    type: 'warning',
+                    autoClose: 1000,
                 })
             }
             toBase64(data?.image[0])

@@ -122,12 +122,14 @@ export function SaveAddress({ open, setOpen, setCall }) {
                 if (success) {
                     reset()
                     setCall(Math.random() * 100)
-                    toast(success, { type: 'success' })
+                    toast(success, { type: 'success',
+                    autoClose: 1000, })
                     setOpen(false)
                 }
                 if (error) {
 
-                    toast(error, { type: 'error' })
+                    toast(error, { type: 'error',
+                    autoClose: 1000, })
                 }
             })
             .catch(err => console.log(err,"err"))
@@ -204,11 +206,13 @@ export function UpdateAddress({ open, setOpen, item, setCall, setSelectAddress }
             .then(({ success, error }) => {
                 if (success) {
                     setCall(Math.random() * 100)
-                    toast(success, { type: 'success' })
+                    toast(success, { type: 'success',
+                    autoClose: 1000, })
                     setOpen(false)
                 }
                 if (error) {
-                    toast(error, { type: 'error' })
+                    toast(error, { type: 'error',
+                    autoClose: 1000, })
                 }
             })
             .catch(err => console.log(err))

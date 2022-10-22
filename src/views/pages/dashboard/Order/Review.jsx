@@ -27,14 +27,16 @@ export default function GiveReview({ setOpen, open, item, call, setCall }) {
 
 
                 if (success) {
-                    toast(success, { type: 'success' })
+                    toast(success, { type: 'success',
+                    autoClose: 1000, })
                     setCall(!call)
                     setOpen(false)
                 }
                 // console.log(res);
 
                 if (error) {
-                    toast(error, { type: 'warning' })
+                    toast(error, { type: 'warning',
+                    autoClose: 1000, })
 
                 }
             })

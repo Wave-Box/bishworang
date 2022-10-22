@@ -27,7 +27,8 @@ const Register = () => {
                 if (res?.error) {
 
                     setSuccessful(false);
-                    toast(res?.error, { type: 'error' })
+                    toast(res?.error, { type: 'error',
+                    autoClose: 1000, })
                 } else {
 
                     setSuccessful(false);

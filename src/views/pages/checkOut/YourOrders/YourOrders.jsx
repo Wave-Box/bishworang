@@ -59,7 +59,7 @@ const YourOrders = ({ cuponDis, coupon, selectAddress, selectPayment, shipping_a
             total: (total + tax + parseInt(shipping_area)) - cuponDis,
             discount: cuponDis ? cuponDis : 0,
             product: cart,
-            tax: 0,
+            tax: tax,
             coupon: coupon ? coupon : null,
         }
 
@@ -91,7 +91,8 @@ const YourOrders = ({ cuponDis, coupon, selectAddress, selectPayment, shipping_a
                 .then((response) => {
                     if (response?.order) {
                         toast(`Your #${response?.order?.reference_no} order complete successfully!`, {
-                            type: "success"
+                            type: "success",
+                            autoClose: 1000,
                         });
                         dispatch(clearCartList())
                         navigate("/profile/order")
@@ -107,7 +108,8 @@ const YourOrders = ({ cuponDis, coupon, selectAddress, selectPayment, shipping_a
                     }
                     if (response?.error) {
                         toast(response?.error, {
-                            type: "warning"
+                            type: "warning",
+                            autoClose: 1000,
                         });
                         setLoading(false);
                     }

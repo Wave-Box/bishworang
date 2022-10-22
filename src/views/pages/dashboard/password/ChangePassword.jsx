@@ -23,13 +23,15 @@ const ChangePassword = () => {
       }).then((res) => {
         toast("Successfully change your Password!", {
           type: 'success',
-          position:'bottom-center'
+          position:'bottom-center',
+          autoClose: 1000,
         })
       })
     } else {
       toast("Please enter correct Password!", {
         type: 'error',
-        position:'bottom-center'
+        position:'bottom-center',
+        autoClose: 1000,
       })
     }
 

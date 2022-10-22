@@ -20,10 +20,12 @@ const Card2 = ({ item }) => {
         httpReq.post('favourite', { product_id: id })
             .then(({ error, success }) => {
                 if (success) {
-                    toast(success, { type: "success" });
+                    toast(success, { type: "success",
+                    autoClose: 1000, });
                 }
                 if (error) {
-                    toast(error, { type: 'error' });
+                    toast(error, { type: 'error',
+                    autoClose: 1000, });
                 }
             })
     }

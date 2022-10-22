@@ -31,7 +31,8 @@ const Login = () => {
             .then(({ verify, error }) => {
                 
                 if (error) {
-                    toast(error, { type: 'error' })
+                    toast(error, { type: 'error',
+                    autoClose: 1000, })
                 }
                 if (verify) {
                     window.location.replace("/profile");
@@ -43,7 +44,8 @@ const Login = () => {
             })
             .catch((er) => {
 
-                toast("Credential Doesn\"t Match", { type: 'error' })
+                toast("Credential Doesn\"t Match", { type: 'error',
+                autoClose: 1000, })
 
                 setLoading(false);
             });

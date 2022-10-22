@@ -195,7 +195,8 @@ const Single = ({ item, setCall }) => {
                                 if (res?.success) {
                                     setCall(Math.random() * 1000)
                                     toast(res?.success, {
-                                        type: "success"
+                                        type: "success",
+                                        autoClose: 1000,
                                     });
                                 }
                             })
@@ -205,7 +206,8 @@ const Single = ({ item, setCall }) => {
                 {
                     label: 'No',
                     onClick: () => toast('rejected', {
-                        type: "warning"
+                        type: "warning",
+                        autoClose: 1000,
                     })
                 }
             ]
