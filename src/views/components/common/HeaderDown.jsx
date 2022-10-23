@@ -26,7 +26,7 @@ const HeaderDown = () => {
     const { register, handleSubmit } = useForm();
 
     const onSubmit = data => {
-        setIsOpen(false)
+        
         httpReq.post("subscribe", data)
             .then(({ success, error }) => {
                 if (error) {
@@ -34,6 +34,7 @@ const HeaderDown = () => {
                 }
                 if (success) {
                     toast(success, { type: 'success', autoClose: 500 })
+                    setIsOpen(false)
                 }
             })
     };
