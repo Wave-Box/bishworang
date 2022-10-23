@@ -23,7 +23,7 @@ export default function Pagination({ setPage, paginate }) {
             <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-center">
 
                 <div>
-                    <nav className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+                    <nav className="relative z-0 inline-flex flex-wrap rounded-md shadow-sm -space-x-px" aria-label="Pagination">
 
                         {/* Current: "z-10 bg-indigo-50 border-indigo-500 text-indigo-600", Default: "bg-white border-gray-300 text-gray-500 hover:bg-gray-50" */}
 
