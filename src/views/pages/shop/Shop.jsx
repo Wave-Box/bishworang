@@ -226,7 +226,7 @@ const SingleSub = ({ item }) => {
                 <div className="ml-8">
                     {
                         item?.subsubcategory?.map((sub) =>
-                            <div className='py-2'>
+                            <div key={sub?.id} className='py-2'>
                                 <NavLink to={'/category/' + sub.id} className="flex-1 text-gray-600 !hover:ml-10 duration-300" > <p>{sub.name}</p></NavLink>
                             </div>)
                     }

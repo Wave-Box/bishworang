@@ -37,6 +37,7 @@ const SingleProduct = () => {
     const { data } = HomePage.GetInfo()
 
     const [selectColor, setSelectColor] = useState('')
+    const [selectColorOnly, setSelectColorOnly] = useState('')
     const [selectSize, setSelectSize] = useState('')
     const [tab, setTab] = useState('desc')
 
@@ -65,10 +66,10 @@ const SingleProduct = () => {
     const qty = variant.find(item => item.size === selectSize)
 
 
-    // console.log(qty, "qty");
+    // console.log(selectColor, "selectColor");
     // console.log(variant, "variant");
-    // console.log(size, "size");
-    // console.log(variant, "variant");
+    // console.log(singleVariant, "singleVariant");
+    console.log(result, "result");
     // const colorV = variant.find(item => item.color !== null)
 
   
@@ -85,6 +86,9 @@ const SingleProduct = () => {
 
 
     const cartList = useSelector((state) => state.cart.cartList)
+    // console.log(cartList,"cartList");
+    const qtyR = cartList?.map(id=> id?.cartId === result?.cartId)
+    console.log(qtyR,"qtyR");
 
     const dispatch = useDispatch()
     const params = useParams()
@@ -324,7 +328,7 @@ const SingleProduct = () => {
 
                     {vrcolor?.length && sizeV === undefined && <div className="flex gap-2 justify-start items-center mt-6 mb-2">
                         <h6 className='text-md font-semibold text-gray-700'>Color</h6>
-                        {variant?.map((i) => <ColorSelectOnly key={i.id} select={selectColor} setSelect={setSelectColor} setVariant={set_variant} data={i} selectColor={i.color} bg={i.color} />)}
+                        {variant?.map((i) => <ColorSelectOnly key={i.id} select={selectColorOnly} setSelect={setSelectColorOnly} setVariant={set_variant} data={i} selectColor={i.color} bg={i.color} />)}
                     </div>}
 
                     {!vrcolor?.length && sizeV !== undefined && <div className="flex gap-1 justify-start items-center mt-4 mb-7">
@@ -344,7 +348,7 @@ const SingleProduct = () => {
                         transition={{ duration: 0.4, ease: 'easeInOut' }} className='px-10 py-2 disabled rounded-md shadow-sm flex justify-between text-black items-center cursor-pointer text-lg font-medium'><h1>Out Of Stock</h1></motion.button> :
 
                         <div className="flex gap-1">
-                            {result?.qty ? <div style={{ backgroundColor: "primaryColor" }} className=" px-3 py-1 rounded-md shadow-sm flex justify-between text-black w-40 items-center">
+                            {qtyR[0] === true ? <div style={{ backgroundColor: "primaryColor" }} className=" px-3 py-1 rounded-md shadow-sm flex justify-between text-black w-40 items-center">
                                 <MinusIcon height={18}
                                     onClick={() => {
                                         setCall(!call)
