@@ -12,6 +12,7 @@ import httpReq from '../../../services/http.service';
 import { getPrice } from '../../components/utils/getPrice';
 import Taka from '../../components/utils/Taka';
 import { HomePage } from '../../../services';
+import Pagination from './Pagination';
 
 
 
@@ -19,23 +20,27 @@ const Shop = () => {
     const [val, setVal] = useState(0)
     const [store, setStore] = useState([])
     const [products, setProducts] = useState([])
+    const [page, setPage] = useState("?page=1")
+    const [paginate, setPaginate] = useState({})
     const { data } = HomePage.GetInfo()
     const params = useParams()
     const [loading, setloading] = useState(false)
+
 
     useEffect(() => {
         setloading(true)
         // declare the async data fetching function
         const fetchData = async () => {
             // get the data from the api
-            const { data } = await httpReq.post('getcatproduct', { id: params?.id });
+            const data = await httpReq.post(`getcatproduct${page}`, { id: params?.id });
 
-            // console.log(data);
+            // console.log(data, "data");
 
             // set state with the result
-            setProducts(data);
-            setStore(data);
+            setProducts(data?.data);
+            setStore(data?.data);
             setloading(false)
+            setPaginate(data)
 
         }
 
@@ -46,7 +51,7 @@ const Shop = () => {
                 setloading(false)
                 console.log(error);
             }).finally(() => setloading(false))
-    }, [params?.id])
+    }, [params?.id, page])
 
 
 
@@ -124,11 +129,9 @@ const Shop = () => {
                                             </div>
                                         </label>
                                         <ul tabIndex="0" className="dropdown-content menu  py-2 text-xs sm:text-base text-gray-500  shadow-lg bg-base-100 w-[120px] sm:w-36 space-y-2 ">
-                                            <li onClick={() => setProducts(store.slice(0, 50))} className='px-4 py-1 hover:text-white hover:bg-orange-500'>50</li>
-                                            <li onClick={() => setProducts(store.slice(0, 100))} className='px-4 py-1 hover:text-white hover:bg-orange-500'>100</li>
-                                            <li onClick={() => setProducts(store.slice(0, 150))} className='px-4 py-1 hover:text-white hover:bg-orange-500'>150</li>
-                                            <li onClick={() => setProducts(store.slice(0, 200))} className='px-4 py-1 hover:text-white hover:bg-orange-500'>200</li>
-                                            <li onClick={() => setProducts(store.slice(0, 250))} className='px-4 py-1 hover:text-white hover:bg-orange-500'>250</li>
+                                            <li onClick={() => setProducts(store.slice(0, 10))} className='px-4 py-1 hover:text-white hover:bg-orange-500'>10</li>
+                                            <li onClick={() => setProducts(store.slice(0, 20))} className='px-4 py-1 hover:text-white hover:bg-orange-500'>20</li>
+                                            
                                         </ul>
                                     </div>
                                 </div>
@@ -151,8 +154,12 @@ const Shop = () => {
                                 </div>
 
                         }
-                        {/* paroduct secton  */}
+
+                        <div className='my-5'>
+                            <Pagination setPage={setPage} paginate={paginate} />
+                        </div>
                     </div>
+
 
                 </div>
 
@@ -189,7 +196,7 @@ const SingleCat = ({ item }) => {
                         <PlusIcon onClick={() => setShow(!show)} className='h-4 w-4 text-gray-800 cursor-pointer' />}
                 </div> : null}
             </div>
-           
+
             {show && <>
                 <div className="ml-2">
                     {
@@ -214,7 +221,7 @@ const SingleSub = ({ item }) => {
                         <PlusIcon onClick={() => setOpen(!open)} className='h-4 w-4 text-gray-800 cursor-pointer' />}
                 </div> : null}
             </div>
-          
+
             {open && <>
                 <div className="ml-8">
                     {
