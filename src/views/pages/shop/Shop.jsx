@@ -3,7 +3,7 @@ import { Link, NavLink, useParams } from 'react-router-dom';
 import { primaryColor } from '../../../constant';
 import { ProductCard } from '../../components/card';
 import Card3 from '../../components/card/Card3.';
-import { Link1 } from '../../components/links';
+// import { Link1 } from '../../components/links';
 import Title from '../../components/utils/Title';
 import banner3 from '../../../assets/images/shop/banner-11.jpg'
 import { ViewGridIcon, ChevronDownIcon, MinusIcon, PlusIcon } from '@heroicons/react/outline'

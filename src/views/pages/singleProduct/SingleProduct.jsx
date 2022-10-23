@@ -40,7 +40,7 @@ const SingleProduct = () => {
     const [selectSize, setSelectSize] = useState('')
     const [tab, setTab] = useState('desc')
 
-    // console.log(selectColor, "selectColor");
+  
 
     const activeStyle = {
         borderBottom: `2px solid ${primaryColor}`,
@@ -62,8 +62,11 @@ const SingleProduct = () => {
     const { makeid } = useTheme()
 
     const sizeV = variant.find(item => item.size !== null)
+    const qty = variant.find(item => item.size === selectSize)
 
-    // console.log(vrcolor, "vrcolor");
+
+    // console.log(qty, "qty");
+    // console.log(variant, "variant");
     // console.log(size, "size");
     // console.log(variant, "variant");
     // const colorV = variant.find(item => item.color !== null)
@@ -331,7 +334,7 @@ const SingleProduct = () => {
                         <SizeView />
                     </div>}
 
-                    {quantity === 0 ? <motion.button initial={{
+                    {quantity === 0 || qty?.quantity === "0" ? <motion.button initial={{
                         backgroundColor: primaryColor,
                         color: "white"
                     }} whileHover={{
