@@ -69,7 +69,7 @@ const SingleProduct = () => {
     // console.log(selectColor, "selectColor");
     // console.log(variant, "variant");
     // console.log(singleVariant, "singleVariant");
-    console.log(result, "result");
+    // console.log(result, "result");
     // const colorV = variant.find(item => item.color !== null)
 
   
@@ -88,7 +88,7 @@ const SingleProduct = () => {
     const cartList = useSelector((state) => state.cart.cartList)
     // console.log(cartList,"cartList");
     const qtyR = cartList?.map(id=> id?.cartId === result?.cartId)
-    console.log(qtyR,"qtyR");
+    // console.log(qtyR,"qtyR");
 
     const dispatch = useDispatch()
     const params = useParams()
@@ -111,7 +111,7 @@ const SingleProduct = () => {
             setSelectSize(null)
             setSingleVariant({})
             const resultSize = variant?.filter(i => i.color === vrcolor[0])
-            console.log(resultSize,"resultSize");
+            // console.log(resultSize,"resultSize");
             setSize(resultSize)
         }
 

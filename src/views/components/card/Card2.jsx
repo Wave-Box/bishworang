@@ -84,7 +84,7 @@ const Card2 = ({ item }) => {
 
             </div>
             <QuickView open={open} setOpen={setOpen} >
-                <Details data={{ product_id: item?.id }} />
+                <Details item={{ product_id: item?.id }} />
             </QuickView>
         </div>
     );

@@ -33,7 +33,7 @@ import { HomePage } from '../../../services';
 const Details = ({ item }) => {
 
     const { makeid } = useTheme()
-
+    const dispatch = useDispatch()
     const { data } = HomePage.GetInfo()
 
     const [selectColor, setSelectColor] = useState('')
@@ -53,7 +53,12 @@ const Details = ({ item }) => {
     const [call, setCall] = useState(false)
 
 
+    const cartList = useSelector((state) => state.cart.cartList)
     const sizeV = variant.find(item => item.size !== null)
+    const qty = variant.find(item => item.size === selectSize)
+
+    const qtyR = cartList?.map(id => id?.cartId === result?.cartId)
+    // console.log(qtyR,"qtyR");
 
     // offer implement 
     const cat = product?.category_id;
@@ -63,8 +68,7 @@ const Details = ({ item }) => {
     const offer = data?.offer?.category?.find(o => parseInt(o) === cat || parseInt(o) === subCat || parseInt(o) === subSubCat)
     const offer2 = data?.offer2?.category?.find(o => parseInt(o) === cat || parseInt(o) === subCat || parseInt(o) === subSubCat)
 
-    const cartList = useSelector((state) => state.cart.cartList)
-    const dispatch = useDispatch()
+
     useEffect(() => {
         setLoading(true)
         // declare the async data fetching function
@@ -78,9 +82,12 @@ const Details = ({ item }) => {
             setVrcolor(vrcolor);
             setLoading(false);
             setSize([])
-            setSelectColor(null)
+            setSelectColor(vrcolor[0])
             setSelectSize(null)
             setSingleVariant({})
+            const resultSize = variant?.filter(i => i.color === vrcolor[0])
+            console.log(resultSize, "resultSize");
+            setSize(resultSize)
 
         }
 
@@ -296,7 +303,7 @@ const Details = ({ item }) => {
                     <SizeView />
                 </div>}
 
-                {quantity === 0 ? <motion.button initial={{
+                {quantity === 0 || qty?.quantity === "0" ? <motion.button initial={{
                     backgroundColor: primaryColor,
                     color: "white"
                 }} whileHover={{
@@ -306,7 +313,7 @@ const Details = ({ item }) => {
                     transition={{ duration: 0.4, ease: 'easeInOut' }} className='px-10 py-2 disabled rounded-md shadow-sm flex justify-between text-black items-center cursor-pointer text-lg font-medium'><h1>Out Of Stock</h1></motion.button> :
 
                     <div className="flex gap-1">
-                        {result?.qty ? <div style={{ backgroundColor: "primaryColor" }} className=" px-3 py-1 rounded-md shadow-sm flex justify-between text-black w-40 items-center">
+                        {qtyR[0] === true  ? <div style={{ backgroundColor: "primaryColor" }} className=" px-3 py-1 rounded-md shadow-sm flex justify-between text-black w-40 items-center">
                             <MinusIcon height={18}
                                 onClick={() => {
                                     setCall(!call)
