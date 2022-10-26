@@ -31,12 +31,12 @@ const ProductCard = ({ item }) => {
 
 
     // offer implement
-    const cat = item?.category_id;
-    const subCat = parseInt(item?.subcategory_id);
-    const subSubCat = parseInt(item?.subsubcategory_id);
+    // const cat = item?.category_id;
+    // const subCat = parseInt(item?.subcategory_id);
+    // const subSubCat = parseInt(item?.subsubcategory_id);
 
-    const offer = data?.offer?.category?.find(o => parseInt(o) === cat || parseInt(o) === subCat || parseInt(o) === subSubCat)
-    const offer2 = data?.offer2?.category?.find(o => parseInt(o) === cat || parseInt(o) === subCat || parseInt(o) === subSubCat)
+    // const offer = data?.offer?.category?.find(o => parseInt(o) === cat || parseInt(o) === subCat || parseInt(o) === subSubCat)
+    // const offer2 = data?.offer2?.category?.find(o => parseInt(o) === cat || parseInt(o) === subCat || parseInt(o) === subSubCat)
 
 
     useEffect(() => {
@@ -58,41 +58,41 @@ const ProductCard = ({ item }) => {
             })
     }
 
+    const add_to_cart = (item) => {
+        const cartItem = {
+            cartId: makeid(100),
+            price: price,
+            color: null,
+            size: null,
+            additional_price: null,
+            ...item
+
+        }
+        dispatch(addToCartList({ ...cartItem }))
+    }
+
     // const add_to_cart = (item) => {
-    //     const cartItem = {
-    //         cartId: makeid(100),
-    //         price: price,
-    //         color: null,
-    //         size: null,
-    //         additional_price: null,
-    //         ...item
+
+    //     const productPrice = parseInt(getPrice(item?.regular_price, item?.discount_price, item?.discount_type))
+    //     const offerPrice = parseInt(getPrice(productPrice, data?.offer?.discount_amount || data?.offer2?.discount_amount, data?.offer?.discount_type || data?.offer2?.discount_type))
+
+
+    //     if (offer || offer2 !== undefined) {
+
+    //         dispatch(addToCartList({
+    //             cartId: makeid(100),
+    //             price: offerPrice,
+    //             ...item
+    //         }))
 
     //     }
-    //     dispatch(addToCartList({ ...cartItem }))
+
+    //     else {
+    //         dispatch(addToCartList({ cartId: makeid(100), price: productPrice, color: null, size: null, additional_price: null, ...item }))
+
+    //     }
+
     // }
-
-    const add_to_cart = (item) => {
-
-        const productPrice = parseInt(getPrice(item?.regular_price, item?.discount_price, item?.discount_type))
-        const offerPrice = parseInt(getPrice(productPrice, data?.offer?.discount_amount || data?.offer2?.discount_amount, data?.offer?.discount_type || data?.offer2?.discount_type))
-
-
-        if (offer || offer2 !== undefined) {
-
-            dispatch(addToCartList({
-                cartId: makeid(100),
-                price: offerPrice,
-                ...item
-            }))
-
-        }
-
-        else {
-            dispatch(addToCartList({ cartId: makeid(100), price: productPrice, color: null, size: null, additional_price: null, ...item }))
-
-        }
-
-    }
 
     return (
         <div className="group cursor-pointer">

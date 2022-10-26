@@ -76,12 +76,12 @@ const SingleProduct = () => {
 
    
     // offer implement 
-    const cat = product?.category_id;
-    const subCat = parseInt(product?.subcategory_id);
-    const subSubCat = parseInt(product?.subsubcategory_id);
+    // const cat = product?.category_id;
+    // const subCat = parseInt(product?.subcategory_id);
+    // const subSubCat = parseInt(product?.subsubcategory_id);
 
-    const offer = data?.offer?.category?.find(o => parseInt(o) === cat || parseInt(o) === subCat || parseInt(o) === subSubCat)
-    const offer2 = data?.offer2?.category?.find(o => parseInt(o) === cat || parseInt(o) === subCat || parseInt(o) === subSubCat)
+    // const offer = data?.offer?.category?.find(o => parseInt(o) === cat || parseInt(o) === subCat || parseInt(o) === subSubCat)
+    // const offer2 = data?.offer2?.category?.find(o => parseInt(o) === cat || parseInt(o) === subCat || parseInt(o) === subSubCat)
 
 
 
@@ -158,7 +158,7 @@ const SingleProduct = () => {
     const add_to_cart = (product) => {
 
         const productPrice = parseInt(getPrice(product?.regular_price, product?.discount_price, product?.discount_type))
-        const offerPrice = parseInt(getPrice(!isNaN(parseInt(singleVariant?.additional_price)) ? productPrice + parseInt(singleVariant?.additional_price) : productPrice, data?.offer?.discount_amount || data?.offer2?.discount_amount, data?.offer?.discount_type || data?.offer2?.discount_type))
+        // const offerPrice = parseInt(getPrice(!isNaN(parseInt(singleVariant?.additional_price)) ? productPrice + parseInt(singleVariant?.additional_price) : productPrice, data?.offer?.discount_amount || data?.offer2?.discount_amount, data?.offer?.discount_type || data?.offer2?.discount_type))
 
         // console.log(offerPrice,"price");
         // httpReq.post('checkofferavail', {cat_id: product.category_id, price: product?.regular_price })
@@ -166,30 +166,7 @@ const SingleProduct = () => {
 
         setCall(!call)
 
-        if ((offer || offer2 !== undefined) && variant.length > 0) {
-            if (singleVariant.id) {
-
-
-                if (singleVariant) {
-
-                    dispatch(addToCartList({
-                        cartId: makeid(100), variant_quantity: singleVariant?.quantity, variantId: singleVariant.id, ...singleVariant,
-
-                        price: offerPrice,
-                        ...product
-                    }))
-                }
-            } else {
-                // dispatch(addToCartList({ cartId: makeid(100), color: null, size: null, additional_price: null, ...product }))
-                toast("Please Select Color or Size", {
-                    type: 'danger',
-                    autoClose: 1000,
-
-                })
-            }
-        }
-
-        else if (variant.length > 0) {
+     if (variant.length > 0) {
             if (singleVariant.id) {
 
 
@@ -212,17 +189,7 @@ const SingleProduct = () => {
                 })
             }
         }
-        else if (offer || offer2 !== undefined) {
-
-            dispatch(addToCartList({
-                cartId: makeid(100), color: null, size: null, additional_price: null,
-
-                price: offerPrice,
-                ...product
-            }))
-
-        }
-
+        
         else {
             dispatch(addToCartList({ cartId: makeid(100), price: productPrice, color: null, size: null, additional_price: null, ...product }))
 
