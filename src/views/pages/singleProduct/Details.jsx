@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { CgCrown } from 'react-icons/cg'
+// import { CgCrown } from 'react-icons/cg'
 import { VscCreditCard } from 'react-icons/vsc'
 import { HiOutlineRefresh } from 'react-icons/hi'
 import ColorSelect from '../../components/utils/ColorSelect';
@@ -156,7 +156,7 @@ const Details = ({ item }) => {
                 }
             } else {
                 // dispatch(addToCartList({ cartId: makeid(100), color: null, size: null, additional_price: null, ...product }))
-                toast("Please Select Variant", {
+                toast("Please Select Color or Size", {
                     type: 'danger',
                     autoClose: 1000,
 
@@ -180,7 +180,7 @@ const Details = ({ item }) => {
                 }
             } else {
                 // dispatch(addToCartList({ cartId: makeid(100), color: null, size: null, additional_price: null, ...product }))
-                toast("Please Select Variant", {
+                toast("Please Select Color or Size", {
                     type: 'danger',
                     autoClose: 1000,
 

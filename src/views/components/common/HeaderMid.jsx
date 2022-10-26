@@ -105,9 +105,9 @@ export default function HeaderMid() {
                     </Popover.Group>
                     <div className="hidden md:flex items-center justify-end md:flex-1 lg:max-w-fit group gap-1 py-3">
                         <PhoneIcon className='xl:ml-2 h-5 w-5 group-hover:text-orange-400' />
-                        <NavLink to='/' className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-orange-400">
+                        <a href={"https://api.whatsapp.com/send?phone=" + data?.settings?.whatsapp_phone} target="_blank" rel="noopener noreferrer" className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-orange-400">
                             Hotline <span className='text-orange-400'>{data?.settings?.phone}</span>
-                        </NavLink>
+                        </a>
 
                     </div>
                 </div>

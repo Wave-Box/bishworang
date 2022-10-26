@@ -71,9 +71,8 @@ const HeaderSticky = () => {
                                 </Popover.Group>
                                 <div className="hidden md:flex items-center justify-end md:flex-1 lg:max-w-fit group gap-1">
                                     <PhoneIcon className='ml-2 h-5 w-5 group-hover:text-orange-400' />
-                                    <NavLink to="/" className="whitespace-nowrap text-base font-medium text-black hover:text-orange-400">
-                                        Hotline <span className='text-orange-400 tracking-tight'> {data?.settings?.phone}</span>
-                                    </NavLink>
+                                    <a href={"https://api.whatsapp.com/send?phone=" + data?.settings?.whatsapp_phone} target="_blank" rel="noopener noreferrer" className="whitespace-nowrap text-base font-medium text-black hover:text-orange-400">Hotline <span className='text-orange-400 tracking-tight'> {data?.settings?.phone}</span>
+                                    </a>
 
                                 </div>
                             </div>

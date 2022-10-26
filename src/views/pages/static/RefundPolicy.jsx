@@ -19,7 +19,7 @@ const RefundPolicy = () => {
 
                     </ul>
                 </div>
-                <p>– Most refunds are fully refunded in 10-15 Working days after we receive the return package.</p>
+                <p>– Most refunds are fully refunded in 7 Working days after we receive the return package.</p>
                 <p>(Credit card payment return may take longer depending on Commercial Banks)</p>
                 <p>– If you pay us by any mobile wallet (bKash, Rocket, Upay, Ok Wallet), then your money will be refunded in same account within 7-10 working days.</p>
 

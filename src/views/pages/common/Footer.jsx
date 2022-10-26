@@ -41,7 +41,7 @@ const about = [
         link: '/terms-condition'
     },
     {
-        name: "Our Outlets",
+        name: "Our Outlets Address",
         link: '/location'
     }]
 
@@ -114,10 +114,10 @@ const Footer = () => {
 
                         <div className="flex items-center gap-2">
 
-                            <a href={data.settings.facebook_link} target="_blank" rel="noopener noreferrer" className='w-10 h-10  rounded-full'><img src={fb} alt="" /></a>
-                            <a href={"https://api.whatsapp.com/send?phone=" + data.settings.facebook_link} target="_blank" rel="noopener noreferrer" className='w-10 h-10  rounded-full'><img src={wp} alt="" /></a>
-                            <a href={data.settings.instagram_link} target="_blank" rel="noopener noreferrer" className='w-10 h-10  rounded-full'><img src={ins} alt="" /></a>
-                            <a href={data.settings.youtube_link} target="_blank" rel="noopener noreferrer" className='w-10 h-10  rounded-full'><img src={yt} alt="" /></a>
+                            <a href={data?.settings.facebook_link} target="_blank" rel="noopener noreferrer" className='w-10 h-10  rounded-full'><img src={fb} alt="" /></a>
+                            <a href={"https://api.whatsapp.com/send?phone=" + data?.settings?.whatsapp_phone} target="_blank" rel="noopener noreferrer" className='w-10 h-10  rounded-full'><img src={wp} alt="" /></a>
+                            <a href={data?.settings.instagram_link} target="_blank" rel="noopener noreferrer" className='w-10 h-10  rounded-full'><img src={ins} alt="" /></a>
+                            <a href={data?.settings.youtube_link} target="_blank" rel="noopener noreferrer" className='w-10 h-10  rounded-full'><img src={yt} alt="" /></a>
 
                         </div>
                     </div>

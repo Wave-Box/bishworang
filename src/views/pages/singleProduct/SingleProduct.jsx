@@ -181,7 +181,7 @@ const SingleProduct = () => {
                 }
             } else {
                 // dispatch(addToCartList({ cartId: makeid(100), color: null, size: null, additional_price: null, ...product }))
-                toast("Please Select Variant", {
+                toast("Please Select Color or Size", {
                     type: 'danger',
                     autoClose: 1000,
 
@@ -205,7 +205,7 @@ const SingleProduct = () => {
                 }
             } else {
                 // dispatch(addToCartList({ cartId: makeid(100), color: null, size: null, additional_price: null, ...product }))
-                toast("Please Select Variant", {
+                toast("Please Select Color or Size", {
                     type: 'danger',
                     autoClose: 1000,
 

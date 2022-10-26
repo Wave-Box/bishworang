@@ -19,10 +19,10 @@ const OrderDetails = () => {
     const { user } = useSelector((state) => state.auth);
 
     const params = useParams()
-    
+
     const [call, setCall] = useState(false)
     const { userData } = useTheme()
-    
+
     useEffect(() => {
         // declare the async data fetching function
         const fetchData = async () => {
@@ -43,7 +43,7 @@ const OrderDetails = () => {
     }, [params?.id, user?.id, call])
 
     const order_create_time = new Date(order?.created_at).getTime()
-    
+
     // Renderer callback with condition
     const renderer = ({ hours, minutes, seconds, completed }) => {
         if (completed) {
@@ -184,7 +184,7 @@ const SingleItem = ({ item, setCall, call, order }) => {
             // make sure to catch any error
             .catch(console.error);
     }, [item?.product_id])
-    
+
     return (
         <>
             {!product?.id ? <DataLoader /> : <div className="mt-4 md:mt-6 flex  flex-col md:flex-row justify-start items-start md:items-center md:space-x-6 xl:space-x-8 w-full ">
@@ -196,18 +196,19 @@ const SingleItem = ({ item, setCall, call, order }) => {
                     <div className="w-full flex flex-col justify-start items-start space-y-8">
                         <h3 className="text-xl xl:text-2xl font-semibold leading-6 text-gray-800"><NavLink to={"/product/" + item?.product_id}>{product?.name}</NavLink></h3>
                         <div className="flex justify-start items-start flex-col space-y-2">
-                            {item?.color && item?.color !== "multicolor" ?
+                            {item?.color &&
                                 <div className='flex gap-2 items-center'>
                                     <p className="text-sm leading-none text-gray-600">Color:</p>
                                     <p style={{ backgroundColor: item?.color }} className="w-4 h-4 rounded-full ring-1 ring-offset-2 ring-gray-600"></p>
-                                </div> : <div className='flex items-center gap-2 pr-2'>
-                            <p className="text-xs leading-3 text-gray-600 py-1">Color: </p>
-                            <p className="w-3 h-3 rounded-full ring-1 ring-offset-2 ring-gray-600 text-neutral-content bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 cursor-pointer"></p>
-                        </div>}
+                                </div>}
+                            {item?.color && item?.color === "multicolor" && <div className='flex items-center gap-2 pr-2'>
+                                <p className="text-xs leading-3 text-gray-600 py-1">Color: </p>
+                                <p className="w-3 h-3 rounded-full ring-1 ring-offset-2 ring-gray-600 text-neutral-content bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 cursor-pointer"></p>
+                            </div>}
                             {item?.size ? <p className="text-sm leading-none text-gray-800">
                                 <span className="text-gray-600">Size: </span> {item?.size}
                             </p> : null}
-                           
+
 
                         </div>
                     </div>

@@ -1,7 +1,9 @@
 import React from 'react';
+import { HomePage } from '../../../services';
 import Aside from './aside';
 
 const DeliveryPolicy = () => {
+    const { data } = HomePage.GetInfo()
     return (
         <div className="flex md:flex-nowrap flex-wrap gap-6 px-4">
             <div className="min-w-max">
@@ -30,7 +32,7 @@ const DeliveryPolicy = () => {
                     <tbody>
                         <tr>
                             <td className='border border-slate-600'>Up to 1 kg</td>
-                            <td className='border border-slate-600'>BDT 100</td>
+                            <td className='border border-slate-600'>{data?.settings?.shipping_area_1_cost}</td>
                             <td className='border border-slate-600'>Regular (3-5 working days)</td>
                         </tr>
 
@@ -51,7 +53,7 @@ const DeliveryPolicy = () => {
                     <tbody>
                         <tr>
                             <td className='border border-slate-600'>Up to 1 kg</td>
-                            <td className='border border-slate-600'>BDT 150</td>
+                            <td className='border border-slate-600'>{data?.settings?.shipping_area_2_cost}</td>
                             <td className='border border-slate-600'>Regular (5-7 working days)</td>
                         </tr>
 

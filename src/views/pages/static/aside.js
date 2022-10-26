@@ -22,7 +22,7 @@ const about = [
         link: '/refund-policy'
     },
     {
-        name: "return-policy",
+        name: "Return-Policy",
         link: '/return-policy'
     },
     {
