@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { productImg } from '../../../siteSetting/siteUrl';
+import Badge from '../utils/Badge';
 import { getPrice } from '../utils/getPrice';
 import Taka from '../utils/Taka';
 
@@ -10,6 +11,7 @@ const CardFour = ({ pro }) => {
             <div className="image relative cursor-pointer">
                 <img src={productImg + pro?.image[0]} className={"w-full h-52 cursor-pointer hover:bg-gray-900"} alt="" />
                 <Link to={'/product/' + pro?.id}><div className="overlay"></div></Link>
+                {pro.discount_price === '0.00' ? '' : <Badge msg={`${pro.discount_type === "fixed" ? "BDT" : ''} ${Math.trunc(pro.discount_price)} ${pro.discount_type === "percent" ? "%" : ''}`} />}
             </div>
             <div className="bg-white px-1 py-2">
                 <Link to={'/product/' + pro?.id}><h6 className=' text-left tracking-widest text-sm'>{pro?.name?.slice(0, 18)}{pro?.name?.length > 18 ? "..." : null}</h6></Link>

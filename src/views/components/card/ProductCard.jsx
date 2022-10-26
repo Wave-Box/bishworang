@@ -15,10 +15,10 @@ import { addToCartList, incrementQty } from '../../../redux/slices/productslice'
 import useTheme from '../../../hooks/useTheme';
 import Details from '../../pages/singleProduct/Details';
 import QuickView from './QuickView';
-import { HomePage } from '../../../services';
+// import { HomePage } from '../../../services';
 
 const ProductCard = ({ item }) => {
-    const { data } = HomePage.GetInfo();
+    // const { data } = HomePage.GetInfo();
 
     const [open, setOpen] = useState(false)
     const [result, setResult] = useState({})
@@ -96,7 +96,7 @@ const ProductCard = ({ item }) => {
 
     return (
         <div className="group cursor-pointer">
-            <div className="drop-shadow-xl w-full ">
+            <NavLink to={'/product/' + item?.id}><div className="drop-shadow-xl w-full ">
                 <figure className='w-full h-[360px] relative overflow-hidden '>
                     <NavLink to={'/product/' + item?.id}>
                         <motion.img whileHover={{
@@ -176,7 +176,7 @@ const ProductCard = ({ item }) => {
                             </HoverIcon>
                         </NavLink>}
                 </div>
-            </div>
+            </div></NavLink>
 
             <QuickView open={open} setOpen={setOpen} >
                 <Details item={{ product_id: item?.id }} />

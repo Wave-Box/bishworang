@@ -27,14 +27,14 @@ import {
     WhatsappIcon,
 } from "react-share";
 import ColorSelectOnly from '../../components/utils/ColorSelectOnly';
-import { HomePage } from '../../../services';
+// import { HomePage } from '../../../services';
 
 
 const Details = ({ item }) => {
 
     const { makeid } = useTheme()
     const dispatch = useDispatch()
-    const { data } = HomePage.GetInfo()
+    // const { data } = HomePage.GetInfo()
 
     const [selectColor, setSelectColor] = useState('')
     const [selectSize, setSelectSize] = useState('')

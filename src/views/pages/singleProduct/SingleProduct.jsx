@@ -28,13 +28,13 @@ import {
     WhatsappShareButton,
     WhatsappIcon,
 } from "react-share";
-import { HomePage } from '../../../services';
+// import { HomePage } from '../../../services';
 import ColorSelectOnly from '../../components/utils/ColorSelectOnly';
 
 
 const SingleProduct = () => {
 
-    const { data } = HomePage.GetInfo()
+    // const { data } = HomePage.GetInfo()
 
     const [selectColor, setSelectColor] = useState('')
     const [selectColorOnly, setSelectColorOnly] = useState('')
@@ -287,18 +287,18 @@ const SingleProduct = () => {
                         {vrcolor?.map((i) => <ColorSelect key={i} select={selectColor} setSelect={setSelectColor} getColor={getColor} selectColor={i} bg={i} />)}
                     </div>}
 
-                    {size.length !== 0 && sizeV !== undefined && <div className="flex gap-1 justify-start items-center mt-4 mb-7">
+                    {size.length !== 0 && sizeV !== undefined && <div className="flex flex-wrap gap-1 justify-start items-center mt-4 mb-7">
                         <h6 className='text-md font-semibold text-gray-700 mr-2'>Size</h6>
                         {size?.map((i) => <SizeSelect key={i.id} select={selectSize} setSelect={setSelectSize} setVariant={set_variant} data={i} selectSize={i?.size} />)}
                         <SizeView />
                     </div>}
 
-                    {vrcolor?.length && sizeV === undefined && <div className="flex gap-2 justify-start items-center mt-6 mb-2">
+                    {vrcolor?.length && sizeV === undefined && <div className="flex gap-3 justify-start items-center mt-6 mb-2">
                         <h6 className='text-md font-semibold text-gray-700'>Color</h6>
                         {variant?.map((i) => <ColorSelectOnly key={i.id} select={selectColorOnly} setSelect={setSelectColorOnly} setVariant={set_variant} data={i} selectColor={i.color} bg={i.color} />)}
                     </div>}
 
-                    {!vrcolor?.length && sizeV !== undefined && <div className="flex gap-1 justify-start items-center mt-4 mb-7">
+                    {!vrcolor?.length && sizeV !== undefined && <div className="flex flex-wrap gap-1 justify-start items-center mt-4 mb-7">
                         <h6 className='text-md font-semibold text-gray-700 mr-2'>Size</h6>
                         {variant?.map((i) =>
                             <SizeSelect key={i.id} select={selectSize} setSelect={setSelectSize} setVariant={set_variant} data={i} selectSize={i?.size} />)}
@@ -400,7 +400,6 @@ const SingleProduct = () => {
 };
 
 export default SingleProduct;
-
 
 
 const SizeView = () => {

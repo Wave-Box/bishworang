@@ -48,12 +48,16 @@ const NewProductCard = ({ item }) => {
         httpReq.post('favourite', { product_id: id })
             .then(({ error, success }) => {
                 if (success) {
-                    toast(success, { type: "success",
-                    autoClose: 1000, });
+                    toast(success, {
+                        type: "success",
+                        autoClose: 1000,
+                    });
                 }
                 if (error) {
-                    toast(error, { type: 'error',
-                    autoClose: 1000, });
+                    toast(error, {
+                        type: 'error',
+                        autoClose: 1000,
+                    });
                 }
             })
     }
@@ -96,7 +100,7 @@ const NewProductCard = ({ item }) => {
 
     return (
         <div className="group cursor-pointer">
-            <div className="drop-shadow-xl w-full ">
+            <NavLink to={'/product/' + item?.id}><div className="drop-shadow-xl w-full ">
                 <figure className='w-full h-[360px] relative overflow-hidden '>
                     <NavLink to={'/product/' + item?.id}>
                         <motion.img whileHover={{
@@ -176,7 +180,7 @@ const NewProductCard = ({ item }) => {
                             </HoverIcon>
                         </NavLink>}
                 </div>
-            </div>
+            </div></NavLink>
 
             <QuickView open={open} setOpen={setOpen} >
                 <Details item={{ product_id: item?.id }} />
