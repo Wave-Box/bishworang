@@ -126,9 +126,8 @@ const Details = ({ item }) => {
 
         if (cartList.length) {
 
-            const resul = cartList?.find(c => c?.id === product?.id && c?.color === data?.color && c?.size === data?.size && c?.unit === data?.unit && c?.volume === data?.volume)
-            setResult(resul)
-
+            const result = cartList?.find(c => c?.id === product?.id && c?.color === data?.color && c?.size === data?.size && c?.unit === data?.unit && c?.volume === data?.volume)
+            setResult(result)
 
         }
 
@@ -146,7 +145,7 @@ const Details = ({ item }) => {
 
         setCall(!call)
 
-       if (variant.length > 0) {
+        if (variant.length > 0) {
             if (singleVariant.id) {
 
 
@@ -252,6 +251,7 @@ const Details = ({ item }) => {
                     <div className="flex gap-2 justify-start items-center "><VscCreditCard size={20} /> <span>Cash on delivery only available inside Dhaka</span></div>
                 </div>
 
+                {/* color and size  */}
                 {vrcolor?.length && sizeV !== undefined && <div className="flex gap-2 justify-start items-center mt-6 mb-2">
                     <h6 className='text-md font-semibold text-gray-700'>Color</h6>
                     {vrcolor?.map((i) => <ColorSelect key={i} select={selectColor} setSelect={setSelectColor} getColor={getColor} selectColor={i} bg={i} />)}
@@ -263,11 +263,13 @@ const Details = ({ item }) => {
                     <SizeView />
                 </div>}
 
+                {/* color only  */}
                 {vrcolor?.length && sizeV === undefined && <div className="flex gap-3 justify-start items-center mt-6 mb-2">
                     <h6 className='text-md font-semibold text-gray-700'>Color</h6>
                     {variant?.map((i) => <ColorSelectOnly key={i.id} select={selectColorOnly} setSelect={setSelectColorOnly} setVariant={set_variant} data={i} selectColor={i.color} bg={i.color} />)}
                 </div>}
 
+                {/* size only  */}
                 {!vrcolor?.length && sizeV !== undefined && <div className="flex gap-1 justify-start items-center mt-4 mb-7">
                     <h6 className='text-md font-semibold text-gray-700 mr-2'>Size</h6>
                     {variant?.map((i) =>
@@ -275,6 +277,7 @@ const Details = ({ item }) => {
                     <SizeView />
                 </div>}
 
+                {/* add to cart button  */}
                 {quantity === 0 || qty?.quantity === "0" ? <motion.button initial={{
                     backgroundColor: primaryColor,
                     color: "white"
@@ -285,7 +288,7 @@ const Details = ({ item }) => {
                     transition={{ duration: 0.4, ease: 'easeInOut' }} className='px-10 py-2 disabled rounded-md shadow-sm flex justify-between text-black items-center cursor-pointer text-lg font-medium'><h1>Out Of Stock</h1></motion.button> :
 
                     <div className="flex gap-1">
-                        {qtyR[0] === true  ? <div style={{ backgroundColor: "primaryColor" }} className=" px-3 py-1 rounded-md shadow-sm flex justify-between text-black w-40 items-center">
+                        {qtyR[0] === true ? <div style={{ backgroundColor: "primaryColor" }} className=" px-3 py-1 rounded-md shadow-sm flex justify-between text-black w-40 items-center">
                             <MinusIcon height={18}
                                 onClick={() => {
                                     setCall(!call)
