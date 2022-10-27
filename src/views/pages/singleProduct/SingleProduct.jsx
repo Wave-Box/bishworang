@@ -38,10 +38,10 @@ const SingleProduct = () => {
 
     const [selectColor, setSelectColor] = useState('')
     const [selectColorOnly, setSelectColorOnly] = useState('')
-    const [selectSize, setSelectSize] = useState('')
+    const [selectSize, setSelectSize] = useState(null)
     const [tab, setTab] = useState('desc')
 
-  
+
 
     const activeStyle = {
         borderBottom: `2px solid ${primaryColor}`,
@@ -66,15 +66,15 @@ const SingleProduct = () => {
     const qty = variant.find(item => item.size === selectSize)
 
 
-    // console.log(selectColor, "selectColor");
+    console.log(selectSize, "selectSize");
     // console.log(variant, "variant");
     // console.log(singleVariant, "singleVariant");
     // console.log(result, "result");
     // const colorV = variant.find(item => item.color !== null)
 
-  
 
-   
+
+
     // offer implement 
     // const cat = product?.category_id;
     // const subCat = parseInt(product?.subcategory_id);
@@ -87,7 +87,7 @@ const SingleProduct = () => {
 
     const cartList = useSelector((state) => state.cart.cartList)
     // console.log(cartList,"cartList");
-    const qtyR = cartList?.map(id=> id?.cartId === result?.cartId)
+    const qtyR = cartList?.map(id => id?.cartId === result?.cartId)
     // console.log(qtyR,"qtyR");
 
     const dispatch = useDispatch()
@@ -100,19 +100,22 @@ const SingleProduct = () => {
             // get the data from the api
             const { product, variant, vrcolor } = await httpReq.post('product-details', { product_id: params?.id });
 
-
+            // console.log(vrcolor, "vrcolor");
             // set state with the result
             setProduct(product);
             setVariant(variant);
             setVrcolor(vrcolor);
             setLoading(false)
             setSize([])
-            setSelectColor(vrcolor[0])
+            setSelectColor(vrcolor !== undefined ? vrcolor[0] : null)
+            setSelectColorOnly(null)
             setSelectSize(null)
             setSingleVariant({})
-            const resultSize = variant?.filter(i => i.color === vrcolor[0])
-            // console.log(resultSize,"resultSize");
-            setSize(resultSize)
+            if (vrcolor !== undefined) {
+                const resultSize = variant?.filter(i => i.color === vrcolor[0])
+                // console.log(resultSize,"resultSize");
+                setSize(resultSize)
+            }
         }
 
 
@@ -166,7 +169,7 @@ const SingleProduct = () => {
 
         setCall(!call)
 
-     if (variant.length > 0) {
+        if (variant.length > 0) {
             if (singleVariant.id) {
 
 
@@ -189,7 +192,7 @@ const SingleProduct = () => {
                 })
             }
         }
-        
+
         else {
             dispatch(addToCartList({ cartId: makeid(100), price: productPrice, color: null, size: null, additional_price: null, ...product }))
 

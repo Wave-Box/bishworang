@@ -196,7 +196,7 @@ const SingleItem = ({ item, setCall, call, order }) => {
                     <div className="w-full flex flex-col justify-start items-start space-y-8">
                         <h3 className="text-xl xl:text-2xl font-semibold leading-6 text-gray-800"><NavLink to={"/product/" + item?.product_id}>{product?.name}</NavLink></h3>
                         <div className="flex justify-start items-start flex-col space-y-2">
-                            {item?.color &&
+                            {item?.color && item?.color !== "multicolor" &&
                                 <div className='flex gap-2 items-center'>
                                     <p className="text-sm leading-none text-gray-600">Color:</p>
                                     <p style={{ backgroundColor: item?.color }} className="w-4 h-4 rounded-full ring-1 ring-offset-2 ring-gray-600"></p>
