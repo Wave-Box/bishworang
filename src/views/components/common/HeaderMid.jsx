@@ -20,15 +20,21 @@ import SetLoaing from '../Loader/SetLoaing'
 import { HomePage } from '../../../services'
 // import SingleCat from './SingleCat'
 import HoverCat from './HoverCat'
+import useTheme from '../../../hooks/useTheme'
 
 
 
 export default function HeaderMid() {
-    
+
     const { data, isLoading } = HomePage.GetInfo()
     const [isShowing, setIsShowing] = useState(false)
     const { user } = useSelector((state) => state.auth);
     const dispatch = useDispatch()
+
+    const catClose = () => {
+        setIsShowing(false)
+    }
+
     return (
         <Popover style={{ background: `white`, position: 'relative' }} className="relative bg-gray-50 shadow-lg mb-2">
             <div className="lg:px-6 mx-auto px-4 ">
@@ -37,9 +43,7 @@ export default function HeaderMid() {
                         <div className="relative">
 
 
-                            <button
-                                onMouseEnter={() => setIsShowing(true)}
-                                onMouseLeave={() => setIsShowing(false)}
+                            <button onMouseEnter={() => setIsShowing(true)} onMouseLeave={() => setIsShowing(false)}
                                 className={'group  rounded-md inline-flex items-center text-base font-medium hover:text-orange-400 gap-1 py-3'}
                             >
                                 <ViewGridIcon
@@ -59,7 +63,7 @@ export default function HeaderMid() {
                                     <div className="shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden rounded">
                                         {isLoading ? <SetLoaing /> : <div className="relative grid gap-3  py-6 sm:gap-8 px-4 sm:p-8 bg-[#fff] text-black">
                                             {data?.category?.map((item) => (
-                                                <SingleCat key={item?.id} item={item} />
+                                                <SingleCat key={item?.id} item={item} catClose={catClose} />
                                                 // <NavLink
                                                 //     to={"/category/" + item?.id} key={item?.id}
 
@@ -144,7 +148,7 @@ export default function HeaderMid() {
                             <div className="mt-6">
                                 <nav className="grid gap-y-8">
                                     {data?.category?.map((item) => (
-                                        <SingleCat key={item?.id} item={item} />
+                                        <SingleCat key={item?.id} item={item} catClose={catClose}/>
                                         // <NavLink
                                         //     to={"/category/" + item?.id}
                                         //     key={item?.id}
@@ -184,13 +188,16 @@ export default function HeaderMid() {
 }
 
 
-const SingleCat = ({ item }) => {
+const SingleCat = ({ item, catClose }) => {
+
+    const { setPage } = useTheme();
+
     const [show, setShow] = useState(false)
 
     return (
         <>
             <div className="w-full flex items-center rounded-md hover:bg-gray-50 px-2">
-                <NavLink to={'/category/' + item.id} className="flex-1 flex gap-x-2 items-center text-gray-600 hover:ml-2 py-3 duration-300 " >
+                <NavLink onClick={()=> {setPage("");catClose()}} to={'/category/' + item.id} className="flex-1 flex gap-x-2 items-center text-gray-600 hover:ml-2 py-3 duration-300 " >
                     <div className="flex-shrink-0 h-6 w-6" aria-hidden="true" >
                         <img src={catImg + item?.icon} className={"w-full h-full"} alt="" />
                     </div>
@@ -205,21 +212,21 @@ const SingleCat = ({ item }) => {
                 <div className="ml-2">
                     {
                         item?.subcategory?.map((sub) =>
-                            <SingleSub key={sub?.id} item={sub} />)
+                            <SingleSub key={sub?.id} item={sub} catClose={catClose} setPage={setPage} />)
                     }
                 </div>
             </>}
         </>
     )
 }
-const SingleSub = ({ item }) => {
+const SingleSub = ({ item, catClose, setPage }) => {
 
     const [open, setOpen] = useState(false)
 
     return (
         <>
             <div className="w-full flex items-center px-4 py-3">
-                <NavLink to={'/category/' + item.id} className="flex-1 text-gray-600 hover:ml-2 duration-300" > <p>{item.name}</p></NavLink>
+                <NavLink onClick={()=> {setPage("");catClose()}} to={'/category/' + item.id} className="flex-1 text-gray-600 hover:ml-2 duration-300" > <p>{item.name}</p></NavLink>
                 {item?.subsubcategory.length ? <div className="px-4 h-full">
                     {open ? <MinusIcon onClick={() => setOpen(!open)} className='h-4 w-4 text-gray-800 cursor-pointer' /> :
                         <PlusIcon onClick={() => setOpen(!open)} className='h-4 w-4 text-gray-800 cursor-pointer' />}
@@ -231,7 +238,7 @@ const SingleSub = ({ item }) => {
                     {
                         item?.subsubcategory?.map((sub) =>
                             <div className='py-2'>
-                                <NavLink to={'/category/' + sub.id} className="flex-1 text-gray-600 !hover:ml-10 duration-300" > <p>{sub.name}</p></NavLink>
+                                <NavLink onClick={()=> {setPage("");catClose()}} to={'/category/' + sub.id} className="flex-1 text-gray-600 !hover:ml-10 duration-300" > <p>{sub.name}</p></NavLink>
                             </div>)
                     }
                 </div>

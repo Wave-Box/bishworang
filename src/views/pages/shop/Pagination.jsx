@@ -8,7 +8,7 @@ export default function Pagination({ setPage, paginate, page }) {
     ;
     return (
         <div className=" px-4 py-3 flex items-center justify-between sm:px-6">
-            <div className="flex-1 flex justify-between sm:hidden">
+            {/* <div className="flex-1 flex justify-between sm:hidden">
                 <p
                     onClick={() => paginate?.links?.prev ? setPage(paginate?.links?.prev) : null}
                     className={`${paginate?.links?.prev ? "cursor-pointer bg-white text-gray-700  hover:bg-gray-50" : "cursor-not-allowed opacity-50 "} relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md `}
@@ -22,8 +22,8 @@ export default function Pagination({ setPage, paginate, page }) {
                 >
                     Next
                 </p>
-            </div>
-            <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-center">
+            </div> */}
+            <div className=" flex-1 flex items-center justify-center">
 
                 <div>
                     <nav className="relative z-0 inline-flex flex-wrap rounded-md shadow-sm -space-x-px" aria-label="Pagination">

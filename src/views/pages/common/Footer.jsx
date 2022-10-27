@@ -130,7 +130,7 @@ const Footer = () => {
                 <div className="container mx-auto py-4 flex flex-wrap flex-col sm:flex-row text-base">
                     <p className="text-gray-500 text-sm text-center sm:text-left">© 2022, <span className='font-semibold'>Bishworang</span> | All right reserved
                     </p>
-                    <span className="sm:ml-auto sm:mt-0 mt-2 sm:w-auto w-full sm:text-left text-center text-gray-500 text-sm">Designed by <span href="https://wavebox.net" className='font-semibold' style={{ color: primaryColor }}>Wave Box</span></span>
+                    <span className="sm:ml-auto sm:mt-0 mt-2 sm:w-auto w-full sm:text-left text-center text-gray-500 text-sm">Designed by <a href="https://wavebox.net" target="_blank" rel="noopener noreferrer" className='font-semibold' style={{ color: primaryColor }}>Wave Box</a></span>
                 </div>
             </div>
         </footer>

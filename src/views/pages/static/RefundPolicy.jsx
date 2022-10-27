@@ -22,7 +22,7 @@ const RefundPolicy = () => {
                 <p>– Most refunds are fully refunded in 7 Working days after we receive the return package.</p>
                 <p>(Credit card payment return may take longer depending on Commercial Banks)</p>
                 <p>– If you pay us by any mobile wallet (bKash, Rocket, Upay, Ok Wallet), then your money will be refunded in same account within 7-10 working days.</p>
-
+                
                 <h3 className='text-2xl font-bold font-sans text-center my-5'>For Refund, please follow these steps</h3>
                 <h3 className='text-lg my-3 font-bold font-sans'>	Provide us with Order ID details, e-mail address on: </h3>
                 <p><a href="mailto:bishworangwebsite@gmail.com"><strong>bishworangwebsite@gmail.com</strong></a></p>

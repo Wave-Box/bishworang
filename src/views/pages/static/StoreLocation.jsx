@@ -1,5 +1,6 @@
 import React from 'react';
 import Aside from './aside';
+import { ImLocation2 } from "react-icons/im";
 
 const StoreLocation = () => {
     return (
@@ -11,7 +12,28 @@ const StoreLocation = () => {
 
                 </div>
                 <div className='min-h-[600px] mt-10 '>
-                    <h3 className='border-b border-black pb-2 text-2xl font-semibold'>BISHWO RANG OUTLATE</h3>
+                    <h3 className='border-b border-black pb-2 text-2xl font-semibold'>BISHWO RANG OUTLETS</h3>
+                    <div className='grid grid-cols-3 gap-5 mt-10'>
+                        <div className='flex flex-col gap-4 bg-gray-100 p-5 rounded-lg'>
+                            <div className='text-center font-bold text-4xl text-gray-700'>
+                                <h1>Dhanmondi</h1>
+                            </div>
+                            <div className='flex flex-col gap-y-3'>
+                                <div className='flex items-center gap-x-3'>
+                                    <ImLocation2 className='text-4xl text-gray-700'/>
+                                    <p>Orchard Point, 2nd floor, Road-7, Dhanmondi, Dhaka, Ph- 01730068073</p>
+                                </div>
+                                <div className='flex items-center gap-x-3'>
+                                    <ImLocation2 className='text-4xl text-gray-700'/>
+                                    <p>Orchard Point, 2nd floor, Road-7, Dhanmondi, Dhaka, Ph- 01730068073</p>
+                                </div>
+                                <div className='flex items-center gap-x-3'>
+                                    <ImLocation2 className='text-4xl text-gray-700'/>
+                                    <p>Orchard Point, 2nd floor, Road-7, Dhanmondi, Dhaka, Ph- 01730068073</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <ul className='mt-10 list-none'>
                         <li>01. Santana Market, 1st-2nd floor, Chashara, Narayangonj, Ph- 01730068011</li>
                         <li>02. Sunrise Plaza, 2nd floor, Block-A, Lalmatia, Dhaka, Ph- 01730068012</li>
@@ -34,9 +56,9 @@ const StoreLocation = () => {
                         <li>18. House No: C-4, Block- C, 1st Floor, Bonosree Main Road, Rumpura, Dhaka, Ph: 01730068032</li>
                         <li>19. EASTERN PLAZA, 1/19, Ground Floor, Ph: 01730068028</li>
                         <li>20. House No-968, North Bagura Road. Near Nouton Bazar, Barisal Ph : 01730068037</li>
-                        </ul>
+                    </ul>
 
-                    
+
                 </div>
             </div>
         </>
