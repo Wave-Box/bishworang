@@ -16,6 +16,8 @@ const Footer = React.lazy(() => import('./common/Footer'));
 
 
 const Layout = () => {
+    
+
     const { isLoading } = HomePage.GetInfo()
     if (isLoading) {
         return <div className="flex justify-center h-screen items-center">
@@ -28,7 +30,7 @@ const Layout = () => {
             <div className='' style={{ background: `url(${background}) repeat fixed center`, backgroundSize: '480px 270px', backgroundColor: bg_gary, backgroundBlendMode: 'luminosity', position: 'relative' }}>
                 <Suspense>
                     <header>
-                        <Header />
+                        <Header/>
                     </header>
                     <HeaderSticky />
                     <main>

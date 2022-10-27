@@ -24,6 +24,7 @@ import HoverCat from './HoverCat'
 
 
 export default function HeaderMid() {
+    
     const { data, isLoading } = HomePage.GetInfo()
     const [isShowing, setIsShowing] = useState(false)
     const { user } = useSelector((state) => state.auth);

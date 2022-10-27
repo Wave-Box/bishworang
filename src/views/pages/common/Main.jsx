@@ -71,9 +71,7 @@ const SingleProduct = React.lazy(() => import("../singleProduct/SingleProduct"))
 const Shop = React.lazy(() => import("../shop/Shop"));
 
 
-
 const Main = () => {
-
 
     return (
         <div className="relative">

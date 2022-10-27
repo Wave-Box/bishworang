@@ -13,6 +13,7 @@ export const v = JSON.parse(localStorage.getItem("persist:root"))?.auth ? JSON.p
 const useData = () => {
     const [userData, setUser] = useState(null)
     const [favourite, setFavourite] = useState([])
+    const [page, setPage] = useState("")
 
     const [currency, setCurrency] = useState('BDT')
     const [currencyInfo, setcurrencyInfo] = useState({})
@@ -78,7 +79,9 @@ const useData = () => {
         favourite,
         currency,
         setCurrency,
-        currencyInfo
+        currencyInfo,
+        page,
+        setPage,
 
     }
 

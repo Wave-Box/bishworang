@@ -2,15 +2,18 @@ import React from 'react';
 // import { ChevronRightIcon } from '@heroicons/react/solid';
 // import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import useTheme from '../../../hooks/useTheme';
 
 const HoverCat = ({ item }) => {
     // const [isShowing, setIsShowing] = useState(false)
+    const { setPage } = useTheme();
+
     return (
 
         <div className="group ">
 
 
-            <NavLink to={"/category/" + item?.id} className="relative">
+            <NavLink onClick={()=> setPage("")} to={"/category/" + item?.id} className="relative">
                 <h1 className="xl:text-base lg:text-sm font-medium text-gray-500 hover:text-gray-900 py-3 ">
                     {item.name}
                 </h1>
@@ -25,13 +28,13 @@ const HoverCat = ({ item }) => {
                         {item?.subcategory?.map((sub) => (
                             <div key={sub.id}>
                                 <div className="text-sm text-gray-900 font-bold border-b border-b-red-300">
-                                    <NavLink to={"/category/" + sub?.id}><p className="w-max ">
+                                    <NavLink onClick={()=> setPage("")} to={"/category/" + sub?.id}><p className="w-max ">
                                         {sub.name}
                                     </p></NavLink>
                                 </div>
                                 {sub.subsubcategory?.map((sub) => (
                                     <div key={sub.id} className="text-xs text-gray-600 my-2.5">
-                                        <NavLink to={"/category/" + sub?.id}><p className="">
+                                        <NavLink onClick={()=> setPage("")} to={"/category/" + sub?.id}><p className="">
                                             {sub.name}
                                         </p></NavLink>
                                     </div>

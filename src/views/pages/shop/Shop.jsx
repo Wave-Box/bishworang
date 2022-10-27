@@ -13,18 +13,22 @@ import { getPrice } from '../../components/utils/getPrice';
 import Taka from '../../components/utils/Taka';
 import { HomePage } from '../../../services';
 import Pagination from './Pagination';
+import useTheme from '../../../hooks/useTheme';
 
 
 
 const Shop = () => {
+
+    const { page, setPage } = useTheme();
+
     const [val, setVal] = useState(0)
     const [store, setStore] = useState([])
     const [products, setProducts] = useState([])
-    const [page, setPage] = useState("?page=1")
     const [paginate, setPaginate] = useState({})
     const { data } = HomePage.GetInfo()
     const params = useParams()
     const [loading, setloading] = useState(false)
+    
 
 
     useEffect(() => {
@@ -41,6 +45,7 @@ const Shop = () => {
             setStore(data?.data);
             setloading(false)
             setPaginate(data)
+            
 
         }
 
@@ -79,7 +84,7 @@ const Shop = () => {
 
                                 <nav className="list-none mb-6 space-y-3 px-4">
 
-                                    {data?.category?.map((item) => <SingleCat key={item?.id} item={item} />)}
+                                    {data?.category?.map((item) => <SingleCat key={item?.id} item={item} setPage={setPage}/>)}
 
                                 </nav>
                             </div>
@@ -115,7 +120,7 @@ const Shop = () => {
                     <div className="col-span-12 sm:col-span-7 md:col-span-8 lg:col-span-9">
                         <div className="flex justify-between my-2">
                             <div className="flex justify-start items-center">
-                                <p className='text-xs sm:text-base'>We found <span style={{ color: primaryColor, fontWeight: 600 }}>{products?.length ? products.length : 0}</span> items for you!</p>
+                                <p className='text-xs sm:text-base'>Showing <span style={{ color: primaryColor, fontWeight: 600 }}>{products?.length ? products.length : 0}</span> items!</p>
                             </div>
                             <div className="flex items-center gap-3">
 
@@ -156,7 +161,7 @@ const Shop = () => {
                         }
 
                         <div className='my-5'>
-                            <Pagination setPage={setPage} paginate={paginate} />
+                            <Pagination setPage={setPage} page={page} paginate={paginate} />
                         </div>
                     </div>
 
@@ -184,13 +189,13 @@ const Shop = () => {
 export default Shop;
 
 
-const SingleCat = ({ item }) => {
+const SingleCat = ({ item, setPage }) => {
     const [show, setShow] = useState(false)
 
     return (
         <>
             <div className="w-full flex py-3">
-                <NavLink to={'/category/' + item.id} className="flex-1 text-gray-600 hover:ml-2 duration-300" > <p>{item.name}</p></NavLink>
+                <NavLink onClick={()=> setPage("")} to={'/category/' + item.id} className="flex-1 text-gray-600 hover:ml-2 duration-300" > <p>{item.name}</p></NavLink>
                 {item?.subcategory.length ? <div className="px-4 h-full">
                     {show ? <MinusIcon onClick={() => setShow(!show)} className='h-4 w-4 text-gray-800 cursor-pointer' /> :
                         <PlusIcon onClick={() => setShow(!show)} className='h-4 w-4 text-gray-800 cursor-pointer' />}
@@ -201,21 +206,21 @@ const SingleCat = ({ item }) => {
                 <div className="ml-2">
                     {
                         item?.subcategory?.map((sub) =>
-                            <SingleSub key={sub?.id} item={sub} />)
+                            <SingleSub key={sub?.id} item={sub} setPage={setPage} />)
                     }
                 </div>
             </>}
         </>
     )
 }
-const SingleSub = ({ item }) => {
+const SingleSub = ({ item, setPage }) => {
 
     const [open, setOpen] = useState(false)
 
     return (
         <>
             <div className="w-full flex px-4 py-3">
-                <NavLink to={'/category/' + item.id} className="flex-1 text-gray-600 hover:ml-2 duration-300" > <p>{item.name}</p></NavLink>
+                <NavLink onClick={()=> setPage("")} to={'/category/' + item.id} className="flex-1 text-gray-600 hover:ml-2 duration-300" > <p>{item.name}</p></NavLink>
                 {item?.subsubcategory.length ? <div className="px-4 h-full">
                     {open ? <MinusIcon onClick={() => setOpen(!open)} className='h-4 w-4 text-gray-800 cursor-pointer' /> :
                         <PlusIcon onClick={() => setOpen(!open)} className='h-4 w-4 text-gray-800 cursor-pointer' />}
@@ -227,7 +232,7 @@ const SingleSub = ({ item }) => {
                     {
                         item?.subsubcategory?.map((sub) =>
                             <div key={sub?.id} className='py-2'>
-                                <NavLink to={'/category/' + sub.id} className="flex-1 text-gray-600 !hover:ml-10 duration-300" > <p>{sub.name}</p></NavLink>
+                                <NavLink onClick={()=> setPage("")} to={'/category/' + sub.id} className="flex-1 text-gray-600 !hover:ml-10 duration-300" > <p>{sub.name}</p></NavLink>
                             </div>)
                     }
                 </div>
