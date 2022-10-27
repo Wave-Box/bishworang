@@ -100,7 +100,7 @@ export default function Drawer({ open, setOpen }) {
 
 const SingleItem = ({ item }) => {
     const dispatch = useDispatch()
-    console.log(item, "item");
+    // console.log(item, "item");
 
     // const price = getPrice(item?.regular_price, item?.discount_price, item?.discount_type)
     return (

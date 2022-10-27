@@ -265,7 +265,7 @@ const Details = ({ item }) => {
 
                 {vrcolor?.length && sizeV === undefined && <div className="flex gap-3 justify-start items-center mt-6 mb-2">
                     <h6 className='text-md font-semibold text-gray-700'>Color</h6>
-                    {variant?.map((i) => <ColorSelectOnly key={i.id} select={setSelectColorOnly} setSelect={setSelectColorOnly} setVariant={set_variant} data={i} selectColor={i.color} bg={i.color} />)}
+                    {variant?.map((i) => <ColorSelectOnly key={i.id} select={selectColorOnly} setSelect={setSelectColorOnly} setVariant={set_variant} data={i} selectColor={i.color} bg={i.color} />)}
                 </div>}
 
                 {!vrcolor?.length && sizeV !== undefined && <div className="flex gap-1 justify-start items-center mt-4 mb-7">
