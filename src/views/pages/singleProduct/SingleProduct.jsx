@@ -66,7 +66,7 @@ const SingleProduct = () => {
     const qty = variant.find(item => item.size === selectSize)
 
 
-    console.log(selectSize, "selectSize");
+    // console.log(selectSize, "selectSize");
     // console.log(variant, "variant");
     // console.log(singleVariant, "singleVariant");
     // console.log(result, "result");

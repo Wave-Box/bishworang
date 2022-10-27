@@ -37,6 +37,8 @@ const Details = ({ item }) => {
     // const { data } = HomePage.GetInfo()
 
     const [selectColor, setSelectColor] = useState('')
+    const [selectColorOnly, setSelectColorOnly] = useState('')
+
     const [selectSize, setSelectSize] = useState('')
 
 
@@ -80,14 +82,17 @@ const Details = ({ item }) => {
             setProduct(product);
             setVariant(variant);
             setVrcolor(vrcolor);
-            setLoading(false);
+            setLoading(false)
             setSize([])
-            setSelectColor(vrcolor[0])
+            setSelectColor(vrcolor !== undefined ? vrcolor[0] : null)
+            setSelectColorOnly(null)
             setSelectSize(null)
             setSingleVariant({})
-            const resultSize = variant?.filter(i => i.color === vrcolor[0])
-            console.log(resultSize, "resultSize");
-            setSize(resultSize)
+            if (vrcolor !== undefined) {
+                const resultSize = variant?.filter(i => i.color === vrcolor[0])
+                // console.log(resultSize,"resultSize");
+                setSize(resultSize)
+            }
 
         }
 
@@ -258,9 +263,9 @@ const Details = ({ item }) => {
                     <SizeView />
                 </div>}
 
-                {vrcolor?.length && sizeV === undefined && <div className="flex gap-2 justify-start items-center mt-6 mb-2">
+                {vrcolor?.length && sizeV === undefined && <div className="flex gap-3 justify-start items-center mt-6 mb-2">
                     <h6 className='text-md font-semibold text-gray-700'>Color</h6>
-                    {variant?.map((i) => <ColorSelectOnly key={i.id} select={selectColor} setSelect={setSelectColor} setVariant={set_variant} data={i} selectColor={i.color} bg={i.color} />)}
+                    {variant?.map((i) => <ColorSelectOnly key={i.id} select={setSelectColorOnly} setSelect={setSelectColorOnly} setVariant={set_variant} data={i} selectColor={i.color} bg={i.color} />)}
                 </div>}
 
                 {!vrcolor?.length && sizeV !== undefined && <div className="flex gap-1 justify-start items-center mt-4 mb-7">

@@ -13,8 +13,10 @@ import httpReq from '../../../services/http.service';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCartList, incrementQty } from '../../../redux/slices/productslice';
 import useTheme from '../../../hooks/useTheme';
-import Details from '../../pages/singleProduct/Details';
 import QuickView from './QuickView';
+import Details from '../../pages/singleProduct/Details';
+// import Details from '../../pages/singleProduct/Details';
+// import QuickView from './QuickView';
 // import { HomePage } from '../../../services';
 
 const NewProductCard = ({ item }) => {
@@ -100,7 +102,7 @@ const NewProductCard = ({ item }) => {
 
     return (
         <div className="group cursor-pointer">
-            <NavLink to={'/product/' + item?.id}><div className="drop-shadow-xl w-full ">
+            <div className="drop-shadow-xl w-full ">
                 <figure className='w-full h-[360px] relative overflow-hidden '>
                     <NavLink to={'/product/' + item?.id}>
                         <motion.img whileHover={{
@@ -155,16 +157,17 @@ const NewProductCard = ({ item }) => {
                 <div className="card-body p-4 bg-white">
                     <NavLink to={'/product/' + item?.id}>
                         <p className='text-xs '>{item?.name?.slice(0, 18)} {item?.name?.length > 18 ? "..." : null}</p>
+
+                        <h2 className="tracking-widest font-normal text-sm text-gray-600">
+                            <p>{item?.description?.slice(0, 18)} {item?.description?.length > 18 ? "..." : null}</p>
+                        </h2>
+
+
+                        <h6 className='text-lg font-medium '>
+                            {item.discount_price === '0.00' ? " " : <p className='line-through text-sm text-[#AD171A]'> <Taka tk={item?.regular_price} /></p>}
+                            <Taka tk={price} />
+                        </h6>
                     </NavLink>
-                    <h2 className="tracking-widest font-normal text-sm text-gray-600">
-                        <p>{item?.description?.slice(0, 18)} {item?.description?.length > 18 ? "..." : null}</p>
-                    </h2>
-
-                    <h6 className='text-lg font-medium '>
-                        {item.discount_price === '0.00' ? " " : <p className='line-through text-sm text-[#AD171A]'> <Taka tk={item?.regular_price} /></p>}
-                        <Taka tk={price} />
-                    </h6>
-
                     {result?.qty ? <div onClick={() => dispatch(incrementQty(result?.cartId))} className="absolute bottom-6 right-6">
                         <HoverIcon text={"Add to Cart"} >
                             <BsBagPlus className='h-5 w-5 text-2xl font-serif font-bold' />
@@ -180,7 +183,7 @@ const NewProductCard = ({ item }) => {
                             </HoverIcon>
                         </NavLink>}
                 </div>
-            </div></NavLink>
+            </div>
 
             <QuickView open={open} setOpen={setOpen} >
                 <Details item={{ product_id: item?.id }} />
