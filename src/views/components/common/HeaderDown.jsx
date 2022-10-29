@@ -16,7 +16,7 @@ import { useForm } from "react-hook-form";
 import { toast } from 'react-toastify'
 import httpReq from '../../../services/http.service';
 import { red } from '../../../siteSetting/theme';
-
+import { ImWhatsapp } from 'react-icons/im';
 
 const HeaderDown = () => {
     const { user } = useSelector((state) => state.auth)
@@ -26,7 +26,7 @@ const HeaderDown = () => {
     const { register, handleSubmit } = useForm();
 
     const onSubmit = data => {
-        
+
         httpReq.post("subscribe", data)
             .then(({ success, error }) => {
                 if (error) {
@@ -75,6 +75,7 @@ const HeaderDown = () => {
                             <Search />
                         </div>
                         <div className="flex items-center space-x-3">
+                            <a href={"https://api.whatsapp.com/send?phone=" + data?.settings?.whatsapp_phone} target="_blank" rel="noopener noreferrer"><ImWhatsapp className='text-[22px] md:hidden' /></a>
                             <ShoppingCart />
                             <NavLink to='/favourite' className="relative">
                                 <HeartIcon width={30} />
@@ -182,9 +183,9 @@ const HeaderDown = () => {
                                         </div>
                                         <div onClick={closeModal} className="absolute top-1 right-1 cursor-pointer ">
 
-                                        <CgClose className='text-lg font-medium text-white' />
+                                            <CgClose className='text-lg font-medium text-white' />
 
-                                    </div>
+                                        </div>
                                     </div>
                                 </Dialog.Panel>
                             </Transition.Child>
