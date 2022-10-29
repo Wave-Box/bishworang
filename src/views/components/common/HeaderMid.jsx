@@ -103,7 +103,7 @@ export default function HeaderMid() {
                                 Home
                             </NavLink>
                         </div>
-                        {data?.category?.map(item => <HoverCat key={item?.id} item={item} />)}
+                        {data?.category?.slice(0,7).map(item => <HoverCat key={item?.id} item={item} />)}
 
 
 
