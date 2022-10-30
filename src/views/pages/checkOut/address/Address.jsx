@@ -38,7 +38,7 @@ const Address = ({ selectAddress, setSelectAddress }) => {
                     <div className="col-span-6 sm:col-span-4">
                         <div className="flex justify-between items-center pb-3">
                             <label htmlFor="name" className="block text-xl font-semibold text-gray-700">
-                                Addresses
+                                Addresses <span className='text-sm'>( Please Select Your Address )</span>
                             </label>
                             <span className='text-green-600 font-semibold tracking-wider cursor-pointer' onClick={() => setOpen(true)}> + Add</span>
                         </div>

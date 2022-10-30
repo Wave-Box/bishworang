@@ -57,7 +57,7 @@ const HeaderSticky = () => {
                                         <MenuIcon className="h-6 w-6" aria-hidden="true" />
                                     </Popover.Button>
                                 </div>
-                                <Popover.Group as="nav" className="hidden lg:flex justify-center items-center xl:space-x-6 space-x-3 h-[40px]">
+                                <Popover.Group as="nav" className="hidden lg2:flex justify-center items-center xl:space-x-6 space-x-3 h-[40px]">
 
 
                                     <div className="flex justify-center items-center h-full">

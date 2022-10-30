@@ -19,6 +19,7 @@ import { addToCartList, decrementQty } from '../../../redux/slices/productslice'
 import { EyeIcon, HeartIcon, MinusIcon, PlusIcon } from '@heroicons/react/outline';
 import { toast } from 'react-toastify';
 import sizeImg from '../../../assets/images/size.jpg';
+import kidSizes from '../../../assets/images/kids_sizes.png';
 import { Fragment, useRef } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import Taka from '../../components/utils/Taka';
@@ -395,8 +396,6 @@ const SingleProduct = () => {
                 tab === 'review' && <Reviews id={product?.id} />
             }
 
-
-
             <RelatedProducts id={product?.category_id} />
         </div>
     );
@@ -439,9 +438,10 @@ const SizeView = () => {
                             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                         >
                             <Dialog.Panel className="relative bg-white rounded-lg text-left max-h-[80vh] py-3 overflow-y-scroll shadow-xl transform transition-all sm:my-8 ">
-                                <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                                <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4 max-w-5xl h-full">
 
-                                    <img className='w-full h-full' src={sizeImg} alt="" />
+                                    <img className='w-full h-full' src={sizeImg} alt="" /><br/>
+                                    <img className='w-full h-full' src={kidSizes} alt="" />
 
                                 </div>
 
