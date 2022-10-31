@@ -16,12 +16,12 @@ const ReturnPolicy = () => {
             <h3 className='text-xl font-bold font-sans my-5'>Discount Sales </h3>
             <p>Our return & exchange policy shall not be applicable for any discount sales product(s). Any discount item once purchased cannot be exchanged or returned. No return or exchange is applicable for purchases made during the campaign period.</p>
             <h3 className='text-xl font-bold font-sans my-5'> For orders shipped within Bangladesh</h3>
-            <p>If you are not fully satisfied with the products you bought, simply bring it back within 10 days of the purchase date to any of our outlets with your receipt or invoice for online orders and we will gladly exchange the product. Please note that the value of the exchanged product should be of similar or higher value than the original product price. If exchanging for a higher value item, the purchase value difference must be paid.</p>
+            <p className='text-justify'>If you are not fully satisfied with the products you bought, simply bring it back within 10 days of the purchase date to any of our outlets with your receipt or invoice for online orders and we will gladly exchange the product. Please note that the value of the exchanged product should be of similar or higher value than the original product price. If exchanging for a higher value item, the purchase value difference must be paid.</p>
             <p>Alternatively, you may ship the product to our e-commerce warehouse and we will gladly provide you with a credit note for future online purchases.</p>
             <br />
             <p className='font-bold'>During various festivals including Eid, Puja and Baisakh, it will be not possible for us to provide the said facility.</p><br />
 
-            <p>Our address is: <br />
+            <p className='text-justify'>Our address is: <br />
                 Bishworang E-Commerce <br />
                 West Lamapara , Shibu Market, Link Road, Narayanganj - 1420, Phone - 01730068036 <br />
                 Items that you want to exchange or return must be unworn, unwashed and unused with all original tags attached. Items that are opened or damaged or do not have a receipt may be denied an exchange. <br />

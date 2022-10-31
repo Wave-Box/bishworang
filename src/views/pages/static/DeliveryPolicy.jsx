@@ -13,8 +13,8 @@ const DeliveryPolicy = () => {
             <div className='min-h-[600px] mt-10'>
                 <h1 className='text-[26px] font-extrabold text-center font-sans'>Delivery Policy</h1>
                 <h4 className='text-xl my-3 font-bold'>Shipping Methods</h4>
-                <p>The shipping method you can choose from checkout page to determines how quickly your shipped item will be delivered to your doorstep.</p>
-                <p>We process one shipping address for one order. So please mention your desired shipping address in details where you want to get delivery.  Door step shipment delivery available. Other than these area we would like to request our customers to call our customer care to take delivery from your nearest pickup points.</p>
+                <p className='text-justify'>The shipping method you can choose from checkout page to determines how quickly your shipped item will be delivered to your doorstep.</p>
+                <p className='text-justify'>We process one shipping address for one order. So please mention your desired shipping address in details where you want to get delivery.  Door step shipment delivery available. Other than these area we would like to request our customers to call our customer care to take delivery from your nearest pickup points.</p>
 
                 <h4 className='text-lg my-3 font-bold font-sans'>Shipping Cost</h4>
 
@@ -60,7 +60,7 @@ const DeliveryPolicy = () => {
                     </tbody>
                 </table>
 
-                <div className="space-y-3 mt-3">
+                <div className="space-y-3 mt-3 text-justify">
 
                     <p>** For additional weight after one kg additional charge 20TK. per KG. (Inside of Country) But outside of Country Delivery Policy Will Depend International Courier Service.</p>
                     <p>** Any order placed after 5 pm will be considered as order of next working day, not as same day.</p>
@@ -71,8 +71,8 @@ const DeliveryPolicy = () => {
 
 
                 <h4 className='text-lg my-3 font-bold font-sans'>Delivery Information:</h4>
-                <p className='mb-3'>We highly values the urgency of your orders. We endeavor to make sure that your ordered products reach your door in the fastest possible time. Once your order is confirmed, you will receive a confirmation mail from with the invoice. Please note every unpaid order will be reconfirmed over phone. </p>
-                <p className='mb-1'>Your ordered products will be sent to your given address in 3 to 7 working days for anywhere in Bangladesh.</p>
+                <p className='mb-3 text-justify'>We highly values the urgency of your orders. We endeavor to make sure that your ordered products reach your door in the fastest possible time. Once your order is confirmed, you will receive a confirmation mail from with the invoice. Please note every unpaid order will be reconfirmed over phone. </p>
+                <p className='mb-1 text-justify'>Your ordered products will be sent to your given address in 3 to 7 working days for anywhere in Bangladesh.</p>
                 <p>We start the shipping process within 24 hours. So, if you want to cancel or modify any order, please inform us to our customer support team via Facebook page or over phone: <strong>01730068036</strong></p>
 
                 <h4 className='text-lg my-3 font-bold font-sans'>Discounted/special offer item will be No exchanged / refundable.</h4>

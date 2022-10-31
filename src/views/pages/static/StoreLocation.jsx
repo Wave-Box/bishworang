@@ -13,11 +13,11 @@ const StoreLocation = () => {
                 </div>
                 <div className='min-h-[600px] mt-10 w-full'>
                     <h3 className='border-b border-black pb-2 text-2xl font-semibold'>BISHWO RANG OUTLETS</h3>
-                    <div className='mt-10'>
+                    <div className='mt-10 '>
                         <div className='flex flex-col gap-4 bg-gray-100 p-5 rounded-lg mb-5'>
-                            <div className='text-center font-bold text-4xl text-gray-700'>
+                            {/* <div className='text-center font-bold text-4xl text-gray-700'>
                                 <h1>Dhaka Zone</h1>
-                            </div>
+                            </div> */}
                             <div className='grid xl:grid-cols-3 lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-2 grid-cols-1 gap-5'>
                                 <div className='flex flex-col gap-3 bg-white p-5 rounded-lg'>
                                     <h1 className='text-center font-bold border-b border-black pb-2 w-max'>Wari</h1>
@@ -62,7 +62,7 @@ const StoreLocation = () => {
                                     <p>Contact Number: 01730068028</p>
                                 </div>
                                 <div className='flex flex-col gap-3 bg-white p-5 rounded-lg'>
-                                    <h1 className='text-center font-bold border-b border-black pb-2 w-max'>Dhanmondi</h1>
+                                    <h1 className='text-center font-bold border-b border-black pb-2 w-max'>Orchard Point</h1>
                                     {/* <ImLocation2 className='text-4xl text-gray-700'/> */}
                                     <p>Orchard Point, 2nd floor, Road-7, Dhanmondi, Dhaka</p>
                                     <p>Contact Number: 01730068073</p>
