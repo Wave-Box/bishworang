@@ -32,6 +32,10 @@ const about = [
     {
         name: "Blog",
         link: '/blog'
+    },
+    {
+        name: "Our Outlets Address",
+        link: '/location'
     }
 ]
 const Aside = () => {

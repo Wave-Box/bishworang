@@ -63,7 +63,7 @@ const Address = ({ selectAddress, setSelectAddress }) => {
 
 
 
-            <SaveAddress open={open} setOpen={setOpen} setCall={setCall} />
+            <SaveAddress open={open} setOpen={setOpen} setCall={setCall} setSelectAddress={setSelectAddress} />
         </>
     );
 };
@@ -87,7 +87,7 @@ const Single = ({ item, selectAddress, setSelectAddress, setCall }) => {
                 backgroundColor: selectAddress?.id === item?.id ? red : '#fff',
                 color: selectAddress?.id === item?.id ? 'white' : "#000",
             }}
-            className={`border border-gray-300 p-5 rounded space-y-2 w-full transition-colors duration-300`}>
+            className={`border border-gray-300 p-5 rounded space-y-2 w-full transition-colors duration-300 relative`}>
             <div className="flex justify-between cursor-pointer">
                 <h3 className='font-semibold tracking-wider'>Name: {item?.name}</h3>
                 <div className="flex flex-col">
@@ -100,7 +100,7 @@ const Single = ({ item, selectAddress, setSelectAddress, setCall }) => {
             <p className='font-normal text-sm tracking-wider'><span className='text-base font-medium'>Phone:</span> {item?.phone}</p>
             <p className='font-normal text-sm tracking-wider'><span className='text-base font-medium'>Address: </span>{item?.address}</p>
             <input
-                className="hidden"
+                className="absolute bottom-5 right-5"
                 name="address-type"
                 type="radio"
                 onChange={() => setSelectAddress(item)}
@@ -111,7 +111,7 @@ const Single = ({ item, selectAddress, setSelectAddress, setCall }) => {
 }
 
 
-export function SaveAddress({ open, setOpen, setCall }) {
+export function SaveAddress({ open, setOpen, setCall, setSelectAddress }) {
 
     const { user } = useSelector((state) => state.auth);
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
@@ -125,6 +125,7 @@ export function SaveAddress({ open, setOpen, setCall }) {
                     toast(success, { type: 'success',
                     autoClose: 1000, })
                     setOpen(false)
+                    setSelectAddress(null)
                 }
                 if (error) {
 

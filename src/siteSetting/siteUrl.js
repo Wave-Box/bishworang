@@ -8,3 +8,15 @@ export const profileImg = 'https://bishworang.website/admin/application/public/a
 export const campaignImg = 'https://bishworang.website/admin/application/public/assets/images/campaign/'
 export const blogImg = 'https://bishworang.website/admin/application/public/assets/images/blog/'
 export const offerImg = 'https://bishworang.website/admin/application/public/assets/images/offer/'
+
+
+// export const imgUrl = 'https://wavebox.site/admin/application/public/assets/images/setting/'
+// export const catImg = 'https://wavebox.site/admin/application/public/assets/images/category/'
+// export const sliderImg = 'https://wavebox.site/admin/application/public/assets/images/slider/'
+// export const productImg = 'https://wavebox.site/admin/application/public/assets/images/product/'
+// export const bannerImg = 'https://wavebox.site/admin/application/public/assets/images/banner/'
+// export const testimonialImg = 'https://wavebox.site/admin/application/public/assets/images/testimonials/'
+// export const profileImg = 'https://wavebox.site/admin/application/public/assets/images/img/'
+// export const campaignImg = 'https://wavebox.site/admin/application/public/assets/images/campaign/'
+// export const blogImg = 'https://wavebox.site/admin/application/public/assets/images/blog/'
+// export const offerImg = 'https://wavebox.site/admin/application/public/assets/images/offer/'
