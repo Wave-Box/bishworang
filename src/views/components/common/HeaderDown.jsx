@@ -75,7 +75,7 @@ const HeaderDown = () => {
                             <Search />
                         </div>
                         <div className="flex items-center space-x-3">
-                            <a href={"https://api.whatsapp.com/send?phone=" + data?.settings?.whatsapp_phone} target="_blank" rel="noopener noreferrer"><ImWhatsapp className='text-[22px] md:hidden' /></a>
+                            <a href={"https://api.whatsapp.com/send?phone=+88" + data?.settings?.whatsapp_phone} target="_blank" rel="noopener noreferrer" className='md:hidden'><ImWhatsapp className='text-[22px] md:hidden' /></a>
                             <ShoppingCart />
                             <NavLink to='/favourite' className="relative">
                                 <HeartIcon width={30} />
