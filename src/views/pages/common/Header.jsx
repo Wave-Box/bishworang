@@ -4,13 +4,13 @@ import HeaderDown from '../../components/common/HeaderDown';
 import HeaderMid from '../../components/common/HeaderMid';
 import HeaderTop from '../../components/common/HeaderTop';
 
-const Header = () => {
+const Header = ({data}) => {
 
     return (
         <>
-            <HeaderTop />
-            <HeaderDown />
-            <HeaderMid />
+            <HeaderTop data={data} />
+            <HeaderDown data={data} />
+            <HeaderMid data={data} />
 
         </>
     );

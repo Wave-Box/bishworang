@@ -4,11 +4,11 @@ import { Slider1 } from '../../../components/slider';
 import { SwiperSlide } from 'swiper/react';
 import Title from '../../../components/utils/Title';
 import Arrow from '../../../components/utils/Arrow';
-import { HomePage } from '../../../../services';
+// import { HomePage } from '../../../../services';
 
 
-const NewArrivals = () => {
-    const { data } = HomePage.GetInfo()
+const NewArrivals = ({data}) => {
+    // const { data } = HomePage.GetInfo()
     const prev = 'new_Prev'
     const next = 'new_Next'
     return (
@@ -22,7 +22,7 @@ const NewArrivals = () => {
                 prevEl={prev}
                 nextEl={next}
             >
-                {data?.product?.map((item) => 
+                {data?.map((item) => 
                 <SwiperSlide key={item?.id}>
                     <Card2 item={item} />
                 </SwiperSlide>

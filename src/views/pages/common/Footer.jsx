@@ -8,7 +8,9 @@ import yt from '../../../assets/images/footer/youtube.png'
 import payment from '../../../assets/images/footer/SSLCOMMERZ Pay With logo All Size_Aug 21-05-Nov-18-2021-05-46-29-86-AM (1).png'
 import { primaryColor } from '../../../constant';
 import { imgUrl } from '../../../siteSetting/siteUrl';
-import { HomePage } from '../../../services';
+import { useState } from 'react';
+// import axios from 'axios';
+// import { HomePage } from '../../../services';
 
 
 const about = [
@@ -72,10 +74,19 @@ const contact = [
 
     { name: "Hours: ", value: "10 AM – 7PM, Sat - Thu" },
 ]
+// const baseURL = 'https://bishworang.website/admin/api/v1/allfrontendcontent'
 
-const Footer = () => {
-    const { data } = HomePage.GetInfo()
+const Footer = ({data}) => {
+    // const { data } = HomePage.GetInfo()
+    // const [post, setPost] = useState(null);
+    // console.log(post,"post");
+    // React.useEffect(() => {
+    //     axios.get(`${baseURL}`).then((response) => {
+    //       setPost(response?.data);
+    //     });
+    //   }, []);
     return (
+       
         <footer className="text-gray-600 body-font bg-white mt-10 drop-shadow-xl">
             <div className="container pt-12 mx-auto">
                 <div className="flex flex-wrap md:text-left text-center order-first">

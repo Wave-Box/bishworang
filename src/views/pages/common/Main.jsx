@@ -71,7 +71,7 @@ const SingleProduct = React.lazy(() => import("../singleProduct/SingleProduct"))
 const Shop = React.lazy(() => import("../shop/Shop"));
 
 
-const Main = () => {
+const Main = ({ data }) => {
 
     return (
         <div className="relative">
@@ -80,13 +80,12 @@ const Main = () => {
                 <button className="btn loading">loading</button>
             </div>}>
                 <Routes>
-                    <Route path="/" element={<Home />} />
+                    <Route path="/" element={<Home data={data} />} />
                     <Route path="/product/:id" element={<SingleProduct />} />
                     <Route path="/category/:id" element={<Shop />} />
                     <Route path="/offer" element={<Offer />} />
                     <Route path="/shop" element={<Shop />} />
                     <Route path="/favourite" element={<Favourite />} />
-
 
                     <Route path="/about" element={<About />} />
                     <Route path="/contact" element={<Contact />} />

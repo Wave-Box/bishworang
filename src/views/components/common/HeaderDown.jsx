@@ -18,9 +18,9 @@ import httpReq from '../../../services/http.service';
 import { red } from '../../../siteSetting/theme';
 import { ImWhatsapp } from 'react-icons/im';
 
-const HeaderDown = () => {
+const HeaderDown = ({data}) => {
     const { user } = useSelector((state) => state.auth)
-    const { data } = HomePage.GetInfo()
+    // const { data } = HomePage.GetInfo()
 
     const [isOpen, setIsOpen] = useState(false)
     const { register, handleSubmit } = useForm();

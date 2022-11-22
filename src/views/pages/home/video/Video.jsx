@@ -1,9 +1,9 @@
 
-import { HomePage } from '../../../../services';
+// import { HomePage } from '../../../../services';
 
-const Video = () => {
+const Video = ({data}) => {
     
-    const { data } = HomePage.GetInfo();
+    // const { data } = HomePage.GetInfo();
  
     return (
         <div className="bg-white">
@@ -13,7 +13,7 @@ const Video = () => {
                     <p className='text-center text-base font-normal my-5 tracking-wide font-sans sm:mx-16 mx-2'>Join our mailing list for exclusive access to the latest fashion trends, tips, and more.</p>
                 </div>
                 <div>
-                    <iframe className='mb-5' width="100%" height="480" src={data?.settings?.fp_video} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                    <iframe className='mb-5' width="100%" height="480" src={data?.fp_video} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                 </div>
 
             </div>

@@ -90,6 +90,7 @@ const YourOrders = ({ cuponDis, coupon, selectAddress, selectPayment, shipping_a
 
             httpReq.post(`placeorder`, data)
                 .then((response) => {
+                    console.log(response,"response");
                     if (response?.order) {
                         
                         swal({

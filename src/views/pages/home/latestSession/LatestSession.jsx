@@ -8,12 +8,22 @@ import SliderTwo from './SliderTwo';
 // import useTheme from '../../../../hooks/useTheme';
 import { bannerImg } from '../../../../siteSetting/siteUrl';
 import SetLoaing from '../../../components/Loader/SetLoaing';
-import { HomePage } from '../../../../services';
-
+import { useState } from 'react';
+import axios from 'axios';
+// import { HomePage } from '../../../../services';
+const baseURL = 'https://bishworang.website/admin/api/v1/season'
 
 
 const LatestSession = () => {
-    const { data, isLoading } = HomePage.GetSeason()
+    // const { data, isLoading } = HomePage.GetSeason()
+    const [data, setPost] = useState(null);
+    console.log(data,"post");
+    React.useEffect(() => {
+        axios.get(`${baseURL}`).then((response) => {
+          setPost(response?.data);
+        });
+      }, []);
+    const isLoading=false;
     return (
         <div className='container my-10 sm:px-0 px-4' >
             <h6 className='text-center font-medium font-sans text-3xl tracking-widest text-gray-700'>LATEST FROM THE SEASON</h6>

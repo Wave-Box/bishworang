@@ -3,10 +3,20 @@ import Title from '../../../components/utils/Title';
 import { primaryColor } from '../../../../constant';
 import { NavLink } from 'react-router-dom';
 import { blogImg } from '../../../../siteSetting/siteUrl';
-import { HomePage } from '../../../../services';
+import { useState } from 'react';
+import axios from 'axios';
+// import { HomePage } from '../../../../services';
+const baseURL = 'https://bishworang.website/admin/api/v1/blog'
 
 const FromBlog = () => {
-    const { data } = HomePage.GetBlog()
+    // const { data } = HomePage.GetBlog()
+    const [data, setPost] = useState(null);
+    console.log(data,"post");
+    React.useEffect(() => {
+        axios.get(`${baseURL}`).then((response) => {
+          setPost(response?.data);
+        });
+      }, []);
     return (
         <div>
             <section className="text-gray-600 body-font bg-white">
@@ -15,14 +25,7 @@ const FromBlog = () => {
                         <Title text={'From'} >Blog</Title>
                     </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-
                         {data?.map((blog) => <SingleBlog blog={blog} key={blog.id} />)}
-
-
-
-
-
-
                     </div>
 
                 </div>

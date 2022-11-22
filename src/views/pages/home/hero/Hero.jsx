@@ -14,9 +14,9 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 import { sliderImg } from "../../../../siteSetting/siteUrl";
-import { HomePage } from "../../../../services";
-const Hero = () => {
-    const { data } = HomePage.GetInfo()
+// import { HomePage } from "../../../../services";
+const Hero = ({data}) => {
+    // const { data } = HomePage.GetInfo()
     return (
         <>
             <Swiper
@@ -33,7 +33,7 @@ const Hero = () => {
                 modules={[EffectFade, Pagination, Autoplay]}
                 className="mySwiper"
             >
-                {data?.slider?.map((i, id) => <SwiperSlide key={id}>
+                {data?.map((i, id) => <SwiperSlide key={id}>
                     <a href={i.link} target="_blank" rel="noopener noreferrer"><img alt="" className={"w-full "} src={sliderImg + i.image} /></a>
                 </SwiperSlide>)}
 

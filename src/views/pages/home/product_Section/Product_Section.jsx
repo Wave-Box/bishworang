@@ -20,12 +20,13 @@ const btn = [
     }
 ]
 
-const Product_Section = () => {
+const Product_Section = ({data}) => {
     const [active, setActive] = useState('Featured')
 
-    const { data, error } = HomePage.GetInfo()
+    // const { data, error } = HomePage.GetInfo()
     const { error: popularProductError, data: popularProduct } = Product.GetPopularProduct()
     const { error: featureProductError, data: featureProduct } = Product.GetFeatureProduct()
+    const error=false;
 
 
     if (error || popularProductError || featureProductError) return 'An error has occurred: ' + error.message
@@ -43,7 +44,7 @@ const Product_Section = () => {
 
                 {<div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2'>
                     {active === 'New Added' &&
-                        data?.product?.slice(0, 8).map((i) => (
+                        data.map((i) => (
 
                             <NewProductCard key={i.id} item={i} />
                         ))

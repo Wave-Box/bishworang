@@ -24,9 +24,10 @@ import useTheme from '../../../hooks/useTheme'
 
 
 
-export default function HeaderMid() {
-
-    const { data, isLoading } = HomePage.GetInfo()
+export default function HeaderMid({data}) {
+    const isLoading=false;
+    // const { data, isLoading } = HomePage.GetInfo()
+    // console.log(data,"data");
     const [isShowing, setIsShowing] = useState(false)
     const { user } = useSelector((state) => state.auth);
     const dispatch = useDispatch()

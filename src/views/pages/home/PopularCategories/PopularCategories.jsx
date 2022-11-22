@@ -4,10 +4,10 @@ import { Slider1 } from '../../../components/slider';
 import { SwiperSlide, } from 'swiper/react';
 import Title from '../../../components/utils/Title';
 import Arrow from '../../../components/utils/Arrow';
-import { HomePage } from '../../../../services';
+// import { HomePage } from '../../../../services';
 
-const PopularCategories = () => {
-    const { data } = HomePage.GetInfo()
+const PopularCategories = ({data}) => {
+    // const { data } = HomePage.GetInfo()
     const prev = 'cat_Prev'
     const next = 'cat_Next'
     return (
@@ -21,7 +21,7 @@ const PopularCategories = () => {
                     prevEl={prev}
                     nextEl={next}
                 >
-                    {data?.category?.map((cat) => <SwiperSlide key={cat?.id}>
+                    {data?.map((cat) => <SwiperSlide key={cat?.id}>
                         <Card1 cat={cat} />
                     </SwiperSlide>
                     )}

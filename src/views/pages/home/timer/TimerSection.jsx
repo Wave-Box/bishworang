@@ -1,32 +1,33 @@
 import { ArrowRightIcon } from '@heroicons/react/outline';
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+// import { NavLink } from 'react-router-dom';
 import { primaryColor } from '../../../../constant';
 import Countdown from 'react-countdown';
 import { offerImg } from '../../../../siteSetting/siteUrl';
-import { HomePage } from '../../../../services';
+// import { HomePage } from '../../../../services';
 
 
-const TimerSection = () => {
-    const { data, isLoading, isFetching } = HomePage.GetInfo()
-    if (isLoading || isFetching) {
-        return
-    }
+const TimerSection = ({data1,data2}) => {
+    // const { data, isLoading, isFetching } = HomePage.GetInfo()
+
+    // if (isLoading || isFetching) {
+    //     return
+    // }
     return (
         <div className="container mb-14 sm:px-0 px-4">
             <div className='grid md:grid-cols-2 grid-cols-1 gap-5'>
-                {Object.keys(data?.offer)?.length ? <div className="relative rounded-md">
-                    <img alt="gallery" className="w-full min-h-[600px] sm:min-h-full object-cover object-center block" src={offerImg + data?.offer?.image} />
+                {Object.keys(data1)?.length ? <div className="relative rounded-md">
+                    <img alt="gallery" className="w-full min-h-[600px] sm:min-h-full object-cover object-center block" src={offerImg + data1?.image} />
                     <div className="absolute top-0 bottom-0 left-4 flex justify-start items-center ">
-                        <InnerCard item={data?.offer} />
+                        <InnerCard item={data1} />
                     </div>
                 </div>: " "}
-                {Object.keys(data?.offer2).length ?
+                {Object.keys(data2).length ?
                     <div className="relative rounded-md">
 
-                        <img alt="gallery" className="w-full min-h-[600px] sm:min-h-full object-cover object-center block" src={offerImg + data?.offer2?.image} />
+                        <img alt="gallery" className="w-full min-h-[600px] sm:min-h-full object-cover object-center block" src={offerImg + data2?.image} />
                         <div className="absolute top-0 bottom-0 left-4 flex justify-start items-center ">
-                            <InnerCardTwo item={data?.offer2} />
+                            <InnerCardTwo item={data2} />
                         </div>
                     </div>: " "}
             </div>

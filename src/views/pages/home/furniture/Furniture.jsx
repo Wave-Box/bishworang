@@ -6,12 +6,20 @@ import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline';
 import SliderTwo from '../latestSession/SliderTwo';
 import CardFour from '../../../components/card/CardFour';
 import { bannerImg } from '../../../../siteSetting/siteUrl';
-import { HomePage } from '../../../../services';
+import { useState } from 'react';
+import axios from 'axios';
 
 
-
+const baseURL = 'https://bishworang.website/admin/api/v1/home_decore'
 const Furniture = () => {
-    const { data } = HomePage.GetDecore()
+    // const { data } = HomePage.GetDecore()
+    const [data, setPost] = useState(null);
+    console.log(data,"post");
+    React.useEffect(() => {
+        axios.get(`${baseURL}`).then((response) => {
+          setPost(response?.data);
+        });
+      }, []);
     return (
         <div className="bg-white py-10">
             <div className='container sm:px-0 px-4'>

@@ -142,6 +142,12 @@ const StoreLocation = () => {
                                 <p>House No-968, North Bagura Road. Near Nouton Bazar, Barisal</p>
                                 <p>Contact Number: 01730068037</p>
                             </div>
+                            <div className='flex flex-col gap-3 bg-gray-100 p-5 rounded-lg'>
+                                <h1 className='text-center font-bold border-b border-black pb-2 w-max'>Faridpur</h1>
+                                {/* <ImLocation2 className='text-4xl text-gray-700'/> */}
+                                <p>86/93 Alipur moor Mujib sharak Faridpur_7800,<br/> New Market Faridpur</p>
+                                <p>Contact Number: 01730068027</p>
+                            </div>
                         </div>
                     </div>
                     {/* <ul className='mt-10 list-none'> */}

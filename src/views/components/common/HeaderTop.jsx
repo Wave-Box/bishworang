@@ -42,7 +42,6 @@ const HeaderTop = () => {
                         <NavLink to='/login'> <HeaderTopMenu icon={userIcon} doc={"Log In/Sign Up"} /></NavLink>
                     }
                 </div>
-
             </div>
         </div>
     );
